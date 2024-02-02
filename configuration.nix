@@ -45,6 +45,7 @@
   # Services
   services.flatpak.enable = true;
   #services.emacs.enable = true;
+  #services.teamviewer.enable = true;
 
   # Services Mouse
   services.ratbagd.enable = true;

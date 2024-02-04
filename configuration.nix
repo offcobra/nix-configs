@@ -11,42 +11,58 @@
     ];
 
   # Use the systemd-boot EFI boot loader.
+  ##
   boot = {
     tmp.cleanOnBoot = true;
     supportedFilesystems = [ "ntfs" ];
     kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [ "admgpu" ];
     loader = {
-      #systemd-boot.enable = true;
-      grub.configurationLimit = 5;
-      grub.enable = true;
-      grub.efiSupport = true;
-      grub.efiInstallAsRemovable = true;
-      grub.device = "nodev";
-      grub.extraEntriesBeforeNixOS = true;
-      grub.useOSProber = true;
-      efi = {
-        canTouchEfiVariables = false;
-        efiSysMountPoint = "/boot";
+      ##systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      grub = {
+        enable = true;
+        device = "nodev";
+        efiSupport = true;
+        useOSProber = true;
       };
     };
   };
 
-  #boot.kernelModules = [ "admgpu" ];
-  #boot.kernelPackages = pkgs.linuxPackages_latest;
-  #boot.supportedFilesystems = [ "ntfs" ];
 
+  # Gaming
+  # Steam gaming
+  programs.steam.enable = true;
+  hardware.opengl.driSupport32Bit = true;
+  hardware.pulseaudio.support32Bit = true;
+  nix = {
+    settings = {
+      warn-dirty = false;
+      experimental-features = "nix-command flakes";
+      auto-optimise-store = true;
+      substituters = ["https://nix-gaming.cachix.org"];
+      trusted-public-keys = ["nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="];
+    };
+  };
+
+
+  # Virtualization
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.qemu.swtpm.enable = true;
   virtualisation.docker.enable = true;
   
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "workstation"; # Define your hostname.
 
   # Services
   services.flatpak.enable = true;
-  #services.emacs.enable = true;
-  #services.teamviewer.enable = true;
 
+  # Emacs
+  services.emacs = {
+    enable = true;
+    package = pkgs.emacs; 
+  };
+
+  #services.teamviewer.enable = true;
   # Services Mouse
   services.ratbagd.enable = true;
  
@@ -59,7 +75,6 @@
     pulse.enable = true;
   };
 
-  # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -87,10 +102,10 @@
   programs.waybar.enable = true;
   programs.hyprland.xwayland.enable = true;
   environment.sessionVariables.NIXOS_OZONE_WL = "1";    
-  
-  # Steam gaming
-  programs.steam.enable = true;
 
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = false;
+  
   xdg.portal = {
     enable = true;
     wlr.enable = true;
@@ -129,6 +144,7 @@
       viewnior
       # Rust cli tools
       ripgrep
+      fd
       du-dust
       procs
       tealdeer
@@ -136,6 +152,8 @@
       spotify
       zoxide
       popcorntime
+      pcmanfm
+      brave
     ];
   };
 
@@ -149,13 +167,10 @@
     neofetch
     macchina
     vlc
-    starship
-    lolcat
     alacritty
     virt-manager
     virt-viewer
     virtio-win
-    #pcmanfm
     dunst
     rofi
     wofi
@@ -180,20 +195,7 @@
     hashcat
     hashcat-utils
     stress-ng    
-    #brave
     glib
-    # Themes
-    #dracula-theme
-    #dracula-icon-theme
-    #catppuccin-cursors
-    #lxappearance-gtk2
-    #libsForQt5.qtstyleplugin-kvantum
-    # Emacs dependency
-    #emacs29
-    #fd
-    #libgcc
-    #cmake
-    #gnumake
     # Bluetooth
     bluez
     blueberry
@@ -263,10 +265,10 @@
   }; 
 
   # Environment etc
-  environment.etc = {
-    "gtk-3.0".source = /home/wally/.config/gtk-3.0;
-    "gtk-2.0".source = /home/wally/.config/gtk-2.0;
-  };
+  #environment.etc = {
+  #  "gtk-3.0".source = /home/wally/.config/gtk-3.0;
+  #  "gtk-2.0".source = /home/wally/.config/gtk-2.0;
+  #};
 
   # qt Theme
   #qt.enable = true;

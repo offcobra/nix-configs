@@ -8,10 +8,24 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "ahci" "xhci_pci" "usb_storage" "usbhid" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  sound.enable = true;
+
+  # For games
+  hardware.pulseaudio.support32Bit = true;
+  hardware.opengl = {
+    ## radv: an open-source Vulkan driver from freedesktop
+    driSupport = true;
+    driSupport32Bit = true;
+
+    ## amdvlk: an open-source Vulkan driver from AMD
+    extraPackages = [ pkgs.amdvlk ];
+    extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
+  };
+
+  # Bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = false;
+  
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/8b627f50-400b-4c56-828a-b6a5d238a13a";
@@ -23,15 +37,15 @@
       fsType = "vfat";
     };
 
-  fileSystems."/home/wally/mySpace/backups" =
-    { device = "/dev/sda1";
-      fsType = "ext4";
-    };
+  #fileSystems."/home/wally/mySpace/backups" =
+  #  { device = "/dev/sda1";
+  #    fsType = "ext4";
+  #  };
 
-  fileSystems."/home/wally/mySpace/vms" =
-    { device = "/dev/sda2";
-      fsType = "ext4";
-    };
+  #fileSystems."/home/wally/mySpace/vms" =
+  #  { device = "/dev/sda2";
+  #    fsType = "ext4";
+  #  };
 
   swapDevices = [ ];
 

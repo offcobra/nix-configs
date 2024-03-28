@@ -25,10 +25,8 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";    
   environment.sessionVariables.XKB_DEFAULT_LAYOUT = "de";
   
-  # Hardware
-  hardware.bluetooth.enable = true;
-  networking.hostName = "thinkpad"; # Define your hostname.
   # Enable networking
+  networking.hostName = "thinkpad"; # Define your hostname.
   networking.networkmanager.enable = true;
 
   virtualisation.docker.enable = true;
@@ -111,6 +109,7 @@
         acpi
         wlr-randr
         alsa-utils
+        hyprlock
     ];
   };
 
@@ -190,8 +189,11 @@
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
     };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
   };
-
-
 }
 

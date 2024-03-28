@@ -15,6 +15,7 @@
     k3d
     fuzzel
     dunst
+    dysk
     # Terminals
     alacritty
     foot

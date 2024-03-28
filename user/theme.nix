@@ -19,12 +19,22 @@
       name = "BeautyLine";
       package = pkgs.beauty-line-icon-theme;
     };
-    cursorTheme = {
-      name = "Dracula-cursors";
-      package = pkgs.dracula-theme;
+    font = {
+      name = "FireCode";
+      package = pkgs.fira-code-nerdfont;
     };
+    #cursorTheme = {
+    #  name = "Dracula-cursors";
+    #  package = pkgs.dracula-theme;
+    #};
   };
-  #home.packages = with pkgs; [
-  #];
+  
+  home.pointerCursor = {
+    x11.enable = true;
+    gtk.enable = true;
+    name = "Dracula-cursors";
+    package = pkgs.dracula-theme;
+    size = 20;
+  };
 }
 

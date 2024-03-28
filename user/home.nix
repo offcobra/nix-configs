@@ -1,4 +1,4 @@
-{ config, pkgs, epkgs, ... }:
+{ config, pkgs, nix-colors, ... }:
 
 {
   imports =
@@ -8,6 +8,7 @@
       # Applications
       ./apps.nix
       ./theme.nix
+      ./bash.nix
     ];
 
   # Home Manager 
@@ -17,66 +18,45 @@
 
   # environment.
   home.packages = with pkgs; [
-    hello
+    dconf 
+    (pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; })
 
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
+    # # ShellScript Example
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  # Now symlink the `~/.config/gtk-4.0/` folder declaratively:
+  # XDG Files to be linked
   xdg.configFile = {
     "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
     "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
     "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
   };
 
+  # Linking Home Files
   home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-    #".icons/beautyline".source = "${pkgs.beauty-line-icon-theme}/share/icons/Beautyline";
     ".icons/BeautyLine".source = "${pkgs.beauty-line-icon-theme}/share/icons/Beautyline";
     ".themes/Catppuccin-Frappe-Standard-Blue-Dark".source = "${pkgs.catppuccin-gtk}/share/themes/Catppuccin-Frappe-Standard-Blue-Dark";
     ".themes/Dracula".source = "${pkgs.dracula-theme}/share/themes/Dracula";
+    ".local/share/fonts".source = "${pkgs.fira-code-nerdfont}/share/fonts/truetype/NerdFonts";
 
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
   };
-
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. If you don't want to manage your shell through Home
-  # Manager then you have to manually source 'hm-session-vars.sh' located at
-  # either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/wally/etc/profile.d/hm-session-vars.sh
-  #
+  
+  # Sessionvariables
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR="emacsclient -c -a 'emacs'";
     NIXOS_OZONE_WL = "1";    
     XKB_DEFAULT_LAYOUT = "de";
-
+    VISUAL="bat --pager 'less'";
+    PAGER="bat --pager 'less'";
+    LIBVIRT_DEFAULT_URI="qemu:///system";
   };
+
+  # SessionPath
+  home.sessionPath = [
+    "$HOME/.local/bin"
+  ];
 
   # Let Home Manager install and manage itself.
   programs = {

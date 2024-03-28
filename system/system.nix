@@ -48,12 +48,6 @@
   #   useXkbConfig = true; # use xkbOptions in tty.
   };
 
-  # Enable Hyprland
-  #programs.hyprland.enable = true;
-  #programs.waybar.enable = true;
-  #programs.hyprland.xwayland.enable = true;
-  #environment.sessionVariables.NIXOS_OZONE_WL = "1";    
-
   xdg.portal = {
     enable = true;
     wlr.enable = true;
@@ -92,6 +86,7 @@
         lm_sensors
         libnotify
         wlr-randr
+        alsa-utils
     ];
   };
 
@@ -138,7 +133,6 @@
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  # programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;
   #   enableSSHSupport = true;

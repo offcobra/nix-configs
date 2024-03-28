@@ -2,11 +2,11 @@
 
 {
   # Window Manager
-  wayland.windowManager.hyprland = {
-    enable = false;
-    xwayland = { enable = true; };
-    systemd.enable = true;
-  };
+  #wayland.windowManager.hyprland = {
+  #  enable = false;
+  #  xwayland = { enable = true; };
+  #  systemd.enable = true;
+  #};
 
   home.packages = with pkgs; [
     grim
@@ -14,9 +14,9 @@
     distrobox
     k3d
     fuzzel
+    dunst
     # Terminals
     alacritty
-    dunst
     foot
     # Bars
     waybar

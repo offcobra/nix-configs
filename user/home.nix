@@ -7,6 +7,7 @@
       ./hyprland.nix
       # Applications
       ./apps.nix
+      ./theme.nix
     ];
 
   # Home Manager 
@@ -31,11 +32,22 @@
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
+  # Now symlink the `~/.config/gtk-4.0/` folder declaratively:
+  xdg.configFile = {
+    "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
+    "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
+    "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
+  };
+
   home.file = {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
+    #".icons/beautyline".source = "${pkgs.beauty-line-icon-theme}/share/icons/Beautyline";
+    ".icons/BeautyLine".source = "${pkgs.beauty-line-icon-theme}/share/icons/Beautyline";
+    ".themes/Catppuccin-Frappe-Standard-Blue-Dark".source = "${pkgs.catppuccin-gtk}/share/themes/Catppuccin-Frappe-Standard-Blue-Dark";
+    ".themes/Dracula".source = "${pkgs.dracula-theme}/share/themes/Dracula";
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
@@ -61,6 +73,9 @@
   #
   home.sessionVariables = {
     # EDITOR = "emacs";
+    NIXOS_OZONE_WL = "1";    
+    XKB_DEFAULT_LAYOUT = "de";
+
   };
 
   # Let Home Manager install and manage itself.

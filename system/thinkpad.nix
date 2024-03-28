@@ -7,21 +7,34 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      # Boot Stuff
-      ./boot.nix
-      # Steam Stuff ?- here for now...
-      ./steam.nix
-      # Steam Stuff ?- here for now...
-      ./virtualization.nix
+      ./thinkpad-hardware.nix
     ];
 
-  # Pick networking options.
-  networking = { 
-    #bridges.br-lan.interfaces = [ "enp14s0" ];
-    hostName = "workstation"; # Define your hostname.
-    networkmanager.enable = true;
-  };
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 5;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  # Latest Kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # Enable Hyprland
+  programs.hyprland.enable = true;
+  programs.waybar.enable = true;
+  programs.hyprland.xwayland.enable = true;
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";    
+  environment.sessionVariables.XKB_DEFAULT_LAYOUT = "de";
+  
+  # Hardware
+  hardware.bluetooth.enable = true;
+  networking.hostName = "thinkpad"; # Define your hostname.
+  # Enable networking
+  networking.networkmanager.enable = true;
+
+  virtualisation.docker.enable = true;
+  #virtualisation.podman.enable = true;
+
+  programs.light.enable = true;
 
   # Services
   services.flatpak.enable = true;
@@ -31,10 +44,7 @@
   services.pipewire = {
     enable = true;
     alsa.enable = true;
-    alsa.support32Bit = true;
     pulse.enable = true;
-    jack.enable = true;
-    socketActivation = true;
   };
 
   # Set your time zone.
@@ -42,17 +52,24 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "de_DE.UTF-8";
+    LC_IDENTIFICATION = "de_DE.UTF-8";
+    LC_MEASUREMENT = "de_DE.UTF-8";
+    LC_MONETARY = "de_DE.UTF-8";
+    LC_NAME = "de_DE.UTF-8";
+    LC_NUMERIC = "de_DE.UTF-8";
+    LC_PAPER = "de_DE.UTF-8";
+    LC_TELEPHONE = "de_DE.UTF-8";
+    LC_TIME = "de_DE.UTF-8";
+  };
+
   console = {
     font = "Lat2-Terminus16";
     keyMap = "de";
   #   useXkbConfig = true; # use xkbOptions in tty.
   };
-
-  # Enable Hyprland
-  #programs.hyprland.enable = true;
-  #programs.waybar.enable = true;
-  #programs.hyprland.xwayland.enable = true;
-  #environment.sessionVariables.NIXOS_OZONE_WL = "1";    
 
   xdg.portal = {
     enable = true;
@@ -65,7 +82,7 @@
   nixpkgs.config.allowUnfree = true;
   users.users.wally = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "storage" "libvirtd" "qemu-libvirtd" "docker" "input" "disk" "kvm" ]; 
+    extraGroups = [ "wheel" "networkmanager" "storage" "video" "docker" "input" "disk" ]; 
     packages = with pkgs; [
         # Cli tools
         git
@@ -91,7 +108,9 @@
         jq
         lm_sensors
         libnotify
+        acpi
         wlr-randr
+        alsa-utils
     ];
   };
 
@@ -116,10 +135,6 @@
 
   security.polkit.enable = true;
   
-  systemd.tmpfiles.rules = [
-    "f /dev/shm/looking-glass 0660 wally kvm -"
-  ];
-
   systemd = {
   user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";
@@ -144,6 +159,28 @@
   #   enableSSHSupport = true;
   };
 
+  # Power Management
+  services.tlp = {
+      enable = true;
+      settings = {
+        CPU_SCALING_GOVERNOR_ON_AC = "performance";
+        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+        CPU_ENERGY_PERF_POLICY_ON_BAT = "powersave";
+        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+        CPU_MIN_PERF_ON_AC = 0;
+        CPU_MAX_PERF_ON_AC = 100;
+        CPU_MIN_PERF_ON_BAT = 0;
+        CPU_MAX_PERF_ON_BAT = 50;
+
+       #Optional helps save long term battery health
+       START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
+       STOP_CHARGE_THRESH_BAT0 = 90; # 80 and above it stops charging
+
+      };
+  };
+
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
   
@@ -153,11 +190,8 @@
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
     };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 30d";
-    };
   };
+
+
 }
 

@@ -3,8 +3,10 @@
 {
   # List of secondary Applications
   home.packages = with pkgs; [
+    brave
     libreoffice-fresh
     looking-glass-client
+    pavucontrol
     freerdp
     remmina
     evince

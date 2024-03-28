@@ -19,6 +19,10 @@
         inherit system;
         modules = [ ./system/system.nix ];
       };
+      thinkpad = lib.nixosSystem {
+        inherit system;
+        modules = [ ./system/thinkpad.nix ];
+      };
     };
     homeConfigurations = {
       wally = home-manager.lib.homeManagerConfiguration {

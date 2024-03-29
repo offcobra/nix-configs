@@ -20,6 +20,7 @@
     gping ="ping www.google.com";
     dcal = "date && cal 2024";
     my_pub_ip = "curl icanhazip.com";
+    pdf = "evince";
     # List dir
     tree = "eza --tree";
     ll = "eza -la --color=always --group-directories-first --group --icons";

@@ -4,6 +4,7 @@
   # List of secondary Applications
   home.packages = with pkgs; [
     brave
+    qutebrowser
     libreoffice-fresh
     looking-glass-client
     pavucontrol

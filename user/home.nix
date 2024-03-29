@@ -19,7 +19,11 @@
   # environment.
   home.packages = with pkgs; [
     dconf 
+    mpv
+    ghc
+    #python3
     libnotify
+    (python3.withPackages (ps: [ ps.pip ps.psutil ]))
     (pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; })
 
     # # ShellScript Example

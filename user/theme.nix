@@ -20,7 +20,7 @@
       package = pkgs.beauty-line-icon-theme;
     };
     font = {
-      name = "FireCode";
+      name = "FireCodeNerdFont";
       package = pkgs.fira-code-nerdfont;
     };
     #cursorTheme = {

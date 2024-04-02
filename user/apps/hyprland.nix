@@ -1,6 +1,19 @@
 { config, pkgs, ... }:
 
 {
+  imports =
+    [ # Include other modules
+      # Applications
+      ./apps.nix
+      # Bash stuff
+      ./bash.nix
+      # Terminals
+      ./alacritty.nix
+      ./foot.nix
+      # Launcher
+      ./fuzzel.nix
+    ];
+
   # Window Manager
   #wayland.windowManager.hyprland = {
   #  enable = false;
@@ -13,7 +26,6 @@
     slurp
     distrobox
     k3d
-    fuzzel
     dunst
     dysk
     # Terminals
@@ -28,18 +40,19 @@
     # Rust + Programs
     rustup
     bottom
-      # Theme packages
-      #nwg-look
-      #dracula-theme
-      #catppuccin
-      #gruvbox-gtk-theme
-      #gruvbox-dark-icons-gtk
-      #gnome.adwaita-icon-theme
-      #numix-cursor-theme
-      #material-cursors
-      #beauty-line-icon-theme
-      #candy-icons
-      # Themes done
   ];
 }
 
+
+# Theme packages
+#nwg-look
+#dracula-theme
+#catppuccin
+#gruvbox-gtk-theme
+#gruvbox-dark-icons-gtk
+#gnome.adwaita-icon-theme
+#numix-cursor-theme
+#material-cursors
+#beauty-line-icon-theme
+#candy-icons
+# Themes done

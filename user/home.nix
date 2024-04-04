@@ -1,16 +1,25 @@
-{ config, pkgs, nix-colors, ... }:
+{ config, pkgs, nix-colors, userSettings, ... }:
 
 {
   imports =
     [ # Include other modules
+      nix-colors.homeManagerModules.default
       # Window Manager
-      ./apps/hyprland.nix
+      ./wayland/hyprland.nix
+      # Bash Config
+      ./bash.nix
+      # Gtk Themes
       ./theme.nix
+      # Terminal
+      ./alacritty.nix
+      # Applications
+      ./apps.nix
     ];
+  colorScheme = nix-colors.colorSchemes.${userSettings.colorTheme};
 
   # Home Manager 
-  home.username = "wally";
-  home.homeDirectory = "/home/wally";
+  home.username = userSettings.username;
+  home.homeDirectory = "/home/"+userSettings.username;
   home.stateVersion = "23.11"; # Please dont change
 
   # environment.
@@ -20,6 +29,7 @@
     ghc
     #python3
     libnotify
+    networkmanagerapplet
     (python3.withPackages (ps: [ ps.pip ps.psutil ]))
     (pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; })
 
@@ -67,5 +77,44 @@
     # Emacs Configs
     emacs.enable = true;
     emacs.extraPackages = epkgs: [ epkgs.vterm ];
+    
+    # NetworkManager applet
+    #nm-applet.enable = true;
+
+    # Vim Settings 
+    vim = {
+      enable = true;
+      settings = {
+        expandtab = true;
+        shiftwidth = 4;
+        tabstop = 4;
+      };
+      extraConfig = ''
+        syntax enable
+        set incsearch
+        set hlsearch
+        set autoindent
+        set number relativenumber
+        " Dracula Colors
+        " packadd! dracula
+        " colorscheme dracula
+      '';
+    };
+    
+    # Git Version Control
+    git = {
+      enable = true;
+      userName = userSettings.name;
+      userEmail = userSettings.email;
+    };
+
+    # Bat a Better Cat 
+    bat = {
+      enable = true;
+      config = {
+        pager = "less -FR";
+        theme = "Dracula";
+      };
+    };
   };
 }

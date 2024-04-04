@@ -21,11 +21,12 @@
     #bridges.br-lan.interfaces = [ "enp14s0" ];
     hostName = "workstation"; # Define your hostname.
     networkmanager.enable = true;
+    #enableIPv6 = false;
   };
 
   # Services
   services.flatpak.enable = true;
-  services.emacs.enable = true;
+  #services.emacs.enable = true;
 
   # Enable sound.
   services.pipewire = {

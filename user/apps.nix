@@ -25,6 +25,16 @@
     # Virtio
     virt-manager
     virt-viewer
+    # cli tools
+    distrobox
+    k3d
+    dysk
+    # Terminals
+    alacritty
+    # Bars
+    eww
+    # Rust + Programs
+    rustup
+    bottom
   ];
 }
-

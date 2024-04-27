@@ -29,8 +29,11 @@
         name = "Wally Workstation"; # name/identifier
         email = "offthewall211@proton.me"; # email (used for certain configurations)
         dotfilesDir = "~/.dotfiles"; # absolute path of the local repo
-        theme = "Dracula"; # selcted theme from my themes directory (./themes/)
-        colorTheme = "catppuccin-mocha"; # selcted theme from my themes directory (./themes/)
+        theme = "Dracula"; # selcted gtk theme 
+        colorTheme = "catppuccin-mocha"; # selcted theme from nix-colors
+        iconTheme = "BeautyLine"; # selcted icontheme 
+        cursorTheme = "Dracula-cursors"; # selcted cursor-theme 
+        font = "FireCodeNerdFont"; # selcted font
         wm = "hyprland"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
         # window manager type (hyprland or x11) translator
         wmType = if (wm == "hyprland") then "wayland" else "x11";

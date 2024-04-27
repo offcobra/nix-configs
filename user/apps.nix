@@ -27,6 +27,7 @@
     virt-viewer
     # cli tools
     distrobox
+    fzf
     k3d
     dysk
     # Terminals
@@ -36,5 +37,6 @@
     # Rust + Programs
     rustup
     bottom
+    macchina
   ];
 }

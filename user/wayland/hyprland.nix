@@ -23,6 +23,8 @@ in
 {
   imports =
     [ # Include other modules
+      # HyprPaper
+      ./hyprpaper.nix
       # Waybar
       ./waybar.nix
       # Terminals
@@ -196,10 +198,6 @@ in
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
         
-        # Move/resize windows with mainMod + LMB/RMB and dragging
-        "$mainMod, mouse:272, movewindow"
-        "$mainMod, mouse:273, resizewindowpixel"
-
         # Sound controls
         ", xf86audioraisevolume, exec, amixer sset Master 5%+"
         ", xf86audiolowervolume, exec, amixer sset Master 5%-"
@@ -207,6 +205,10 @@ in
       ];
     };
     extraConfig = ''
+      # Move/resize windows with mainMod + LMB/RMB and dragging
+      bind = SUPER, mouse:272, moveactive
+      bind = SUPER, mouse:273, resizewindowpixel
+
       # Defining SUBMAPS
       # BROWSERS
       bind = SUPER, B, submap, browsers

@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    # Adding cli app configs
+    ./cli/macchina/macchina.nix
+  ];
   # Session Aliases
   programs.bash.enable = true;
   programs.bash.shellAliases = {
@@ -33,13 +37,19 @@
 
     # Git
     g = "git";
+    gs = "git status";
+    gp = "git pull";
+    gc = "git checkout";
     dog = "git log --oneline --graph --decorate --all";
     git_clean = "git remote update origin --prune";
 
     # Nixos Rebuild
-    update="sudo nix flake update $HOME/.config/nixos/";
-    hm_rebuild="home-manager switch --flake $HOME/.config/nixos/";
-    os_rebuild="sudo nixos-rebuild switch --flake $HOME/.config/nixos/";
+    #update="sudo nix flake update $HOME/.config/nixos/";
+    #hm_rebuild="home-manager switch --flake $HOME/.config/nixos/";
+    #os_rebuild="sudo nixos-rebuild switch --flake $HOME/.config/nixos/";
+    os_rebuild="nh os switch --update --ask";
+    hm_rebuild="nh home switch";
+    nix_clean="nh clean all --keep 3";
   };
 
   programs.bash.bashrcExtra = "

@@ -96,8 +96,6 @@
         du-dust
         procs
         tealdeer
-        neofetch
-        macchina
         git
         curl
         eza

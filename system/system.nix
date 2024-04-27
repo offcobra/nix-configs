@@ -20,9 +20,22 @@
   networking = { 
     #bridges.br-lan.interfaces = [ "enp14s0" ];
     hostName = "workstation"; # Define your hostname.
-    networkmanager.enable = true;
-    #enableIPv6 = false;
+    networkmanager = {
+      enable = true;
+    };
+    enableIPv6 = false;
+    #nameservers = [
+    #  "208.67.222.222"
+    #  "208.67.220.220"
+    #  "8.8.8.8"
+    #  "8.8.4.4"
+    #];
   };
+  
+  # Dns conf
+  #environment.etc = {
+  # "resolv.conf".text = "nameserver 208.67.222.222\nnameserver 208.67.220.220\n";
+  #};
 
   # Services
   services.flatpak.enable = true;
@@ -62,31 +75,32 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "storage" "libvirtd" "qemu-libvirtd" "docker" "input" "disk" "kvm" ]; 
     packages = with pkgs; [
-        # Cli tools
-        git
-        curl
-        wget
-        vim
-        starship
-        zoxide
-        lolcat
-        htop
-        ripgrep
-        fd
-        du-dust
-        procs
-        tealdeer
-        neofetch
-        macchina
-        git
-        curl
-        eza
-        bat
+        # Base tools
         bc
         jq
-        lm_sensors
+        git
+        vim
+        curl
+        wget
+        # Nix Helper
+        nh
+        # Rust cli tools
+        fd
+        bat
+        eza
+        procs
+        zoxide
+        lolcat
+        du-dust
+        ripgrep
+        starship
+        # More tools
+        htop
+        tealdeer
+        neofetch
         libnotify
         wlr-randr
+        lm_sensors
         alsa-utils
     ];
   };
@@ -155,4 +169,3 @@
     };
   };
 }
-

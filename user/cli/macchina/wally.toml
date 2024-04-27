@@ -1,0 +1,53 @@
+# Beryllium
+
+spacing         = 3
+hide_ascii      = false
+prefer_small_ascii = false
+key_color       = "#7067CF"
+separator       = ""#"󰘧"
+separator_color = "Yellow"
+
+[box]
+title		= " workstation "
+border          = "rounded"
+visible         = false
+
+[palette]
+glyph           = "    "
+visible         = true
+
+[bar]
+glyph           = "○"
+hide_delimiters = true
+visible         = true
+
+[box.inner_margin]
+x               = 2
+y               = 1
+
+[custom_ascii]
+#color           = "#FF7001"
+color           = "blue"
+path		= "~/.config/macchina/themes/nix.txt"
+
+[keys]
+host            = "󰪫  Host"
+kernel          = "  Kernel"
+battery         = "  Battery"
+os              = "󱄅  OS"
+de              = "  DE"
+wm              = "WM"
+distro          = "󱄅  Distro"
+terminal        = "  Terminal"
+shell           = "  Shell"
+packages        = "  Packages"
+uptime          = "  Uptime"
+memory          = "  Memory"
+machine         = "󰚗  Machine"
+local_ip        = "󰲐  IP"
+backlight       = "Brightness"
+resolution      = "󰹑  Resolution"
+cpu_load        = "  CPU Load"
+cpu             = "  CPU"
+gpu             = "GPU"
+disk_space      = "Disk Space"

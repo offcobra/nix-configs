@@ -29,11 +29,11 @@
       #};
     };
     iconTheme = {
-      name = "BeautyLine";
+      name = userSettings.iconTheme;
       package = pkgs.beauty-line-icon-theme;
     };
     font = {
-      name = "FireCodeNerdFont";
+      name = userSettings.font; 
       package = pkgs.fira-code-nerdfont;
     };
     #cursorTheme = {
@@ -45,7 +45,7 @@
   home.pointerCursor = {
     x11.enable = true;
     gtk.enable = true;
-    name = "Dracula-cursors";
+    name = userSettings.cursorTheme;
     package = pkgs.dracula-theme;
     size = 20;
   };

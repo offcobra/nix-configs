@@ -60,9 +60,10 @@
     EDITOR="emacsclient -c -a 'emacs'";
     NIXOS_OZONE_WL = "1";    
     XKB_DEFAULT_LAYOUT = "de";
-    VISUAL="bat --pager 'less'";
+    VISUAL="vim";
     PAGER="bat --pager 'less'";
     LIBVIRT_DEFAULT_URI="qemu:///system";
+    FLAKE="/home/wally/.config/nixos";
   };
 
   # SessionPath

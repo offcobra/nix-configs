@@ -13,6 +13,7 @@
   # For games
   hardware.pulseaudio.support32Bit = true;
   hardware.opengl = {
+    enable = true;
     ## radv: an open-source Vulkan driver from freedesktop
     driSupport = true;
     driSupport32Bit = true;

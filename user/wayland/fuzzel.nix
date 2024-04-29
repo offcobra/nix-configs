@@ -7,7 +7,8 @@
     package = pkgs.fuzzel;
     settings = {
       main = {
-        font = "FireCodeNerdFont";
+        font = "Firacodenerdfont:Semibold";
+        #font = "FireCodeNerdFont";
         line-height = 20;
         width = 30;
         lines = 10;

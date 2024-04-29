@@ -5,6 +5,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/master";
+    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    #home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-colors.url = "github:misterio77/nix-colors";
   };
@@ -43,7 +45,7 @@
     nixosConfigurations = {
       workstation = lib.nixosSystem {
         inherit system;
-        modules = [ ./system/system.nix ];
+        modules = [ ./system/workstation.nix ];
         specialArgs = {
           inherit userSettings;
           inherit systemSettings;

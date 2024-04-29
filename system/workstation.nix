@@ -7,13 +7,17 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      ./workstation/hardware-configuration.nix
       # Boot Stuff
-      ./boot.nix
+      ./workstation/boot.nix
       # Steam Stuff ?- here for now...
-      ./steam.nix
-      # Steam Stuff ?- here for now...
-      ./virtualization.nix
+      ./helper/steam.nix
+      # Virtualization Stuff...
+      ./helper/virtualization.nix
+      # Hyprland Stuff...
+      ./helper/hyprland.nix
+      # Qtile Stuff...
+      ./helper/qtile.nix
     ];
 
   # Pick networking options.
@@ -62,13 +66,6 @@
   #   useXkbConfig = true; # use xkbOptions in tty.
   };
 
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    # gtk portal needed to make gtk apps happy
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   nixpkgs.config.allowUnfree = true;
   users.users.wally = {
@@ -99,7 +96,6 @@
         tealdeer
         neofetch
         libnotify
-        wlr-randr
         lm_sensors
         alsa-utils
     ];
@@ -115,7 +111,6 @@
     gnugrep
     lm_sensors
     pciutils
-    wlr-randr
     os-prober
     exfat
     exfatprogs

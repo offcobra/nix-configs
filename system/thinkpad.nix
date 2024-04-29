@@ -7,7 +7,9 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./thinkpad-hardware.nix
+      ./thinkpad/thinkpad-hardware.nix
+      # Hyprland Stuff
+      ./helper/hyprland.nix
     ];
 
   # Bootloader.
@@ -18,13 +20,6 @@
   # Latest Kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Enable Hyprland
-  programs.hyprland.enable = true;
-  programs.waybar.enable = true;
-  programs.hyprland.xwayland.enable = true;
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";    
-  environment.sessionVariables.XKB_DEFAULT_LAYOUT = "de";
-  
   # Enable networking
   networking.hostName = "thinkpad"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -69,13 +64,6 @@
   #   useXkbConfig = true; # use xkbOptions in tty.
   };
 
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    # gtk portal needed to make gtk apps happy
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   nixpkgs.config.allowUnfree = true;
   users.users.wally = {
@@ -105,9 +93,7 @@
         lm_sensors
         libnotify
         acpi
-        wlr-randr
         alsa-utils
-        hyprlock
     ];
   };
 
@@ -121,7 +107,6 @@
     gnugrep
     lm_sensors
     pciutils
-    wlr-randr
     os-prober
     exfat
     exfatprogs

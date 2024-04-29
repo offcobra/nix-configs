@@ -40,11 +40,6 @@ in
     dunst
     # Terminals
     foot
-    # Bars
-    waybar
-    hyprland
-    hyprpaper
-    hyprland-protocols    
   ];
 
   # Window Manager

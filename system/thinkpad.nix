@@ -22,6 +22,16 @@
   # Latest Kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+<<<<<<< Updated upstream
+=======
+  # Enable Hyprland
+  programs.hyprland.enable = true;
+  #programs.waybar.enable = true;
+  programs.hyprland.xwayland.enable = true;
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";    
+  environment.sessionVariables.XKB_DEFAULT_LAYOUT = "de";
+  
+>>>>>>> Stashed changes
   # Enable networking
   networking.hostName = "thinkpad"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -74,6 +84,7 @@
     packages = with pkgs; [
         # Cli tools
         git
+        nh
         curl
         wget
         vim
@@ -159,7 +170,7 @@
         CPU_MAX_PERF_ON_BAT = 50;
 
        #Optional helps save long term battery health
-       START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
+       START_CHARGE_THRESH_BAT0 = 30; # 40 and bellow it starts to charge
        STOP_CHARGE_THRESH_BAT0 = 98; # 80 and above it stops charging
 
       };

@@ -3,14 +3,16 @@
 let 
   startupScript = pkgs.pkgs.writeShellScriptBin "hypr-startup" ''
     echo "Starting Waybar..."
-    waybar &
-    echo "Starting HyprPaper..."
+    #waybar &
+    echo "Starting Dunst..."
+    dunst &
+    echo "Starting HyperPaper..."
     hyprpaper &
     echo "Starting Emacs..."
     emacs --daemon &
     echo "Starting Signal & WhatsApp..."
-    flatpak run org.signal.Signal --start-in-tray &
-    flatpak run io.github.mimbrero.WhatsAppDesktop --start-hidden &
+    #flatpak run org.signal.Signal --start-in-tray &
+    #flatpak run io.github.mimbrero.WhatsAppDesktop --start-hidden &
     echo "Starting NM-Applet..."
     nm-applet &
     #/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -61,9 +63,7 @@ in
     settings = {
       # Monitor settings
       monitor = [ 
-        "DP-1,1920x1080@144.00,0x0,1"
-        "DP-2,1920x1080@165.00,1920x0,1"
-        "DP-3,1920x1080,3840x0,1"
+        "eDP-1,1920x1080,0x0,1"
       ];
       
       # Input Settings
@@ -210,6 +210,11 @@ in
         ", xf86audioraisevolume, exec, amixer sset Master 5%+"
         ", xf86audiolowervolume, exec, amixer sset Master 5%-"
         ", xf86audiomute, exec, amixer sset Master 0"
+        ", xf86Messenger, exec, show_info"
+        
+        # Brightness controls
+        ", xf86MonBrightnessDown, exec, light -U 5"
+        ", xf86MonBrightnessUp, exec, light -A 5"
       ];
     };
     extraConfig = ''

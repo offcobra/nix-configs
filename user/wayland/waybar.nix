@@ -72,7 +72,7 @@
               on-click = "alacritty --hold -e sensors";
               restart-interval = 1;
               exec = pkgs.writeShellScript "get_temp" ''
-                STATUS=$(sensors | grep -i "tctl" | cut -d : -f 2 | xargs)
+                STATUS=$(sensors | grep -i "cpu" | cut -d : -f 2 | xargs)
                 echo " $STATUS"
               '';
           };

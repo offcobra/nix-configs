@@ -8,8 +8,7 @@
     settings = {
       main = {
         font = "Firacodenerdfont:Semibold";
-        #font = "FireCodeNerdFont";
-        line-height = 16;
+        line-height = 12;
         width = 30;
         lines = 10;
         icons-enabled = "yes";

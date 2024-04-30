@@ -69,4 +69,3 @@ start_wm
 where_am_i
   ";
 }
-

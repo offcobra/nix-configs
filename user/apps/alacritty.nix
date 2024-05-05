@@ -2,7 +2,7 @@
 
 {
   # Alacritty Terminal
-  programs.alacritty = {
+  config.programs.alacritty = {
     enable = true;
     settings = {
       window.padding = {

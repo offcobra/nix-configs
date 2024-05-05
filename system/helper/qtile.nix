@@ -31,5 +31,8 @@
   environment.systemPackages = with pkgs; [
     picom
     rofi
+    nitrogen
+    xorg.libxcvt
+    xorg.xhost
   ];
 }

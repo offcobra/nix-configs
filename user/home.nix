@@ -7,13 +7,11 @@
       # Window Manager
       ./wayland/hyprland.nix
       # Bash Config
-      ./bash.nix
+      ./cli/bash.nix
       # Gtk Themes
       ./theme.nix
-      # Terminal
-      ./alacritty.nix
       # Applications
-      ./apps.nix
+      ./apps/apps.nix
     ];
   colorScheme = nix-colors.colorSchemes.${userSettings.colorTheme};
 
@@ -25,12 +23,6 @@
   # environment.
   home.packages = with pkgs; [
     dconf 
-    mpv
-    ghc
-    #python3
-    libnotify
-    networkmanagerapplet
-    (python3.withPackages (ps: [ ps.pip ps.psutil ]))
     (pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; })
 
     # # ShellScript Example
@@ -64,6 +56,7 @@
     PAGER="bat --pager 'less'";
     LIBVIRT_DEFAULT_URI="qemu:///system";
     FLAKE="/home/wally/.config/nixos";
+    SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS="0";
   };
 
   # SessionPath
@@ -74,48 +67,5 @@
   # Let Home Manager install and manage itself.
   programs = {
     home-manager.enable = true;
-
-    # Emacs Configs
-    emacs.enable = true;
-    emacs.extraPackages = epkgs: [ epkgs.vterm ];
-    
-    # NetworkManager applet
-    #nm-applet.enable = true;
-
-    # Vim Settings 
-    vim = {
-      enable = true;
-      settings = {
-        expandtab = true;
-        shiftwidth = 4;
-        tabstop = 4;
-      };
-      extraConfig = ''
-        syntax enable
-        set incsearch
-        set hlsearch
-        set autoindent
-        set number relativenumber
-        " Dracula Colors
-        " packadd! dracula
-        " colorscheme dracula
-      '';
-    };
-    
-    # Git Version Control
-    git = {
-      enable = true;
-      userName = userSettings.name;
-      userEmail = userSettings.email;
-    };
-
-    # Bat a Better Cat 
-    bat = {
-      enable = true;
-      config = {
-        pager = "less -FR";
-        theme = "Dracula";
-      };
-    };
   };
 }

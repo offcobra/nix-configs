@@ -4,9 +4,7 @@ let
   startupScript = pkgs.pkgs.writeShellScriptBin "hypr-startup" ''
     echo "Starting Waybar..."
     waybar &
-    echo "Starting Dunst..."
-    dunst &
-    echo "Starting Dunst..."
+    echo "Starting HyprPaper..."
     hyprpaper &
     echo "Starting Emacs..."
     emacs --daemon &
@@ -16,8 +14,10 @@ let
     echo "Starting NM-Applet..."
     nm-applet &
     #/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-    echo "Starting DBUS Environment..."
-    dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &
+    #echo "Starting DBUS Environment..."
+    #dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &
+    echo "Starting HyprIdle..."
+    hypridle &
   '';
 in
 {
@@ -31,6 +31,10 @@ in
       ./foot.nix
       # Launcher
       ./fuzzel.nix
+      # Hyprlock
+      ./hyprlock.nix
+      # Hypridle
+      ./hypridle.nix
     ];
 
   home.packages = with pkgs; [
@@ -47,6 +51,7 @@ in
     enable = true;
     xwayland = { enable = true; };
     systemd.enable = true;
+    systemd.variables = [ "--all" ];
     settings = {
       # Monitor settings
       monitor = [ 
@@ -139,6 +144,7 @@ in
         #"$mainMod_SHIFT, R, hyprctl reload"
         "$mainMod_SHIFT, F, togglefloating"
         "$mainMod_CTRL , F, fullscreen"
+        "$mainMod_CTRL , L, exec, hyprlock"
         "$mainMod_SHIFT, B, exec, toggle_proc waybar"
 
         # Quick Shortcuts
@@ -201,7 +207,7 @@ in
     };
     extraConfig = ''
       # Move/resize windows with mainMod + LMB/RMB and dragging
-      bind = SUPER, mouse:272, moveactive
+      bind = SUPER, mouse:272, movewindowpixel
       bind = SUPER, mouse:273, resizewindowpixel
 
       # Defining SUBMAPS

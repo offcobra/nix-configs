@@ -1,10 +1,21 @@
 { config, pkgs, ... }:
 
 {
+  imports =
+    [ # Include other modules
+      # Dunst Config
+      ./dunst.nix
+      # Emacs Config
+      ./emacs.nix
+      # Alacritty Config
+      ./alacritty.nix
+    ];
+
   # List of secondary Applications
   home.packages = with pkgs; [
     brave
     qutebrowser
+    networkmanagerapplet
     libreoffice-fresh
     looking-glass-client
     pavucontrol
@@ -18,25 +29,15 @@
     brave
     vlc
     gparted
-    pciutils
     # Bluetooth
     bluez
     blueberry
     # Virtio
     virt-manager
     virt-viewer
-    # cli tools
-    distrobox
-    fzf
-    k3d
-    dysk
     # Terminals
     alacritty
     # Bars
     eww
-    # Rust + Programs
-    rustup
-    bottom
-    macchina
   ];
 }

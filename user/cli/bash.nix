@@ -3,7 +3,11 @@
 {
   imports = [
     # Adding cli app configs
-    ./cli/macchina/macchina.nix
+    ./macchina/macchina.nix
+    # Adding starship config
+    ./starship.nix
+    # Adding tools
+    ./tools.nix
   ];
   # Session Aliases
   programs.bash.enable = true;
@@ -27,6 +31,7 @@
     dcal = "date && cal 2024";
     my_pub_ip = "curl icanhazip.com";
     pdf = "evince";
+    img = "viewnior";
 
     # List dir
     tree = "eza --tree";
@@ -37,8 +42,9 @@
 
     # Git
     g = "git";
-    gs = "git status";
     gp = "git pull";
+    ga = "git add";
+    gs = "git status";
     gc = "git checkout";
     dog = "git log --oneline --graph --decorate --all";
     git_clean = "git remote update origin --prune";

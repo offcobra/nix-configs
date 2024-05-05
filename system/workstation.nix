@@ -2,12 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./workstation/hardware-configuration.nix
+      # Nix Settings 
+      ./helper/nix-settings.nix
       # Boot Stuff
       ./workstation/boot.nix
       # Steam Stuff ?- here for now...
@@ -53,6 +55,7 @@
     pulse.enable = true;
     jack.enable = true;
     socketActivation = true;
+    wireplumber.enable = true;
   };
 
   # Set your time zone.
@@ -146,21 +149,5 @@
   programs.gnupg.agent = {
     enable = true;
   #   enableSSHSupport = true;
-  };
-
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
-  
-  nix = {
-    settings = {
-      warn-dirty = true;
-      experimental-features = [ "nix-command" "flakes" ];
-      auto-optimise-store = true;
-    };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 30d";
-    };
   };
 }

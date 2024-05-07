@@ -15,8 +15,8 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
-    hardware.opengl.extraPackages = with pkgs; [
-      clinfo
+    extraPackages = with pkgs; [
+      #clinfo
       rocmPackages.clr
     ];
   };

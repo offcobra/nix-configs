@@ -24,7 +24,7 @@
 
   # Additional needed Hyprland packages
   environment.systemPackages = with pkgs; [
-    hyprland-protocols
+    #hyprland-protocols
     hyprpaper
     hyprlock
     hypridle

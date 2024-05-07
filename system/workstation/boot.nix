@@ -7,7 +7,7 @@
     extraModulePackages = [ ];
     supportedFilesystems = [ "ntfs" ];
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelModules = [ "kvm-amd" "admgpu" "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
+    kernelModules = [ "kvm-amd" "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
     blacklistedKernelModules = [ "nvidia" "nouveau" ];
     # Block primary GPU
     #kernelParams = [ "rd.driver.pre=vfio-pci" "amd_iommu=on" "iommu=pt" "video=efifb:off" "vfio-pci.ids=1002:73df,1002:ab28" "hugepagesz=2M" "hugepages=8192" ];
@@ -22,7 +22,7 @@
     #'';
     initrd = {
       availableKernelModules = [ "nvme" "ahci" "xhci_pci" "usb_storage" "usbhid" "sd_mod" ];
-      kernelModules = [ ];
+      kernelModules = [ "amdgpu" ];
     };
     loader = {
       efi.canTouchEfiVariables = true;

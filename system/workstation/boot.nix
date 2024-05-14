@@ -9,9 +9,18 @@
     kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [ "kvm-amd" "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
     blacklistedKernelModules = [ "nvidia" "nouveau" ];
+
     # Block primary GPU
-    #kernelParams = [ "rd.driver.pre=vfio-pci" "amd_iommu=on" "iommu=pt" "video=efifb:off" "vfio-pci.ids=1002:73df,1002:ab28" "hugepagesz=2M" "hugepages=8192" ];
-    #extraModprobeConfig = "options vfio-pci ids=1002:73df,1002:ab28";
+    # lspci -nn
+    # AMD Radeon RX 580: 12:00.0 12:00.1 -> 1002:67df 1002:aaf0
+    # AMD Radeon RX 6700: 03:00.0 03:00.1 -> 1002:73df 1002:ab28
+    # Test: dmesg | grep -i vfio
+
+    # 1. Version
+    kernelParams = [ "rd.driver.pre=vfio-pci" "amd_iommu=on" "iommu=pt" "video=efifb:off" "vfio-pci.ids=1002:67df,1002:aaf0" "hugepagesz=2M" "hugepages=8192" ];
+    extraModprobeConfig = "options vfio-pci ids=1002:67df,1002:aaf0";
+
+    # 2. Version
     # If first dosnt succssed
     #postBootCommands = ''
     #    DEVS="1002:73df 1002:ab28"
@@ -20,6 +29,7 @@
     #    done
     #    modprobe -i vfio-pci
     #'';
+
     initrd = {
       availableKernelModules = [ "nvme" "ahci" "xhci_pci" "usb_storage" "usbhid" "sd_mod" ];
       kernelModules = [ "amdgpu" ];
@@ -31,6 +41,7 @@
         device = "nodev";
         efiSupport = true;
         useOSProber = true;
+        configurationLimit = 4;
       };
     };
   };

@@ -3,6 +3,7 @@
 {
   # List of secondary Applications
   home.packages = with pkgs; [
+    ventoy
     pciutils
     # cli tools
     distrobox

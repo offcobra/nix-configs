@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 let 
   startupScript = pkgs.pkgs.writeShellScriptBin "hypr-startup" ''
@@ -52,6 +52,12 @@ in
     xwayland = { enable = true; };
     systemd.enable = true;
     systemd.variables = [ "--all" ];
+    plugins = [
+      #inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      #inputs.hyprland-plugins.packages.${pkgs.system}.hyprtrails
+      #inputs.hyprland-plugins.packages.${pkgs.system}.hyprwrap
+      #inputs.hyprland-plugins.packages.${pkgs.system}.csgo-vulkan-fix
+    ];
     settings = {
       # Monitor settings
       monitor = [ 
@@ -144,7 +150,7 @@ in
         "$mainMod_SHIFT, Q, exit"
         #"$mainMod_SHIFT, R, hyprctl reload"
         "$mainMod_SHIFT, F, togglefloating"
-        "$mainMod_CTRL , F, fullscreen"
+        "$mainMod_CTRL, F, fullscreen"
         "$mainMod_CTRL , L, exec, hyprlock"
         "$mainMod_SHIFT, B, exec, toggle_proc waybar"
 
@@ -208,8 +214,8 @@ in
     };
     extraConfig = ''
       # Move/resize windows with mainMod + LMB/RMB and dragging
-      bind = SUPER, mouse:272, movewindowpixel
-      bind = SUPER, mouse:273, resizewindowpixel
+      bindm = SUPERSHIFT, mouse:272, movewindow
+      bindm = SUPERSHIFT, mouse:273, resizewindow
 
       # Defining SUBMAPS
       # BROWSERS
@@ -262,7 +268,7 @@ in
       #bind = ,S, exec, flatpak run com.spotify.Client
       bind = ,S, exec, spotify
       bind = ,S, submap, reset
-      bind = ,E, exec, docker_exec thunderbird
+      bind = ,E, exec, thunderbird
       bind = ,E, submap, reset
       bind = ,H, exec, flatpak run com.bitwarden.desktop
       bind = ,H, submap, reset
@@ -276,7 +282,7 @@ in
       bind = ,B, submap, reset
       bind = ,O, exec, flatpak run org.libreoffice.LibreOffice
       bind = ,O, submap, reset
-      bind = ,Y, exec, flatpak run io.freetubeapp.FreeTube
+      bind = ,Y, exec, freetube
       bind = ,Y, submap, reset
       bind = ,W, exec, popcorntime
       bind = ,W, submap, reset
@@ -343,7 +349,7 @@ in
       bind = ,P, submap, reset
       bind = ,F, exec, container_run fedora
       bind = ,F, submap, reset
-      bind = ,R, exec, GTK_THEME=Dracula remmina
+      bind = ,R, exec, remmina -c .local/share/remmina/group_rdp_win11_192-168-122-106.remmina #GTK_THEME=Dracula remmina
       bind = ,R, submap, reset
       submap = reset
       
@@ -367,9 +373,9 @@ in
       windowrulev2 = opacity 0.96 0.8,class:(Alacritty)
       windowrulev2 = opacity 0.96 0.8,class:(Kitty)
       #windowrulev2 = opacity 1 0.85,class:(Emacs)
-      windowrulev2 = opacity 0.89 0.78,class:(steam)
+      windowrulev2 = opacity 0.94 0.82,class:(steam)
       windowrulev2 = opacity 0.99 0.98,class:(brave-browser)
-      windowrulev2 = opacity 1 1,class:(csgo_linux64)
+      windowrulev2 = opacity 1 1,class:(cs2)
       windowrulev2 = opacity 1 1,class:(FreeTube)
       windowrulev2 = opacity 1 1,class:(discord)
       windowrulev2 = opacity 1 1,class:(looking-glass-client)

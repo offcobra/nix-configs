@@ -16,7 +16,7 @@ general {
 # BACKGROUND
 background {
     monitor =
-    path = /home/wally/Pictures/wallpapers/nix.png # path to PNG background
+    path = /home/wally/.config/nixos/user/wallpapers/nix.png # path to PNG background
     blur_passes = 0
     color = rgb(${config.colorScheme.palette.base00})
 }

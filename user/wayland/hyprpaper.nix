@@ -6,13 +6,12 @@
     "hyprpaper.conf" = {
       enable = true;
       target = ".config/hypr/hyprpaper.conf";
-      text = "preload = ~/Pictures/wallpapers/0260.jpg
-preload = ~/Pictures/wallpapers/0200.jpg
-preload = ~/Pictures/wallpapers/0180.jpg
-wallpaper = DP-1,~/Pictures/wallpapers/0260.jpg
-wallpaper = DP-3,~/Pictures/wallpapers/0200.jpg
-wallpaper = DP-2,~/Pictures/wallpapers/0180.jpg";
+      text = "preload = ~/.config/nixos/user/wallpapers/rainforest.jpg
+preload = ~/.config/nixos/user/wallpapers/neversettle.jpg
+preload = ~/.config/nixos/user/wallpapers/opensource.jpg
+wallpaper = DP-1,~/.config/nixos/user/wallpapers/rainforest.jpg
+wallpaper = DP-2,~/.config/nixos/user/wallpapers/neversettle.jpg
+wallpaper = DP-3,~/.config/nixos/user/wallpapers/opensource.jpg";
     };
   };
 }
-

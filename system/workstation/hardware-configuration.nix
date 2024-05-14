@@ -6,6 +6,9 @@
     ];
 
   sound.enable = true;
+  
+  # Set CPU Guvernor
+  powerManagement.cpuFreqGovernor = "performance";
 
   # For games
   hardware.pulseaudio.support32Bit = true;
@@ -36,15 +39,15 @@
       fsType = "vfat";
     };
 
-  #fileSystems."/home/wally/mySpace/backups" =
-  #  { device = "/dev/sda1";
-  #    fsType = "ext4";
-  #  };
+  fileSystems."/home/wally/mySpace/backups" =
+    { device = "/dev/sda1";
+      fsType = "ext4";
+    };
 
-  #fileSystems."/home/wally/mySpace/vms" =
-  #  { device = "/dev/sda2";
-  #    fsType = "ext4";
-  #  };
+  fileSystems."/home/wally/mySpace/vms" =
+    { device = "/dev/sda2";
+      fsType = "ext4";
+    };
 
   swapDevices = [ ];
 

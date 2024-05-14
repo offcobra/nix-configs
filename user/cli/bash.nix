@@ -50,12 +50,12 @@
     git_clean = "git remote update origin --prune";
 
     # Nixos Rebuild
-    #update="sudo nix flake update $HOME/.config/nixos/";
-    #hm_rebuild="home-manager switch --flake $HOME/.config/nixos/";
-    #os_rebuild="sudo nixos-rebuild switch --flake $HOME/.config/nixos/";
     os_rebuild="nh os switch --update --ask";
     hm_rebuild="nh home switch";
     nix_clean="nh clean all --keep 3";
+    
+    # Update whole System
+    update="distrobox upgrade arch && flatpak update -y && os_rebuild && hm_rebuild";
   };
 
   programs.bash.bashrcExtra = "

@@ -14,9 +14,13 @@
   # List of secondary Applications
   home.packages = with pkgs; [
     brave
+    freetube
     qutebrowser
+    bitwarden-desktop
+    bitwarden-cli
     networkmanagerapplet
     libreoffice-fresh
+    thunderbird-bin
     looking-glass-client
     pavucontrol
     freerdp

@@ -22,16 +22,6 @@
   # Latest Kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-<<<<<<< Updated upstream
-=======
-  # Enable Hyprland
-  programs.hyprland.enable = true;
-  #programs.waybar.enable = true;
-  programs.hyprland.xwayland.enable = true;
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";    
-  environment.sessionVariables.XKB_DEFAULT_LAYOUT = "de";
-  
->>>>>>> Stashed changes
   # Enable networking
   networking.hostName = "thinkpad"; # Define your hostname.
   networking.networkmanager.enable = true;

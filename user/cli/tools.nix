@@ -3,6 +3,7 @@
 {
   # List of secondary Applications
   home.packages = with pkgs; [
+    killall
     ventoy
     pciutils
     # cli tools
@@ -14,6 +15,7 @@
     ghc
     # Rust + Programs
     rustup
+    gcc
     bottom
     macchina
     # Python

@@ -41,7 +41,6 @@
     la = "eza -a --color=always --group-directories-first --group --icons";
     lt = "eza -aT --color=always --group-directories-first";
     ls = "eza --color=always --group-directories-first --icons";
-    cd = "cd $@ && ls";
 
     # Git
     g = "git";

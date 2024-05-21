@@ -32,6 +32,7 @@ let
     nm-applet &
     echo "Starting HyprIdle..."
     hypridle &
+    watch_battery &
   '';
 in
 {
@@ -295,7 +296,7 @@ in
       bind = ,S, submap, reset
       bind = ,E, exec, thunderbird
       bind = ,E, submap, reset
-      bind = ,H, exec, flatpak run com.bitwarden.desktop
+      bind = ,H, exec, bitwarden
       bind = ,H, submap, reset
       bind = ,P, exec, start-esudo-apps gparted
       bind = ,P, submap, reset

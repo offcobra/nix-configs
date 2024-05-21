@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, systemSettings, ... }:
 
 {
   # Fuzzel App Launcher
@@ -9,7 +9,7 @@
       main = {
         font = "Firacodenerdfont:Semibold";
         #font = "FireCodeNerdFont";
-        line-height = 16;
+        line-height = if (systemSettings.hostname == "workstation") then 16 else 10;
         width = 30;
         lines = 10;
         icons-enabled = "yes";

@@ -68,5 +68,15 @@ start_wm
 # Prompt 6 Aliases Custom for local & docker
 where_am_i
   ";
+  programs.bash.historySize = 10000;
+  programs.bash.shellOptions = [
+    "histappend"
+    "checkwinsize"
+  ];
+  programs.bash.historyControl = [
+    "erasedups"
+    "ignoredups"
+    "ignorespace"
+  ];
 }
 

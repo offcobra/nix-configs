@@ -6,6 +6,7 @@
     ventoy
     pciutils
     # cli tools
+    killall
     distrobox
     fzf
     k3d

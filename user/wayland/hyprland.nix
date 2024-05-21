@@ -1,9 +1,9 @@
-{ inputs, config, pkgs, ... }:
+{ inputs, config, pkgs, systemSettings, ... }:
 
 let 
   startupScript = pkgs.pkgs.writeShellScriptBin "hypr-startup" ''
     echo "Starting Waybar..."
-    #waybar &
+    waybar &
     echo "Starting Dunst..."
     dunst &
     echo "Starting HyperPaper..."
@@ -11,13 +11,25 @@ let
     echo "Starting Emacs..."
     emacs --daemon &
     echo "Starting Signal & WhatsApp..."
-    #flatpak run org.signal.Signal --start-in-tray &
-    #flatpak run io.github.mimbrero.WhatsAppDesktop --start-hidden &
+    flatpak run org.signal.Signal --start-in-tray &
+    flatpak run io.github.mimbrero.WhatsAppDesktop --start-hidden &
     echo "Starting NM-Applet..."
     nm-applet &
     #/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
     #echo "Starting DBUS Environment..."
     #dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &
+    echo "Starting HyprIdle..."
+    hypridle &
+  '';
+  startupMinimal = pkgs.pkgs.writeShellScriptBin "hypr-minimal" ''
+    echo "Starting Dunst..."
+    dunst &
+    echo "Starting HyperPaper..."
+    hyprpaper &
+    echo "Starting Emacs..."
+    emacs --daemon &
+    echo "Starting NM-Applet..."
+    nm-applet &
     echo "Starting HyprIdle..."
     hypridle &
   '';
@@ -62,10 +74,14 @@ in
     ];
     settings = {
       # Monitor settings
-      monitor = [ 
-        "eDP-1,1920x1080,0x0,1"
-      ];
-      
+      monitor = if (systemSettings.hostname == "workstation")
+                then
+                  [ "DP-1,1920x1080@144.00,0x0,1"
+                    "DP-2,1920x1080@165.00,1920x0,1"
+                    "DP-3,1920x1080,3840x0,1" ]
+                else
+                  [ "eDP-1,1920x1080,0x0,1" ];
+
       # Input Settings
       input = {
         kb_layout = "de";
@@ -90,7 +106,11 @@ in
       };
         
       # Startup Programms
-      exec-once = ''${startupScript}/bin/hypr-startup'';
+      exec-once = if (systemSettings.hostname == "workstation")
+            then
+              ''${startupScript}/bin/hypr-startup''
+            else
+              ''${startupMinimal}/bin/hypr-minimal'';
 
       # Decorations
       decoration = {
@@ -138,7 +158,7 @@ in
       bind = [
         # Terminals
         "$mainMod, return, exec, alacritty"
-        "CTRL, return, exec, foot"
+        "CTRL, return, exec, foot -e fish"
         "$mainMod_SHIFT, return, exec, bash /home/wally/.local/bin/container_run arch"
 
         # Screenshot
@@ -382,6 +402,7 @@ in
       windowrulev2 = opacity 0.99 0.98,class:(brave-browser)
       windowrulev2 = opacity 1 1,class:(cs2)
       windowrulev2 = opacity 1 1,class:(FreeTube)
+      windowrulev2 = tile ,class:(FreeTube)
       windowrulev2 = opacity 1 1,class:(discord)
       windowrulev2 = opacity 1 1,class:(looking-glass-client)
       windowrulev2 = opacity 1 1,class:(fuzzel)

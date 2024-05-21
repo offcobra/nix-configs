@@ -1,7 +1,7 @@
 { config, pkgs, userSettings, ... }:
 
 {
-  # Macchina Configs
+  # Hyprlock Configs
   home.file = {
     "hyprlock.conf" = {
       enable = true;

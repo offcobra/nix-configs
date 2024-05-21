@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs, systemSettings, ... }:
 
+let
+  font_size = if (systemSettings.hostname == "workstation") then "12" else "8";
+in
 {
   # Fuzzel App Launcher
   programs.fuzzel = {
@@ -7,9 +10,9 @@
     package = pkgs.fuzzel;
     settings = {
       main = {
-        font = "Firacodenerdfont:Semibold";
-        line-height = 12;
-        width = 30;
+        font = "Firacodenerdfont:Semibold:size=${font_size}";
+        line-height = if (systemSettings.hostname == "workstation") then 16 else 12;
+        width = 40;
         lines = 10;
         icons-enabled = "yes";
       };

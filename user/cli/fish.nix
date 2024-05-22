@@ -1,19 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    # Adding cli app configs
-    ./macchina/macchina.nix
-    # Adding starship config
-    ./starship.nix
-    # Adding tools
-    ./tools.nix
-    # Fish 
-    ./fish.nix
-  ];
-  # Session Aliases
-  programs.bash.enable = true;
-  programs.bash.shellAliases = {
+  # Fish configs
+  programs.fish.enable = true;
+  programs.fish.shellAliases = {
 
     # Movement
     ".." = "cd ..";
@@ -28,7 +18,6 @@
     du = "dust";
     ps = "procs";
     cat1 = "/run/current-system/sw/bin/cat";
-    brc = "source ~/.bashrc";
     gping ="ping www.google.com";
     dcal = "date && cal 2024";
     my_pub_ip = "curl icanhazip.com";
@@ -59,25 +48,9 @@
     # Update whole System
     update="distrobox upgrade arch && flatpak update -y && os_rebuild && hm_rebuild";
   };
-
-  programs.bash.bashrcExtra = "
-# Source Helper Functions
-source /home/wally/.local/bin/helper.sh 
-
-# Start WindowManager
-start_wm
-
-# Prompt 6 Aliases Custom for local & docker
-where_am_i
-  ";
-  programs.bash.historySize = 10000;
-  programs.bash.shellOptions = [
-    "histappend"
-    "checkwinsize"
-  ];
-  programs.bash.historyControl = [
-    "erasedups"
-    "ignoredups"
-    "ignorespace"
-  ];
+  programs.fish.interactiveShellInit = ''
+    set fish_greeting # Disable greeting
+    zoxide init --cmd j fish | source
+    starship init fish | source
+  '';
 }

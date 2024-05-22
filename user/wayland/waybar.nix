@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, systemSettings, ... }:
 
 {
   # Waybar Config
@@ -7,7 +7,7 @@
     settings = [{
         layer= "top";
           modules-left = ["custom/arch" "hyprland/workspaces" "hyprland/window"];
-          modules-center = ["custom/temp" "cpu" "custom/cpu" "memory"];
+          modules-center = ["custom/temp" "cpu" "custom/cpu" "memory" "battery" ];
           modules-right = ["custom/virtual" "custom/vpn" "pulseaudio" "clock" "tray"];
           height= 8;
           "custom/arch" = {
@@ -21,16 +21,18 @@
             tooltip = false;
             all-outputs = true;
             format-icons = {
-                   "1" = "";
+                   "1" = "";
                    "2" = "";
-                   "3" = "";
+                   "3" = "";
                    "4" = "󰣭";
                    "5" = "";
-                   "6" = "";
-                   "7" = "";
-                   "urgent" = "";
+                   "6" = "";
+                   "7" = "";
+                   "8" = "";
+                   "9" = "";
+                   "urgent" = " #=->   <-=# ";
                    "focused" = "";
-                   "default" = "";
+                   "default" = "";
             };
           };
           "hyprland/window"= {
@@ -56,7 +58,7 @@
                   "opensuse"= "  OpenSUSE";
                   "fedora"= "  Fedora";
                   "parrot"= "  ParrotOS";
-                  "Wdgfdsgfs"= "    󱄲        ";
+                  "Wdgfdsgfs"= "    󱄲        ";
               };
           };
           #"custom/virtual" = {
@@ -72,7 +74,7 @@
               on-click = "alacritty --hold -e sensors";
               restart-interval = 1;
               exec = pkgs.writeShellScript "get_temp" ''
-                STATUS=$(sensors | grep -i "tctl" | cut -d : -f 2 | xargs)
+                STATUS=$(sensors | grep -i "cpu" | cut -d : -f 2 | xargs)
                 echo " $STATUS"
               '';
           };
@@ -88,6 +90,18 @@
               format = " {usage: >3}%";
               on-click = "alacritty -e btm";
           };
+          "battery" = {
+        	  "states" = {
+            	"warning" = 30;
+            	"critical" = 15;
+            };
+            "format" = "{icon}  {capacity}%";
+            "format-charging" = "󱐋  {capacity}%";
+            "format-plugged" = "  {capacity}%";
+            "format-alt" = "󰥔  {time} {icon}";
+            "format-full" = "  {capacity}%";
+            "format-icons" = ["" "" ""];
+	        };
           "memory" = {
               format = " {: >3}%";
               on-click = "alacritty -e btm";
@@ -188,7 +202,7 @@
         background-color: transparent;
       }
       
-      #clock, #temperature, #pulseaudio, #cpu, #network, #memory, #tray{
+      #clock, #temperature, #pulseaudio, #cpu, #network, #memory, #tray, #battery{
         border-radius: 10px;
         background-color: @background;
         color: @color1;
@@ -206,7 +220,7 @@
         color: @color1;
       }
       
-      #cpu{
+      #cpu, #battery{
         color: @color3;
       }
       

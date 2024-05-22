@@ -3,6 +3,7 @@
 {
   # List of secondary Applications
   home.packages = with pkgs; [
+    killall
     ventoy
     pciutils
     # cli tools
@@ -15,10 +16,22 @@
     ghc
     # Rust + Programs
     rustup
+    gcc
     bottom
     macchina
     # Python
     (python3.withPackages (ps: [ ps.pip ps.psutil ]))
+    # Shell Scripts
+    (pkgs.writeShellScriptBin "airplane-mode" ''
+      #!/bin/sh
+      connectivity="$(nmcli n connectivity)"
+      if [ "$connectivity" == "full" ]
+      then
+          nmcli n off
+      else
+          nmcli n on
+      fi
+    '')
   ];
 
   programs = {

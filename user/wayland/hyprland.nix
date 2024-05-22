@@ -1,10 +1,12 @@
-{ inputs, config, pkgs, ... }:
+{ inputs, config, pkgs, systemSettings, ... }:
 
 let 
   startupScript = pkgs.pkgs.writeShellScriptBin "hypr-startup" ''
     echo "Starting Waybar..."
     waybar &
-    echo "Starting HyprPaper..."
+    echo "Starting Dunst..."
+    dunst &
+    echo "Starting HyperPaper..."
     hyprpaper &
     echo "Starting Emacs..."
     emacs --daemon &
@@ -18,6 +20,19 @@ let
     #dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &
     echo "Starting HyprIdle..."
     hypridle &
+  '';
+  startupMinimal = pkgs.pkgs.writeShellScriptBin "hypr-minimal" ''
+    echo "Starting Dunst..."
+    dunst &
+    echo "Starting HyperPaper..."
+    hyprpaper &
+    echo "Starting Emacs..."
+    emacs --daemon &
+    echo "Starting NM-Applet..."
+    nm-applet &
+    echo "Starting HyprIdle..."
+    hypridle &
+    watch_battery &
   '';
 in
 {
@@ -60,12 +75,14 @@ in
     ];
     settings = {
       # Monitor settings
-      monitor = [ 
-        "DP-1,1920x1080@144.00,0x0,1"
-        "DP-2,1920x1080@165.00,1920x0,1"
-        "DP-3,1920x1080,3840x0,1"
-      ];
-      
+      monitor = if (systemSettings.hostname == "workstation")
+                then
+                  [ "DP-1,1920x1080@144.00,0x0,1"
+                    "DP-2,1920x1080@165.00,1920x0,1"
+                    "DP-3,1920x1080,3840x0,1" ]
+                else
+                  [ "eDP-1,1920x1080,0x0,1" ];
+
       # Input Settings
       input = {
         kb_layout = "de";
@@ -90,7 +107,11 @@ in
       };
         
       # Startup Programms
-      exec-once = ''${startupScript}/bin/hypr-startup'';
+      exec-once = if (systemSettings.hostname == "workstation")
+            then
+              ''${startupScript}/bin/hypr-startup''
+            else
+              ''${startupMinimal}/bin/hypr-minimal'';
 
       # Decorations
       decoration = {
@@ -138,7 +159,7 @@ in
       bind = [
         # Terminals
         "$mainMod, return, exec, alacritty"
-        "CTRL, return, exec, foot"
+        "CTRL, return, exec, foot -e fish"
         "$mainMod_SHIFT, return, exec, bash /home/wally/.local/bin/container_run arch"
 
         # Screenshot
@@ -210,6 +231,11 @@ in
         ", xf86audioraisevolume, exec, amixer sset Master 5%+"
         ", xf86audiolowervolume, exec, amixer sset Master 5%-"
         ", xf86audiomute, exec, amixer sset Master 0"
+        ", xf86Messenger, exec, show_info"
+        
+        # Brightness controls
+        ", xf86MonBrightnessDown, exec, light -U 5"
+        ", xf86MonBrightnessUp, exec, light -A 5"
       ];
     };
     extraConfig = ''
@@ -270,7 +296,7 @@ in
       bind = ,S, submap, reset
       bind = ,E, exec, thunderbird
       bind = ,E, submap, reset
-      bind = ,H, exec, flatpak run com.bitwarden.desktop
+      bind = ,H, exec, bitwarden
       bind = ,H, submap, reset
       bind = ,P, exec, start-esudo-apps gparted
       bind = ,P, submap, reset
@@ -377,6 +403,7 @@ in
       windowrulev2 = opacity 0.99 0.98,class:(brave-browser)
       windowrulev2 = opacity 1 1,class:(cs2)
       windowrulev2 = opacity 1 1,class:(FreeTube)
+      windowrulev2 = tile ,class:(FreeTube)
       windowrulev2 = opacity 1 1,class:(discord)
       windowrulev2 = opacity 1 1,class:(looking-glass-client)
       windowrulev2 = opacity 1 1,class:(fuzzel)

@@ -1,5 +1,5 @@
 # Network
-interface = "enp14s0"
+interface = "wlp0s20f3"
 
 # Lengthen uptime output
 long_uptime = true
@@ -43,4 +43,4 @@ theme = "wally"
 #   - GPU
 #   - DiskSpace
 # Example:
-show = [ "Machine", "Host", "Distribution", "Resolution", "DesktopEnvironment", "Terminal", "Kernel", "LocalIP", "Processor", "ProcessorLoad", "Memory", "Uptime", "Packages", "Shell", "Terminal"]
+show = [ "Machine", "Host", "Distribution", "Resolution", "DesktopEnvironment", "Terminal", "Kernel", "LocalIP", "Processor", "ProcessorLoad", "Memory", "Battery", "Backlight", "Uptime", "Packages", "Shell", "Terminal"]

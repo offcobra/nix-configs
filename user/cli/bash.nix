@@ -10,6 +10,12 @@
     ./tools.nix
     # Fish 
     ./fish.nix
+    # fzf 
+    ./fzf.nix
+    # tmux 
+    ./tmux.nix
+    # NixVim 
+    ./nvim.nix
   ];
   # Session Aliases
   programs.bash.enable = true;
@@ -51,6 +57,9 @@
     dog = "git log --oneline --graph --decorate --all";
     git_clean = "git remote update origin --prune";
 
+    # alacritty Config keybinding for wsl
+    term-conf="vim /mnt/c/Users/ppuscasu/AppData/Roaming/Alacritty/alacritty.toml";
+
     # Nixos Rebuild
     os_rebuild="nh os switch --update --ask";
     hm_rebuild="nh home switch";
@@ -61,8 +70,11 @@
   };
 
   programs.bash.bashrcExtra = "
+# Added by Nix installer
+if [ -e /home/ppuscasu/.nix-profile/etc/profile.d/nix.sh ]; then . /home/ppuscasu/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
 # Source Helper Functions
-source /home/wally/.local/bin/helper.sh 
+source /home/ppuscasu/.local/bin/helper.sh 
 
 # Start WindowManager
 start_wm

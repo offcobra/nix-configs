@@ -11,7 +11,7 @@
         "$git_branch"
         "$git_state"
         "$git_status"
-        "$cmd_duration"
+        #"$cmd_duration"
         "$line_break"
         "$python"
         "$rust"

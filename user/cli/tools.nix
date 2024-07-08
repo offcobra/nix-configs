@@ -3,13 +3,18 @@
 {
   # List of secondary Applications
   home.packages = with pkgs; [
+    nh
+    eza
+    zoxide
+    ripgrep
+    dust
+    fd
     killall
     ventoy
     pciutils
     # cli tools
     killall
     distrobox
-    fzf
     k3d
     dysk
     # Haskell

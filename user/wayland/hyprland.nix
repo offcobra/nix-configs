@@ -147,7 +147,8 @@ in
       };
       
       master = {
-        new_is_master = "true";
+        new_on_top = "true";
+        new_status = "master";
       };
       
       gestures = {
@@ -240,8 +241,8 @@ in
     };
     extraConfig = ''
       # Move/resize windows with mainMod + LMB/RMB and dragging
-      bindm = SUPERSHIFT, mouse:272, movewindow
-      bindm = SUPERSHIFT, mouse:273, resizewindow
+      bindm = SUPER, mouse:272, movewindow
+      bindm = SUPER, mouse:273, resizewindow
 
       # Defining SUBMAPS
       # BROWSERS
@@ -286,6 +287,8 @@ in
       #bind = ,G, exec, flatpak run com.valvesoftware.Steam
       bind = ,G, exec, steam
       bind = ,G, submap, reset
+      bind = ,C, exec, gpt4all
+      bind = ,C, submap, reset
       bind = ,V, exec, pavucontrol
       bind = ,V, submap, reset
       bind = ,F, exec, flatpak run com.github.tchx84.Flatseal
@@ -403,10 +406,25 @@ in
       windowrulev2 = opacity 0.99 0.98,class:(brave-browser)
       windowrulev2 = opacity 1 1,class:(cs2)
       windowrulev2 = opacity 1 1,class:(FreeTube)
+      windowrulev2 = opacity 1 1,class:(Thorium-browser)
       windowrulev2 = tile ,class:(FreeTube)
       windowrulev2 = opacity 1 1,class:(discord)
       windowrulev2 = opacity 1 1,class:(looking-glass-client)
       windowrulev2 = opacity 1 1,class:(fuzzel)
+
+      # Floating windows
+      windowrulev2 = float,class:(cs2)
+      windowrulev2 = float,class:(Signal)
+      windowrulev2 = float,class:(whatsapp-desktop-linux)
+      windowrulev2 = float,class:(steamwebhelper)
+      windowrulev2 = float,class:(xdg-desktop-portal-gtk)
+      windowrulev2 = float,class:(blueberry.py)
+
+      # Resize Windows
+      windowrulev2 = size 950 600,class:(Signal)
+      windowrulev2 = center,class:(Signal)
+      windowrulev2 = size 950 600,class:(whatsapp-desktop-linux)
+      windowrulev2 = center,class:(whatsapp-desktop-linux)
     '';
   };
 }

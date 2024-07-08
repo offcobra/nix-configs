@@ -34,7 +34,7 @@
     gtk.enable = true;
     name = userSettings.cursorTheme;
     package = pkgs.dracula-theme;
-    size = 20;
+    size = 14;
   };
 }
 

@@ -6,7 +6,8 @@
     tmp.cleanOnBoot = true;
     extraModulePackages = [ ];
     supportedFilesystems = [ "ntfs" ];
-    kernelPackages = pkgs.linuxPackages_latest;
+    #kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     kernelModules = [ "kvm-amd" "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
     blacklistedKernelModules = [ "nvidia" "nouveau" ];
 
@@ -32,7 +33,7 @@
 
     initrd = {
       availableKernelModules = [ "nvme" "ahci" "xhci_pci" "usb_storage" "usbhid" "sd_mod" ];
-      kernelModules = [ "amdgpu" ];
+      #kernelModules = [ "amdgpu" ];
     };
     loader = {
       efi.canTouchEfiVariables = true;

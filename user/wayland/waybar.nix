@@ -1,5 +1,8 @@
 { config, pkgs, systemSettings, ... }:
 
+let
+  temp = if (systemSettings.hostname == "workstation") then "tctl" else "cpu";
+in
 {
   # Waybar Config
   programs.waybar = {
@@ -74,7 +77,7 @@
               on-click = "alacritty --hold -e sensors";
               restart-interval = 1;
               exec = pkgs.writeShellScript "get_temp" ''
-                STATUS=$(sensors | grep -i "cpu" | cut -d : -f 2 | xargs)
+                STATUS=$(sensors | grep -i ${temp} | cut -d : -f 2 | xargs)
                 echo " $STATUS"
               '';
           };

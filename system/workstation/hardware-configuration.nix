@@ -16,12 +16,13 @@
   # Enable OpenGL / Vulkan support
   hardware.opengl = {
     enable = true;
-    driSupport = true;
     driSupport32Bit = true;
     extraPackages = with pkgs; [
       #clinfo
       rocmPackages.clr
+      pkgs.amdvlk
     ];
+    extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
   };
 
   # Bluetooth

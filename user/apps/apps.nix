@@ -13,6 +13,7 @@
 
   # List of secondary Applications
   home.packages = with pkgs; [
+    gpt4all
     brave
     freetube
     qutebrowser

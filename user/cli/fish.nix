@@ -52,5 +52,6 @@
     set fish_greeting # Disable greeting
     zoxide init --cmd j fish | source
     starship init fish | source
+    macchina
   '';
 }

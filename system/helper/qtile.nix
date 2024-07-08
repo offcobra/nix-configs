@@ -9,7 +9,7 @@
     videoDrivers = [ "amdgpu" ];
     windowManager.qtile = {
       enable = true;
-      backend = "x11";
+      #backend = "x11";
       extraPackages = python3Packages: with python3Packages; [
         prettytable
         psutil

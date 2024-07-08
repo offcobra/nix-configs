@@ -10,6 +10,10 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-colors.url = "github:misterio77/nix-colors";
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, nix-colors, ... }@inputs:
@@ -68,6 +72,7 @@
         inherit pkgs;
         modules = [ ./user/home.nix ];
         extraSpecialArgs = {
+          inherit inputs;
           inherit nix-colors;
           inherit userSettings;
           inherit systemSettings;

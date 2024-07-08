@@ -17,6 +17,7 @@
     distrobox
     k3d
     dysk
+    unzip
     # Haskell
     ghc
     # Rust + Programs
@@ -25,7 +26,7 @@
     bottom
     macchina
     # Python
-    (python3.withPackages (ps: [ ps.pip ps.psutil ]))
+    (python3.withPackages (ps: [ ps.pip ps.psutil ps.qtile ]))
     # Shell Scripts
     (pkgs.writeShellScriptBin "airplane-mode" ''
       #!/bin/sh

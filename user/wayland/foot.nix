@@ -6,7 +6,7 @@
     enable = true;
     settings = {
       main = {
-        pad = "10x10";
+        pad = "2x2";
         font = "Firacodenerdfont:Semibold";
       };
       scrollback.lines = 5000;

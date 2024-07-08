@@ -14,7 +14,7 @@
   # Enable Portal
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
+    wlr.enable = false;
     # gtk portal needed to make gtk apps happy
     extraPortals = [ 
       pkgs.xdg-desktop-portal-gtk 

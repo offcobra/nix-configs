@@ -170,6 +170,27 @@
           fzf-native = {
             enable = true;
           };
+          file-browser = {
+            enable = true;
+          };
+        };
+        settings = {
+          defaults = {
+            file_ignore_patterns = [
+              "^.git/"
+              "^.odt/"
+              "^.pdf/"
+              "^.local/"
+              "^.cargo/"
+              "^.cache/"
+              "^.steam/"
+              "^.rustup/"
+              "^.nix*"
+              "mySpace"
+              "venv/lib"
+              ".thunderbird/"
+            ];
+          };
         };
       };
       neo-tree = {
@@ -239,11 +260,19 @@
       # Telescope find stuff
       {
         action = "<cmd>Telescope live_grep hidden=true<CR>";
-        key = "fg";
+        key = "<leader>fg";
       }
       {
         action = "<cmd>Telescope find_files hidden=true<CR>";
-        key = "ff";
+        key = "<leader>ff";
+      }
+      {
+        action = "<cmd>Telescope buffers<CR>";
+        key = "<leader>bi";
+      }
+      {
+        action = "<cmd>Telescope file_browser<CR>";
+        key = "<leader>fb";
       }
 
       # Oil dired
@@ -252,8 +281,12 @@
         key = "<leader>dd";
       }
       {
-        action = "<cmd>Oil --float /home/ppuscasu/<CR>";
+        action = "<cmd>Oil --float /home/wally/<CR>";
         key = "<leader>dh";
+      }
+      {
+        action = "<cmd>Oil --float /home/wally/.config/nixos/<CR>";
+        key = "<leader>dn";
       }
 
       # Buffers
@@ -272,10 +305,6 @@
       {
         action = "<cmd>BufferLinePick<CR>";
         key = "<leader>bs";
-      }
-      {
-        action = "<cmd>Neotree buffers<CR>";
-        key = "<leader>bi";
       }
 
       # Navigation cammands

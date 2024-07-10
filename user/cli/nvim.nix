@@ -114,6 +114,10 @@
 	  };
 
       bufferline.enable = true;
+      project-nvim = {
+        enable = true;
+        enableTelescope = true;
+      };
       lualine.enable = true;
       nix.enable = true;
       helm.enable = true;
@@ -273,6 +277,10 @@
       {
         action = "<cmd>Telescope file_browser<CR>";
         key = "<leader>fb";
+      }
+      {
+        action = "<cmd>Telescope projects<CR>";
+        key = "<leader>fp";
       }
 
       # Oil dired

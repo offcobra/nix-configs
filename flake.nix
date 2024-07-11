@@ -14,9 +14,13 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-colors, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixvim, nix-colors, ... }@inputs:
     let 
       lib = nixpkgs.lib;
       system = "x86_64-linux";
@@ -73,6 +77,18 @@
         modules = [ ./user/home.nix ];
         extraSpecialArgs = {
           inherit inputs;
+          inherit nixvim;
+          inherit nix-colors;
+          inherit userSettings;
+          inherit systemSettings;
+        };
+      };
+      ppuscasu = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ ./user/home.nix ];
+        extraSpecialArgs = {
+          inherit inputs;
+          inherit nixvim;
           inherit nix-colors;
           inherit userSettings;
           inherit systemSettings;

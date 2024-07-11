@@ -160,7 +160,7 @@ in
       bind = [
         # Terminals
         "$mainMod, return, exec, alacritty"
-        "CTRL, return, exec, foot -e fish"
+        "CTRL, return, exec, foot"
         "$mainMod_SHIFT, return, exec, bash /home/wally/.local/bin/container_run arch"
 
         # Screenshot
@@ -269,6 +269,8 @@ in
       # EMACS
       bind = SUPER, E, submap, emacs
       submap = emacs
+      bind = ,N, exec, foot -T NeoVim -e nvim 
+      bind = ,N, submap, reset
       bind = ,E, exec, emacsclient -c -a 'emacs'
       bind = ,E, submap, reset
       bind = ,B, exec, emacsclient -c -a 'emacs' --eval '(ibuffer)'

@@ -1,9 +1,11 @@
-{ config, pkgs, nix-colors, userSettings, ... }:
+{ config, pkgs, nixvim, nix-colors, userSettings, ... }:
 
 {
   imports =
     [ # Include other modules
       nix-colors.homeManagerModules.default
+      # Import Nixvim
+      nixvim.homeManagerModules.nixvim
       # Window Manager
       ./wayland/hyprland.nix
       # Bash Config
@@ -49,7 +51,7 @@
   
   # Sessionvariables
   home.sessionVariables = {
-    EDITOR="emacsclient -c -a 'emacs'";
+    EDITOR="nvim";
     NIXOS_OZONE_WL = "1";    
     XKB_DEFAULT_LAYOUT = "de";
     VISUAL="vim";

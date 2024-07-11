@@ -50,6 +50,7 @@ in
                   "(.*) - bash"= " $1";
                   "(.*) - Discord"= "󰙯 $1";
                   "(.*) - Spotify"= " $1";
+                  "NeoVim"= " -> Doing stuff right...";
                   "(.*) - Steam"= " $1";
                   "(.*) - Signal"= " $1";
                   "(.*) - Thorium"= "  $1";

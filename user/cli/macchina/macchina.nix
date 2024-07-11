@@ -1,4 +1,4 @@
-{ config, pkgs, userSettings, systemSettings, ... }:
+{ systemSettings, ... }:
 
 let
   interface = if (systemSettings.hostname == "workstation") then "enp14s0" else "wlp0s20f3";

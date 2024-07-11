@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, nix-colors, userSettings, ... }:
+{ config, pkgs, nix-colors, userSettings, ... }:
 
 {
   imports =
@@ -23,7 +23,7 @@
   # environment.
   home.packages = with pkgs; [
     dconf 
-    (pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+    (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
 
     # # ShellScript Example
     # (pkgs.writeShellScriptBin "my-hello" ''

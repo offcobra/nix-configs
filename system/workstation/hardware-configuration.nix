@@ -20,7 +20,7 @@
     extraPackages = with pkgs; [
       #clinfo
       rocmPackages.clr
-      pkgs.amdvlk
+      amdvlk
     ];
     extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
   };

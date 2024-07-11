@@ -1,4 +1,4 @@
-{ config, pkgs, systemSettings, ... }:
+{ pkgs, systemSettings, ... }:
 
 let
   font_size = if (systemSettings.hostname == "workstation") then "12" else "8";

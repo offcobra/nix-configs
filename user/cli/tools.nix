@@ -1,4 +1,4 @@
-{ config, pkgs, userSettings, ... }:
+{ pkgs, userSettings, ... }:
 
 {
   # List of secondary Applications
@@ -28,7 +28,7 @@
     # Python
     (python3.withPackages (ps: [ ps.pip ps.psutil ps.qtile ]))
     # Shell Scripts
-    (pkgs.writeShellScriptBin "airplane-mode" ''
+    (writeShellScriptBin "airplane-mode" ''
       #!/bin/sh
       connectivity="$(nmcli n connectivity)"
       if [ "$connectivity" == "full" ]

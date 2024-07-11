@@ -1,4 +1,4 @@
-{ config, pkgs, nixvim, ... }:
+{ ... }:
 
 {
   # NeoVim Configs
@@ -26,7 +26,6 @@
 
       cursorline = true;
       ruler = true;
-      
     };
 
     # Theme
@@ -114,10 +113,6 @@
 	  };
 
       bufferline.enable = true;
-      project-nvim = {
-        enable = true;
-        enableTelescope = true;
-      };
       lualine.enable = true;
       nix.enable = true;
       helm.enable = true;
@@ -165,8 +160,99 @@
       noice.enable = true;
       alpha = {
 	    enable = true;
-	    theme = "dashboard";
-	    iconsEnabled = true;
+        #theme = "dashboard";
+        layout = [
+   		{
+          type = "padding";
+          val = 20;
+      	}
+      	{
+          opts = {
+            hl = "Type";
+            position = "center";
+          };
+          type = "text";
+          val = [
+            "  ███╗   ██╗██╗██╗  ██╗██╗   ██╗██╗███╗   ███╗  "
+            "  ████╗  ██║██║╚██╗██╔╝██║   ██║██║████╗ ████║  "
+            "  ██╔██╗ ██║██║ ╚███╔╝ ██║   ██║██║██╔████╔██║  "
+            "  ██║╚██╗██║██║ ██╔██╗ ╚██╗ ██╔╝██║██║╚██╔╝██║  "
+            "  ██║ ╚████║██║██╔╝ ██╗ ╚████╔╝ ██║██║ ╚═╝ ██║  "
+            "  ╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═╝     ╚═╝  "
+          ];
+        }
+        {
+          type = "padding";
+          val = 4;
+        }
+        {
+          opts = {
+            hl = "Keyword";
+            position = "center";
+          };
+          type = "text";
+          val = "Nix is a way of life... Like DevOps only better !!!";
+        }
+        {
+          type = "padding";
+          val = 10;
+        }
+        {
+          type = "group";
+          opts = {
+            hl = "Type";
+            position = "center";
+          };
+          val = [{
+            type = "button";
+            on-press = "<cmd>Telescope find_files hidden=true<CR>";
+            val = " Find Files...";
+            opts = {
+              shortcut = "SPACE + f f  ->  ";
+              position = "center";
+              padding = 4;
+            };
+          }
+          {
+            type = "button";
+            on-press = "<cmd>Telescope live_grep hidden=true<CR>";
+            val = " Live Grep...";
+            opts = {
+              shortcut = "SPACE + f g  ->  ";
+              position = "center";
+              padding = 4;
+            };
+          }
+          {
+            type = "button";
+            on-press = "<cmd>Telescope file_browser<CR>";
+            val = " File Browser...";
+            opts = {
+              shortcut = "SPACE + f b  ->  ";
+              position = "center";
+              padding = 4;
+            };
+          }
+          {
+            type = "button";
+            on-press = "<cmd>Telescope projects<CR>";
+            val = " Recent Projects...";
+            opts = {
+              shortcut = "SPACE + f p  ->  ";
+              position = "center";
+              padding = 4;
+            };
+          }
+          {
+            type = "button";
+            val = " Quit NeoVim ...";
+            opts = {
+              shortcut = "SPACE q  ->  ";
+              position = "center";
+              padding = 4;
+            };
+          }];
+        }];	
       };
       telescope = {
         enable = true;
@@ -176,174 +262,241 @@
           };
           file-browser = {
             enable = true;
-          };
-        };
-        settings = {
-          defaults = {
-            file_ignore_patterns = [
-              "^.git/"
-              "^.odt/"
-              "^.pdf/"
-              "^.local/"
-              "^.cargo/"
-              "^.cache/"
-              "^.steam/"
-              "^.rustup/"
-              "^.nix*"
-              "mySpace"
-              "venv/lib"
-              ".thunderbird/"
-            ];
-          };
-        };
-      };
-      neo-tree = {
-        enable = true;
-      	enableDiagnostics = true;
-      	enableGitStatus = true;
-      	enableModifiedMarkers = true;
-      	enableRefreshOnWrite = true;
-      	closeIfLastWindow = true;
-      	popupBorderStyle = "rounded"; # Type: null or one of “NC”, “double”, “none”, “rounded”, “shadow”, “single”, “solid” or raw lua code
-      	buffers = {
-          bindToCwd = false;
-          followCurrentFile = {
-            enabled = true;
-          };
-      	};
-        window = {
-          width = 40;
-          height = 15;
-          autoExpandWidth = false;
-          mappings = {
-            "<space>" = "none";
-          };
-        };
-      };
-    };
+            settings = {
+              gruped = true;
+              hidden = {
+                file_browser = true;
+                folder_browser = true;
+              };
+              mappings.i = {
+                "<C-c>" = "require('telescope._extensions.file_browser.actions').create";
+			    "<S-CR>" = "require('telescope._extensions.file_browser.actions').create_from_prompt";
+                "<A-r>" = "require('telescope._extensions.file_browser.actions').rename";
+                "<A-m>" = "require('telescope._extensions.file_browser.actions').move";
+                "<A-y>" = "require('telescope._extensions.file_browser.actions').copy";
+                "<A-d>" = "require('telescope._extensions.file_browser.actions').remove";
+                "<C-g>" = "require('telescope._extensions.file_browser.actions').goto_parent_dir";
+                "<C-h>" = "require('telescope._extensions.file_browser.actions').goto_home_dir";
+                "<C-w>" = "require('telescope._extensions.file_browser.actions').goto_cwd";
+                "<C-t>" = "require('telescope._extensions.file_browser.actions').change_cwd";
+                "<C-f>" = "require('telescope._extensions.file_browser.actions').toggle_browser";
+                "<C-hh>" = "require('telescope._extensions.file_browser.actions').toggle_hidden";
+                "<C-s>" = "require('telescope._extensions.file_browser.actions').toggle_all";
+                "<bs>" = "require('telescope._extensions.file_browser.actions').backspace";
+              };
+              mappings.n = {
+                "c" = "require('telescope._extensions.file_browser.actions').create";
+                "r" = "require('telescope._extensions.file_browser.actions').rename";
+                "m" = "require('telescope._extensions.file_browser.actions').move";
+                "y" = "require('telescope._extensions.file_browser.actions').copy";
+                "d" = "require('telescope._extensions.file_browser.actions').remove";
+                "h" = "require('telescope._extensions.file_browser.actions').goto_parent_dir";
+                "e" = "require('telescope._extensions.file_browser.actions').goto_home_dir";
+                "w" = "require('telescope._extensions.file_browser.actions').goto_cwd";
+                "t" = "require('telescope._extensions.file_browser.actions').change_cwd";
+                "f" = "require('telescope._extensions.file_browser.actions').toggle_browser";
+                "hh" = "require('telescope._extensions.file_browser.actions').toggle_hidden";
+                "s" = "require('telescope._extensions.file_browser.actions').toggle_all";
+              };
+              defaults = {
+                file_ignore_patterns = [
+                  "^.git/"
+                  "^.odt/"
+                  "^.pdf/"
+                  "^.local/"
+                  "^.cargo/"
+                  "^.cache/"
+                  "^.steam/"
+                  "^.rustup/"
+                  "^.nix*"
+                  "mySpace"
+                  "venv/lib"
+                  ".thunderbird/"
+               ];
+             };
+           };
+         };
+       };
+     };
 
-    # Keymaps
-    globals.mapleader = " ";
-    keymaps = [
-      # Helpers
-      {
-        action = "<cmd>WhichKey<CR>";
-        key = "<leader>ß";
-      }
+     project-nvim = {
+       enable = true;
+       enableTelescope = true;
+     };
+     none-ls = {
+       enable = true;
+     };
+     neo-tree = {
+       enable = true;
+     	enableDiagnostics = true;
+     	enableGitStatus = true;
+     	enableModifiedMarkers = true;
+     	enableRefreshOnWrite = true;
+     	closeIfLastWindow = true;
+     	popupBorderStyle = "rounded"; # Type: null or one of “NC”, “double”, “none”, “rounded”, “shadow”, “single”, “solid” or raw lua code
+     	buffers = {
+         bindToCwd = false;
+         followCurrentFile = {
+           enabled = true;
+         };
+     	};
+       window = {
+         width = 40;
+         height = 15;
+         autoExpandWidth = false;
+         mappings = {
+           "<space>" = "none";
+         };
+       };
+     };
+   };
 
-      # Maggit
-      {
-        mode = "n";
-        action = "<cmd>Neogit<CR>";
-        key = "<leader>g";
-        options = {
-          silent = true;
-        };
-      }
+   # Keymaps
+   globals.mapleader = " ";
+   keymaps = [
+     # Helpers
+     {
+       action = "<cmd>WhichKey<CR>";
+       key = "<leader>ß";
+     }
 
-      #Dashboard
-      {
-        mode = "n";
-        action = "<cmd>Alpha<CR>";
-        key = "<leader>od";
-        options = {
-          silent = true;
-        };
-      }
+     # Maggit
+     {
+       mode = "n";
+       action = "<cmd>Neogit<CR>";
+       key = "<leader>g";
+       options = {
+         silent = true;
+       };
+     }
 
-      # Neotree
-      {
-        mode = "n";
-        action = "<cmd>Neotree toggle<CR>";
-        key = "<leader>tn";
-        options = {
-          silent = true;
-        };
-      }
+     #Dashboard
+     {
+       mode = "n";
+       action = "<cmd>Alpha<CR>";
+       key = "<leader>od";
+       options = {
+         silent = true;
+       };
+     }
 
-      # Telescope find stuff
-      {
-        action = "<cmd>Telescope live_grep hidden=true<CR>";
-        key = "<leader>fg";
-      }
-      {
-        action = "<cmd>Telescope find_files hidden=true<CR>";
-        key = "<leader>ff";
-      }
-      {
-        action = "<cmd>Telescope buffers<CR>";
-        key = "<leader>bi";
-      }
-      {
-        action = "<cmd>Telescope file_browser<CR>";
-        key = "<leader>fb";
-      }
-      {
-        action = "<cmd>Telescope projects<CR>";
-        key = "<leader>fp";
-      }
+     # Neotree
+     {
+       mode = "n";
+       action = "<cmd>Neotree toggle<CR>";
+       key = "<leader>tn";
+       options = {
+         silent = true;
+       };
+     }
 
-      # Oil dired
-      {
-        action = "<cmd>Oil --float<CR>";
-        key = "<leader>dd";
-      }
-      {
-        action = "<cmd>Oil --float /home/wally/<CR>";
-        key = "<leader>dh";
-      }
-      {
-        action = "<cmd>Oil --float /home/wally/.config/nixos/<CR>";
-        key = "<leader>dn";
-      }
+     # Telescope find stuff
+     {
+       action = "<cmd>Telescope live_grep hidden=true<CR>";
+       key = "<leader>fg";
+     }
+     {
+       action = "<cmd>Telescope find_files hidden=true<CR>";
+       key = "<leader>ff";
+     }
+     {
+       action = "<cmd>Telescope buffers<CR>";
+       key = "<leader>bi";
+     }
+     {
+       action = "<cmd>Telescope file_browser<CR>";
+       key = "<leader>fb";
+     }
+     {
+       action = "<cmd>Telescope projects<CR>";
+       key = "<leader>fp";
+     }
 
-      # Buffers
-      {
-        action = "<cmd>BufferLineCycleNext<CR>";
-        key = "<leader>bn";
-      }
-      {
-        action = "<cmd>BufferLineCyclePrev<CR>";
-        key = "<leader>bp";
-      }
-      {
-        action = "<cmd>BufferLinePickClose<CR>";
-        key = "<leader>bk";
-      }
-      {
-        action = "<cmd>BufferLinePick<CR>";
-        key = "<leader>bs";
-      }
+     # Oil dired
+     {
+       action = "<cmd>Oil --float<CR>";
+       key = "<leader>dd";
+     }
+     {
+       action = "<cmd>Oil --float /home/ppuscasu/<CR>";
+       key = "<leader>dh";
+     }
+     {
+       action = "<cmd>Oil --float /home/ppuscasu/.config/nixos/<CR>";
+       key = "<leader>dn";
+     }
+     {
+       action = "<cmd>Oil --float /home/ppuscasu/.local/bin/<CR>";
+       key = "<leader>db";
+     }
+     {
+       action = "<cmd>Oil --float /home/ppuscasu/projects/<CR>";
+       key = "<leader>dp";
+     }
+     {
+       action = "<cmd>Oil --float /home/.config/<CR>";
+       key = "<leader>dc";
+     }
 
-      # Navigation cammands
-      {
-        action = "<cmd>:wincmd h<CR>";
-        key = "<leader>wh";
-      }
-      {
-        action = "<cmd>:wincmd j<CR>";
-        key = "<leader>wj";
-      }
-      {
-        action = "<cmd>:wincmd k<CR>";
-        key = "<leader>wk";
-      }
-      {
-        action = "<cmd>:wincmd l<CR>";
-        key = "<leader>wl";
-      }
-      {
-        action = "<cmd>:wincmd c<CR>";
-        key = "<leader>wc";
-      }
-      {
-        action = "<cmd>:wincmd v<CR>";
-        key = "<leader>wv";
-      }
-      {
-        action = "<cmd>:wincmd n<CR>";
-        key = "<leader>wn";
-      }
-    ];
+     # Buffers
+     {
+       action = "<cmd>BufferLineCycleNext<CR>";
+       key = "<leader>bn";
+     }
+     {
+       action = "<cmd>BufferLineCycleNext<CR>";
+       key = "gt";
+     }
+     {
+       action = "<cmd>BufferLineCyclePrev<CR>";
+       key = "gT";
+     }
+     {
+       action = "<cmd>BufferLineCyclePrev<CR>";
+       key = "<leader>bp";
+     }
+     {
+       action = "<cmd>BufferLinePickClose<CR>";
+       key = "<leader>bk";
+     }
+     {
+       action = "<cmd>BufferLinePick<CR>";
+       key = "<leader>bs";
+     }
+
+     # Navigation cammands
+     {
+       action = "<cmd>:wincmd h<CR>";
+       key = "<leader>wh";
+     }
+     {
+       action = "<cmd>:wincmd j<CR>";
+       key = "<leader>wj";
+     }
+     {
+       action = "<cmd>:wincmd k<CR>";
+       key = "<leader>wk";
+     }
+     {
+       action = "<cmd>:wincmd l<CR>";
+       key = "<leader>wl";
+     }
+     {
+       action = "<cmd>:wincmd c<CR>";
+       key = "<leader>wc";
+     }
+     {
+       action = "<cmd>:wincmd v<CR>";
+       key = "<leader>wv";
+     }
+     {
+       action = "<cmd>:wincmd n<CR>";
+       key = "<leader>wn";
+     }
+     {
+       action = "<cmd>:wwincmd wq<CR>";
+       key = "<leader>q";
+     }
+   ];
   };
 }

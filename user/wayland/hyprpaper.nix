@@ -1,4 +1,4 @@
-{ config, pkgs, userSettings, systemSettings, ... }:
+{ systemSettings, ... }:
 
 {
   # Macchina Configs

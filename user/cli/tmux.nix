@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   # tmux Configs
@@ -11,7 +11,7 @@
       {
         plugin = tmuxPlugins.catppuccin;
         extraConfig = '' 
-	  set -g @catppuccin_flavour 'macchiato'
+	      set -g @catppuccin_flavour 'macchiato'
 
           # Config 3
           set -g @catppuccin_window_left_separator ""

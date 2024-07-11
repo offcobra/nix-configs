@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, nixvim, nix-colors, userSettings, ... }:
+{ config, pkgs, nixvim, nix-colors, userSettings, ... }:
 
 {
   imports =
@@ -22,7 +22,7 @@
 
   # environment.
   home.packages = with pkgs; [
-    (pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+    (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
 
     # # ShellScript Example
     # (pkgs.writeShellScriptBin "my-hello" ''

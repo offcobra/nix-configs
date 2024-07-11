@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, systemSettings, ... }:
+{ pkgs, systemSettings, ... }:
 
 let 
   startupScript = pkgs.pkgs.writeShellScriptBin "hypr-startup" ''

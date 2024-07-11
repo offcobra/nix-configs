@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   imports = [
@@ -59,6 +59,7 @@
 
     # alacritty Config keybinding for wsl
     term-conf="vim /mnt/c/Users/ppuscasu/AppData/Roaming/Alacritty/alacritty.toml";
+    glaze="vim /mnt/c/Users/ppuscasu/AppData/Roaming/Alacritty/glazewm.yaml";
 
     # Nixos Rebuild
     os_rebuild="nh os switch --update --ask";
@@ -70,6 +71,9 @@
   };
 
   programs.bash.bashrcExtra = "
+# Make $HOME default
+cd $HOME
+
 # Added by Nix installer
 if [ -e /home/ppuscasu/.nix-profile/etc/profile.d/nix.sh ]; then . /home/ppuscasu/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 

@@ -8,14 +8,18 @@
     ./starship.nix
     # Adding tools
     ./tools.nix
-    # Fish 
+    # Fish
     ./fish.nix
-    # fzf 
+    # fzf
     ./fzf.nix
-    # tmux 
+    # tmux
     ./tmux.nix
-    # NixVim 
-    ./nvim.nix
+    # NixVim
+    ./nvim
+    # Dev Tools
+    ./dev-tools.nix
+    # zoxide configs
+    ./zoxide.nix
   ];
   # Session Aliases
   programs.bash.enable = true;
@@ -30,7 +34,7 @@
     # Utilities
     df = "dysk";
     find = "fd";
-    grep = "rg";
+    grep = "rg -i";
     du = "dust";
     ps = "procs";
     cat1 = "/run/current-system/sw/bin/cat";
@@ -64,10 +68,11 @@
     # Nixos Rebuild
     os_rebuild="nh os switch --update --ask";
     hm_rebuild="nh home switch";
-    nix_clean="nh clean all --keep 3";
-    
+    #nix_clean="nh clean all --keep 3";
+    nix_clean="nh clean user --keep 2";
+
     # Update whole System
-    update="distrobox upgrade arch && flatpak update -y && os_rebuild && hm_rebuild";
+    update="sudo pacman -Syyu && nh home switch --update";
   };
 
   programs.bash.bashrcExtra = "
@@ -78,7 +83,7 @@ cd $HOME
 if [ -e /home/ppuscasu/.nix-profile/etc/profile.d/nix.sh ]; then . /home/ppuscasu/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 # Source Helper Functions
-source /home/ppuscasu/.local/bin/helper.sh 
+source /home/ppuscasu/.local/bin/helper.sh
 
 # Start WindowManager
 start_wm

@@ -15,14 +15,14 @@
     ];
   colorScheme = nix-colors.colorSchemes.${userSettings.colorTheme};
 
-  # Home Manager 
+  # Home Manager
   home.username = userSettings.username;
   home.homeDirectory = "/home/"+userSettings.username;
   home.stateVersion = "23.11"; # Please dont change
 
   # environment.
   home.packages = with pkgs; [
-    dconf 
+    dconf
     (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
 
     # # ShellScript Example
@@ -46,11 +46,11 @@
     ".local/share/fonts".source = "${pkgs.fira-code-nerdfont}/share/fonts/truetype/NerdFonts";
 
   };
-  
+
   # Sessionvariables
   home.sessionVariables = {
     EDITOR="emacsclient -c -a 'emacs'";
-    NIXOS_OZONE_WL = "1";    
+    NIXOS_OZONE_WL = "1";
     XKB_DEFAULT_LAYOUT = "de";
     VISUAL="vim";
     PAGER="bat --pager 'less'";

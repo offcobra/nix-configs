@@ -15,19 +15,21 @@
     ];
   colorScheme = nix-colors.colorSchemes.${userSettings.colorTheme};
 
-  # Home Manager 
+  # Bash aliases
+  programs.bash.shellAliases = {
+    hashi = "ssh paul@10.222.48.30";
+  };
+
+
+  # Home Manager
   home.username = "ppuscasu";
   home.homeDirectory = "/home/ppuscasu/";
   home.stateVersion = "24.05"; # Please dont change
 
   # environment.
   home.packages = with pkgs; [
+    dconf
     (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
-
-    # # ShellScript Example
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
   ];
 
   # XDG Files to be linked
@@ -45,7 +47,7 @@
     ".local/share/fonts".source = "${pkgs.fira-code-nerdfont}/share/fonts/truetype/NerdFonts";
 
   };
-  
+
   # Sessionvariables
   home.sessionVariables = {
     EDITOR="nvim";
@@ -77,7 +79,7 @@
 
 # A small Doc for the wsl install
 # - install nerd fonts & alacritty
-# - install openssh git nix 
+# - install openssh git nix
 # - clone dotfiles repo
 # - nix install home-manager nix-command flakes
 # - fix username conflics

@@ -12,10 +12,10 @@ in
       target = ".config/macchina/themes/nix.txt";
       source = ./nix.txt;
     };
-    "wally.toml" = {
+    "custom.toml" = {
       enable = true;
-      target = ".config/macchina/themes/wally.toml";
-      source = ./wally.toml;
+      target = ".config/macchina/themes/custom.toml";
+      source = ./custom.toml;
     };
     "macchina.toml" = {
       enable = true;
@@ -41,7 +41,7 @@ current_shell = true
 physical_cores = false
 
 # Theme to choose
-theme = 'wally'
+theme = 'custom'
 
 # Displays only the specified readouts.
 # Accepted values (case-sensitive):
@@ -71,4 +71,3 @@ show = [ 'Machine', 'Host', 'Distribution', 'Resolution', 'DesktopEnvironment', 
     };
   };
 }
-

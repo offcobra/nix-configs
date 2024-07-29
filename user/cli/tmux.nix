@@ -44,8 +44,8 @@
 
       set-window-option -g mode-keys vi
 
-      #set -g default-terminal 'screen-256color'
-      #set-option -ga terminal-overrides ',screen-256color:Tc'
+      set -g default-terminal 'screen-256color'
+      set-option -ga terminal-overrides ',screen-256color:Tc'
 
       set -g mouse on
 

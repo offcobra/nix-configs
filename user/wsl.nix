@@ -22,8 +22,8 @@
 
 
   # Home Manager
-  home.username = "ppuscasu";
-  home.homeDirectory = "/home/ppuscasu/";
+  home.username = "${userSettings.username}";
+  home.homeDirectory = "/home/${userSettings.username}/";
   home.stateVersion = "24.05"; # Please dont change
 
   # environment.
@@ -54,7 +54,7 @@
     XKB_DEFAULT_LAYOUT = "de";
     VISUAL="vim";
     PAGER="bat --pager 'less'";
-    FLAKE="/home/ppuscasu/.config/nixos";
+    FLAKE="/home/${userSettings.username}/.config/nixos";
     SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS="0";
     LC_ALL="C.UTF-8";
     LANG="C.UTF-8";

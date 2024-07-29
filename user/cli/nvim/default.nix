@@ -38,6 +38,8 @@
 
       cursorline = true;
       ruler = true;
+
+      swapfile = false;
     };
   };
 }

@@ -52,12 +52,12 @@
   # Sessionvariables
   home.sessionVariables = {
     EDITOR="nvim";
-    NIXOS_OZONE_WL = "1";    
+    NIXOS_OZONE_WL = "1";
     XKB_DEFAULT_LAYOUT = "de";
     VISUAL="vim";
     PAGER="bat --pager 'less'";
     LIBVIRT_DEFAULT_URI="qemu:///system";
-    FLAKE="/home/wally/.config/nixos";
+    FLAKE="/home/${userSettings.username}/.config/nixos";
     SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS="0";
     ELECTRON_OZONE_PLATFORM_HINT="auto";
   };

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{ config, lib, pkgs, modulesPath, userSettings, ... }:
 
 {
   imports =
@@ -26,7 +26,7 @@
   # Bluetooth
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
-  
+
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/8b627f50-400b-4c56-828a-b6a5d238a13a";
@@ -38,12 +38,12 @@
       fsType = "vfat";
     };
 
-  fileSystems."/home/wally/mySpace/backups" =
+  fileSystems."/home/${userSettings.username}/mySpace/backups" =
     { device = "/dev/sda1";
       fsType = "ext4";
     };
 
-  fileSystems."/home/wally/mySpace/vms" =
+  fileSystems."/home/${userSettings.username}/mySpace/vms" =
     { device = "/dev/sda2";
       fsType = "ext4";
     };

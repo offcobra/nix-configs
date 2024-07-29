@@ -5,13 +5,26 @@
   programs.nixvim.plugins = {
 
     # Comp Plugins
+    luasnip.enable = true;
+    cmp-buffer.enable = true;
+    cmp-nvim-lsp.enable = true;
+    cmp-path.enable = true;
+    cmp_luasnip.enable = true;
+    cmp-cmdline.enable = true;
+
     cmp = {
       enable = true;
-      autoEnableSources = true;
+      #autoEnableSources = true;
       settings = {
         experimental = {
           ghost_text = true;
         };
+        sources = [
+          { name = "nvim_lsp"; }
+          { name = "luasnip"; }
+          { name = "buffer"; }
+          { name = "path"; }
+        ];
         mapping = {
   		__raw = ''
             cmp.mapping.preset.insert({
@@ -46,10 +59,6 @@
         };
       };
     };
-    cmp-buffer.enable = true;
-    cmp-cmdline.enable = true;
-    cmp-nvim-lsp.enable = true;
-    cmp-path.enable = true;
     helm.enable = true;
   };
 }

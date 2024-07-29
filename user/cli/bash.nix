@@ -1,5 +1,11 @@
 { userSettings, ... }:
 
+let
+  update_cmd = if (userSettings.username == "wally")
+      then "flatpak update -y && os_rebuild && hm_rebuild"
+      else "sudo pacman -Syyu && nh home switch --update";
+  keep = if (userSettings.username == "wally") then "3" else "2";
+in
 {
   imports = [
     # Adding cli app configs
@@ -63,18 +69,16 @@
     git_clean = "git remote update origin --prune";
 
     # alacritty Config keybinding for wsl
-    term-conf="vim /mnt/c/Users/ppuscasu/AppData/Roaming/Alacritty/alacritty.toml";
-    glaze="vim /mnt/c/Users/ppuscasu/AppData/Roaming/Alacritty/glazewm.yaml";
+    term-conf="vim /mnt/c/Users/${userSettings.username}/AppData/Roaming/Alacritty/alacritty.toml";
+    glaze="vim /mnt/c/Users/${userSettings.username}/AppData/Roaming/Alacritty/glazewm.yaml";
 
     # Nixos Rebuild
     os_rebuild="nh os switch --update --ask";
     hm_rebuild="nh home switch";
-    #nix_clean="nh clean all --keep 3";
-    nix_clean="nh clean user --keep 2";
+    nix_clean="nh clean user --keep ${keep}";
 
     # Update whole System
-    #update="sudo pacman -Syyu && nh home switch --update";
-    update="flatpak update -y && os_rebuild && hm_rebuild";
+    update = "${update_cmd}";
   };
 
   programs.bash.bashrcExtra = "

@@ -1,6 +1,6 @@
-{ pkgs, systemSettings, ... }:
+{ pkgs, systemSettings, userSettings, ... }:
 
-let 
+let
   startupScript = pkgs.pkgs.writeShellScriptBin "hypr-startup" ''
     echo "Starting Waybar..."
     waybar &
@@ -15,9 +15,6 @@ let
     flatpak run io.github.mimbrero.WhatsAppDesktop --start-hidden &
     echo "Starting NM-Applet..."
     nm-applet &
-    #/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-    #echo "Starting DBUS Environment..."
-    #dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &
     echo "Starting HyprIdle..."
     hypridle &
   '';
@@ -88,15 +85,15 @@ in
         kb_layout = "de";
         follow_mouse = 1;
         scroll_factor = 1.3;
-      
+
         touchpad = {
             natural_scroll = "no";
         };
-      
+
         sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
         accel_profile = "flat";
       };
-      
+
       # General Settings
       general = {
         gaps_in = 5;
@@ -106,7 +103,7 @@ in
         "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         "col.inactive_border" = "rgba(595959aa)";
       };
-        
+
       # Startup Programms
       exec-once = if (systemSettings.hostname == "workstation")
             then
@@ -146,23 +143,23 @@ in
         pseudotile = "yes";
         preserve_split = "yes";
       };
-      
+
       master = {
         new_on_top = "true";
         new_status = "master";
       };
-      
+
       gestures = {
         workspace_swipe = "off";
       };
-      
+
       # Bind Keyboard Settings
       "$mainMod" = "SUPER";
       bind = [
         # Terminals
         "$mainMod, return, exec, alacritty"
         "CTRL, return, exec, foot"
-        "$mainMod_SHIFT, return, exec, bash /home/wally/.local/bin/container_run arch"
+        "$mainMod_SHIFT, return, exec, bash /home/${userSettings.username}/.local/bin/container_run arch"
 
         # Screenshot
         "$mainMod, x, exec, grim -g \"$(slurp -d)\""
@@ -179,7 +176,7 @@ in
 
         # Quick Shortcuts
         "$mainMod, P, exec, fuzzel"
-        "$mainMod_SHIFT, P, exec, bash /home/wally/.local/bin/websearch"
+        "$mainMod_SHIFT, P, exec, bash /home/${userSettings.username}/.local/bin/websearch"
         "$mainMod, F, exec, pcmanfm"
         "$mainMod, S, exec, alacritty -e btm"
 
@@ -188,19 +185,19 @@ in
         "$mainMod, L, movefocus, r"
         "$mainMod, K, movefocus, u"
         "$mainMod, J, movefocus, d"
-        
+
         # Move focus with mainMod + arrow keys
         "$mainMod_SHIFT, H, movewindow, l"
         "$mainMod SHIFT, L, movewindow, r"
         "$mainMod SHIFT, K, movewindow, u"
         "$mainMod SHIFT, J, movewindow, d"
-        
+
         # Resize
         "SUPERALT, H, resizeactive, -30 0"
         "SUPERALT, L, resizeactive, 30 0"
         "SUPERALT, K, resizeactive, 0 -30"
         "SUPERALT, J, resizeactive, 0 30"
-        
+
         # Switch workspaces with mainMod + [0-9]
         "$mainMod, 1, workspace, 1"
         "$mainMod, 2, workspace, 2"
@@ -212,7 +209,7 @@ in
         "$mainMod, 8, workspace, 8"
         "$mainMod, 9, workspace, 9"
         "$mainMod, 0, workspace, 10"
-        
+
         # Move active window to a workspace with mainMod + SHIFT + [0-9]
         "$mainMod SHIFT, 1, movetoworkspace, 1"
         "$mainMod SHIFT, 2, movetoworkspace, 2"
@@ -224,17 +221,17 @@ in
         "$mainMod SHIFT, 8, movetoworkspace, 8"
         "$mainMod SHIFT, 9, movetoworkspace, 9"
         "$mainMod SHIFT, 0, movetoworkspace, 10"
-        
+
         # Scroll through existing workspaces with mainMod + scroll
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
-        
+
         # Sound controls
         ", xf86audioraisevolume, exec, amixer sset Master 5%+"
         ", xf86audiolowervolume, exec, amixer sset Master 5%-"
         ", xf86audiomute, exec, amixer sset Master 0"
         ", xf86Messenger, exec, show_info"
-        
+
         # Brightness controls
         ", xf86MonBrightnessDown, exec, light -U 5"
         ", xf86MonBrightnessUp, exec, light -A 5"
@@ -255,7 +252,7 @@ in
       bind = ,I, submap, reset
       bind = ,L, exec, docker_exec librewolf
       bind = ,L, submap, reset
-      bind = ,T, exec, docker_exec thorium-browser 
+      bind = ,T, exec, docker_exec thorium-browser
       bind = ,T, submap, reset
       bind = ,P, exec, docker_exec librewolf --private-window
       bind = ,P, submap, reset
@@ -263,14 +260,14 @@ in
       bind = ,F, submap, reset
       bind = ,H, exec, docker_exec thorium-browser --incognito
       bind = ,H, submap, reset
-      bind = ,O, exec, qutebrowser -C /home/wally/.config/qutebrowser/config.py
+      bind = ,O, exec, qutebrowser -C /home/${userSettings.username}/.config/qutebrowser/config.py
       bind = ,O, submap, reset
       submap = reset
-      
+
       # EMACS
       bind = SUPER, E, submap, emacs
       submap = emacs
-      bind = ,N, exec, foot -T NeoVim -e nvim 
+      bind = ,N, exec, foot -T NeoVim -e nvim
       bind = ,N, submap, reset
       bind = ,E, exec, emacsclient -c -a 'emacs'
       bind = ,E, submap, reset
@@ -283,7 +280,7 @@ in
       bind = ,T, exec, emacsclient -c -a 'emacs' --eval '(+vterm/here nil)'
       bind = ,T, submap, reset
       submap = reset
-      
+
       # PROGRAMMS
       bind = SUPER, G, submap, programms
       submap = programms
@@ -318,11 +315,11 @@ in
       bind = ,W, exec, popcorntime
       bind = ,W, submap, reset
       submap = reset
-      
+
       # CRYPTO STUFF
       bind = SUPER, C, submap, crypto
       submap = crypto
-      bind = ,B, exec, docker exec -e XDG_RUNTIME_DIR='/run/user/1000' -e DISPLAY=$DISPLAY -u wally apps binance
+      bind = ,B, exec, docker exec -e XDG_RUNTIME_DIR='/run/user/1000' -e DISPLAY=$DISPLAY -u ${userSettings.username} apps binance
       bind = ,B, submap, reset
       bind = ,C, exec, qutebrowser https://coinmarketcap.com/
       bind = ,C, submap, reset
@@ -331,7 +328,7 @@ in
       bind = ,E, exec, docker_exec exodus
       bind = ,E, submap, reset
       submap = reset
-      
+
       # TOGGLE STUFF
       bind = SUPER, T, submap, toggle
       submap = toggle
@@ -352,7 +349,7 @@ in
       bind = ,W, exec, screen_work
       bind = ,W, submap, reset
       submap = reset
-      
+
       # VIRTUALIZATION
       bind = SUPER, V, submap, virtual
       submap = virtual
@@ -361,7 +358,7 @@ in
       bind = ,M, exec, GTK_THEME=Dracula virt-manager
       bind = ,M, submap, reset
       bind = ,B, exec, flatpak run com.usebottles.bottles
-      bind = ,B, submap, reset 
+      bind = ,B, submap, reset
       bind = ,S, exec, stop_docker
       bind = ,S, submap, reset
       bind = ,D, exec, container_run debian
@@ -383,7 +380,7 @@ in
       bind = ,R, exec, remmina -c .local/share/remmina/group_rdp_win11_192-168-122-106.remmina #GTK_THEME=Dracula remmina
       bind = ,R, submap, reset
       submap = reset
-      
+
       # CHAT ing...
       bind = SUPER, I, submap, chat
       submap = chat
@@ -431,4 +428,3 @@ in
     '';
   };
 }
-

@@ -1,8 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running `nixos-help`).
-
-{ pkgs, ... }:
+{ pkgs, userSettings, ... }:
 
 {
   imports =
@@ -10,7 +6,7 @@
       ./thinkpad/thinkpad-hardware.nix
       # Hyprland Stuff
       ./helper/hyprland.nix
-      # Nix Settings 
+      # Nix Settings
       ./helper/nix-settings.nix
     ];
 
@@ -69,9 +65,9 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   nixpkgs.config.allowUnfree = true;
-  users.users.wally = {
+  users.users.${userSettings.username} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "storage" "video" "docker" "input" "disk" ]; 
+    extraGroups = [ "wheel" "networkmanager" "storage" "video" "docker" "input" "disk" ];
     packages = with pkgs; [
         # Cli tools
         git
@@ -120,7 +116,7 @@
   services.dbus.enable = true;
 
   security.polkit.enable = true;
-  
+
   systemd = {
   user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";
@@ -167,4 +163,3 @@
       };
   };
 }
-

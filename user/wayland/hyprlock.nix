@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, userSettings, ... }:
 
 {
   # Hyprlock Configs
@@ -16,7 +16,7 @@ general {
 # BACKGROUND
 background {
     monitor =
-    path = /home/wally/.config/nixos/user/wallpapers/nix.png # path to PNG background
+    path = /home/${userSettings.username}/.config/nixos/user/wallpapers/nix.png # path to PNG background
     blur_passes = 0
     color = rgb(${config.colorScheme.palette.base00})
 }
@@ -33,9 +33,9 @@ label {
     valign = top
 }
 
-# DATE 
+# DATE
 label {
-    monitor = 
+    monitor =
     text = cmd[update:43200000] echo $(date +'%A,%e %B %Y')
     color = rgb(${config.colorScheme.palette.base05})
     font_size = 25
@@ -79,4 +79,3 @@ input-field {
     };
   };
 }
-

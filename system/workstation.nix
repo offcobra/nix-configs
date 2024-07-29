@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, userSettings, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./workstation/hardware-configuration.nix
-      # Nix Settings 
+      # Nix Settings
       ./helper/nix-settings.nix
       # Boot Stuff
       ./workstation/boot.nix
@@ -19,7 +19,7 @@
     ];
 
   # Pick networking options.
-  networking = { 
+  networking = {
     #bridges.br-lan.interfaces = [ "enp14s0" ];
     hostName = "workstation"; # Define your hostname.
     networkmanager = {
@@ -33,7 +33,7 @@
     #  "8.8.4.4"
     #];
   };
-  
+
   # Dns conf
   #environment.etc = {
   # "resolv.conf".text = "nameserver 208.67.222.222\nnameserver 208.67.220.220\n";
@@ -68,9 +68,9 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   nixpkgs.config.allowUnfree = true;
-  users.users.wally = {
+  users.users.${userSettings.username} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "storage" "libvirtd" "qemu-libvirtd" "docker" "input" "disk" "kvm" ]; 
+    extraGroups = [ "wheel" "networkmanager" "storage" "libvirtd" "qemu-libvirtd" "docker" "input" "disk" "kvm" ];
     packages = with pkgs; [
         # Base tools
         bc
@@ -124,9 +124,9 @@
   services.dbus.enable = true;
 
   security.polkit.enable = true;
-  
+
   systemd.tmpfiles.rules = [
-    "f /dev/shm/looking-glass 0660 wally kvm -"
+    "f /dev/shm/looking-glass 0660 ${userSettings.username} kvm -"
   ];
 
   systemd = {

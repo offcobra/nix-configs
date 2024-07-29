@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, allowed-unfree-packages, ... }:
 
 {
   imports =
@@ -9,7 +9,13 @@
       ./emacs.nix
       # Alacritty Config
       ./alacritty.nix
+      # Wezterm Config
+      ./wezterm.nix
     ];
+
+    nixpkgs.config = {
+      allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowed-unfree-packages;
+    };
 
   # List of secondary Applications
   home.packages = with pkgs; [
@@ -17,8 +23,8 @@
     brave
     freetube
     qutebrowser
-    bitwarden-desktop
-    bitwarden-cli
+    #bitwarden-desktop
+    #bitwarden-cli
     networkmanagerapplet
     libreoffice-fresh
     thunderbird-bin
@@ -28,7 +34,7 @@
     remmina
     evince
     viewnior
-    #spotify
+    spotify
     popcorntime
     pcmanfm
     brave

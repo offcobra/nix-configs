@@ -19,14 +19,14 @@
     dysk
     unzip
     # Haskell
-    ghc
+    #ghc
     # Rust + Programs
-    rustup
+    #rustup
     gcc
     bottom
     macchina
     # Python
-    (python3.withPackages (ps: [ ps.pip ps.psutil ps.qtile ]))
+    #(python3.withPackages (ps: [ ps.pip ps.psutil ps.qtile ]))
     # Shell Scripts
     (writeShellScriptBin "airplane-mode" ''
       #!/bin/sh
@@ -41,7 +41,7 @@
   ];
 
   programs = {
-    # Vim Settings 
+    # Vim Settings
     vim = {
       enable = true;
       settings = {
@@ -60,7 +60,7 @@
         " colorscheme dracula
       '';
     };
-    
+
     # Git Version Control
     git = {
       enable = true;
@@ -68,7 +68,7 @@
       userEmail = userSettings.email;
     };
 
-    # Bat a Better Cat 
+    # Bat a Better Cat
     bat = {
       enable = true;
       config = {

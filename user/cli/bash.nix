@@ -1,4 +1,4 @@
-{ ... }:
+{ userSettings, ... }:
 
 {
   imports = [
@@ -8,14 +8,18 @@
     ./starship.nix
     # Adding tools
     ./tools.nix
-    # Fish 
+    # Fish
     ./fish.nix
-    # fzf 
+    # fzf
     ./fzf.nix
-    # tmux 
+    # tmux
     ./tmux.nix
-    # NixVim 
-    ./nvim.nix
+    # NixVim
+    ./nvim
+    # Dev Tools
+    ./dev-tools.nix
+    # zoxide configs
+    ./zoxide.nix
   ];
   # Session Aliases
   programs.bash.enable = true;
@@ -30,12 +34,13 @@
     # Utilities
     df = "dysk";
     find = "fd";
-    grep = "rg";
+    grep = "rg -i";
     du = "dust";
     ps = "procs";
     cat1 = "/run/current-system/sw/bin/cat";
     brc = "source ~/.bashrc";
     gping ="ping www.google.com";
+    cal = "cal -3";
     dcal = "date && cal 2024";
     my_pub_ip = "curl icanhazip.com";
     pdf = "evince";
@@ -64,10 +69,12 @@
     # Nixos Rebuild
     os_rebuild="nh os switch --update --ask";
     hm_rebuild="nh home switch";
-    nix_clean="nh clean all --keep 3";
-    
+    #nix_clean="nh clean all --keep 3";
+    nix_clean="nh clean user --keep 2";
+
     # Update whole System
-    update="distrobox upgrade arch && flatpak update -y && os_rebuild && hm_rebuild";
+    #update="sudo pacman -Syyu && nh home switch --update";
+    update="flatpak update -y && os_rebuild && hm_rebuild";
   };
 
   programs.bash.bashrcExtra = "
@@ -75,10 +82,10 @@
 cd $HOME
 
 # Added by Nix installer
-if [ -e /home/ppuscasu/.nix-profile/etc/profile.d/nix.sh ]; then . /home/ppuscasu/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+if [ -e /home/${userSettings.username}/.nix-profile/etc/profile.d/nix.sh ]; then . /home/${userSettings.username}/.nix-profile/etc/profile.d/nix.sh; fi
 
 # Source Helper Functions
-source /home/ppuscasu/.local/bin/helper.sh 
+source /home/${userSettings.username}/.local/bin/helper.sh
 
 # Start WindowManager
 start_wm

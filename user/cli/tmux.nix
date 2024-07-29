@@ -5,12 +5,12 @@
   programs.tmux = {
     enable = true;
     #shell = "${pkgs.bash}/bin/bash";
-    terminal = "tmux-256color";
+    terminal = "screen-256color";
     historyLimit = 10000;
     plugins = with pkgs; [
       {
         plugin = tmuxPlugins.catppuccin;
-        extraConfig = '' 
+        extraConfig = ''
 	      set -g @catppuccin_flavour 'macchiato'
 
           # Config 3
@@ -33,19 +33,19 @@
 
           set -g @catppuccin_directory_text "#{pane_current_path}"
         '';
-	  } 
-      tmuxPlugins.better-mouse-mode 
+	  }
+      tmuxPlugins.better-mouse-mode
     ];
     extraConfig = "
-      set -g prefix C-f
+      set-option -g prefix M-f
 
       set-option -g status-position top
       set -g status-style bg=terminal,fg=terminal
 
       set-window-option -g mode-keys vi
 
-      set -g default-terminal 'tmux-256color'
-      set-option -ga terminal-overrides ',xterm-256color:Tc'
+      #set -g default-terminal 'screen-256color'
+      #set-option -ga terminal-overrides ',screen-256color:Tc'
 
       set -g mouse on
 

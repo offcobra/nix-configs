@@ -17,14 +17,14 @@
     ];
   colorScheme = nix-colors.colorSchemes.${userSettings.colorTheme};
 
-  # Home Manager 
+  # Home Manager
   home.username = userSettings.username;
   home.homeDirectory = "/home/"+userSettings.username;
   home.stateVersion = "23.11"; # Please dont change
 
   # environment.
   home.packages = with pkgs; [
-    dconf 
+    dconf
     (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
 
     # # ShellScript Example
@@ -48,7 +48,7 @@
     ".local/share/fonts".source = "${pkgs.fira-code-nerdfont}/share/fonts/truetype/NerdFonts";
 
   };
-  
+
   # Sessionvariables
   home.sessionVariables = {
     EDITOR="nvim";
@@ -59,6 +59,7 @@
     LIBVIRT_DEFAULT_URI="qemu:///system";
     FLAKE="/home/wally/.config/nixos";
     SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS="0";
+    ELECTRON_OZONE_PLATFORM_HINT="auto";
   };
 
   # SessionPath

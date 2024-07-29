@@ -87,6 +87,7 @@ in
       input = {
         kb_layout = "de";
         follow_mouse = 1;
+        scroll_factor = 1.3;
       
         touchpad = {
             natural_scroll = "no";
@@ -248,13 +249,13 @@ in
       # BROWSERS
       bind = SUPER, B, submap, browsers
       submap = browsers
-      bind = ,B, exec, brave
+      bind = ,B, exec, brave --enable-features=UseOzonePlatform --ozone-platform=wayland
       bind = ,B, submap, reset
-      bind = ,I, exec, brave --incognito
+      bind = ,I, exec, brave --incognito --enable-features=UseOzonePlatform --ozone-platform=wayland
       bind = ,I, submap, reset
       bind = ,L, exec, docker_exec librewolf
       bind = ,L, submap, reset
-      bind = ,T, exec, docker_exec thorium-browser
+      bind = ,T, exec, docker_exec thorium-browser 
       bind = ,T, submap, reset
       bind = ,P, exec, docker_exec librewolf --private-window
       bind = ,P, submap, reset
@@ -262,7 +263,7 @@ in
       bind = ,F, submap, reset
       bind = ,H, exec, docker_exec thorium-browser --incognito
       bind = ,H, submap, reset
-      bind = ,O, exec, flatpak run org.qutebrowser.qutebrowser -C /home/wally/.config/qutebrowser/config.py
+      bind = ,O, exec, qutebrowser -C /home/wally/.config/qutebrowser/config.py
       bind = ,O, submap, reset
       submap = reset
       
@@ -296,8 +297,7 @@ in
       bind = ,F, exec, flatpak run com.github.tchx84.Flatseal
       bind = ,F, submap, reset
       bind = ,N, submap, reset
-      #bind = ,S, exec, flatpak run com.spotify.Client
-      bind = ,S, exec, spotify
+      bind = ,S, exec, spotify --enable-features=UseOzonePlatform --ozone-platform=wayland
       bind = ,S, submap, reset
       bind = ,E, exec, thunderbird
       bind = ,E, submap, reset
@@ -387,7 +387,7 @@ in
       # CHAT ing...
       bind = SUPER, I, submap, chat
       submap = chat
-      bind = ,D, exec, flatpak run com.discordapp.Discord
+      bind = ,D, exec, flatpak run --socket=wayland com.discordapp.Discord --enable-features=UseOzonePlatform --ozone-platform=wayland
       bind = ,D, submap, reset
       bind = ,T, exec, teamspeak
       bind = ,T, submap, reset
@@ -413,6 +413,7 @@ in
       windowrulev2 = opacity 1 1,class:(discord)
       windowrulev2 = opacity 1 1,class:(looking-glass-client)
       windowrulev2 = opacity 1 1,class:(fuzzel)
+      windowrulev2 = opacity 1 1,title:(Picture in picture)
 
       # Floating windows
       windowrulev2 = float,class:(cs2)

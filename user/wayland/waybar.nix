@@ -23,6 +23,7 @@ in
             on-click = "activate";
             tooltip = false;
             all-outputs = true;
+            icon-size = 26;
             format-icons = {
                    "1" = "";
                    "2" = "";
@@ -39,22 +40,26 @@ in
             };
           };
           "hyprland/window"= {
-              format = "{title}";
+              format = "{initialTitle} - {title}";
               max-length = 50;
               rewrite = {
                   "(.*) GNU Emacs (.*)"= "  $1";
                   "(.*) Mozilla Firefox"= "  $1";
                   "(.*) LibreWolf"= "  $1";
-                  "(.*) - Brave"= "  $1";
-                  "Alacritty"= "  $2";
-                  "(.*) - bash"= " $1";
-                  "(.*) - Discord"= "󰙯 $1";
-                  "(.*) - Spotify"= " $1";
-                  "NeoVim"= " -> Doing stuff right...";
-                  "(.*) - Steam"= " $1";
-                  "(.*) - Signal"= " $1";
-                  "(.*) - Thorium"= "  $1";
-                  "(.*) - Whatsapp"= " $1";
+                  "(.*) - bash"= "  $1";
+                  #New------------------------------
+                  "(.*) - Brave - (.*) - Brave"= "  $2";
+                  "Alacritty - (.*)"= "   $1";
+                  "Freetube - (.*) - Freetube"= "  $1";
+                  "(.*) - Spotify Premium"= "  $1";
+                  "Spotify Premium - (.*)"= "  $1";
+                  "NeoVim - NeoVim"= " -> Doing stuff right...";
+                  "Signal - (.*)"= "󱋑  $1";
+                  "Whatsapp - (.*)"= "  $1";
+                  "(.*) - Steam"= "  $1";
+                  "(.*) - Discord - (.*)"= "󰙯  $1";
+                  #---------------------------------
+                  "(.*) - Thorium - (.*)"= "  $2";
                   "apps"= " Apps Container";
                   "blackarch"= "  Blackarch";
                   "ubuntu"= "  Ubuntu";

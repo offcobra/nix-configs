@@ -5,8 +5,6 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  sound.enable = true;
-  
   # Set CPU Guvernor
   powerManagement.cpuFreqGovernor = "performance";
 

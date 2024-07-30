@@ -146,7 +146,6 @@ in
 
       master = {
         new_on_top = "true";
-        new_status = "master";
       };
 
       gestures = {
@@ -246,9 +245,9 @@ in
       # BROWSERS
       bind = SUPER, B, submap, browsers
       submap = browsers
-      bind = ,B, exec, brave --enable-features=UseOzonePlatform --ozone-platform=wayland
+      bind = ,B, exec, brave
       bind = ,B, submap, reset
-      bind = ,I, exec, brave --incognito --enable-features=UseOzonePlatform --ozone-platform=wayland
+      bind = ,I, exec, brave --incognito
       bind = ,I, submap, reset
       bind = ,L, exec, docker_exec librewolf
       bind = ,L, submap, reset
@@ -300,7 +299,7 @@ in
       bind = ,E, submap, reset
       bind = ,H, exec, bitwarden
       bind = ,H, submap, reset
-      bind = ,P, exec, start-esudo-apps gparted
+      bind = ,P, exec, sudo -E gparted
       bind = ,P, submap, reset
       bind = ,T, exec, docker_exec lxappearance
       bind = ,T, submap, reset
@@ -419,10 +418,13 @@ in
       windowrulev2 = float,class:(steamwebhelper)
       windowrulev2 = float,class:(xdg-desktop-portal-gtk)
       windowrulev2 = float,class:(blueberry.py)
+      windowrulev2 = float,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
 
       # Resize Windows
       windowrulev2 = size 950 600,class:(Signal)
       windowrulev2 = center,class:(Signal)
+      windowrulev2 = size 950 600,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
+      windowrulev2 = center,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
       windowrulev2 = size 950 600,class:(whatsapp-desktop-linux)
       windowrulev2 = center,class:(whatsapp-desktop-linux)
     '';

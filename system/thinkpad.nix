@@ -12,7 +12,7 @@
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 5;
+  boot.loader.systemd-boot.configurationLimit = 3;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Latest Kernel
@@ -37,6 +37,16 @@
     enable = true;
     alsa.enable = true;
     pulse.enable = true;
+  };
+
+  # Fingerprint reader
+  services.fprintd = {
+    enable = true;
+    #package = pkgs.fprintd-tod;
+    tod = {
+      enable = true;
+      driver = pkgs.libfprint-2-tod1-vfs0090;
+    };
   };
 
   # Set your time zone.

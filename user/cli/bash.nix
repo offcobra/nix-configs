@@ -89,7 +89,7 @@ cd $HOME
 if [ -e /home/${userSettings.username}/.nix-profile/etc/profile.d/nix.sh ]; then . /home/${userSettings.username}/.nix-profile/etc/profile.d/nix.sh; fi
 
 # Source Helper Functions
-source /home/${userSettings.username}/.local/bin/helper.sh
+source /home/${userSettings.username}/.local/bin/helper.sh 
 
 # Start WindowManager
 start_wm

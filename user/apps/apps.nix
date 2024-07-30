@@ -11,6 +11,8 @@
       ./alacritty.nix
       # Wezterm Config
       ./wezterm.nix
+      # Brave Config
+      ./brave.nix
     ];
 
     nixpkgs.config = {
@@ -20,9 +22,8 @@
   # List of secondary Applications
   home.packages = with pkgs; [
     gpt4all
-    brave
     freetube
-    qutebrowser
+    #qutebrowser
     #bitwarden-desktop
     #bitwarden-cli
     networkmanagerapplet
@@ -37,9 +38,8 @@
     spotify
     popcorntime
     pcmanfm
-    brave
     vlc
-    gparted
+    #gparted
     # Bluetooth
     bluez
     blueberry

@@ -9,6 +9,7 @@
     ripgrep
     dust
     fd
+    tmux
     killall
     ventoy
     pciutils
@@ -33,8 +34,10 @@
       connectivity="$(nmcli n connectivity)"
       if [ "$connectivity" == "full" ]
       then
+          notify-send -t 2000 "Network Status" "[CRITICAL] Airplane Mode: ON !!!"
           nmcli n off
       else
+          notify-send -t 2000 "Network Status" "[CRITICAL] Airplane Mode: OFF !!!"
           nmcli n on
       fi
     '')

@@ -42,7 +42,7 @@
         device = "nodev";
         efiSupport = true;
         useOSProber = true;
-        configurationLimit = 4;
+        configurationLimit = 3;
       };
     };
   };

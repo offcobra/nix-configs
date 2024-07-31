@@ -1,4 +1,4 @@
-{ config, pkgs, nixvim, nix-colors, userSettings, ... }:
+{ config, pkgs, nixvim, nix-colors, userSettings, systemSettings, ... }:
 
 {
   imports =
@@ -22,15 +22,10 @@
   home.homeDirectory = "/home/"+userSettings.username;
   home.stateVersion = "23.11"; # Please dont change
 
-  # environment.
+  # environment packages.
   home.packages = with pkgs; [
     dconf
     (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
-
-    # # ShellScript Example
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
   ];
 
   # XDG Files to be linked
@@ -50,17 +45,35 @@
   };
 
   # Sessionvariables
-  home.sessionVariables = {
-    EDITOR="nvim";
-    NIXOS_OZONE_WL = "1";
-    XKB_DEFAULT_LAYOUT = "de";
-    VISUAL="vim";
-    PAGER="bat --pager 'less'";
-    LIBVIRT_DEFAULT_URI="qemu:///system";
-    FLAKE="/home/${userSettings.username}/.config/nixos";
-    SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS="0";
-    ELECTRON_OZONE_PLATFORM_HINT="auto";
-  };
+  home.sessionVariables = if (systemSettings.hostname == "mediatv")
+    then
+      {
+        EDITOR = "nvim";
+        NIXOS_OZONE_WL = "1";
+        XKB_DEFAULT_LAYOUT = "de";
+        VISUAL = "vim";
+        PAGER = "bat --pager 'less'";
+        FLAKE = "/home/${userSettings.username}/.config/nixos";
+        SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS = "0";
+        ELECTRON_OZONE_PLATFORM_HINT = "auto";
+        LIBVA_DRIVER_NAME = "nvidia";
+        XDG_SESSION_TYPE = "wayland";
+        GBM_BACKEND = "nvidia-drm";
+        __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      }
+    else
+      {
+        EDITOR = "nvim";
+        NIXOS_OZONE_WL = "1";
+        XKB_DEFAULT_LAYOUT = "de";
+        VISUAL = "vim";
+        PAGER = "bat --pager 'less'";
+        LIBVIRT_DEFAULT_URI = "qemu:///system";
+        FLAKE = "/home/${userSettings.username}/.config/nixos";
+        SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS = "0";
+        ELECTRON_OZONE_PLATFORM_HINT = "auto";
+        TEST = "testing";
+      };
 
   # SessionPath
   home.sessionPath = [

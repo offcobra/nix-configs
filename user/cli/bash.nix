@@ -26,6 +26,8 @@ in
     ./dev-tools.nix
     # zoxide configs
     ./zoxide.nix
+    # Scripts
+    ./scripts/helper.nix
   ];
   # Session Aliases
   programs.bash.enable = true;
@@ -85,17 +87,17 @@ in
 # Make $HOME default
 cd $HOME
 
+# Set vi mode
+set -o vi
+
 # Added by Nix installer
 if [ -e /home/${userSettings.username}/.nix-profile/etc/profile.d/nix.sh ]; then . /home/${userSettings.username}/.nix-profile/etc/profile.d/nix.sh; fi
 
-# Source Helper Functions
-source /home/${userSettings.username}/.local/bin/helper.sh 
-
 # Start WindowManager
-start_wm
+start-wm
 
-# Prompt 6 Aliases Custom for local & docker
-where_am_i
+# Prompt Aliases Custom for local & docker
+where-am-i
   ";
   programs.bash.historySize = 10000;
   programs.bash.shellOptions = [

@@ -80,6 +80,13 @@ in
                 else
                   [ "HDMI-A-1,1920x1080@60.00,0x0,1" ];
 
+      # Recomended Hypr Cursor settings for nvidia
+      cursor = if (systemSettings.hostname == "mediatv")
+                then
+                  { no_hardware_cursors = true; }
+                else
+                  { no_hardware_cursors = false; };
+
       # Input Settings
       input = {
         kb_layout = "de";
@@ -413,7 +420,7 @@ in
 
       # Floating windows
       windowrulev2 = float,class:(cs2)
-      windowrulev2 = float,class:(Signal)
+      windowrulev2 = float,class:(signal)
       windowrulev2 = float,class:(whatsapp-desktop-linux)
       windowrulev2 = float,class:(steamwebhelper)
       windowrulev2 = float,class:(xdg-desktop-portal-gtk)
@@ -421,8 +428,8 @@ in
       windowrulev2 = float,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
 
       # Resize Windows
-      windowrulev2 = size 950 600,class:(Signal)
-      windowrulev2 = center,class:(Signal)
+      windowrulev2 = size 950 600,class:(signal)
+      windowrulev2 = center,class:(signal)
       windowrulev2 = size 950 600,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
       windowrulev2 = center,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
       windowrulev2 = size 950 600,class:(whatsapp-desktop-linux)

@@ -33,6 +33,41 @@
        };
      }
 
+     #Dashboard
+     {
+       mode = "n";
+       action = "<cmd>LspInfo<CR>";
+       key = "<leader>li";
+       options = {
+         silent = true;
+       };
+     }
+     {
+       mode = "n";
+       action = "<cmd>LspStop<CR>";
+       key = "<leader>ls";
+       options = {
+         silent = true;
+       };
+     }
+     {
+       mode = "n";
+       action = "<cmd>LspStart<CR>";
+       key = "<leader>lS";
+       options = {
+         silent = true;
+       };
+     }
+     {
+       mode = "n";
+       action = "<cmd>LspRestart<CR>";
+       key = "<leader>lr";
+       options = {
+         silent = true;
+       };
+     }
+
+
      # Neotree
      {
        mode = "n";

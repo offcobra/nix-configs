@@ -21,6 +21,7 @@
         };
         sources = [
           { name = "nvim_lsp"; }
+          { name = "pyright"; }
           { name = "luasnip"; }
           { name = "buffer"; }
           { name = "path"; }

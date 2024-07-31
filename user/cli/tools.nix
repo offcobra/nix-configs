@@ -34,8 +34,13 @@
     gcc
     bottom
     macchina
+
     # Python
-    #(python3.withPackages (ps: [ ps.pip ps.psutil ps.qtile ]))
+    (python3.withPackages (ps: [
+      ps.pip ps.psutil ps.qtile
+    ]))
+    pyright
+
     # Shell Scripts
     (writeShellScriptBin "airplane-mode" ''
       #!/bin/sh

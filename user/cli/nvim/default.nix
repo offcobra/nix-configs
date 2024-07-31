@@ -41,5 +41,10 @@
 
       swapfile = false;
     };
+    extraPython3Packages = p: [
+      p.qtile
+      p.pip
+      p.psutil
+    ];
   };
 }

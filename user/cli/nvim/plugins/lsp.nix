@@ -8,11 +8,8 @@
   	  servers = {
   	    bashls.enable = true;
   	    rust-analyzer.enable = true;
-        pylyzer.enable = true;
-        #pylsp = {
-        #  enable = true;
-        #  settings.configurationSources = "pycodestyle";
-        #};
+        pyright.enable = true;
+        ruff.enable = true;
         jsonls.enable = true;
   	    yamlls.enable = true;
   	    lua-ls.enable = true;
@@ -33,6 +30,7 @@
       enable = true;
       sources = {
         diagnostics = {
+          mypy.enable = true;
           ansiblelint.enable = true;
           pylint.enable = true;
         };

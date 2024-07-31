@@ -1,7 +1,14 @@
 { config, pkgs, systemSettings, ... }:
 
 let
-  temp = if (systemSettings.hostname == "workstation") then "tctl" else "cpu";
+  temp = if (systemSettings.hostname == "workstation")
+    then
+      "tctl"
+    else if (systemSettings.hostname == "thinkpad")
+    then
+      "cpu"
+    else
+      "temp1";
 in
 {
   # Waybar Config
@@ -151,11 +158,11 @@ in
         font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
         min-height: 12px;
       }
-      
+
       window#waybar {
         background: transparent;
       }
-      
+
       #custom-arch {
         border-radius: 10px;
         background-color: @background;
@@ -167,9 +174,9 @@ in
         padding-top: 1px;
         padding-left: 10px;
         padding-right: 14px;
-      
+
       }
-      
+
       #workspaces {
         border-radius: 10px;
         background-color: @background;
@@ -180,9 +187,9 @@ in
         padding-top: 1px;
         padding-left: 6px;
         padding-right: 6px;
-      
+
       }
-      
+
       #custom-cpu, #custom-temp, #custom-vpn, #custom-virtual,  #window {
         border-radius: 10px;
         background-color: @background;
@@ -193,24 +200,24 @@ in
         padding-left: 10px;
         padding-right: 10px;
       }
-      
+
       #workspaces button {
         background: @background;
         color: @active;
       }
-      
+
       #workspaces button.active {
         background: @background;
         color: @inactive;
       }
-      
+
       window#waybar.empty #window {
         padding: 0px;
         margin: 0px;
         border: 0px;
         background-color: transparent;
       }
-      
+
       #clock, #temperature, #pulseaudio, #cpu, #network, #memory, #tray, #battery{
         border-radius: 10px;
         background-color: @background;
@@ -220,28 +227,27 @@ in
         padding-right: 10px;
         margin-right: 5px;
       }
-      
+
       #window{
         color: @color1;
       }
-      
+
       #clock, #custom-temp{
         color: @color1;
       }
-      
+
       #cpu, #battery{
         color: @color3;
       }
-      
+
       #memory, #pulseaudio{
         color: @color4;
       }
-      
+
       #custom-cpu{
         color: @color2;
       }
 
-    ''; 
+    '';
   };
 }
-

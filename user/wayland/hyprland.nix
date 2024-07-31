@@ -31,6 +31,18 @@ let
     hypridle &
     watch_battery &
   '';
+  startupMediatv= pkgs.pkgs.writeShellScriptBin "hypr-mediatv" ''
+    # Setting Screens MediaTV
+    wlr-randr --output eDP-1 --off --output HDMI-A-1 --mode 1920x1080@60.00
+    echo "Starting Dunst..."
+    dunst &
+    echo "Starting HyperPaper..."
+    hyprpaper &
+    echo "Starting NM-Applet..."
+    nm-applet &
+    echo "Starting HyprIdle..."
+    hypridle &
+  '';
 in
 {
   imports =
@@ -115,8 +127,11 @@ in
       exec-once = if (systemSettings.hostname == "workstation")
             then
               ''${startupScript}/bin/hypr-startup''
+            else if (systemSettings.hostname == "thnikpad")
+            then
+              ''${startupMinimal}/bin/hypr-minimal''
             else
-              ''${startupMinimal}/bin/hypr-minimal'';
+              ''${startupMediatv}/bin/hypr-mediatv'';
 
       # Decorations
       decoration = {

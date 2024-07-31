@@ -3,18 +3,26 @@
 {
   # List of secondary Applications
   home.packages = with pkgs; [
+    jq
     nh
-    eza
-    zoxide
-    ripgrep
-    dust
+    curl
+    # Rust cli tools
     fd
-    tmux
+    eza
+    procs
+    zoxide
+    lolcat
+    du-dust
+    ripgrep
+    starship
+    # More tools
+    htop
+    tealdeer
+    wget
     killall
     ventoy
     pciutils
     # cli tools
-    killall
     distrobox
     k3d
     dysk

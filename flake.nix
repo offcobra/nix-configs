@@ -68,6 +68,15 @@
           inherit systemSettings;
         };
       };
+      mediatv = lib.nixosSystem {
+        inherit system;
+        modules = [ ./system/mediatv.nix ];
+        specialArgs = {
+          inherit inputs;
+          inherit userSettings;
+          inherit systemSettings;
+        };
+      };
     };
     homeConfigurations = {
       wally = home-manager.lib.homeManagerConfiguration {

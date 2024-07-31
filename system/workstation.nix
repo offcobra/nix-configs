@@ -72,29 +72,6 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "storage" "libvirtd" "qemu-libvirtd" "docker" "input" "disk" "kvm" ];
     packages = with pkgs; [
-        # Base tools
-        bc
-        jq
-        git
-        vim
-        curl
-        wget
-        # Nix Helper
-        nh
-        # Rust cli tools
-        fd
-        bat
-        eza
-        procs
-        zoxide
-        lolcat
-        du-dust
-        ripgrep
-        starship
-        # More tools
-        htop
-        tealdeer
-        neofetch
         libnotify
         lm_sensors
         alsa-utils

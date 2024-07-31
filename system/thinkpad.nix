@@ -79,30 +79,9 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "storage" "video" "docker" "input" "disk" ];
     packages = with pkgs; [
-        # Cli tools
-        git
-        nh
-        curl
-        wget
-        vim
-        starship
-        zoxide
-        lolcat
-        htop
-        ripgrep
-        fd
-        du-dust
-        procs
-        tealdeer
-        git
-        curl
-        eza
-        bat
-        bc
-        jq
-        lm_sensors
-        libnotify
         acpi
+        libnotify
+        lm_sensors
         alsa-utils
     ];
   };

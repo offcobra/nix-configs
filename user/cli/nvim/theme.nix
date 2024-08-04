@@ -4,8 +4,8 @@
   # Theme
   programs.nixvim.colorschemes.catppuccin = {
     enable = true;
-    flavour = "macchiato";
     settings = {
+      flavour = "macchiato";
       no_bold = false;
       no_italic = false;
       no_underline = false;

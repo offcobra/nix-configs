@@ -55,7 +55,7 @@ in
     img = "viewnior";
 
     # List dir
-    tree = "eza --tree";
+    tree = "eza --tree -a";
     ll = "eza -la --color=always --group-directories-first --group --icons";
     la = "eza -a --color=always --group-directories-first --group --icons";
     lt = "eza -aT --color=always --group-directories-first";

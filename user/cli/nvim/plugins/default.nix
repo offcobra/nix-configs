@@ -90,6 +90,14 @@
       settings.highlight = false;
     };
 
+    # treesitter config
+    treesitter = {
+      enable = true;
+      settings = {
+        highlight.enable = true;
+      };
+    };
+
     # nvim debugger
     trouble.enable = true;
 

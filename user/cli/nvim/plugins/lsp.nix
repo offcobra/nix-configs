@@ -7,7 +7,11 @@
   	  enable = true;
   	  servers = {
   	    bashls.enable = true;
-  	    rust-analyzer.enable = true;
+        rust-analyzer = {
+          enable = true;
+          installCargo = true;
+          installRustc = true;
+        };
         pyright.enable = true;
         ruff.enable = true;
         jsonls.enable = true;

@@ -24,7 +24,7 @@
     vimdiffAlias = true;
 
     # Options
-    options = {
+    opts = {
       number = true;
       #relativnumber = true;
 

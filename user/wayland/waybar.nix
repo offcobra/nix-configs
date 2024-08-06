@@ -18,7 +18,7 @@ in
         layer= "top";
           modules-left = ["custom/arch" "hyprland/workspaces" "hyprland/window"];
           modules-center = ["custom/temp" "cpu" "custom/cpu" "memory" "battery" ];
-          modules-right = ["custom/virtual" "custom/vpn" "pulseaudio" "clock" "tray"];
+          modules-right = ["idle_inhibitor" "custom/virtual" "custom/vpn" "pulseaudio" "clock" "tray"];
           height= 8;
           "custom/arch" = {
             format = "";
@@ -75,6 +75,13 @@ in
                   "fedora"= "  Fedora";
                   "parrot"= "  ParrotOS";
                   "Wdgfdsgfs"= "    󱄲        ";
+              };
+          };
+          "idle_inhibitor" = {
+              "format" = "{icon} - Hyprlock";
+              "format-icons" = {
+                "activated" = "󰒲";
+                "deactivated" = "󰒳";
               };
           };
           #"custom/virtual" = {
@@ -190,7 +197,7 @@ in
 
       }
 
-      #custom-cpu, #custom-temp, #custom-vpn, #custom-virtual,  #window {
+      #custom-cpu, #custom-temp, #custom-vpn, #custom-virtual,  #window, #idle_inhibitor {
         border-radius: 10px;
         background-color: @background;
         color: @foreground;

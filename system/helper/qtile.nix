@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  # Enable Qtile 
+  # Enable Qtile
   services.xserver = {
     enable = true;
     xkb.layout = "de";
@@ -19,7 +19,7 @@
     libinput.mouse.accelProfile = "flat";
     libinput.mouse.accelSpeed = "0";
   };
-  
+
   # Enable Portal
   xdg.portal = {
     enable = true;

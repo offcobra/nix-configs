@@ -12,9 +12,9 @@
   hardware.pulseaudio.support32Bit = true;
 
   # Enable OpenGL / Vulkan support
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
     extraPackages = with pkgs; [
       #clinfo
       rocmPackages.clr

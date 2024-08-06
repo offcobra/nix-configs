@@ -50,5 +50,6 @@
     alacritty
     # Bars
     eww
+    webcord
   ];
 }

@@ -72,7 +72,6 @@
         FLAKE = "/home/${userSettings.username}/.config/nixos";
         SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS = "0";
         ELECTRON_OZONE_PLATFORM_HINT = "auto";
-        TEST = "testing";
       };
 
   # SessionPath

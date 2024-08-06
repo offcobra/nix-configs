@@ -407,14 +407,12 @@ in
       submap = chat
       bind = ,D, exec, flatpak run --socket=wayland com.discordapp.Discord --enable-features=UseOzonePlatform --ozone-platform=wayland
       bind = ,D, submap, reset
-      bind = ,T, exec, teamspeak
+      bind = ,T, exec, webcord
       bind = ,T, submap, reset
       bind = ,W, exec, flatpak run io.github.mimbrero.WhatsAppDesktop
       bind = ,W, submap, reset
       bind = ,S, exec, flatpak run org.signal.Signal
       bind = ,S, submap, reset
-      bind = ,T, exec, docker_exec teamviewer
-      bind = ,T, submap, reset
       submap = reset
 
       # Setting Programm opacity

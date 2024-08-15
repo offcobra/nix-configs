@@ -182,6 +182,7 @@ in
         # Terminals
         "$mainMod, return, exec, alacritty"
         "CTRL, return, exec, foot"
+        "$mainMod, o, exec, alacritty --class ollama --title Ollama -e ollama run llama3.1"
         "$mainMod_SHIFT, return, exec, bash /home/${userSettings.username}/.local/bin/container_run arch"
 
         # Screenshot
@@ -435,6 +436,7 @@ in
       # Floating windows
       windowrulev2 = float,class:(cs2)
       windowrulev2 = float,class:(signal)
+      windowrulev2 = float,class:(ollama)
       windowrulev2 = float,class:(whatsapp-desktop-linux)
       windowrulev2 = float,class:(steamwebhelper)
       windowrulev2 = float,class:(xdg-desktop-portal-gtk)
@@ -444,6 +446,8 @@ in
       # Resize Windows
       windowrulev2 = size 950 600,class:(signal)
       windowrulev2 = center,class:(signal)
+      windowrulev2 = size 950 600,class:(ollama)
+      windowrulev2 = center,class:(ollama)
       windowrulev2 = size 950 600,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
       windowrulev2 = center,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
       windowrulev2 = size 950 600,class:(whatsapp-desktop-linux)

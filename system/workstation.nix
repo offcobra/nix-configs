@@ -16,6 +16,8 @@
       ./helper/hyprland.nix
       # Qtile Stuff...
       ./helper/qtile.nix
+      # Ollama AI Service
+      ./helper/ollama.nix
     ];
 
   # Pick networking options.
@@ -33,11 +35,6 @@
     #  "8.8.4.4"
     #];
   };
-
-  # Dns conf
-  #environment.etc = {
-  # "resolv.conf".text = "nameserver 208.67.222.222\nnameserver 208.67.220.220\n";
-  #};
 
   # Services
   services.flatpak.enable = true;

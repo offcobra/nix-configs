@@ -10,9 +10,11 @@
       # Alacritty Config
       ./alacritty.nix
       # Wezterm Config
-      ./wezterm.nix
+      #./wezterm.nix
       # Brave Config
       ./brave.nix
+      # Freetube Config
+      ./freetube.nix
     ];
 
     nixpkgs.config = {
@@ -22,10 +24,7 @@
   # List of secondary Applications
   home.packages = with pkgs; [
     #gpt4all
-    freetube
     #qutebrowser
-    #bitwarden-desktop
-    #bitwarden-cli
     networkmanagerapplet
     libreoffice-fresh
     thunderbird-bin
@@ -52,5 +51,8 @@
     eww
     webcord
     obsidian
+    # Bitwarden
+    bitwarden-desktop
+    bitwarden-cli
   ];
 }

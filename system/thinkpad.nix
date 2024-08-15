@@ -8,6 +8,8 @@
       ./helper/hyprland.nix
       # Nix Settings
       ./helper/nix-settings.nix
+      # Ollama AI Service
+      ./helper/ollama.nix
     ];
 
   # Bootloader.
@@ -31,13 +33,6 @@
   services.flatpak.enable = true;
   services.emacs.enable = true;
   services.upower.enable = true;
-
-  # Ollama AI service
-  services.ollama = {
-    enable = true;
-    # ollama run llama3.1
-    # 127.0.0.1:11434 -> Listening Address
-  };
 
   # Enable sound.
   services.pipewire = {

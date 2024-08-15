@@ -46,6 +46,7 @@
       };
       allowed-unfree-packages = [
         "spotify"
+        "obsidian"
       ];
 
     in {

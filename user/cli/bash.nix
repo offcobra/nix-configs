@@ -2,7 +2,7 @@
 
 let
   update_cmd = if (userSettings.username == "wally")
-      then "flatpak update -y && os_rebuild && hm_rebuild"
+      then "flatpak update -y && os_rebuild && hm_rebuild && nix_clean"
       else "sudo pacman -Syyu && nh home switch --update";
   keep = if (userSettings.username == "wally") then "3" else "2";
 in

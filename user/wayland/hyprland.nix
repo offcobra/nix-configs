@@ -59,6 +59,8 @@ in
       ./hyprlock.nix
       # Hypridle
       ./hypridle.nix
+      # WLogout
+      ./wlogout.nix
     ];
 
   home.packages = with pkgs; [
@@ -185,6 +187,9 @@ in
         # Screenshot
         "$mainMod, x, exec, grim -g \"$(slurp -d)\""
 
+        # WLogout
+        "$mainMod, z, exec, wlogout"
+
         # Window Actions
         "CTRL, Space, fakefullscreen"
         "$mainMod, Q, killactive"
@@ -290,6 +295,8 @@ in
       submap = emacs
       bind = ,N, exec, foot -T NeoVim -e nvim
       bind = ,N, submap, reset
+      bind = ,O, exec, obsidian
+      bind = ,O, submap, reset
       bind = ,E, exec, emacsclient -c -a 'emacs'
       bind = ,E, submap, reset
       bind = ,B, exec, emacsclient -c -a 'emacs' --eval '(ibuffer)'
@@ -308,8 +315,6 @@ in
       #bind = ,G, exec, flatpak run com.valvesoftware.Steam
       bind = ,G, exec, steam
       bind = ,G, submap, reset
-      bind = ,C, exec, gpt4all
-      bind = ,C, submap, reset
       bind = ,V, exec, pavucontrol
       bind = ,V, submap, reset
       bind = ,F, exec, flatpak run com.github.tchx84.Flatseal
@@ -323,13 +328,9 @@ in
       bind = ,H, submap, reset
       bind = ,P, exec, sudo -E gparted
       bind = ,P, submap, reset
-      bind = ,T, exec, docker_exec lxappearance
-      bind = ,T, submap, reset
-      bind = ,A, exec, archlinux-tweak-tool
-      bind = ,A, submap, reset
       bind = ,B, exec, blueberry
       bind = ,B, submap, reset
-      bind = ,O, exec, flatpak run org.libreoffice.LibreOffice
+      bind = ,O, exec, libreoffice
       bind = ,O, submap, reset
       bind = ,Y, exec, freetube
       bind = ,Y, submap, reset

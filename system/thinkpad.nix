@@ -32,11 +32,19 @@
   services.emacs.enable = true;
   services.upower.enable = true;
 
+  # Ollama AI service
+  services.ollama = {
+    enable = true;
+    # ollama run llama3.1
+    # 127.0.0.1:11434 -> Listening Address
+  };
+
   # Enable sound.
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     pulse.enable = true;
+    wireplumber.enable = true;
   };
 
   # Fingerprint reader
@@ -83,6 +91,7 @@
         libnotify
         lm_sensors
         alsa-utils
+        powertop
     ];
   };
 
@@ -146,7 +155,7 @@
         CPU_MAX_PERF_ON_BAT = 100;
 
        #Optional helps save long term battery health
-       START_CHARGE_THRESH_BAT0 = 30; # 40 and bellow it starts to charge
+       START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
        STOP_CHARGE_THRESH_BAT0 = 98; # 80 and above it stops charging
 
       };

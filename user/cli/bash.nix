@@ -41,7 +41,7 @@ in
 
     # Utilities
     df = "dysk";
-    find = "fd";
+    find = "fd --hidden";
     grep = "rg -i";
     du = "dust";
     ps = "procs";
@@ -78,6 +78,9 @@ in
     os_rebuild="nh os switch --update --ask";
     hm_rebuild="nh home switch";
     nix_clean="nh clean user --keep ${keep}";
+
+    # Ollama AI Chat
+    ai="ollama run llama3.1";
 
     # Update whole System
     update = "${update_cmd}";

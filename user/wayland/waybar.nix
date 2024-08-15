@@ -80,8 +80,8 @@ in
           "idle_inhibitor" = {
               "format" = "{icon} - Hyprlock";
               "format-icons" = {
-                "activated" = "󰒲";
-                "deactivated" = "󰒳";
+                "activated" = "󰒳";
+                "deactivated" = "󰒲";
               };
           };
           #"custom/virtual" = {

@@ -21,7 +21,7 @@
 
   # List of secondary Applications
   home.packages = with pkgs; [
-    gpt4all
+    #gpt4all
     freetube
     #qutebrowser
     #bitwarden-desktop
@@ -51,5 +51,6 @@
     # Bars
     eww
     webcord
+    obsidian
   ];
 }

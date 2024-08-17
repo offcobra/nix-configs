@@ -19,6 +19,9 @@
     # git diff view
     diffview.enable = true;
 
+    # fugitive
+    fugitive.enable = true;
+
     # git blame tool
     gitsigns = {
       settings = {

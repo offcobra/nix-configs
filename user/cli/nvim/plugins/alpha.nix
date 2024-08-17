@@ -28,7 +28,7 @@
       }
       {
         type = "padding";
-        val = 4;
+        val = 2;
       }
       {
         opts = {
@@ -40,7 +40,7 @@
       }
       {
         type = "padding";
-        val = 10;
+        val = 8;
       }
       {
         type = "group";

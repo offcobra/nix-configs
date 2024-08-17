@@ -7,7 +7,7 @@
     settings = {
       main = {
         pad = "2x2";
-        font = "Firacodenerdfont:Semibold";
+        font = "Firacodenerdfont:Semibold:size=8";
       };
       scrollback.lines = 5000;
       colors = {
@@ -26,4 +26,3 @@
     };
   };
 }
-

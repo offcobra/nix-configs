@@ -55,10 +55,10 @@ in
                   "(.*) LibreWolf"= "  $1";
                   "(.*) - bash"= "  $1";
                   #New------------------------------
-                  "(.*) - Brave - (.*) - Brave"= "  $2";
+                  "(.*) - Brave - (.*) - Brave"= "  $2";
                   "Alacritty - (.*)"= "   $1";
                   "Ollama - (.*)"= "󰧑  $1 AI Chat";
-                  "Freetube - (.*) - Freetube"= "  $1";
+                  "(.*) - Freetube"= "  $1";
                   "(.*) - Spotify Premium"= "  $1";
                   "Spotify Premium - (.*)"= "  $1";
                   "NeoVim - NeoVim"= " -> Doing stuff right...";

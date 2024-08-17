@@ -17,6 +17,8 @@ let
     nm-applet &
     echo "Starting HyprIdle..."
     hypridle &
+    echo "Starting copyq Clipboard..."
+    copyq --start-server &
   '';
   startupMinimal = pkgs.pkgs.writeShellScriptBin "hypr-minimal" ''
     echo "Starting Dunst..."
@@ -59,8 +61,8 @@ in
       ./hyprlock.nix
       # Hypridle
       ./hypridle.nix
-      # WLogout
-      ./wlogout.nix
+      # Wlogout
+      ./wlogout
     ];
 
   home.packages = with pkgs; [
@@ -170,6 +172,7 @@ in
 
       master = {
         new_on_top = "true";
+        new_status = "master";
       };
 
       gestures = {
@@ -182,6 +185,11 @@ in
         # Terminals
         "$mainMod, return, exec, alacritty"
         "CTRL, return, exec, foot"
+
+        # Clipboard manager
+        "CTRL, P, exec, copyq show"
+
+        # Ollama AI Chat
         "$mainMod, o, exec, alacritty --class ollama --title Ollama -e ollama run llama3.1"
         "$mainMod_SHIFT, return, exec, bash /home/${userSettings.username}/.local/bin/container_run arch"
 
@@ -189,10 +197,10 @@ in
         "$mainMod, x, exec, grim -g \"$(slurp -d)\""
 
         # WLogout
-        "$mainMod, z, exec, wlogout"
+        "$mainMod, z, exec, wlogout --protocol layer-shell -b 5"
 
         # Window Actions
-        "CTRL, Space, fakefullscreen"
+        #"CTRL, Space, fullscreenstate"
         "$mainMod, Q, killactive"
         "$mainMod_SHIFT, Q, exit"
         #"$mainMod_SHIFT, R, hyprctl reload"
@@ -442,6 +450,7 @@ in
       windowrulev2 = float,class:(xdg-desktop-portal-gtk)
       windowrulev2 = float,class:(blueberry.py)
       windowrulev2 = float,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
+      windowrulev2 = float,class:(com.github.hluk.copyq)
 
       # Resize Windows
       windowrulev2 = size 950 600,class:(signal)
@@ -452,6 +461,8 @@ in
       windowrulev2 = center,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
       windowrulev2 = size 950 600,class:(whatsapp-desktop-linux)
       windowrulev2 = center,class:(whatsapp-desktop-linux)
+      windowrulev2 = size 950 600,class:(com.github.hluk.copyq)
+      windowrulev2 = center,class:(com.github.hluk.copyq)
     '';
   };
 }

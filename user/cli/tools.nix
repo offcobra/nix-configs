@@ -22,6 +22,7 @@
     killall
     ventoy
     pciutils
+    copyq
     # cli tools
     distrobox
     k3d

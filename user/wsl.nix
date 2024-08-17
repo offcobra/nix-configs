@@ -45,7 +45,6 @@
     ".themes/Catppuccin-Frappe-Standard-Blue-Dark".source = "${pkgs.catppuccin-gtk}/share/themes/Catppuccin-Frappe-Standard-Blue-Dark";
     ".themes/Dracula".source = "${pkgs.dracula-theme}/share/themes/Dracula";
     ".local/share/fonts".source = "${pkgs.fira-code-nerdfont}/share/fonts/truetype/NerdFonts";
-
   };
 
   # Sessionvariables
@@ -60,6 +59,8 @@
     LANG="C.UTF-8";
     LANGUAGE="en_US.UTF-8";
   };
+
+
 
   # SessionPath
   home.sessionPath = [

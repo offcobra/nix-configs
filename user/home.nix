@@ -37,7 +37,7 @@
 
   # Linking Home Files
   home.file = {
-    ".icons/BeautyLine".source = "${pkgs.beauty-line-icon-theme}/share/icons/Beautyline";
+    ".icons/BeautyLine".source = "${pkgs.beauty-line-icon-theme}/share/icons/BeautyLine";
     ".themes/Catppuccin-Frappe-Standard-Blue-Dark".source = "${pkgs.catppuccin-gtk}/share/themes/Catppuccin-Frappe-Standard-Blue-Dark";
     ".themes/Dracula".source = "${pkgs.dracula-theme}/share/themes/Dracula";
     ".local/share/fonts".source = "${pkgs.fira-code-nerdfont}/share/fonts/truetype/NerdFonts";

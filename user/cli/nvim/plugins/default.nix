@@ -69,6 +69,12 @@
     # autopair for coding
     nvim-autopairs.enable = true;
 
+    # Ollama Ai
+    ollama = {
+      enable = true;
+      url = "http://127.0.0.1:11434";
+    };
+
     # find project from .git files
     project-nvim = {
       enable = true;
@@ -100,6 +106,12 @@
 
     # nvim debugger
     trouble.enable = true;
+
+    # yanky Clipboard
+    yanky = {
+      enable = true;
+      enableTelescope = true;
+    };
 
     # PopUp to show keybindings
     which-key.enable = true;

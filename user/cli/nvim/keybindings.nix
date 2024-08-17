@@ -12,18 +12,22 @@
        action = "<cmd>WhichKey<CR>";
        key = "<leader>ß";
      }
+     {
+       action = "<cmd>:checkhealth<CR>";
+       key = "<leader>hh";
+     }
 
      # Maggit
      {
        mode = "n";
        action = "<cmd>Neogit<CR>";
-       key = "<leader>g";
+       key = "<leader>gg";
        options = {
          silent = true;
        };
      }
 
-     #Dashboard
+     # Dashboard
      {
        mode = "n";
        action = "<cmd>Alpha<CR>";
@@ -33,7 +37,7 @@
        };
      }
 
-     #Dashboard
+     # LSP Keymaps
      {
        mode = "n";
        action = "<cmd>LspInfo<CR>";
@@ -77,9 +81,11 @@
          silent = true;
        };
      }
+
+     # ToggleTerm Keys
      {
        mode = "n";
-       action = "<cmd>ToggleTerm size=40 direction=horizontal name=term-vertical<CR>";
+       action = "<cmd>ToggleTerm size=25 direction=horizontal name=term-vertical<CR>";
        key = "<leader>tv";
        options = {
          silent = true;
@@ -87,7 +93,7 @@
      }
      {
        mode = "n";
-       action = "<cmd>ToggleTerm size=140 direction=vertical name=term-horizontal<CR>";
+       action = "<cmd>ToggleTerm size=120 direction=vertical name=term-horizontal<CR>";
        key = "<leader>th";
        options = {
          silent = true;
@@ -97,6 +103,14 @@
        mode = "n";
        action = "<cmd>ToggleTerm direction=float name=term-float<CR>";
        key = "<leader>tf";
+       options = {
+         silent = true;
+       };
+     }
+     {
+       mode = "t";
+       action = "<C-\\><C-n>";
+       key = "<esc>";
        options = {
          silent = true;
        };
@@ -126,6 +140,10 @@
      {
        action = "<cmd>Telescope git_branches<CR>";
        key = "<leader>gb";
+     }
+     {
+       action = "<cmd>Telescope yank_history<CR>";
+       key = "<leader>fv";
      }
 
      # Oil dired

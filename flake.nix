@@ -49,6 +49,7 @@
         "obsidian"
       ];
 
+
     in {
     nixosConfigurations = {
       workstation = lib.nixosSystem {

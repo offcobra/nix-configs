@@ -3,9 +3,13 @@
 {
   imports = [
     # Import Scripts
-
     # Websearch
     ./websearch.nix
+
+    # Screen Layout Scripts
+    ./screen_full.nix
+    ./screen_chill.nix
+    ./screen_work.nix
 
     # Container Run
     #./container_run.nix

@@ -1,49 +1,45 @@
 { pkgs, systemSettings, userSettings, ... }:
 
 let
-  startupScript = pkgs.pkgs.writeShellScriptBin "hypr-startup" ''
-    echo "Starting Waybar..."
-    waybar &
+  startup = pkgs.pkgs.writeShellScriptBin "hypr-startup" ''
+    if [[ ${systemSettings.hostname} == "mediatv" ]]
+    then
+      # Setting Screens MediaTV
+      wlr-randr --output eDP-1 --off --output HDMI-A-1 --mode 1920x1080@60.00
+    fi
+
     echo "Starting Dunst..."
     dunst &
+
     echo "Starting HyperPaper..."
     hyprpaper &
+
     echo "Starting Emacs..."
     emacs --daemon &
-    echo "Starting Signal & WhatsApp..."
-    flatpak run org.signal.Signal --start-in-tray &
-    flatpak run io.github.mimbrero.WhatsAppDesktop --start-hidden &
+
     echo "Starting NM-Applet..."
     nm-applet &
+
     echo "Starting HyprIdle..."
     hypridle &
+
     echo "Starting copyq Clipboard..."
     copyq --start-server &
-  '';
-  startupMinimal = pkgs.pkgs.writeShellScriptBin "hypr-minimal" ''
-    echo "Starting Dunst..."
-    dunst &
-    echo "Starting HyperPaper..."
-    hyprpaper &
-    echo "Starting Emacs..."
-    emacs --daemon &
-    echo "Starting NM-Applet..."
-    nm-applet &
-    echo "Starting HyprIdle..."
-    hypridle &
-    watch_battery &
-  '';
-  startupMediatv= pkgs.pkgs.writeShellScriptBin "hypr-mediatv" ''
-    # Setting Screens MediaTV
-    wlr-randr --output eDP-1 --off --output HDMI-A-1 --mode 1920x1080@60.00
-    echo "Starting Dunst..."
-    dunst &
-    echo "Starting HyperPaper..."
-    hyprpaper &
-    echo "Starting NM-Applet..."
-    nm-applet &
-    echo "Starting HyprIdle..."
-    hypridle &
+
+    if [[ ${systemSettings.hostname} == "workstation" ]]
+    then
+      echo "Starting Waybar..."
+      waybar &
+
+      echo "Starting Signal & WhatsApp..."
+      flatpak run org.signal.Signal --start-in-tray &
+      flatpak run io.github.mimbrero.WhatsAppDesktop --start-hidden &
+
+    elif [[ ${systemSettings.hostname} == "thinkpad" ]]
+    then
+      # Get Battery Notificaions
+      watch_battery &
+    fi
   '';
 in
 {
@@ -128,14 +124,7 @@ in
       };
 
       # Startup Programms
-      exec-once = if (systemSettings.hostname == "workstation")
-            then
-              ''${startupScript}/bin/hypr-startup''
-            else if (systemSettings.hostname == "thnikpad")
-            then
-              ''${startupMinimal}/bin/hypr-minimal''
-            else
-              ''${startupMediatv}/bin/hypr-mediatv'';
+      exec-once = ''${startup}/bin/hypr-startup'';
 
       # Decorations
       decoration = {
@@ -211,7 +200,7 @@ in
 
         # Quick Shortcuts
         "$mainMod, P, exec, fuzzel"
-        "$mainMod_SHIFT, P, exec, bash /home/${userSettings.username}/.local/bin/websearch"
+        "$mainMod_SHIFT, P, exec, websearch.py"
         "$mainMod, F, exec, pcmanfm"
         "$mainMod, S, exec, alacritty -e btm"
 

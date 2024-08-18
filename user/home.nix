@@ -15,6 +15,7 @@
       # Applications
       ./apps/apps.nix
     ];
+
   colorScheme = nix-colors.colorSchemes.${userSettings.colorTheme};
 
   # Home Manager

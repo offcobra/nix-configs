@@ -63,23 +63,23 @@
       }
 
       #lock {
-          background-image: image(url("/home/${userSettings.username}/.config/nixos/user/wayland/wlogout/icons/lock1.png"));
+          background-image: image(url("/home/${userSettings.username}/.config/nixos/user/wayland/wlogout/icons/lock-v1.png"));
       }
 
       #logout {
-          background-image: image(url("/home/${userSettings.username}/.config/nixos/user/wayland/wlogout/icons/logout.png"));
+          background-image: image(url("/home/${userSettings.username}/.config/nixos/user/wayland/wlogout/icons/logout-v1.png"));
       }
 
       #cancel {
-          background-image: image(url("/home/${userSettings.username}/.config/nixos/user/wayland/wlogout/icons/cancel.png"));
+          background-image: image(url("/home/${userSettings.username}/.config/nixos/user/wayland/wlogout/icons/cancel-v1.png"));
       }
 
       #shutdown {
-          background-image: image(url("/home/${userSettings.username}/.config/nixos/user/wayland/wlogout/icons/shutdown.png"));
+          background-image: image(url("/home/${userSettings.username}/.config/nixos/user/wayland/wlogout/icons/shutdown-v1.png"));
       }
 
       #reboot {
-          background-image: image(url("/home/${userSettings.username}/.config/nixos/user/wayland/wlogout/icons/restart1.png"));
+          background-image: image(url("/home/${userSettings.username}/.config/nixos/user/wayland/wlogout/icons/restart-v1.png"));
       }
     '';
   };

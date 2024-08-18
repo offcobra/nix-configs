@@ -1,6 +1,16 @@
 { pkgs, ... }:
 
 {
+  imports = [
+    # Import Scripts
+
+    # Websearch
+    ./websearch.nix
+
+    # Container Run
+    #./container_run.nix
+  ];
+
   home.packages = with pkgs; [
 
     # ShellScript start-vm (graphical environment)

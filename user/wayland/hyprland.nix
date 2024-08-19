@@ -1,7 +1,7 @@
 { pkgs, systemSettings, userSettings, ... }:
 
 let
-  startup = pkgs.pkgs.writeShellScriptBin "hypr-startup" ''
+  startup = pkgs.pkgs.writeShellScriptBin "hypr-startup" /*bash*/ ''
     if [[ ${systemSettings.hostname} == "mediatv" ]]
     then
       # Setting Screens MediaTV
@@ -105,7 +105,6 @@ in
               "AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card2"
             else
               "TEST,testing";
-
 
       # Input Settings
       input = {

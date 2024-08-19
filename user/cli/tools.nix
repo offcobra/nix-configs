@@ -24,6 +24,7 @@
     pciutils
     copyq
     # cli tools
+    cloc
     distrobox
     k3d
     dysk
@@ -40,7 +41,7 @@
     (python3.withPackages (ps: [
       ps.pip ps.psutil ps.qtile
     ]))
-    pyright
+    #pyright
 
     # Shell Scripts
     (writeShellScriptBin "airplane-mode" ''

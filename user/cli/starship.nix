@@ -11,7 +11,7 @@
         "$git_branch"
         "$git_state"
         "$git_status"
-        #"$cmd_duration"
+        "$cmd_duration"
         "$line_break"
         "$python"
         "$rust"
@@ -46,15 +46,11 @@
       };
 
       git_status = {
-        format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)";
+        format = "[[(*$conflicted$modified$staged)](218) ($ahead_behind$stashed)]($style)";
         style = "cyan";
-        conflicted = "​";
-        untracked = "​";
-        modified = " ​";
-        staged = "​";
-        renamed = "​";
-        deleted = "​";
-        stashed = "";
+        conflicted = "  ";
+        modified = "  ";
+        staged = "  ";
       };
 
       git_state = {

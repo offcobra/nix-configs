@@ -99,6 +99,14 @@ in
                 else
                   { no_hardware_cursors = false; };
 
+      # Testing GPU
+      env = if (systemSettings.hostname == "mediatv")
+            then
+              "AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card2"
+            else
+              "TEST,testing";
+
+
       # Input Settings
       input = {
         kb_layout = "de";

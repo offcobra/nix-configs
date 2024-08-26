@@ -36,6 +36,8 @@
     gcc
     bottom
     macchina
+    # git stuff
+    git-filter-repo
 
     # Python
     (python3.withPackages (ps: [

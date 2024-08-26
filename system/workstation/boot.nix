@@ -1,14 +1,18 @@
-{ pkgs, ... }:
+{ pkgs, systemSettings, ... }:
 
+let
+  rx580 = "1002:67df,1002:aaf0";
+  #rx6700 = "1002:73df,1002:ab28";
+in
 {
   # Grub Bootloader with vfio setup
   boot = {
     tmp.cleanOnBoot = true;
     extraModulePackages = [ ];
     supportedFilesystems = [ "ntfs" ];
-    #kernelPackages = pkgs.linuxPackages_latest;
-    kernelPackages = pkgs.linuxPackages_zen;
-    kernelModules = [ "kvm-amd" "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
+    # Set desired Kernel
+    kernelPackages = pkgs.${systemSettings.kernel};
+    #kernelModules = [ "kvm-amd" "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
     blacklistedKernelModules = [ "nvidia" "nouveau" ];
 
     # Block primary GPU
@@ -18,8 +22,8 @@
     # Test: dmesg | grep -i vfio
 
     # 1. Version
-    kernelParams = [ "rd.driver.pre=vfio-pci" "amd_iommu=on" "iommu=pt" "video=efifb:off" "vfio-pci.ids=1002:67df,1002:aaf0" "hugepagesz=2M" "hugepages=8192" ];
-    extraModprobeConfig = "options vfio-pci ids=1002:67df,1002:aaf0";
+    kernelParams = [ "rd.driver.pre=vfio-pci" "amd_iommu=on" "iommu=pt" "video=efifb:off" "vfio-pci.ids=${rx580}" "hugepagesz=2M" "hugepages=8192" ];
+    extraModprobeConfig = "options vfio-pci ids=${rx580}";
 
     # 2. Version
     # If first dosnt succssed
@@ -33,7 +37,7 @@
 
     initrd = {
       availableKernelModules = [ "nvme" "ahci" "xhci_pci" "usb_storage" "usbhid" "sd_mod" ];
-      #kernelModules = [ "amdgpu" ];
+      kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" "kvm-amd" "amdgpu" ];
     };
     loader = {
       efi.canTouchEfiVariables = true;

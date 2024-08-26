@@ -2,10 +2,6 @@
 
 {
   # Nix Settings
-
-  # Dont Change...
-  system.stateVersion = "23.05"; # Did you read the comment?
-  
   nix = {
     settings = {
       warn-dirty = true;
@@ -20,4 +16,7 @@
       options = "--delete-older-than 30d";
     };
   };
+
+  # Allow unfree Packages
+  nixpkgs.config.allowUnfree = true;
 }

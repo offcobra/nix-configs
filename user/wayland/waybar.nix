@@ -103,21 +103,21 @@ in
               '';
           };
           "custom/cpu" = {
-              #on-click = "toggle_cpu";
-              restart-interval = 1;
-              exec = pkgs.writeShellScript "get_cpu_guvernor" ''
-                STATUS=$(/run/current-system/sw/bin/cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)
-                echo "  => $STATUS"
-              '';
+            #on-click = "toggle_cpu";
+            restart-interval = 1;
+            exec = pkgs.writeShellScript "get_cpu_guvernor" ''
+              STATUS=$(/run/current-system/sw/bin/cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)
+              echo "  => $STATUS"
+            '';
           };
           "cpu" = {
-              format = " {usage: >3}%";
-              on-click = "alacritty -e btm";
+            format = " {usage: >3}%";
+            on-click = "alacritty -e btm";
           };
           "battery" = {
-        	  "states" = {
-            	"warning" = 30;
-            	"critical" = 15;
+        	"states" = {
+          	  "warning" = 30;
+              "critical" = 15;
             };
             "format" = "{icon}  {capacity}%";
             "format-charging" = "󱐋  {capacity}%";
@@ -125,13 +125,13 @@ in
             "format-alt" = "󰥔  {time} {icon}";
             "format-full" = "  {capacity}%";
             "format-icons" = ["" "" ""];
-	        };
+	      };
           "memory" = {
-              format = " {: >3}%";
-              on-click = "alacritty -e btm";
+            format = " {: >3}%";
+            on-click = "alacritty -e btm";
           };
           "clock" = {
-            "format"= "  {:%a %d %b  %H:%M}";
+            format = "  {:%a %d %b  %H:%M}";
             on-click = "alacritty --hold -e cal";
           };
           "pulseaudio" = {
@@ -145,8 +145,8 @@ in
             scroll-step = 1;
           };
           "tray" = {
-              icon-size = 10;
-              spacing = 5;
+            icon-size = 10;
+            spacing = 5;
           };
     }];
     style = ''

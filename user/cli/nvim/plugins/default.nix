@@ -69,6 +69,21 @@
     # autopair for coding
     nvim-autopairs.enable = true;
 
+    # Obsidian
+    obsidian = {
+      enable = true;
+      settings = {
+        completion = {
+          min_chars = 2;
+          nvim_comp = true;
+        };
+        workspaces = [{
+          name = "2.Brain";
+          path = "~/projects/2.Brain";
+        }];
+      };
+    };
+
     # Ollama Ai
     ollama = {
       enable = true;
@@ -80,6 +95,9 @@
       enable = true;
       enableTelescope = true;
     };
+
+    # Todo-Comments
+    todo-comments.enable = true;
 
     # nvim terminals
     toggleterm = {
@@ -121,5 +139,8 @@
       enable = true;
       modes = [ ":" "/" "?" ];
     };
+
+    # Zen mode
+    zen-mode.enable = true;
   };
 }

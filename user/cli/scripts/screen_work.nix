@@ -12,7 +12,7 @@ in
       if [[ $(pgrep Hyprland) ]]
       then
           # Kill HyprPaper
-          killall hyprpaper
+          kill -9 $(pgrep hyprpaper) &
 
           # Setting Hyprland screens
           wlr-randr --output DP-1 --on --pos 0,0 --mode 1920x1080@144.001007Hz \

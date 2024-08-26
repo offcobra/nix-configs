@@ -81,6 +81,14 @@
          silent = true;
        };
      }
+     {
+       mode = "n";
+       action = "<cmd>ZenMode<CR>";
+       key = "<leader>tz";
+       options = {
+         silent = true;
+       };
+     }
 
      # ToggleTerm Keys
      {

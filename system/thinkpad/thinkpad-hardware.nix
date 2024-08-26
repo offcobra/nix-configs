@@ -1,18 +1,35 @@
-{ config, lib, modulesPath, ... }:
+{ pkgs, config, lib, modulesPath, systemSettings, ... }:
 
 {
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "sdhci_pci" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  # Bootloader.
+  boot = {
+    loader = {
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 3;
+      };
+      efi.canTouchEfiVariables = true;
+    };
+    # Set Desired Kernel
+    kernelPackages = pkgs.${systemSettings.kernel};
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
+    initrd = {
+      availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "sdhci_pci" ];
+      kernelModules = [ ];
+    };
+  };
+
 
   # Bluetooth
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = false;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = false;
+  };
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/67004803-e550-488a-8600-9ca72913c695";

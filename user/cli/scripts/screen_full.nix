@@ -12,7 +12,7 @@ in
       if [[ $(pgrep Hyprland) ]]
       then
           # Kill HyprPaper
-          killall hyprpaper
+          kill -9 $(pgrep hyprpaper) &
 
           # Setting Hyprland screens
           echo "Setting WRandR mode ... "
@@ -22,7 +22,7 @@ in
 
           echo "Setting Wallpapers"
           hyprpaper &
-          hyprctl reload
+          #hyprctl reload
 
       else
           echo "Setting XRandR mode ... "

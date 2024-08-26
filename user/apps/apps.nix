@@ -25,15 +25,16 @@
   home.packages = with pkgs; [
     #gpt4all
     #qutebrowser
+    pavucontrol
     networkmanagerapplet
     libreoffice-fresh
     thunderbird-bin
     looking-glass-client
-    pavucontrol
-    freerdp
-    remmina
+    freerdp3
+    #remmina
     evince
     viewnior
+    loupe
     spotify
     popcorntime
     pcmanfm
@@ -45,6 +46,7 @@
     # Virtio
     virt-manager
     virt-viewer
+    quickemu
     # Terminals
     alacritty
     # Bars

@@ -1,3 +1,4 @@
+# System Configuration for my Main Workstation
 { pkgs, userSettings, ... }:
 
 {
@@ -18,6 +19,10 @@
       ./helper/qtile.nix
       # Ollama AI Service
       ./helper/ollama.nix
+      # Gnome polkit
+      ./helper/polkit.nix
+      # Set Locales
+      ./helper/locales.nix
     ];
 
   # Pick networking options.
@@ -47,24 +52,12 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    jack.enable = true;
+    #jack.enable = true;
     socketActivation = true;
     wireplumber.enable = true;
   };
 
-  # Set your time zone.
-  time.timeZone = "Europe/Amsterdam";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "de";
-  #   useXkbConfig = true; # use xkbOptions in tty.
-  };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  nixpkgs.config.allowUnfree = true;
   users.users.${userSettings.username} = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "storage" "libvirtd" "qemu-libvirtd" "docker" "input" "disk" "kvm" ];
@@ -77,6 +70,12 @@
         usbutils
         glib
     ];
+  };
+
+  # Define Test User
+  users.users.test = {
+    isNormalUser = true;
+    createHome = true;
   };
 
   # List packages installed in system profile. To search, run:
@@ -97,27 +96,9 @@
 
   services.dbus.enable = true;
 
-  security.polkit.enable = true;
-
   systemd.tmpfiles.rules = [
     "f /dev/shm/looking-glass 0660 ${userSettings.username} kvm -"
   ];
-
-  systemd = {
-  user.services.polkit-gnome-authentication-agent-1 = {
-    description = "polkit-gnome-authentication-agent-1";
-    wantedBy = [ "graphical-session.target" ];
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-    serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-  };
-};
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -125,4 +106,7 @@
     enable = true;
   #   enableSSHSupport = true;
   };
+
+  # Dont Change...
+  system.stateVersion = "23.05"; # Did you read the comment?
 }

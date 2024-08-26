@@ -15,25 +15,25 @@
     nixvim.url = "github:nix-community/nixvim";
   };
 
-  outputs = { nixpkgs, home-manager, nix-colors, nixvim,  ... }@inputs:
+  outputs = { nixpkgs, home-manager, nix-colors, nixvim, ... }@inputs:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
 
-       # ---- SYSTEM SETTINGS ---- #
+      # ---- SYSTEM SETTINGS ---- #
       systemSettings = {
         system = "x86_64-linux"; # system arch
         hostname = "workstation"; # hostname
-        profile = "personal"; # select a profile defined from my profiles directory
         timezone = "Europe/Berlin"; # select timezone
         locale = "en_US.UTF-8"; # select locale
+        kernel = "linuxPackages_zen"; # desired Kernel
       };
       # ----- USER SETTINGS ----- #
       userSettings = rec {
         username = "wally"; # username
         name = "Wally Workstation"; # name/identifier
-        email = "offthewall211@proton.me"; # email (used for certain configurations)
+        email = "offthewall211@proton.me"; # email (used for certain configurations ex: git)
         dotfilesDir = "~/.dotfiles"; # absolute path of the local repo
         theme = "Dracula"; # selcted gtk theme
         colorTheme = "catppuccin-mocha"; # selcted theme from nix-colors

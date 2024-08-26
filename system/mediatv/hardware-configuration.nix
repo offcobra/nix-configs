@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{ config, lib, pkgs, modulesPath, systemSettings, ... }:
 
 {
   imports =
@@ -11,7 +11,7 @@
     extraModulePackages = [ ];
     supportedFilesystems = [ "ntfs" ];
     initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "sr_mod" "rtsx_pci_sdmmc" "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.${systemSettings.kernel};
     kernelModules = [ "kvm-intel" ];
     loader.systemd-boot.enable = true;
     loader.systemd-boot.configurationLimit = 3;

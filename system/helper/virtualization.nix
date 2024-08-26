@@ -1,8 +1,8 @@
-
 { pkgs, ... }:
 
 {
   # Virtualization
+  # GPU Passthrough ready
   virtualisation = {
     libvirtd = {
       enable = true;
@@ -12,6 +12,7 @@
         ovmf.packages = [ pkgs.OVMFFull.fd ];
       };
     };
+  spiceUSBRedirection.enable = true;
   docker.enable = true;
   };
 }

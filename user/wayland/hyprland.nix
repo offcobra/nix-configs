@@ -1,4 +1,4 @@
-{ pkgs, systemSettings, userSettings, ... }:
+{ inputs, pkgs, systemSettings, userSettings, config, ... }:
 
 let
   startup = pkgs.pkgs.writeShellScriptBin "hypr-startup" /*bash*/ ''
@@ -74,10 +74,8 @@ in
     systemd.enable = true;
     systemd.variables = [ "--all" ];
     plugins = [
-      #inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
-      #inputs.hyprland-plugins.packages.${pkgs.system}.hyprtrails
-      #inputs.hyprland-plugins.packages.${pkgs.system}.hyprwrap
-      #inputs.hyprland-plugins.packages.${pkgs.system}.csgo-vulkan-fix
+      #inputs.hyprland-plugins.packages.${systemSettings.system}.hyprtrails
+      #inputs.hyprland-plugins.packages.${systemSettings.system}.csgo-vulkan-fix
     ];
     settings = {
       # Monitor settings
@@ -130,8 +128,20 @@ in
         "col.inactive_border" = "rgba(595959aa)";
       };
 
+      # Misc settings
+      misc = {
+        enable_swallow = "true";
+      };
+
       # Startup Programms
       exec-once = ''${startup}/bin/hypr-startup'';
+
+      # Plugins
+      #plugin = {
+      #  hyprtrails = {
+      #    color = config.colorScheme.palette.base00;
+      #  };
+      #};
 
       # Decorations
       decoration = {
@@ -196,9 +206,9 @@ in
         "$mainMod, z, exec, wlogout --protocol layer-shell -b 5"
 
         # Window Actions
-        #"CTRL, Space, fullscreenstate"
+        "CTRL, Space, fullscreenstate, 0, 1"
         "$mainMod, Q, killactive"
-        "$mainMod_SHIFT, Q, exit"
+        "$mainMod_SHIFT, Q, exec, kill-hyprland.sh"
         #"$mainMod_SHIFT, R, hyprctl reload"
         "$mainMod_SHIFT, F, togglefloating"
         "$mainMod_CTRL, F, fullscreen"
@@ -293,6 +303,8 @@ in
       bind = ,H, submap, reset
       bind = ,O, exec, qutebrowser -C /home/${userSettings.username}/.config/qutebrowser/config.py
       bind = ,O, submap, reset
+      bind = ,Z, exec, flatpak run io.github.zen_browser.zen
+      bind = ,Z, submap, reset
       submap = reset
 
       # EMACS
@@ -369,11 +381,11 @@ in
       bind = ,S, submap, reset
       bind = ,Q, exec, toggle_service stop
       bind = ,Q, submap, reset
-      bind = ,C, exec, screen_chill
+      bind = ,C, exec, screen-chill.sh
       bind = ,C, submap, reset
-      bind = ,F, exec, screen_full
+      bind = ,F, exec, screen-full.sh
       bind = ,F, submap, reset
-      bind = ,W, exec, screen_work
+      bind = ,W, exec, screen-work.sh
       bind = ,W, submap, reset
       submap = reset
 
@@ -404,7 +416,8 @@ in
       bind = ,P, submap, reset
       bind = ,F, exec, container_run fedora
       bind = ,F, submap, reset
-      bind = ,R, exec, remmina -c .local/share/remmina/group_rdp_win11_192-168-122-106.remmina #GTK_THEME=Dracula remmina
+      #bind = ,R, exec, remmina -c .local/share/remmina/group_rdp_win11_192-168-122-167.remmina #GTK_THEME=Dracula remmina
+      bind = ,R, exec, xfreerdp -grab-keyboard /v:192.168.122.167 /u:Quickemu /p:scrima /size:100% /dynamic-resolution /gfx:avc444 /gfx:progressive=true
       bind = ,R, submap, reset
       submap = reset
 

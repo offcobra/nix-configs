@@ -44,7 +44,7 @@
     os_rebuild="nh os switch --update --ask";
     hm_rebuild="nh home switch";
     nix_clean="nh clean all --keep 3";
-    
+
     # Update whole System
     update="distrobox upgrade arch && flatpak update -y && os_rebuild && hm_rebuild";
   };

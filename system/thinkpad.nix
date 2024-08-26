@@ -1,3 +1,4 @@
+# System configuration for my Thinkpad Laptop
 { pkgs, userSettings, ... }:
 
 {
@@ -6,23 +7,23 @@
       ./thinkpad/thinkpad-hardware.nix
       # Hyprland Stuff
       ./helper/hyprland.nix
+      # Qtile Stuff...
+      ./helper/qtile.nix
       # Nix Settings
       ./helper/nix-settings.nix
       # Ollama AI Service
       ./helper/ollama.nix
+      # Gnome polkit
+      ./helper/polkit.nix
+      # Set Locales
+      ./helper/locales.nix
     ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 3;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # Latest Kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
   # Enable networking
-  networking.hostName = "thinkpad"; # Define your hostname.
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "thinkpad"; # Define your hostname.
+    networkmanager.enable = true;
+  };
 
   virtualisation.docker.enable = true;
   #virtualisation.podman.enable = true;
@@ -52,32 +53,7 @@
     };
   };
 
-  # Set your time zone.
-  time.timeZone = "Europe/Amsterdam";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "de_DE.UTF-8";
-    LC_IDENTIFICATION = "de_DE.UTF-8";
-    LC_MEASUREMENT = "de_DE.UTF-8";
-    LC_MONETARY = "de_DE.UTF-8";
-    LC_NAME = "de_DE.UTF-8";
-    LC_NUMERIC = "de_DE.UTF-8";
-    LC_PAPER = "de_DE.UTF-8";
-    LC_TELEPHONE = "de_DE.UTF-8";
-    LC_TIME = "de_DE.UTF-8";
-  };
-
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "de";
-  #   useXkbConfig = true; # use xkbOptions in tty.
-  };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  nixpkgs.config.allowUnfree = true;
   users.users.${userSettings.username} = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "storage" "video" "docker" "input" "disk" ];
@@ -108,24 +84,6 @@
 
   services.dbus.enable = true;
 
-  security.polkit.enable = true;
-
-  systemd = {
-  user.services.polkit-gnome-authentication-agent-1 = {
-    description = "polkit-gnome-authentication-agent-1";
-    wantedBy = [ "graphical-session.target" ];
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-    serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-  };
-};
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -155,4 +113,7 @@
 
       };
   };
+
+  # Dont Change...
+  system.stateVersion = "23.05"; # Did you read the comment?
 }

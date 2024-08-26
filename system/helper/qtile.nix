@@ -2,22 +2,28 @@
 
 {
   # Enable Qtile
-  services.xserver = {
-    enable = true;
-    xkb.layout = "de";
-    displayManager.startx.enable = true;
-    videoDrivers = [ "amdgpu" ];
-    windowManager.qtile = {
+  services = {
+    xserver = {
       enable = true;
-      #backend = "x11";
-      extraPackages = python3Packages: with python3Packages; [
-        prettytable
-        psutil
-      ];
+      xkb.layout = "de";
+      displayManager.startx.enable = true;
+      videoDrivers = [ "amdgpu" ];
+      windowManager.qtile = {
+        enable = true;
+        #backend = "x11";
+        extraPackages = python3Packages: with python3Packages; [
+          prettytable
+          psutil
+        ];
+      };
     };
-    libinput.enable = true;
-    libinput.mouse.accelProfile = "flat";
-    libinput.mouse.accelSpeed = "0";
+    libinput = {
+      enable = true;
+      mouse = {
+        accelProfile = "flat";
+        accelSpeed = "0";
+      };
+    };
   };
 
   # Enable Portal

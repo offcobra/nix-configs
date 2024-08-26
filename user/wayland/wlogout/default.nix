@@ -1,4 +1,4 @@
-{ userSettings, ... }:
+{ config, userSettings, ... }:
 
 {
   # WLogout Config
@@ -30,9 +30,9 @@
       "keybind" = "x";
     }
     {
-      "label" = "cancel";
-      "action" = "kill -9 $(pgrep wlogout)";
-      "text" = "Cancel";
+      "label" = "quit";
+      "action" = "kill-hyprland.sh";
+      "text" = "Quit Hyprland";
       "keybind" = "q";
     }
     ];
@@ -44,9 +44,9 @@
       	background-color: rgba(30, 30, 46, 0.8);
       }
       button {
-        color: #0f2137;
+        color: #${config.colorScheme.palette.base0D};
       	font-size: 16px;
-      	background-color: #5b6078;
+      	background-color: #${config.colorScheme.palette.base00};
       	border-style: none;
       	background-repeat: no-repeat;
       	background-position: center;
@@ -58,7 +58,7 @@
       }
 
       button:focus, button:active, button:hover {
-      	background-color: #b9b1e2;
+      	background-color: #${config.colorScheme.palette.base01};
       	outline-style: none;
       }
 
@@ -70,7 +70,7 @@
           background-image: image(url("/home/${userSettings.username}/.config/nixos/user/wayland/wlogout/icons/logout-v1.png"));
       }
 
-      #cancel {
+      #quit {
           background-image: image(url("/home/${userSettings.username}/.config/nixos/user/wayland/wlogout/icons/cancel-v1.png"));
       }
 

@@ -11,8 +11,8 @@
     ./screen_chill.nix
     ./screen_work.nix
 
-    # Container Run
-    #./container_run.nix
+    # Hyprland kill Script
+    ./kill_hyprland.nix
   ];
 
   home.packages = with pkgs; [

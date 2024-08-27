@@ -10,10 +10,12 @@
       { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden-desktop
       { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # vinuium
       { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } # dark-reader
+      { id = "fjoaledfpmneenckfbpdfhkmimnjocfa"; } # nordvpn
     ];
     commandLineArgs = [
       "--enable-features=UseOzonePlatform"
-      "--ozone-platform=wayland"
+      "--ozone-platform-hint=auto"
+      #"--ozone-platform=auto"
       #"--disable-features=WebRtcAllowInputVolumeAdjustment"
     ];
   };

@@ -1,5 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, systemSettings, ... }:
 
+let
+  drivers = if (systemSettings.hostname == "workstation")
+    then
+      [ "amdgpu-pro" "amdgpu" ]
+    else
+      [ "modesetting" "fbdev" ];
+in
 {
   # Enable Qtile
   services = {
@@ -7,7 +14,7 @@
       enable = true;
       xkb.layout = "de";
       displayManager.startx.enable = true;
-      videoDrivers = [ "amdgpu" ];
+      videoDrivers = drivers;
       windowManager.qtile = {
         enable = true;
         #backend = "x11";

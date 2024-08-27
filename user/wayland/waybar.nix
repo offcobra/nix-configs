@@ -64,6 +64,7 @@ in
                   "NeoVim - NeoVim"= " -> Doing stuff right...";
                   "Signal - (.*)"= "󱋑  $1";
                   "Whatsapp - (.*)"= "  $1";
+                  "Bitwarden - (.*)"= "󰞀  $1";
                   "(.*) - Steam"= "  $1";
                   "(.*) - Discord - (.*)"= "󰙯  $1";
                   #---------------------------------

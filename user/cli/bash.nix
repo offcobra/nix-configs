@@ -48,8 +48,7 @@ in
     cat1 = "/run/current-system/sw/bin/cat";
     brc = "source ~/.bashrc";
     gping ="ping www.google.com";
-    cal = "cal -3";
-    dcal = "date && cal 2024";
+    dcal = "date && cal -3";
     my_pub_ip = "curl icanhazip.com";
     pdf = "evince";
     img = "viewnior";

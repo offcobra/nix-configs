@@ -12,8 +12,8 @@
           installCargo = true;
           installRustc = true;
         };
-        #pyright.enable = true;
-        ruff.enable = true;
+        pyright.enable = true;
+        #ruff.enable = true;
         jsonls.enable = true;
   	    yamlls.enable = true;
   	    lua-ls.enable = true;
@@ -30,20 +30,20 @@
     };
 
     # inject LSP diagnostics
-    none-ls = {
-      enable = true;
-      sources = {
-        diagnostics = {
-          mypy.enable = true;
-          ansiblelint.enable = true;
-          pylint.enable = true;
-        };
-        formatting = {
-          nixfmt.enable = true;
-          shellharden.enable = true;
-          yamlfmt.enable = true;
-        };
-      };
-    };
+    #none-ls = {
+    #  enable = true;
+    #  sources = {
+    #    diagnostics = {
+    #      #mypy.enable = true;
+    #      ansiblelint.enable = true;
+    #      pylint.enable = true;
+    #    };
+    #    formatting = {
+    #      nixfmt.enable = true;
+    #      shellharden.enable = true;
+    #      yamlfmt.enable = true;
+    #    };
+    #  };
+    #};
   };
 }

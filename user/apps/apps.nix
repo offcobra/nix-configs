@@ -24,7 +24,7 @@
   # List of secondary Applications
   home.packages = with pkgs; [
     #gpt4all
-    #qutebrowser
+    qutebrowser
     pavucontrol
     networkmanagerapplet
     libreoffice-fresh

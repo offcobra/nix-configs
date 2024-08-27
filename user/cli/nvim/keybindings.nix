@@ -12,10 +12,6 @@
        action = "<cmd>WhichKey<CR>";
        key = "<leader>ß";
      }
-     {
-       action = "<cmd>:checkhealth<CR>";
-       key = "<leader>hh";
-     }
 
      # Maggit
      {

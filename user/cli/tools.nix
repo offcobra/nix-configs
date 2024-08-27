@@ -43,7 +43,7 @@
     (python3.withPackages (ps: [
       ps.pip ps.psutil ps.qtile
     ]))
-    #pyright
+    pylint
 
     # Shell Scripts
     (writeShellScriptBin "airplane-mode" ''

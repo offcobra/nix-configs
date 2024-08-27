@@ -73,8 +73,9 @@ in
     xwayland = { enable = true; };
     systemd.enable = true;
     systemd.variables = [ "--all" ];
+    package = inputs.hyprland.packages.${systemSettings.system}.hyprland;
     plugins = [
-      #inputs.hyprland-plugins.packages.${systemSettings.system}.hyprtrails
+      #inputs.hyprland-plugins.packages.${pkgs.system}.hyprtrails
       #inputs.hyprland-plugins.packages.${systemSettings.system}.csgo-vulkan-fix
     ];
     settings = {
@@ -291,16 +292,6 @@ in
       bind = ,B, submap, reset
       bind = ,I, exec, brave --incognito
       bind = ,I, submap, reset
-      bind = ,L, exec, docker_exec librewolf
-      bind = ,L, submap, reset
-      bind = ,T, exec, docker_exec thorium-browser
-      bind = ,T, submap, reset
-      bind = ,P, exec, docker_exec librewolf --private-window
-      bind = ,P, submap, reset
-      bind = ,F, exec, docker_exec firefox
-      bind = ,F, submap, reset
-      bind = ,H, exec, docker_exec thorium-browser --incognito
-      bind = ,H, submap, reset
       bind = ,O, exec, qutebrowser -C /home/${userSettings.username}/.config/qutebrowser/config.py
       bind = ,O, submap, reset
       bind = ,Z, exec, flatpak run io.github.zen_browser.zen

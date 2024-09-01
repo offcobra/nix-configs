@@ -7,7 +7,7 @@ let
 
     # Define Variables
     DMENU = "fuzzel --dmenu"
-    BROWSER = "brave"
+    BROWSER = "qutebrowser"
 
     WEBSEARCH = {
         # Search Engines

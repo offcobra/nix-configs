@@ -8,9 +8,6 @@ let
       wlr-randr --output eDP-1 --off --output HDMI-A-1 --mode 1920x1080@60.00
     fi
 
-    echo "Starting Dunst..."
-    dunst &
-
     echo "Starting HyperPaper..."
     hyprpaper &
 
@@ -23,8 +20,8 @@ let
     echo "Starting HyprIdle..."
     hypridle &
 
-    echo "Starting copyq Clipboard..."
-    copyq --start-server &
+    echo "Starting Pyprland for plugins..."
+    pypr &
 
     if [[ ${systemSettings.hostname} == "workstation" ]]
     then
@@ -41,6 +38,7 @@ let
       watch_battery &
     fi
   '';
+  blur = if (systemSettings.hostname == "workstation") then true else false;
 in
 {
   imports =
@@ -59,12 +57,17 @@ in
       ./hypridle.nix
       # Wlogout
       ./wlogout
+      # Pyprland
+      ./pyprland.nix
     ];
 
   home.packages = with pkgs; [
     # Screenshot tools
     grim
     slurp
+    hyprpicker
+    wl-clipboard
+    pyprland
   ];
 
   # Window Manager
@@ -73,12 +76,31 @@ in
     xwayland = { enable = true; };
     systemd.enable = true;
     systemd.variables = [ "--all" ];
-    package = inputs.hyprland.packages.${systemSettings.system}.hyprland;
-    plugins = [
-      #inputs.hyprland-plugins.packages.${pkgs.system}.hyprtrails
-      #inputs.hyprland-plugins.packages.${systemSettings.system}.csgo-vulkan-fix
-    ];
+    #plugins = [
+    #  inputs.hyprland-plugins.packages.${systemSettings.system}.hyprtrails
+    #  inputs.hyprland-plugins.packages.${systemSettings.system}.csgo-vulkan-fix
+    #];
     settings = {
+      # Plugins
+      #plugin = {
+      #  # Todo fix rgba color...
+      #  hyprtrails = {
+      #    #color = "rgba(${config.colorScheme.palette.base00})";
+      #    color = "rgba(226, 0, 0, 0.67)";
+      #  };
+      #  csgo-vulkan-fix = {
+      #    res_w = 1280;
+      #    res_h = 960;
+
+      #    # NOT a regex! This is a string and has to exactly match initial_class
+      #    #class = "cs2";
+      #    class = "SDL Application";
+
+      #    # Whether to fix the mouse position. A select few apps might be wonky with this.
+      #    fix_mouse = true;
+      #  };
+      #};
+
       # Monitor settings
       monitor = if (systemSettings.hostname == "workstation")
                 then
@@ -125,8 +147,8 @@ in
         gaps_out = 5;
         layout = "master";
         border_size = 1;
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
+        "col.active_border" = "rgba(${config.colorScheme.palette.base0E}ee)";
+        "col.inactive_border" = "rgba(${config.colorScheme.palette.base00}aa)";
       };
 
       # Misc settings
@@ -137,25 +159,18 @@ in
       # Startup Programms
       exec-once = ''${startup}/bin/hypr-startup'';
 
-      # Plugins
-      #plugin = {
-      #  hyprtrails = {
-      #    color = config.colorScheme.palette.base00;
-      #  };
-      #};
-
       # Decorations
       decoration = {
         rounding = 10;
 
         blur = {
-    	    enabled = false;
+    	    enabled = blur;
         };
 
-        drop_shadow = "false";
+        drop_shadow = true;
         shadow_range = 4;
         shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
+        "col.shadow" = "rgba(${config.colorScheme.palette.base00}ee)";
       };
 
       # Animations
@@ -202,6 +217,7 @@ in
 
         # Screenshot
         "$mainMod, x, exec, grim -g \"$(slurp -d)\""
+        "$mainMod_SHIFT, X, exec, hyprpicker | wl-copy"
 
         # WLogout
         "$mainMod, z, exec, wlogout --protocol layer-shell -b 5"
@@ -277,6 +293,11 @@ in
         # Brightness controls
         ", xf86MonBrightnessDown, exec, light -U 5"
         ", xf86MonBrightnessUp, exec, light -A 5"
+
+        # Pyprland Plugins
+        # Scratchpads
+        ", F12, exec, pypr toggle system_monitor"
+
       ];
     };
     extraConfig = ''
@@ -292,7 +313,11 @@ in
       bind = ,B, submap, reset
       bind = ,I, exec, brave --incognito
       bind = ,I, submap, reset
-      bind = ,O, exec, qutebrowser -C /home/${userSettings.username}/.config/qutebrowser/config.py
+      bind = ,T, exec, docker_exec thorium-browser
+      bind = ,T, submap, reset
+      bind = ,H, exec, docker_exec thorium-browser --incognito
+      bind = ,H, submap, reset
+      bind = ,O, exec, qutebrowser
       bind = ,O, submap, reset
       bind = ,Z, exec, flatpak run io.github.zen_browser.zen
       bind = ,Z, submap, reset
@@ -320,14 +345,12 @@ in
       # PROGRAMMS
       bind = SUPER, G, submap, programms
       submap = programms
-      #bind = ,G, exec, flatpak run com.valvesoftware.Steam
       bind = ,G, exec, steam
       bind = ,G, submap, reset
       bind = ,V, exec, pavucontrol
       bind = ,V, submap, reset
       bind = ,F, exec, flatpak run com.github.tchx84.Flatseal
       bind = ,F, submap, reset
-      bind = ,N, submap, reset
       bind = ,S, exec, spotify --enable-features=UseOzonePlatform --ozone-platform=wayland
       bind = ,S, submap, reset
       bind = ,E, exec, thunderbird
@@ -342,20 +365,18 @@ in
       bind = ,O, submap, reset
       bind = ,Y, exec, freetube
       bind = ,Y, submap, reset
-      bind = ,W, exec, popcorntime
-      bind = ,W, submap, reset
       submap = reset
 
       # CRYPTO STUFF
       bind = SUPER, C, submap, crypto
       submap = crypto
-      bind = ,B, exec, docker exec -e XDG_RUNTIME_DIR='/run/user/1000' -e DISPLAY=$DISPLAY -u ${userSettings.username} apps binance
+      bind = ,B, exec, qutebrowser https://binance.com
       bind = ,B, submap, reset
       bind = ,C, exec, qutebrowser https://coinmarketcap.com/
       bind = ,C, submap, reset
       bind = ,P, exec, qutebrowser https://mail.proton.me/
       bind = ,P, submap, reset
-      bind = ,E, exec, docker_exec exodus
+      bind = ,E, exec, exodus
       bind = ,E, submap, reset
       submap = reset
 
@@ -415,10 +436,8 @@ in
       # CHAT ing...
       bind = SUPER, I, submap, chat
       submap = chat
-      bind = ,D, exec, flatpak run --socket=wayland com.discordapp.Discord --enable-features=UseOzonePlatform --ozone-platform=wayland
+      bind = ,D, exec, webcord
       bind = ,D, submap, reset
-      bind = ,T, exec, webcord
-      bind = ,T, submap, reset
       bind = ,W, exec, flatpak run io.github.mimbrero.WhatsAppDesktop
       bind = ,W, submap, reset
       bind = ,S, exec, flatpak run org.signal.Signal
@@ -445,6 +464,7 @@ in
       windowrulev2 = float,class:(cs2)
       windowrulev2 = float,class:(signal)
       windowrulev2 = float,class:(ollama)
+      windowrulev2 = float,title:(SysMon)
       windowrulev2 = float,class:(whatsapp-desktop-linux)
       windowrulev2 = float,class:(steamwebhelper)
       windowrulev2 = float,class:(xdg-desktop-portal-gtk)

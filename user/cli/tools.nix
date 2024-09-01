@@ -3,9 +3,7 @@
 {
   # List of secondary Applications
   home.packages = with pkgs; [
-    jq
     nh
-    curl
     # Rust cli tools
     fd
     eza
@@ -18,6 +16,7 @@
     # More tools
     htop
     tealdeer
+    curl
     wget
     killall
     ventoy
@@ -43,6 +42,7 @@
     (python3.withPackages (ps: [
       ps.pip ps.psutil ps.qtile
     ]))
+    jq
     pylint
 
     # Shell Scripts

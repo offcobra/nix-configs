@@ -5,7 +5,7 @@
   programs.nixvim.colorschemes.catppuccin = {
     enable = true;
     settings = {
-      flavour = "macchiato";
+      flavour = "mocha";
       no_bold = false;
       no_italic = false;
       no_underline = false;

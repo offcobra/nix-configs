@@ -1,7 +1,7 @@
-{ ... }:
+{ config, ... }:
 
 {
-  # Configure dunst notify 
+  # Configure dunst notify
   services.dunst = {
     enable = true;
     settings = {
@@ -18,7 +18,7 @@
         frame_width = 3;
         sort = "no";
         idle_threshold = 40;
-        font = "Source Code Pro 9"; # ???????????????
+        font = "Source Code Pro 9"; # todo
         line_height = 4;
         markup = "full";
         format = "<b>%s</b>\n%b";
@@ -51,23 +51,23 @@
 
       urgency_low = {
         timeout = 4;
-        background = "#1A1B2699";
-        foreground = "#A4D7F1";
-        frame_color = "#A4D7F1";
+        background = "#${config.colorScheme.palette.base0C}aa";
+        foreground = "#${config.colorScheme.palette.base02}";
+        frame_color = "#${config.colorScheme.palette.base00}ee";
       };
 
       urgency_normal = {
         timeout = 8;
-        background = "#1A1B2699";
-        foreground = "#A4D7F1";
-        frame_color = "#A4D7F1";
+        background = "#${config.colorScheme.palette.base05}aa";
+        foreground = "#${config.colorScheme.palette.base02}";
+        frame_color = "#${config.colorScheme.palette.base00}ee";
       };
 
       urgency_critical = {
         timeout = 0;
-        background = "#1A1B2699";
-        foreground = "#FDDC74";
-        frame_color = "#FDDC74";
+        background = "#${config.colorScheme.palette.base09}aa";
+        foreground = "#${config.colorScheme.palette.base02}";
+        frame_color = "#${config.colorScheme.palette.base00}ee";
       };
     };
   };

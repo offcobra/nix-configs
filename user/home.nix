@@ -8,6 +8,7 @@
       nixvim.homeManagerModules.nixvim
       # Window Manager
       ./wayland/hyprland.nix
+      ./x11/qtile.nix
       # Bash Config
       ./cli/bash.nix
       # Gtk Themes

@@ -175,7 +175,7 @@ in
       #custom-arch {
         border-radius: 10px;
         background-color: @background;
-        color: @inactive;
+        color: @active;
         font-size: 12px;
         margin-top: 2px;
         margin-right: 5px;
@@ -212,12 +212,12 @@ in
 
       #workspaces button {
         background: @background;
-        color: @active;
+        color: @inactive;
       }
 
       #workspaces button.active {
         background: @background;
-        color: @inactive;
+        color: @active;
       }
 
       window#waybar.empty #window {

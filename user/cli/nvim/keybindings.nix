@@ -89,7 +89,7 @@
      # ToggleTerm Keys
      {
        mode = "n";
-       action = "<cmd>ToggleTerm size=25 direction=horizontal name=term-vertical<CR>";
+       action = "<cmd>ToggleTerm size=15 direction=horizontal name=term-vertical<CR>";
        key = "<leader>tv";
        options = {
          silent = true;

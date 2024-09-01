@@ -1,7 +1,7 @@
 { systemSettings, ... }:
 
 {
-  # Macchina Configs
+  # Hyprpaper Configs
   home.file = {
     "hyprpaper.conf" = {
       enable = true;

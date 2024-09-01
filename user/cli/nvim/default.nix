@@ -20,7 +20,7 @@
 
     # Aliases for vim
     viAlias = true;
-    vimAlias = true;
+    #vimAlias = true;
     vimdiffAlias = true;
 
     # Options

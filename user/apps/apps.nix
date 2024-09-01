@@ -9,52 +9,76 @@
       ./emacs.nix
       # Alacritty Config
       ./alacritty.nix
+      # Kitty Config
+      ./kitty.nix
       # Wezterm Config
       #./wezterm.nix
       # Brave Config
       ./brave.nix
+      ./qutebrowser.nix
       # Freetube Config
       ./freetube.nix
+      # Zathura PDF Config
+      ./zathura.nix
+      # Vim - Image viewer
+      ./imv.nix
     ];
 
     nixpkgs.config = {
       allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowed-unfree-packages;
     };
 
+  # Services
+  services.copyq.enable = true;
+
   # List of secondary Applications
   home.packages = with pkgs; [
-    #gpt4all
-    qutebrowser
-    pavucontrol
-    networkmanagerapplet
+    obsidian  # Note taking
+    webcord   # Wayland Discord
+
+    # Office Apps
     libreoffice-fresh
     thunderbird-bin
-    looking-glass-client
-    freerdp3
-    #remmina
-    evince
-    viewnior
+
+    # Network Manager
+    networkmanagerapplet
+
+    # Image viewer
     loupe
-    spotify
-    popcorntime
+
+    # File Manager
     pcmanfm
+
+    # Media Player
+    mpv
     vlc
-    #gparted
+    spotify
+    spicetify-cli
+    pavucontrol
+
+    # Disk Manager
+    gparted
+
     # Bluetooth
     bluez
     blueberry
-    # Virtio
+
+    # Virtio Machines
+    looking-glass-client
+    quickemu
     virt-manager
     virt-viewer
-    quickemu
-    # Terminals
-    alacritty
+    freerdp3
+
     # Bars
     eww
-    webcord
-    obsidian
-    # Bitwarden
+
+    # Bitwarden Password Manager
     bitwarden-desktop
     bitwarden-cli
+
+    # Crypto Wallet
+    # Todo -> Wont build....
+    #exodus
   ];
 }

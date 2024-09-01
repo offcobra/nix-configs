@@ -34,7 +34,6 @@
     (writeShellScriptBin "where-am-i" ''
       if [ -z "$container" ]
       then
-        alias cat="bat"
         macchina
       else
         case $CONTAINER_ID in
@@ -78,5 +77,4 @@
       fi
     '')
   ];
-
 }

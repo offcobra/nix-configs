@@ -4,7 +4,6 @@
   # tmux Configs
   programs.tmux = {
     enable = true;
-    #shell = "${pkgs.bash}/bin/bash";
     terminal = "screen-256color";
     historyLimit = 10000;
     plugins = with pkgs; [

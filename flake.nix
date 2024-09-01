@@ -47,6 +47,7 @@
       allowed-unfree-packages = [
         "spotify"
         "obsidian"
+        "exodus"
       ];
 
 
@@ -54,7 +55,9 @@
     nixosConfigurations = {
       workstation = lib.nixosSystem {
         inherit system;
-        modules = [ ./system/workstation.nix ];
+        modules = [
+          ./system/workstation.nix
+        ];
         specialArgs = {
           inherit inputs;
           inherit userSettings;
@@ -83,7 +86,13 @@
     homeConfigurations = {
       wally = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./user/home.nix ];
+        modules = [
+          # Hyprland flake
+          inputs.hyprland.homeManagerModules.default
+
+          # Wally Home configurations
+          ./user/home.nix
+        ];
         extraSpecialArgs = {
           inherit inputs;
           inherit nixvim;

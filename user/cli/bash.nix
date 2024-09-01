@@ -45,13 +45,14 @@ in
     grep = "rg -i";
     du = "dust";
     ps = "procs";
+    cat = "bat";
     cat1 = "/run/current-system/sw/bin/cat";
     brc = "source ~/.bashrc";
     gping ="ping www.google.com";
     dcal = "date && cal -3";
     my_pub_ip = "curl icanhazip.com";
-    pdf = "evince";
-    img = "viewnior";
+    pdf = "zathura";
+    img = "loupe";
 
     # List dir
     tree = "eza --tree -a";
@@ -99,7 +100,9 @@ if [ -e /home/${userSettings.username}/.nix-profile/etc/profile.d/nix.sh ]; then
 start-wm
 
 # Prompt Aliases Custom for local & docker
-where-am-i
+macchina
+# Todo fix...
+# where-am-i
   ";
   programs.bash.historySize = 10000;
   programs.bash.shellOptions = [

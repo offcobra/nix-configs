@@ -21,11 +21,30 @@
   	    helm-ls.enable = true;
   	  };
       keymaps.lspBuf = {
-        "<leader>hd" = "definition";
-        "<leader>hD" = "references";
-        "<leader>ht" = "type_definition";
-        "<leader>hi" = "implementation";
-        "<leader>hh" = "hover";
+        "gd" = {
+          action = "definition";
+          desc = "Goto Definition";
+        };
+        "gr" = {
+          action = "references";
+          desc = "Goto reference";
+        };
+        "gD" = {
+          action = "declaration";
+          desc = "Goto Declaration";
+        };
+        "gT" = {
+          action = "type_definition";
+          desc = "Type Definition";
+        };
+        "gI" = {
+          action = "implementation";
+          desc = "Goto Implementation";
+        };
+        "H" = {
+          action = "hover";
+          desc = "Hover";
+        };
       };
     };
 

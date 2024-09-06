@@ -3,7 +3,7 @@
 let
   update_cmd = if (userSettings.username == "wally")
       then "flatpak update -y && os_rebuild && hm_rebuild && nix_clean"
-      else "sudo pacman -Syyu && nh home switch --update";
+      else "sudo pacman -Syyu && nh home switch --update && nix_clean";
   keep = if (userSettings.username == "wally") then "3" else "2";
 in
 {
@@ -22,8 +22,6 @@ in
     ./tmux.nix
     # NixVim
     ./nvim
-    # Dev Tools
-    ./dev-tools.nix
     # zoxide configs
     ./zoxide.nix
     # Scripts
@@ -69,10 +67,6 @@ in
     gc = "git checkout";
     dog = "git log --oneline --graph --decorate --all";
     git_clean = "git remote update origin --prune";
-
-    # alacritty Config keybinding for wsl
-    term-conf="vim /mnt/c/Users/${userSettings.username}/AppData/Roaming/Alacritty/alacritty.toml";
-    glaze="vim /mnt/c/Users/${userSettings.username}/AppData/Roaming/Alacritty/glazewm.yaml";
 
     # Nixos Rebuild
     os_rebuild="nh os switch --update --ask";

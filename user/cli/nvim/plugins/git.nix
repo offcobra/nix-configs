@@ -24,9 +24,30 @@
 
     # git blame tool
     gitsigns = {
+      enable = true;
       settings = {
         current_line_blame = true;
         trouble = true;
+        signs = {
+          add = {
+            text = "│";
+          };
+          change = {
+            text = "│";
+          };
+          delete = {
+            text = "_";
+          };
+          topdelete = {
+            text = "‾";
+          };
+          changedelete = {
+            text = "~";
+          };
+          untracked = {
+            text = "│";
+          };
+        };
       };
     };
   };

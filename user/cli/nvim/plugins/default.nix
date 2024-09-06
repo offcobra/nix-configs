@@ -69,20 +69,23 @@
     # autopair for coding
     nvim-autopairs.enable = true;
 
+    # Colorizer
+    nvim-colorizer.enable = true;
+
     # Obsidian
-    obsidian = {
-      enable = true;
-      settings = {
-        completion = {
-          min_chars = 2;
-          nvim_comp = true;
-        };
-        workspaces = [{
-          name = "2.Brain";
-          path = "~/projects/2.Brain";
-        }];
-      };
-    };
+    #obsidian = {
+    #  enable = true;
+    #  settings = {
+    #    completion = {
+    #      min_chars = 2;
+    #      nvim_comp = true;
+    #    };
+    #    workspaces = [{
+    #      name = "2.Brain";
+    #      path = "~/projects/2.Brain";
+    #    }];
+    #  };
+    #};
 
     # Ollama Ai
     ollama = {
@@ -94,7 +97,11 @@
     project-nvim = {
       enable = true;
       enableTelescope = true;
+      settings.scope_chdir = "win";
     };
+
+    # Surround
+    surround.enable = true;
 
     # Todo-Comments
     todo-comments.enable = true;

@@ -22,6 +22,33 @@
          silent = true;
        };
      }
+    {
+      mode = "n";
+      key = "<leader>gB";
+      action = ":Gitsigns blame_line<CR>";
+      options = {
+        silent = true;
+        desc = "Blame line";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>gr";
+      action = ":Gitsigns reset_buffer<CR>";
+      options = {
+        silent = true;
+        desc = "Reset Buffer";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>gs";
+      action = ":Gitsigns stage_buffer<CR>";
+      options = {
+        silent = true;
+        desc = "Stage Buffer";
+      };
+    }
 
      # Dashboard
      {
@@ -78,7 +105,7 @@
        };
      }
      {
-       mode = "n";
+       mode = [ "n" "t" ];
        action = "<cmd>ZenMode<CR>";
        key = "<leader>tz";
        options = {
@@ -88,7 +115,7 @@
 
      # ToggleTerm Keys
      {
-       mode = "n";
+       mode = [ "n" "t" ];
        action = "<cmd>ToggleTerm size=15 direction=horizontal name=term-vertical<CR>";
        key = "<leader>tv";
        options = {
@@ -96,7 +123,7 @@
        };
      }
      {
-       mode = "n";
+       mode = [ "n" "t" ];
        action = "<cmd>ToggleTerm size=120 direction=vertical name=term-horizontal<CR>";
        key = "<leader>th";
        options = {
@@ -104,7 +131,7 @@
        };
      }
      {
-       mode = "n";
+       mode = [ "n" "t" ];
        action = "<cmd>ToggleTerm direction=float name=term-float<CR>";
        key = "<leader>tf";
        options = {
@@ -114,7 +141,7 @@
      {
        mode = "t";
        action = "<C-\\><C-n>";
-       key = "<esc>";
+       key = "<esc><esc>";
        options = {
          silent = true;
        };
@@ -204,18 +231,22 @@
 
      # Navigation cammands
      {
+       mode = [ "n" "t" ];
        action = "<cmd>:wincmd h<CR>";
        key = "<leader>wh";
      }
      {
+       mode = [ "n" "t" ];
        action = "<cmd>:wincmd j<CR>";
        key = "<leader>wj";
      }
      {
+       mode = [ "n" "t" ];
        action = "<cmd>:wincmd k<CR>";
        key = "<leader>wk";
      }
      {
+       mode = [ "n" "t" ];
        action = "<cmd>:wincmd l<CR>";
        key = "<leader>wl";
      }
@@ -231,8 +262,17 @@
        action = "<cmd>:wincmd n<CR>";
        key = "<leader>wn";
      }
+
+     # Todo work file
      {
-       action = "<cmd>:wincmd wq<CR>";
+       action = "<cmd>edit ~/work_todo.txt<CR>";
+       key = "<leader>tw";
+     }
+
+     # Quit nvim
+     {
+       mode = [ "n" "t" ];
+       action = "<cmd>quit<CR>";
        key = "<leader>q";
      }];
   };

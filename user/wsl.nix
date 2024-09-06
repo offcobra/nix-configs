@@ -1,4 +1,4 @@
-{ config, pkgs, nixvim, nix-colors, userSettings, ... }:
+{ pkgs, nixvim, nix-colors, userSettings, ... }:
 
 {
   imports =
@@ -8,10 +8,8 @@
       nixvim.homeManagerModules.nixvim
       # Bash Config
       ./cli/bash.nix
-      # Gtk Themes
-      ./theme.nix
-      # Alacritty Config
-      ./apps/alacritty.nix
+      # Dev Tools
+      ./cli/dev-tools.nix
     ];
   colorScheme = nix-colors.colorSchemes.${userSettings.colorTheme};
 
@@ -28,22 +26,11 @@
 
   # environment.
   home.packages = with pkgs; [
-    dconf
     (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
   ];
 
-  # XDG Files to be linked
-  xdg.configFile = {
-    "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
-    "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
-    "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
-  };
-
   # Linking Home Files
   home.file = {
-    ".icons/BeautyLine".source = "${pkgs.beauty-line-icon-theme}/share/icons/Beautyline";
-    ".themes/Catppuccin-Frappe-Standard-Blue-Dark".source = "${pkgs.catppuccin-gtk}/share/themes/Catppuccin-Frappe-Standard-Blue-Dark";
-    ".themes/Dracula".source = "${pkgs.dracula-theme}/share/themes/Dracula";
     ".local/share/fonts".source = "${pkgs.fira-code-nerdfont}/share/fonts/truetype/NerdFonts";
   };
 
@@ -60,8 +47,6 @@
     LANGUAGE="en_US.UTF-8";
   };
 
-
-
   # SessionPath
   home.sessionPath = [
     "$HOME/.local/bin"
@@ -76,12 +61,3 @@
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
 }
-
-
-# A small Doc for the wsl install
-# - install nerd fonts & alacritty
-# - install openssh git nix
-# - clone dotfiles repo
-# - nix install home-manager nix-command flakes
-# - fix username conflics
-# git config --local status.showUntrackedFiles no

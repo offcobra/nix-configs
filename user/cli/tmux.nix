@@ -4,7 +4,6 @@
   # tmux Configs
   programs.tmux = {
     enable = true;
-    terminal = "screen-256color";
     historyLimit = 10000;
     plugins = with pkgs; [
       {
@@ -35,6 +34,7 @@
 	  }
       tmuxPlugins.better-mouse-mode
     ];
+      #set -g default-terminal 'xterm-256color'
     extraConfig = "
       set-option -g prefix M-f
 
@@ -43,8 +43,10 @@
 
       set-window-option -g mode-keys vi
 
-      set -g default-terminal 'screen-256color'
-      set-option -ga terminal-overrides ',screen-256color:Tc'
+      set -s escape-time 0
+
+      set-option -g default-terminal 'screen-256color'
+      set-option -ga terminal-overrides ',xterm-256color:RGB'
 
       set -g mouse on
 

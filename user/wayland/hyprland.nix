@@ -305,7 +305,18 @@ in
       bindm = SUPER, mouse:272, movewindow
       bindm = SUPER, mouse:273, resizewindow
 
-      # Defining SUBMAPS
+      # Defining SUBMAPS / Keychords
+
+      # Resize Window
+      bind = ALT, R, submap, resize
+      submap = resize
+      binde = , L, resizeactive, 10 0
+      binde = , H, resizeactive, -10 0
+      binde = , K, resizeactive, 0 -10
+      binde = , J, resizeactive, 0 10
+      bind = , escape, submap, reset
+      submap = reset
+
       # BROWSERS
       bind = SUPER, B, submap, browsers
       submap = browsers
@@ -321,6 +332,7 @@ in
       bind = ,O, submap, reset
       bind = ,Z, exec, flatpak run io.github.zen_browser.zen
       bind = ,Z, submap, reset
+      bind = , escape, submap, reset
       submap = reset
 
       # EMACS
@@ -340,6 +352,7 @@ in
       bind = ,D, submap, reset
       bind = ,T, exec, emacsclient -c -a 'emacs' --eval '(+vterm/here nil)'
       bind = ,T, submap, reset
+      bind = , escape, submap, reset
       submap = reset
 
       # PROGRAMMS
@@ -365,6 +378,7 @@ in
       bind = ,O, submap, reset
       bind = ,Y, exec, freetube
       bind = ,Y, submap, reset
+      bind = , escape, submap, reset
       submap = reset
 
       # CRYPTO STUFF
@@ -378,6 +392,7 @@ in
       bind = ,P, submap, reset
       bind = ,E, exec, exodus
       bind = ,E, submap, reset
+      bind = , escape, submap, reset
       submap = reset
 
       # TOGGLE STUFF
@@ -399,6 +414,7 @@ in
       bind = ,F, submap, reset
       bind = ,W, exec, screen-work.sh
       bind = ,W, submap, reset
+      bind = , escape, submap, reset
       submap = reset
 
       # VIRTUALIZATION
@@ -431,6 +447,7 @@ in
       #bind = ,R, exec, remmina -c .local/share/remmina/group_rdp_win11_192-168-122-167.remmina #GTK_THEME=Dracula remmina
       bind = ,R, exec, xfreerdp -grab-keyboard /v:192.168.122.167 /u:Quickemu /p:scrima /size:100% /dynamic-resolution /gfx:avc444 /gfx:progressive=true
       bind = ,R, submap, reset
+      bind = , escape, submap, reset
       submap = reset
 
       # CHAT ing...
@@ -442,6 +459,7 @@ in
       bind = ,W, submap, reset
       bind = ,S, exec, flatpak run org.signal.Signal
       bind = ,S, submap, reset
+      bind = , escape, submap, reset
       submap = reset
 
       # Setting Programm opacity

@@ -2,6 +2,8 @@
 
 {
   # List of Themes
+
+  # Gtk Config
   gtk = {
     enable = true;
     theme = {
@@ -18,6 +20,17 @@
     };
   };
 
+  # Qt Configs
+  qt = {
+    enable = true;
+    platformTheme = "gtk";
+    style = {
+      name = "adwaita-dark";
+      package = pkgs.adwaita-qt;
+    };
+  };
+
+  # Mouse Pointer Configs
   home.pointerCursor = {
     x11.enable = true;
     gtk.enable = true;

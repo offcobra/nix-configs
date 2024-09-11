@@ -10,7 +10,7 @@
       ./wayland/hyprland.nix
       ./x11/qtile.nix
       # Bash Config
-      ./cli/bash.nix
+      ./cli/shell.nix
       # Gtk Themes
       ./theme.nix
       # Applications

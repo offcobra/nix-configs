@@ -32,18 +32,11 @@
     #ghc
     # Rust + Programs
     #rustup
-    gcc
+    #gcc
     bottom
     macchina
     # git stuff
     git-filter-repo
-
-    # Python
-    (python3.withPackages (ps: [
-      ps.pip ps.psutil ps.qtile
-    ]))
-    jq
-    pylint
 
     # Shell Scripts
     (writeShellScriptBin "airplane-mode" ''
@@ -75,9 +68,6 @@
         set hlsearch
         set autoindent
         set number relativenumber
-        " Dracula Colors
-        " packadd! dracula
-        " colorscheme dracula
       '';
     };
 

@@ -105,7 +105,7 @@
        };
      }
      {
-       mode = [ "n" "t" ];
+       mode = "n";
        action = "<cmd>ZenMode<CR>";
        key = "<leader>tz";
        options = {
@@ -115,7 +115,7 @@
 
      # ToggleTerm Keys
      {
-       mode = [ "n" "t" ];
+       mode = "n";
        action = "<cmd>ToggleTerm size=15 direction=horizontal name=term-vertical<CR>";
        key = "<leader>tv";
        options = {
@@ -123,17 +123,25 @@
        };
      }
      {
-       mode = [ "n" "t" ];
-       action = "<cmd>ToggleTerm size=120 direction=vertical name=term-horizontal<CR>";
+       mode = "n";
+       action = "<cmd>ToggleTerm size=150 direction=vertical name=term-horizontal<CR>";
        key = "<leader>th";
        options = {
          silent = true;
        };
      }
      {
-       mode = [ "n" "t" ];
+       mode = "n";
        action = "<cmd>ToggleTerm direction=float name=term-float<CR>";
        key = "<leader>tf";
+       options = {
+         silent = true;
+       };
+     }
+     {
+       mode = "n";
+       action = "<cmd>ToggleTerm direction=tab name=term-tab<CR>";
+       key = "<leader>tt";
        options = {
          silent = true;
        };
@@ -231,22 +239,22 @@
 
      # Navigation cammands
      {
-       mode = [ "n" "t" ];
+       mode = "n";
        action = "<cmd>:wincmd h<CR>";
        key = "<leader>wh";
      }
      {
-       mode = [ "n" "t" ];
+       mode = "n";
        action = "<cmd>:wincmd j<CR>";
        key = "<leader>wj";
      }
      {
-       mode = [ "n" "t" ];
+       mode = "n";
        action = "<cmd>:wincmd k<CR>";
        key = "<leader>wk";
      }
      {
-       mode = [ "n" "t" ];
+       mode = "n";
        action = "<cmd>:wincmd l<CR>";
        key = "<leader>wl";
      }
@@ -271,7 +279,7 @@
 
      # Quit nvim
      {
-       mode = [ "n" "t" ];
+       mode = "n";
        action = "<cmd>quit<CR>";
        key = "<leader>q";
      }];

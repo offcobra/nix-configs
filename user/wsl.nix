@@ -7,17 +7,11 @@
       # Import Nixvim
       nixvim.homeManagerModules.nixvim
       # Bash Config
-      ./cli/bash.nix
+      ./cli/shell.nix
       # Dev Tools
       ./cli/dev-tools.nix
     ];
   colorScheme = nix-colors.colorSchemes.${userSettings.colorTheme};
-
-  # Bash aliases
-  programs.bash.shellAliases = {
-    hashi = "ssh paul@10.222.48.30";
-  };
-
 
   # Home Manager
   home.username = "${userSettings.username}";

@@ -22,6 +22,7 @@
             "^venv/"
             "^.thunderbird/"
             "^.kube/"
+            "^.var/"
           ];
         };
       };

@@ -112,6 +112,14 @@
          silent = true;
        };
      }
+     {
+       mode = "n";
+       action = "<cmd>Markview<CR>";
+       key = "<leader>tm";
+       options = {
+         silent = true;
+       };
+     }
 
      # ToggleTerm Keys
      {
@@ -183,6 +191,36 @@
      {
        action = "<cmd>Telescope yank_history<CR>";
        key = "<leader>fv";
+     }
+
+     # Obsidian
+     {
+       action = "<cmd>ObsidianNew<CR>";
+       key = "<leader>on";
+     }
+     {
+       action = "<cmd>ObsidianSearch<CR>";
+       key = "<leader>os";
+     }
+     {
+       action = "<cmd>ObsidianLink<CR>";
+       key = "<leader>oL";
+     }
+     {
+       action = "<cmd>ObsidianLinks<CR>";
+       key = "<leader>ol";
+     }
+     {
+       action = "<cmd>ObsidianBacklinks<CR>";
+       key = "<leader>ob";
+     }
+     {
+       action = "<cmd>ObsidianTags<CR>";
+       key = "<leader>ot";
+     }
+     {
+       action = "<cmd>ObsidianRename<CR>";
+       key = "<leader>or";
      }
 
      # Oil dired
@@ -273,7 +311,7 @@
 
      # Todo work file
      {
-       action = "<cmd>edit ~/work_todo.txt<CR>";
+       action = "<cmd>edit ~/obsidian/notes/work.md<CR>";
        key = "<leader>tw";
      }
 

@@ -28,6 +28,8 @@
       number = true;
       #relativnumber = true;
 
+      conceallevel = 1;
+
       ignorecase = true;
       smartcase = true;
 

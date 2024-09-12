@@ -19,6 +19,7 @@
   	    lua-ls.enable = true;
   	    nixd.enable = true;
   	    helm-ls.enable = true;
+        marksman.enable = true;
   	  };
       keymaps.lspBuf = {
         "gd" = {

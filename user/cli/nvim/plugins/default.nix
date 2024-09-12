@@ -35,7 +35,7 @@
     bufferline.enable = true;
 
     # Highlights for markdown / org files
-    headlines.enable = true;
+    #headlines.enable = true;
 
     # smart indent on Blankline
     indent-blankline = {
@@ -53,6 +53,9 @@
 
     # nvim StatusLine
     lualine.enable = true;
+
+    # markdown viewer
+    markview.enable = true;
 
     # nix Support
     nix.enable = true;
@@ -73,19 +76,18 @@
     nvim-colorizer.enable = true;
 
     # Obsidian
-    #obsidian = {
-    #  enable = true;
-    #  settings = {
-    #    completion = {
-    #      min_chars = 2;
-    #      nvim_comp = true;
-    #    };
-    #    workspaces = [{
-    #      name = "2.Brain";
-    #      path = "~/projects/2.Brain";
-    #    }];
-    #  };
-    #};
+    obsidian = {
+      enable = true;
+      settings = {
+        completion = {
+          min_chars = 2;
+          nvim_comp = true;
+        };
+        dir = "/home/ppuscasu/obsidian";
+        notes_subdir = "notes";
+        new_notes_location = "notes_subdir";
+      };
+    };
 
     # Ollama Ai
     ollama = {

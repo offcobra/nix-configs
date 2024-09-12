@@ -21,6 +21,7 @@
             "mySpace"
             "^venv/"
             "^.thunderbird/"
+            "^.kube/"
           ];
         };
       };

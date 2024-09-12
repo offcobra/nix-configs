@@ -38,19 +38,19 @@ keybindings = [
 # BASIC KEYBINDINGS
 # Def my own Keybinding
 
-    Key([mod], "Return", lazy.spawn("alacritty"), desc="Alacritty with bash shell"),
-    Key(["control"], "Return", lazy.spawn("kitty"), desc="Kitty Term with bash"),
+    Key([mod], "Return", lazy.spawn("kitty"), desc="Kitty with bash shell"),
+    Key(["control"], "Return", lazy.spawn("alacritty"), desc="Kitty Term with bash"),
 
     Key([mod], "p", lazy.spawn("rofi -show run"), desc="Programm Launcher"),
-    Key([mod, "shift"], "p", lazy.spawn("./websearch.py"), desc="Websearch Script"),
-    Key([mod], "o", lazy.spawn("alacritty --class ollama --title Ollama -e ollama run llama3.1"), desc="Ollama AI"),
+    Key([mod, "shift"], "p", lazy.spawn("websearch.py"), desc="Websearch Script"),
+    Key([mod], "o", lazy.spawn("kitty --class ollama --title Ollama -e ollama run llama3.1"), desc="Ollama AI"),
 
     Key(["control"], "p", lazy.spawn("copyq show"), desc="Toggle Qtile Bar"),
 
     Key([mod, "shift"], "b", lazy.hide_show_bar("top"), desc="Toggle Qtile Bar"),
 
     Key([mod], "f", lazy.spawn("pcmanfm"), desc="File Manager"),
-    Key([mod], "s", lazy.spawn("alacritty -e btm"), desc="Fancy System Monitor"),
+    Key([mod], "s", lazy.spawn("kitty -e btm"), desc="Fancy System Monitor"),
     Key([mod], "z", lazy.spawn("archlinux-logout"), desc="Logout / Restart / Shutdown"),
     Key([mod], "w", lazy.widget["widgetbox"].toggle(), desc="Toggle the WidgetBox"),
     Key([mod], "x", lazy.spawn('flameshot gui'), desc="Start screen snipped"),
@@ -126,6 +126,8 @@ keybindings = [
 
     Key([], "xf86MonBrightnessDown", lazy.spawn('light -U 5'), desc="Lower Light..."),
     Key([], "xf86MonBrightnessUp", lazy.spawn('light -A 5'), desc="Raise Light..."),
+
+    Key([], "xf86Messenger", lazy.spawn('show-info.sh'), desc="Show Battery Info..."),
 
 # KEYCHORD BINDINGS
 # Basic Commands

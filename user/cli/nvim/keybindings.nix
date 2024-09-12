@@ -1,5 +1,8 @@
-{ userSettings, ... }:
+{ userSettings, systemSettings, ... }:
 
+let
+  term_size = if (systemSettings.hostname == "thinkpad") then "120" else "150";
+in
 {
   # nvim Keybindings
   programs.nixvim = {
@@ -132,7 +135,7 @@
      }
      {
        mode = "n";
-       action = "<cmd>ToggleTerm size=150 direction=vertical name=term-horizontal<CR>";
+       action = "<cmd>ToggleTerm size=${term_size} direction=vertical name=term-horizontal<CR>";
        key = "<leader>th";
        options = {
          silent = true;

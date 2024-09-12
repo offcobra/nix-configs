@@ -1,4 +1,4 @@
-{ ... }:
+{ userSettings, ... }:
 
 {
   imports = [
@@ -83,7 +83,7 @@
           min_chars = 2;
           nvim_comp = true;
         };
-        dir = "/home/ppuscasu/obsidian";
+        dir = "/home/${userSettings.username}/obsidian";
         notes_subdir = "notes";
         new_notes_location = "notes_subdir";
       };

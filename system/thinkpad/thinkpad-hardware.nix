@@ -24,6 +24,13 @@
     };
   };
 
+  # Enable OpenGL
+  hardware.graphics = {
+    enable = true;
+    extraPackages = [
+      pkgs.vpl-gpu-rt
+    ];
+  };
 
   # Bluetooth
   hardware.bluetooth = {

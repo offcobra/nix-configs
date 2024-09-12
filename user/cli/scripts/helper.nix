@@ -13,6 +13,9 @@
 
     # Hyprland kill Script
     ./kill_hyprland.nix
+
+    # Show Time / Battery Info
+    ./show_info.nix
   ];
 
   home.packages = with pkgs; [

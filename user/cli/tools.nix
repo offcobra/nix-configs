@@ -8,11 +8,9 @@
     fd
     eza
     procs
-    zoxide
     lolcat
     du-dust
     ripgrep
-    starship
     # More tools
     htop
     tealdeer
@@ -22,35 +20,21 @@
     ventoy
     pciutils
     copyq
+    bottom
+    macchina
     # cli tools
     cloc
     distrobox
     k3d
     dysk
     unzip
-    # Haskell
-    #ghc
-    # Rust + Programs
-    #rustup
-    #gcc
-    bottom
-    macchina
-    # git stuff
     git-filter-repo
 
-    # Shell Scripts
-    (writeShellScriptBin "airplane-mode" ''
-      #!/bin/sh
-      connectivity="$(nmcli n connectivity)"
-      if [ "$connectivity" == "full" ]
-      then
-          notify-send -t 2000 "Network Status" "[CRITICAL] Airplane Mode: ON !!!"
-          nmcli n off
-      else
-          notify-send -t 2000 "Network Status" "[CRITICAL] Airplane Mode: OFF !!!"
-          nmcli n on
-      fi
-    '')
+    # Programming languages
+    # Haskell / C++ / Rust
+    #ghc
+    #rustup
+    #gcc
   ];
 
   programs = {
@@ -85,6 +69,11 @@
         pager = "less -FR";
         theme = "Dracula";
       };
+      extraPackages = with pkgs.bat-extras; [
+        batdiff
+        batman
+        batwatch
+      ];
     };
   };
 }

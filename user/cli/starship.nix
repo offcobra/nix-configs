@@ -5,12 +5,14 @@
   programs.starship = {
     enable = true;
     enableBashIntegration = true;
+    enableFishIntegration = true;
     settings = {
       add_newline = true;
       format = lib.concatStrings [
         "$git_branch"
         "$git_state"
         "$git_status"
+        "$os"
         "$cmd_duration"
         "$line_break"
         "$python"
@@ -20,8 +22,8 @@
       ];
       os = {
         disabled = false;
-        format = " ";
-        style = "blue";
+        format = "[#------------>   <------------#]($style)";
+        style = "bright-black";
       };
       directory = {
         style = "blue";
@@ -71,7 +73,7 @@
       docker_context = {
         symbol = " ";
         style = "yellow";
-        #format = '[ $symbol ]($style)'
+        format = "[ $symbol ]($style)";
         detect_files = ["docker-compose.yaml" "docker-compose.yml" "Dockerfile"];
       };
 

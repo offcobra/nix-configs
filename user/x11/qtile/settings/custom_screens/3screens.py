@@ -59,7 +59,7 @@ for i in def_groups:
         Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
     ])
 
-TERM = "alacritty"
+TERM = "kitty"
 
 # Testing Scratchpads
 def_groups.extend([

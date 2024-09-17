@@ -38,7 +38,7 @@ keybindings = [
 # BASIC KEYBINDINGS
 # Def my own Keybinding
 
-    Key([mod], "Return", lazy.spawn("kitty"), desc="Kitty with bash shell"),
+    Key([mod], "Return", lazy.spawn("kitty -e fish"), desc="Kitty with bash shell"),
     Key(["control"], "Return", lazy.spawn("alacritty"), desc="Kitty Term with bash"),
 
     Key([mod], "p", lazy.spawn("rofi -show run"), desc="Programm Launcher"),
@@ -110,14 +110,14 @@ keybindings = [
         ),
 
     # MOVE WINDOWS left / right & up / down
-    Key([mod, "control"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
-    Key([mod, "control"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
-    Key([mod, "control"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
-    Key([mod, "control"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+    Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
+    Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
 
     # MOVE WINDOW TO NEXT SCREEN
-    Key([mod,"shift"], "l", lazy.function(window_to_next_group)),
-    Key([mod,"shift"], "h", lazy.function(window_to_previous_group)),
+    #Key([mod,"shift"], "l", lazy.function(window_to_next_group)),
+    #Key([mod,"shift"], "h", lazy.function(window_to_previous_group)),
 
 
     Key([], "xf86audioraisevolume", lazy.spawn('amixer sset Master 5%+'), desc="Raise Volume..."),

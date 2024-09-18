@@ -103,7 +103,7 @@
     };
 
     # Surround
-    surround.enable = true;
+    vim-surround.enable = true;
 
     # Todo-Comments
     todo-comments.enable = true;

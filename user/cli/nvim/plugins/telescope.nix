@@ -41,7 +41,7 @@
             };
             mappings.i = {
               "<C-c>" = "require('telescope._extensions.file_browser.actions').create";
-	  	    "<C-C>" = "require('telescope._extensions.file_browser.actions').create_from_prompt";
+	  	      "<C-C>" = "require('telescope._extensions.file_browser.actions').create_from_prompt";
               "<C-r>" = "require('telescope._extensions.file_browser.actions').rename";
               "<C-m>" = "require('telescope._extensions.file_browser.actions').move";
               "<C-y>" = "require('telescope._extensions.file_browser.actions').copy";
@@ -58,8 +58,8 @@
               "<bs>" = "require('telescope._extensions.file_browser.actions').backspace";
             };
             mappings.n = {
-	  	    "C" = "require('telescope._extensions.file_browser.actions').create_from_prompt";
-	  	    "c" = "require('telescope._extensions.file_browser.actions').create";
+	  	      "C" = "require('telescope._extensions.file_browser.actions').create_from_prompt";
+	  	      "c" = "require('telescope._extensions.file_browser.actions').create";
               "r" = "require('telescope._extensions.file_browser.actions').rename";
               "m" = "require('telescope._extensions.file_browser.actions').move";
               "y" = "require('telescope._extensions.file_browser.actions').copy";

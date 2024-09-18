@@ -82,6 +82,7 @@ hm_rebuild    # -> For rebuilding Home-Manager configs
 (In no particular Order...)
 
     - LibrePhoenix: https://github.com/librephoenix/nixos-config
+    - Vimjoyer
     - Titus tech
     - Distrotube
 

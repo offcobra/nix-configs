@@ -1,26 +1,13 @@
 { pkgs, userSettings, ... }:
 
-{
-  # List of secondary Applications
-  home.packages = with pkgs; [
-
-    # Container tools
-    kubectl
-    #k9s
-    helm
-    podman
-
-    # Network
-    nmap
-    rustscan
-    dig
-  ];
-
-  # Bash Aliases for work
-  programs.bash.shellAliases = {
+let
+  dev-aliases = {
     # Alacritty Config keybinding for wsl
     term-conf="vim /mnt/c/Users/${userSettings.username}/AppData/Roaming/Alacritty/alacritty.toml";
     glaze="vim /mnt/c/Users/${userSettings.username}/AppData/Roaming/Alacritty/glazewm.yaml";
+
+    # python json parser
+    boom = "python -m json.tool";
 
     # Kubectl Aliases
     tk = "kubectl --kubeconfig ~/projects/devops/kubectl_config/test.yaml";
@@ -42,11 +29,42 @@
     k_clean_staging = "sk delete pods --field-selector status.phase=Failed --all-namespaces";
     k_clean_production = "pk delete pods --field-selector status.phase=Failed --all-namespaces";
 
-    # k9s
+    # k9s kube top tool
     tk9 = "k9s --kubeconfig ~/projects/devops/kubectl_config/test.yaml -A";
     sk9 = "k9s --kubeconfig ~/projects/devops/kubectl_config/staging.yaml -A";
     pk9 = "k9s --kubeconfig ~/projects/devops/kubectl_config/production.yaml -A";
   };
+in
+{
+  # List of secondary Applications
+  home.packages = with pkgs; [
+    # Python
+    (python3.withPackages (ps: [
+      ps.pip
+      ps.pylint
+    ]))
+
+    # Java shit...
+    jdk17
+    maven
+
+    # SNMP
+    net-snmp
+
+    # Container tools
+    kubectl
+    helm
+    podman
+
+    # Network
+    nmap
+    rustscan
+    dig
+  ];
+
+  # Shell Aliases for work
+  programs.bash.shellAliases = dev-aliases;
+  programs.fish.shellAliases = dev-aliases;
 
   # K9s Config
   programs.k9s = {

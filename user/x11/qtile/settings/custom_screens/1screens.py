@@ -54,7 +54,8 @@ for i in def_groups:
         Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
     ])
 
-TERM = "alacritty --config-file /home/wally/.config/alacritty/alacritty_scratchpad.yml"
+#TERM = "alacritty --config-file /home/wally/.config/alacritty/alacritty_scratchpad.yml"
+TERM = "kitty"
 
 def window_to_previous_group(qtile):
     ''' Window to previous Group '''

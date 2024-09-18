@@ -288,7 +288,10 @@ in
         ", xf86audioraisevolume, exec, amixer sset Master 5%+"
         ", xf86audiolowervolume, exec, amixer sset Master 5%-"
         ", xf86audiomute, exec, amixer sset Master 0"
-        ", xf86Messenger, exec, show_info"
+
+        # Misc...
+        # TODO add airplane-mode Key
+        ", xf86Messenger, exec, show-info.sh"
 
         # Brightness controls
         ", xf86MonBrightnessDown, exec, light -U 5"

@@ -19,6 +19,9 @@
       ./helper/locales.nix
     ];
 
+  # Env Variablen
+  environment.sessionVariables.WINIT_HIDPI_FACTOR = "1";
+
   # Enable networking
   networking = {
     hostName = "thinkpad"; # Define your hostname.

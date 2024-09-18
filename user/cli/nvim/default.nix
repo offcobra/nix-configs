@@ -28,6 +28,10 @@
       number = true;
       #relativnumber = true;
 
+      mouse = "r";
+
+      conceallevel = 1;
+
       ignorecase = true;
       smartcase = true;
 

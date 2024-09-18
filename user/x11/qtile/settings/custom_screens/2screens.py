@@ -76,8 +76,7 @@ def window_to_next_group(qtile):
         else:
             qtile.current_window.togroup(qtile.groups[index + 1].name)
 
-
-TERM = "alacritty --config-file /home/wally/.config/alacritty/alacritty_scratchpad.yml"
+TERM = "kitty"
 
 # Testing Scratchpads
 def_groups.extend([

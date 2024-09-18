@@ -1,5 +1,8 @@
-{ userSettings, ... }:
+{ userSettings, systemSettings, ... }:
 
+let
+  term_size = if (systemSettings.hostname == "thinkpad") then "120" else "150";
+in
 {
   # nvim Keybindings
   programs.nixvim = {
@@ -105,9 +108,17 @@
        };
      }
      {
-       mode = [ "n" "t" ];
+       mode = "n";
        action = "<cmd>ZenMode<CR>";
        key = "<leader>tz";
+       options = {
+         silent = true;
+       };
+     }
+     {
+       mode = "n";
+       action = "<cmd>Markview<CR>";
+       key = "<leader>tm";
        options = {
          silent = true;
        };
@@ -115,7 +126,7 @@
 
      # ToggleTerm Keys
      {
-       mode = [ "n" "t" ];
+       mode = "n";
        action = "<cmd>ToggleTerm size=15 direction=horizontal name=term-vertical<CR>";
        key = "<leader>tv";
        options = {
@@ -123,17 +134,25 @@
        };
      }
      {
-       mode = [ "n" "t" ];
-       action = "<cmd>ToggleTerm size=120 direction=vertical name=term-horizontal<CR>";
+       mode = "n";
+       action = "<cmd>ToggleTerm size=${term_size} direction=vertical name=term-horizontal<CR>";
        key = "<leader>th";
        options = {
          silent = true;
        };
      }
      {
-       mode = [ "n" "t" ];
+       mode = "n";
        action = "<cmd>ToggleTerm direction=float name=term-float<CR>";
        key = "<leader>tf";
+       options = {
+         silent = true;
+       };
+     }
+     {
+       mode = "n";
+       action = "<cmd>ToggleTerm direction=tab name=term-tab<CR>";
+       key = "<leader>tt";
        options = {
          silent = true;
        };
@@ -175,6 +194,36 @@
      {
        action = "<cmd>Telescope yank_history<CR>";
        key = "<leader>fv";
+     }
+
+     # Obsidian
+     {
+       action = "<cmd>ObsidianNew<CR>";
+       key = "<leader>on";
+     }
+     {
+       action = "<cmd>ObsidianSearch<CR>";
+       key = "<leader>os";
+     }
+     {
+       action = "<cmd>ObsidianLink<CR>";
+       key = "<leader>oL";
+     }
+     {
+       action = "<cmd>ObsidianLinks<CR>";
+       key = "<leader>ol";
+     }
+     {
+       action = "<cmd>ObsidianBacklinks<CR>";
+       key = "<leader>ob";
+     }
+     {
+       action = "<cmd>ObsidianTags<CR>";
+       key = "<leader>ot";
+     }
+     {
+       action = "<cmd>ObsidianRename<CR>";
+       key = "<leader>or";
      }
 
      # Oil dired
@@ -231,22 +280,22 @@
 
      # Navigation cammands
      {
-       mode = [ "n" "t" ];
+       mode = "n";
        action = "<cmd>:wincmd h<CR>";
        key = "<leader>wh";
      }
      {
-       mode = [ "n" "t" ];
+       mode = "n";
        action = "<cmd>:wincmd j<CR>";
        key = "<leader>wj";
      }
      {
-       mode = [ "n" "t" ];
+       mode = "n";
        action = "<cmd>:wincmd k<CR>";
        key = "<leader>wk";
      }
      {
-       mode = [ "n" "t" ];
+       mode = "n";
        action = "<cmd>:wincmd l<CR>";
        key = "<leader>wl";
      }
@@ -265,13 +314,13 @@
 
      # Todo work file
      {
-       action = "<cmd>edit ~/work_todo.txt<CR>";
+       action = "<cmd>edit ~/obsidian/notes/work.md<CR>";
        key = "<leader>tw";
      }
 
      # Quit nvim
      {
-       mode = [ "n" "t" ];
+       mode = "n";
        action = "<cmd>quit<CR>";
        key = "<leader>q";
      }];

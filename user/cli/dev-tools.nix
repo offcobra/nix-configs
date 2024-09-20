@@ -53,7 +53,7 @@ in
 
     # Container tools
     kubectl
-    helm
+    kubernetes-helm
     podman
 
     # Network

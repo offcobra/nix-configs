@@ -24,8 +24,6 @@
     macchina
     # cli tools
     cloc
-    distrobox
-    k3d
     dysk
     unzip
     git-filter-repo

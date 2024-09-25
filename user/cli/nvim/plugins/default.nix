@@ -141,14 +141,11 @@
       enableTelescope = true;
     };
 
+    # Web-devicons
+    web-devicons.enable = true;
+
     # PopUp to show keybindings
     which-key.enable = true;
-
-    # Menu for modes
-    wilder = {
-      enable = true;
-      modes = [ ":" "/" "?" ];
-    };
 
     # Zen mode
     zen-mode.enable = true;

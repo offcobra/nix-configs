@@ -33,6 +33,11 @@ let
     tk9 = "k9s --kubeconfig ~/projects/devops/kubectl_config/test.yaml -A";
     sk9 = "k9s --kubeconfig ~/projects/devops/kubectl_config/staging.yaml -A";
     pk9 = "k9s --kubeconfig ~/projects/devops/kubectl_config/production.yaml -A";
+
+    # Python env for testing
+    pa = ". ~/projects/devops/nexgen/venv/bin/activate";
+    pi = "source ~/projects/devops/nexgen_env.sh && pip install ~/projects/devops/nexgen/";
+    pai = "pa && pi";
   };
 in
 {
@@ -45,8 +50,8 @@ in
     ]))
 
     # Java shit...
-    jdk17
-    maven
+    #jdk17
+    #maven
 
     # SNMP
     net-snmp
@@ -55,6 +60,8 @@ in
     kubectl
     kubernetes-helm
     podman
+    k3d
+    distrobox
 
     # Network
     nmap

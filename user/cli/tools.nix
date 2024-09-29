@@ -3,32 +3,54 @@
 {
   # List of secondary Applications
   home.packages = with pkgs; [
+    # Nix helper
     nh
+
     # Rust cli tools
     fd
     eza
+    dysk
     procs
     lolcat
     du-dust
     ripgrep
-    # More tools
-    htop
     tealdeer
+
+    # Virt / Container tools
+    k3d
+    kubectl
+    distrobox
+    kubernetes-helm
+
+    # Network
+    dig
+    nmap
     curl
     wget
+    rustscan
+    traceroute
+
+    # More tools
+    htop
     killall
     ventoy
     pciutils
     copyq
     bottom
     macchina
+
     # cli tools
     cloc
-    dysk
     unzip
     git-filter-repo
 
     # Programming languages
+    # Python
+    (python3.withPackages (ps: [
+      ps.pip
+      ps.pylint
+    ]))
+
     # Haskell / C++ / Rust
     #ghc
     #rustup

@@ -3,14 +3,15 @@
 let
   # Python Script to run Distro Container
   container-run = pkgs.writers.writePython3Bin "container-run.py" { } /*python*/''
+    import argparse
     import os
     import subprocess
-    import sys
+
 
     PROGRAMMS = "git exa neofetch"
 
     # Define ENV Variables
-    env_type = os.environ['XDG_SESSION_TYPE']
+    env_type = os.environ["XDG_SESSION_TYPE"]
     if env_type == "wayland":
       DMENU = "fuzzel --dmenu"
       TERM = "foot"
@@ -18,50 +19,141 @@ let
       DMENU = "rofi --dmenu"
       TERM = "kitty"
 
+
     # Distros to run...
     DISTROS = {
-      "   Apps" = "apps",
-      "   Alpine" = "alpine",
-      "   Arch Linux" = "arch",
-      "   Artix" = "artix",
-      "   BlackArch" = "blackarch",
-      "   Debian" = "debian",
-      "   Fedora" = "fedora",
-      "   Kali Linux" = "kali",
-      "󰣭   Mint" = "mint",
-      "   NixOS" ="nixos",
-      "   OpenSuse" = "opensuse",
-      "   Parrot OS" = "parrot",
-      "   Rocky Linux" = "rocky",
-      "󰕈   Ubuntu" = "ubuntu",
-      "   VanilaOS" = "vanila",
-      "   Windows" = "win11",
-      "   ZorinOS" = "zorin",
+        "apps": "   Apps",
+        "alpine": "   Alpine",
+        "arch": "   Arch Linux",
+        "artix": "   Artix",
+        "blackarch": "   BlackArch",
+        "debian": "   Debian",
+        "fedora": "   Fedora",
+        "kali": "   Kali Linux",
+        "mint": "󰣭   Mint",
+        "nixos": "   NixOS",
+        "opensuse":"   OpenSuse",
+        "parrot": "   Parrot OS",
+        "rocky": "   Rocky Linux",
+        "ubuntu": "󰕈   Ubuntu",
+        "vanila": "   VanilaOS",
+        "win11": "   Windows",
+        "zorin": "   ZorinOS",
+    }
+
+
+    DISTRO_IMAGES = {
+        "alpine": "alpine:latest",
+        "arch": "archlinux:latest",
+        "blackarch": "blackarchlinux/blackarch",
+        "debian": "debian:latest",
+        "fedora": "fedora:latest",
+        "kali": "kalilinux/kali-rolling:latest ",
+        "opensuse":"opensuse/tumbleweed:latest",
+        "parrot": "parrotsec/security:latest",
+        "rocky": "rockylinux:latest",
+        "ubuntu": "ubuntu:latest",
     }
 
 
     def run_fuzzel(elem, cmd=DMENU):
       """ Function to run fuzzel... """
       output = subprocess.check_output(
-        f"echo '{elem}' | {cmd}", shell=True
+        f"echo "{elem}" | {cmd}", shell=True
         ).decode("utf-8").replace("\n", "")
       return output
 
+    def run_cmd(command, list=False):
+      """ Function to run fuzzel... """
+      output = subprocess.check_output(command, shell=True).decode("utf-8")#.replace("\n", "")
+      if not list:
+        return output.replace("\n", "")
+      return [elem for elem in output.split("\n") if elem != ""]
+
+    def send_notify(text, duration=2000):
+        """ Function to send notifications... """
+        run_cmd(f"notify-send -t {duration} "Virt-Manager" "{text}"")
+
+    def get_args():
+        """ Get cmd args... """
+        parser = argparse.ArgumentParser(description="Process virt-run args.")
+        parser.add_argument("--vms", type=str, help="VM options...")
+        parser.add_argument("--pods", type=str, help="Pods options...")
+        return parser.parse_args()
+
+    def run_vms(name=""):
+        """ Function to run vms """
+        if not run_cmd("systemctl is-active libvirtd") == "active":
+            run_cmd("systemctl start libvirtd")
+
+        vms = run_cmd("virsh list --all --name", list=True)
+        running = run_cmd("virsh list --all --name --state-running", list=True)
+
+        distros = {}
+        for vm in vms:
+            short = "".join([x for x in DISTROS.keys() if vm.startswith(x)])
+            if vm in running:
+                distros[vm] = DISTROS[short] + " "*10 + "=> # Running..."
+            else:
+                distros[vm] = DISTROS[short]
+
+        if name == "choice":
+            choice = run_fuzzel("\n".join(distros.values()))
+            vm_name = [k for k, v in distros.items() if v.startswith(choice)][0]
+        else:
+            vm_name = name
+
+        print(f"# => Start / Attach to VM {vm_name}")
+        send_notify(f"Starting / Attaching to {vm_name}...")
+        if not vm_name in vms and vm_name != "choice":
+            raise Exception(f"#=> No VM with name: {vm_name}...")
+
+        if not vm_name in running:
+            subprocess.run(f"virsh start "{vm_name}"", shell=True)
+
+        #time.sleep(3)
+        if vm_name == "win11":
+            subprocess.run("looking-glass-client", shell=True)
+        else:
+            subprocess.run(f"virt-viewer -a "{vm_name}" -f", shell=True)
+
+
+    def run_pods(name=""):
+        """ Function to run vms """
+        pods = run_cmd("podman ps --noheading", list=True)
+
+        available_distros = {}
+        for k, v in DISTROS.items():
+            if k in DISTRO_IMAGES.keys():
+                available_distros[k] = v
+
+        if name == "choice":
+            choice = run_fuzzel("\n".join(available_distros.values()))
+            try:
+                pod_name = [k for k, v in DISTROS.items() if v == choice][0]
+            except:
+                raise Exception(f"#=> Distro no supported...")
+        else:
+            pod_name = name
+
+        is_created = bool([line for line in pods if pod_name in line])
+
+        if not is_created:
+            run_cmd(f"{TERM} -e distrobox create --name {pod_name} --image {DISTRO_IMAGES[pod_name]} --pull")
+        run_cmd(f"{TERM} -e distrobox enter {pod_name}")
+
 
     def main():
-      """ Main Function """
-      if not sys.argv[1] in DISTROS.values():
-        raise Exception('Distro not defined... or unsupported!!!')
+        """ Main Function """
+        args = get_args()
 
-      search = "\n".join(DISTROS.keys())
-      distro = run_fuzzel(search)
+        if args.vms:
+            run_vms(args.vms)
 
+        if args.pods:
+            run_pods(args.pods)
 
-
-      subprocess.run([BROWSER, search_query], check=True)
-
-
-    if __name__ == '__main__':
+    if __name__ == "__main__":
         main()
     '';
 in

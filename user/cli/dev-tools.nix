@@ -43,30 +43,8 @@ in
 {
   # List of secondary Applications
   home.packages = with pkgs; [
-    # Python
-    (python3.withPackages (ps: [
-      ps.pip
-      ps.pylint
-    ]))
-
-    # Java shit...
-    #jdk17
-    #maven
-
     # SNMP
     net-snmp
-
-    # Container tools
-    kubectl
-    kubernetes-helm
-    podman
-    k3d
-    distrobox
-
-    # Network
-    nmap
-    rustscan
-    dig
   ];
 
   # Shell Aliases for work

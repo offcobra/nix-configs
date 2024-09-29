@@ -1,8 +1,9 @@
 { pkgs, systemSettings, ... }:
 
 let
-  rx580 = "1002:67df,1002:aaf0";
+  #rx580 = "1002:67df,1002:aaf0";
   #rx6700 = "1002:73df,1002:ab28";
+  rtx2080 = "10de:1e81,10de:10f8,10de:1ad8,10de:1ad9";
 in
 {
   # Grub Bootloader with vfio setup
@@ -17,13 +18,14 @@ in
 
     # Block primary GPU
     # lspci -nn
+    # Nvidia rtx 2080 SUPER: 01:00.[0 -> 3] => 10de:1e81,10de:10f8,10de:1ad8,10de:1ad9
     # AMD Radeon RX 580: 12:00.0 12:00.1 -> 1002:67df 1002:aaf0
     # AMD Radeon RX 6700: 03:00.0 03:00.1 -> 1002:73df 1002:ab28
     # Test: dmesg | grep -i vfio
 
     # 1. Version
-    kernelParams = [ "rd.driver.pre=vfio-pci" "amd_iommu=on" "iommu=pt" "video=efifb:off" "vfio-pci.ids=${rx580}" "hugepagesz=2M" "hugepages=8192" ];
-    extraModprobeConfig = "options vfio-pci ids=${rx580}";
+    kernelParams = [ "rd.driver.pre=vfio-pci" "amd_iommu=on" "iommu=pt" "video=efifb:off" "vfio-pci.ids=${rtx2080}" "hugepagesz=2M" "hugepages=8192" ];
+    extraModprobeConfig = "options vfio-pci ids=${rtx2080}";
 
     # 2. Version
     # If first dosnt succssed

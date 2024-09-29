@@ -1,4 +1,4 @@
-# System COnfiguration for MediaTv Laptop
+# System Configuration for MediaTv Laptop
 { pkgs, ... }:
 
 {
@@ -17,6 +17,8 @@
       ./helper/polkit.nix
       # Set Locales
       ./helper/locales.nix
+      # Virtualization Stuff...
+      ./helper/virtualization.nix
     ];
 
   # Enable networking
@@ -27,7 +29,6 @@
 
   # Services
   services.flatpak.enable = true;
-  #services.emacs.enable = true;
 
   # Enable sound.
   services.pipewire = {

@@ -5,9 +5,12 @@ let
   websearch-nix = pkgs.writers.writePython3Bin "websearch.py" { } /*python*/''
     import subprocess
 
-    # Define Variables
-    DMENU = "fuzzel --dmenu"
-    BROWSER = "qutebrowser"
+    # Define ENV Variables
+    env_type = os.environ['XDG_SESSION_TYPE']
+    if env_type == "wayland":
+      DMENU = "fuzzel --dmenu"
+    else:
+      DMENU = "rofi --dmenu"
 
     WEBSEARCH = {
         # Search Engines

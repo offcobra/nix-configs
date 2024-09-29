@@ -44,6 +44,8 @@
   # Services
   services.flatpak.enable = true;
   services.gvfs.enable = true;
+
+  # Emacs service
   #services.emacs.enable = true;
 
   # Enable sound.

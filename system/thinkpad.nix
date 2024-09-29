@@ -17,6 +17,8 @@
       ./helper/polkit.nix
       # Set Locales
       ./helper/locales.nix
+      # Virtualization Stuff...
+      ./helper/virtualization.nix
     ];
 
   # Env Variablen
@@ -28,15 +30,12 @@
     networkmanager.enable = true;
   };
 
-  virtualisation.docker.enable = true;
-  #virtualisation.podman.enable = true;
-
+  # Laptop Services
   programs.light.enable = true;
+  services.upower.enable = true;
 
   # Services
   services.flatpak.enable = true;
-  services.emacs.enable = true;
-  services.upower.enable = true;
 
   # Enable sound.
   services.pipewire = {

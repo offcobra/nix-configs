@@ -32,6 +32,9 @@ let
       flatpak run org.signal.Signal --start-in-tray &
       flatpak run io.github.mimbrero.WhatsAppDesktop --start-hidden &
 
+      echo "Starting sound Equilizer..."
+      flatpak run me.timschneeberger.jdsp4linux --tray
+
     elif [[ ${systemSettings.hostname} == "thinkpad" ]]
     then
       # Get Battery Notificaions
@@ -205,7 +208,7 @@ in
       "$mainMod" = "SUPER";
       bind = [
         # Terminals
-        "$mainMod, return, exec, alacritty"
+        "$mainMod, return, exec, alacritty -e fish"
         "CTRL, return, exec, foot"
 
         # Clipboard manager

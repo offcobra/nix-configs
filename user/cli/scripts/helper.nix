@@ -16,6 +16,9 @@
 
     # Show Time / Battery Info
     ./show_info.nix
+
+    # test...
+    #./container_run-test.nix
   ];
 
   home.packages = with pkgs; [

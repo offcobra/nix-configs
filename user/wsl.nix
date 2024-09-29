@@ -4,11 +4,16 @@
   imports =
     [ # Include other modules
       nix-colors.homeManagerModules.default
+
       # Import Nixvim
       nixvim.homeManagerModules.nixvim
+
       # Bash Config
       ./cli/shell.nix
+
       # Dev Tools
+      # Container tools like docker / podman
+      # need to be installed on the host distro...
       ./cli/dev-tools.nix
     ];
   colorScheme = nix-colors.colorSchemes.${userSettings.colorTheme};

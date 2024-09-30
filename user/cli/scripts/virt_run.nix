@@ -146,11 +146,11 @@ let
 
         send_notify(f"Starting / Attaching to {pod_name}...")
         if not is_created:
-            run_cmd(f"{TERM} -e \
+            run_cmd(f"{TERM} --title {pod_name} -e \
                 distrobox create --name {pod_name} \
                 --image {DISTRO_IMAGES[pod_name]} --pull"
                     )
-        run_cmd(f"{TERM} -e distrobox enter {pod_name}")
+        run_cmd(f"{TERM} --title {pod_name} -e distrobox enter {pod_name}")
 
 
     def main():
@@ -164,8 +164,25 @@ let
             run_pods(args.pods)
 
         if args.info:
-            # TODO implement for pretty print in waybar / qtile...
-            print("#=> It's working...")
+            vms = run_cmd("virsh list --state-running --name", list=True)
+            pods = run_cmd("podman ps --format \"{{.Image}}\"", list=True)
+
+            vm_icons = ""
+            pod_icons = ""
+
+            for vm in vms:
+                vm = vm.split("-<")[0]
+                vm_icons += f" {DISTROS[vm].split(" ")[0]}"
+
+            for key, value in DISTROS.items():
+                for pod in pods:
+                    if key in pod:
+                        pod_icons += f" {DISTROS[key].split(" ")[0]}"
+
+            if not vms and not pods:
+                print("")
+            else:
+                print(f"Vms:{vm_icons}  / Pods:{pod_icons}")
 
 
     if __name__ == "__main__":

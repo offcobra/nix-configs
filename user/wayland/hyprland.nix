@@ -215,8 +215,8 @@ in
         "CTRL, P, exec, copyq show"
 
         # Ollama AI Chat
-        "$mainMod, o, exec, alacritty --class ollama --title Ollama -e ollama run llama3.1"
-        "$mainMod_SHIFT, return, exec, bash /home/${userSettings.username}/.local/bin/container_run arch"
+        "$mainMod, o, exec, alacritty --class ollama --title Ollama -e ollama run llama3.2"
+        "$mainMod_SHIFT, return, exec, virt-run.py --pods arch"
 
         # Screenshot
         "$mainMod, x, exec, grim -g \"$(slurp -d)\""
@@ -426,7 +426,7 @@ in
       # VIRTUALIZATION
       bind = SUPER, V, submap, virtual
       submap = virtual
-      bind = ,V, exec, vms_run
+      bind = ,V, exec, virt-run.py --vms choice
       bind = ,V, submap, reset
       bind = ,M, exec, GTK_THEME=Dracula virt-manager
       bind = ,M, submap, reset
@@ -434,21 +434,15 @@ in
       bind = ,B, submap, reset
       bind = ,S, exec, stop_docker
       bind = ,S, submap, reset
-      bind = ,D, exec, container_run debian
+      bind = ,D, exec, virt-run.py --pods debian
       bind = ,D, submap, reset
-      bind = ,K, exec, container_run
+      bind = ,K, exec, virt-run.py --pods choice
       bind = ,K, submap, reset
-      bind = ,W, exec, looking-glass-client #vms_run win10
+      bind = ,W, exec, virt-run.py --vms win11
       bind = ,W, submap, reset
-      bind = ,A, exec, container_run apps
-      bind = ,A, submap, reset
-      bind = ,U, exec, container_run ubuntu
+      bind = ,U, exec, virt-run.py --pods ubuntu
       bind = ,U, submap, reset
-      bind = ,O, exec, container_run opensuse
-      bind = ,O, submap, reset
-      bind = ,P, exec, container_run parrot
-      bind = ,P, submap, reset
-      bind = ,F, exec, container_run fedora
+      bind = ,F, exec, virt-run.py --pods fedora
       bind = ,F, submap, reset
       #bind = ,R, exec, remmina -c .local/share/remmina/group_rdp_win11_192-168-122-167.remmina #GTK_THEME=Dracula remmina
       bind = ,R, exec, xfreerdp -grab-keyboard /v:192.168.122.167 /u:Quickemu /p:scrima /size:100% /dynamic-resolution /gfx:avc444 /gfx:progressive=true

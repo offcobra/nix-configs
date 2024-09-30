@@ -119,8 +119,6 @@ start-wm
 if [ -z $CONTAINER_ID ]
 then
   macchina
-else
-  echo -e '\n========> Pod $CONTAINER_ID starting... <=========='
 fi
       ";
     };

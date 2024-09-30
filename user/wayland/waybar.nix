@@ -9,6 +9,14 @@ let
       "cpu"
     else
       "temp1";
+   moduleCenter = if (systemSettings.hostname == "mediatv")
+      then
+        ["custom/temp" "cpu" "custom/cpu" "memory" ]
+      else if (systemSettings.hostname == "thinkpad")
+      then
+        ["custom/temp" "cpu" "custom/cpu" "memory" "battery" "custom/virtual"]
+      else
+        ["custom/temp" "cpu" "memory" "custom/virtual"];
 in
 {
   # Waybar Config
@@ -16,9 +24,9 @@ in
     enable = true;
     settings = [{
         layer= "top";
-          modules-left = ["custom/arch" "hyprland/workspaces" "hyprland/window"];
-          modules-center = ["custom/temp" "cpu" "custom/cpu" "memory" "battery" ];
-          modules-right = ["idle_inhibitor" "custom/virtual" "custom/vpn" "pulseaudio" "clock" "tray"];
+          modules-left = ["hyprland/workspaces" "hyprland/window"];
+          modules-center = moduleCenter;
+          modules-right = ["pulseaudio" "idle_inhibitor" "clock" "tray"];
           height= 8;
           "custom/arch" = {
             format = "";
@@ -66,22 +74,24 @@ in
                   "Signal - (.*)"= "󱋑  $1";
                   "Whatsapp - (.*)"= "  $1";
                   "Bitwarden - (.*)"= "󰞀  $1";
+                  "(.*) - Looking Glass(.*)"= "󰖳 Windows Gaming...";
                   "(.*) - Steam"= "  $1";
                   "(.*) - Discord - (.*)"= "󰙯  $1";
                   #---------------------------------
                   "(.*) - Thorium - (.*)"= "  $2";
                   "apps"= " Apps Container";
-                  "blackarch"= "  Blackarch";
-                  "ubuntu"= "  Ubuntu";
-                  "debian"= "  Debian";
-                  "opensuse"= "  OpenSUSE";
-                  "fedora"= "  Fedora";
-                  "parrot"= "  ParrotOS";
+                  "blackarch - (.*)"= "  Blackarch";
+                  "ubuntu - (.*)"= "  Ubuntu";
+                  "arch - (.*)"= "  ArchLinux";
+                  "debian - (.*)"= "  Debian";
+                  "opensuse - (.*)"= "  OpenSUSE";
+                  "fedora - (.*)"= "  Fedora";
+                  "parrot - (.*)"= "  ParrotOS";
                   "Wdgfdsgfs"= "    󱄲        ";
               };
           };
           "idle_inhibitor" = {
-              "format" = "{icon} - Hyprlock";
+              "format" = "{icon}";
               "format-icons" = {
                 "activated" = "󰒳";
                 "deactivated" = "󰒲";
@@ -89,10 +99,7 @@ in
           };
           "custom/virtual" = {
               restart-interval = 5;
-              exec = pkgs.writeShellScript "get_virt" ''
-                # TODO Add virt-run.py --info after implementation
-                echo "#==> TODO <==#"
-              '';
+              exec = "virt-run.py --info";
           };
           #"custom/vpn" = {
           #    exec = "~/.config/waybar/scripts/get_vpn";
@@ -197,6 +204,7 @@ in
         font-size: 13px;
         margin-top: 2px;
         margin-right: 5px;
+        margin-left: 5px;
         padding-top: 1px;
         padding-left: 6px;
         padding-right: 6px;
@@ -234,7 +242,7 @@ in
       #clock, #temperature, #pulseaudio, #cpu, #network, #memory, #tray, #battery{
         border-radius: 10px;
         background-color: @background;
-        color: @color1;
+        color: @inactive;
         margin-top: 2px;
         padding-left: 10px;
         padding-right: 10px;

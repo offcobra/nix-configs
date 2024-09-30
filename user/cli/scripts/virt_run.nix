@@ -2,7 +2,7 @@
 
 let
   # Python Script to run Distro Container
-  container-run = pkgs.writers.writePython3Bin "container-run.py" { } /*python*/''
+  virt-run = pkgs.writers.writePython3Bin "virt-run.py" { } /*python*/''
     import argparse
     import os
     import subprocess
@@ -11,13 +11,13 @@ let
     PROGRAMMS = "git exa neofetch"
 
     # Define ENV Variables
-    env_type = os.environ["XDG_SESSION_TYPE"]
+    env_type = os.environ.get("XDG_SESSION_TYPE")
     if env_type == "wayland":
-      DMENU = "fuzzel --dmenu"
-      TERM = "foot"
+        DMENU = "fuzzel --dmenu"
+        TERM = "foot"
     else:
-      DMENU = "rofi --dmenu"
-      TERM = "kitty"
+        DMENU = "rofi --dmenu"
+        TERM = "kitty"
 
 
     # Distros to run...
@@ -32,7 +32,7 @@ let
         "kali": "   Kali Linux",
         "mint": "󰣭   Mint",
         "nixos": "   NixOS",
-        "opensuse":"   OpenSuse",
+        "opensuse": "   OpenSuse",
         "parrot": "   Parrot OS",
         "rocky": "   Rocky Linux",
         "ubuntu": "󰕈   Ubuntu",
@@ -44,42 +44,48 @@ let
 
     DISTRO_IMAGES = {
         "alpine": "alpine:latest",
+        "artix": "artixlinux/artixlinux:latest",
         "arch": "archlinux:latest",
         "blackarch": "blackarchlinux/blackarch",
         "debian": "debian:latest",
         "fedora": "fedora:latest",
         "kali": "kalilinux/kali-rolling:latest ",
-        "opensuse":"opensuse/tumbleweed:latest",
+        "opensuse": "opensuse/tumbleweed:latest",
         "parrot": "parrotsec/security:latest",
         "rocky": "rockylinux:latest",
         "ubuntu": "ubuntu:latest",
     }
 
 
-    def run_fuzzel(elem, cmd=DMENU):
-      """ Function to run fuzzel... """
-      output = subprocess.check_output(
-        f"echo "{elem}" | {cmd}", shell=True
-        ).decode("utf-8").replace("\n", "")
-      return output
-
-    def run_cmd(command, list=False):
-      """ Function to run fuzzel... """
-      output = subprocess.check_output(command, shell=True).decode("utf-8")#.replace("\n", "")
-      if not list:
-        return output.replace("\n", "")
-      return [elem for elem in output.split("\n") if elem != ""]
-
-    def send_notify(text, duration=2000):
-        """ Function to send notifications... """
-        run_cmd(f"notify-send -t {duration} "Virt-Manager" "{text}"")
-
     def get_args():
         """ Get cmd args... """
         parser = argparse.ArgumentParser(description="Process virt-run args.")
         parser.add_argument("--vms", type=str, help="VM options...")
         parser.add_argument("--pods", type=str, help="Pods options...")
+        parser.add_argument("--info", action="store_true", help="Pods options...")
         return parser.parse_args()
+
+
+    def run_fuzzel(elem, cmd=DMENU):
+        """ Function to run fuzzel... """
+        output = subprocess.check_output(
+          f"echo '{elem}' | {cmd}", shell=True
+          ).decode("utf-8").replace("\n", "")
+        return output
+
+
+    def run_cmd(command, list=False):
+        """ Function to run fuzzel... """
+        output = subprocess.check_output(command, shell=True).decode("utf-8")
+        if not list:
+            return output.replace("\n", "")
+        return [elem for elem in output.split("\n") if elem != ""]
+
+
+    def send_notify(text, duration=2000):
+        """ Function to send notifications... """
+        run_cmd(f"notify-send -t {duration} 'Virt-Manager' '{text}'")
+
 
     def run_vms(name=""):
         """ Function to run vms """
@@ -105,21 +111,21 @@ let
 
         print(f"# => Start / Attach to VM {vm_name}")
         send_notify(f"Starting / Attaching to {vm_name}...")
-        if not vm_name in vms and vm_name != "choice":
+        if vm_name not in vms and vm_name != "choice":
             raise Exception(f"#=> No VM with name: {vm_name}...")
 
-        if not vm_name in running:
-            subprocess.run(f"virsh start "{vm_name}"", shell=True)
+        if vm_name not in running:
+            subprocess.run(f"virsh start '{vm_name}'", shell=True)
 
-        #time.sleep(3)
+        # time.sleep(3)
         if vm_name == "win11":
             subprocess.run("looking-glass-client", shell=True)
         else:
-            subprocess.run(f"virt-viewer -a "{vm_name}" -f", shell=True)
+            subprocess.run(f"virt-viewer -a '{vm_name}' -f", shell=True)
 
 
     def run_pods(name=""):
-        """ Function to run vms """
+        """ Function to run pods """
         pods = run_cmd("podman ps --noheading", list=True)
 
         available_distros = {}
@@ -131,15 +137,19 @@ let
             choice = run_fuzzel("\n".join(available_distros.values()))
             try:
                 pod_name = [k for k, v in DISTROS.items() if v == choice][0]
-            except:
-                raise Exception(f"#=> Distro no supported...")
+            except IndexError:
+                raise Exception(f"#=> Distro {name} no supported...")
         else:
             pod_name = name
 
         is_created = bool([line for line in pods if pod_name in line])
 
+        send_notify(f"Starting / Attaching to {pod_name}...")
         if not is_created:
-            run_cmd(f"{TERM} -e distrobox create --name {pod_name} --image {DISTRO_IMAGES[pod_name]} --pull")
+            run_cmd(f"{TERM} -e \
+                distrobox create --name {pod_name} \
+                --image {DISTRO_IMAGES[pod_name]} --pull"
+                    )
         run_cmd(f"{TERM} -e distrobox enter {pod_name}")
 
 
@@ -153,14 +163,16 @@ let
         if args.pods:
             run_pods(args.pods)
 
+        if args.info:
+            # TODO implement for pretty print in waybar / qtile...
+            print("#=> It's working...")
+
+
     if __name__ == "__main__":
+        """ Entrypoint... """
         main()
     '';
 in
 {
-  home.packages = [container-run];
+  home.packages = [virt-run];
 }
-
-# TODO
-# - Add start or create container...
-# - Check for Vm & start vm...

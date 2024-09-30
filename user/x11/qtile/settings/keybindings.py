@@ -63,7 +63,7 @@ keybindings = [
 
 
 # SUPER + SHIFT KEYS
-    Key([mod, "shift"], "q", lazy.spawn("kill-qtile.sh")),
+    Key([mod, "shift"], "q", lazy.spawn("kill-wm.sh")),
     Key([mod, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
 
 
@@ -244,9 +244,9 @@ keybindings = [
             lazy.spawn("screen-work.sh"),
             desc='Monitors in work mode'
             ),
-        Key([], "v",
-            lazy.spawn("bash /home/wally/.config/bin/toggle_vpn"),
-            desc='Toggle NordVPN'
+        Key([], "p",
+            lazy.spawn("toggle-proc.sh picom"),
+            desc='Toggle Picom Compositor'
             ),
     ], name="Toggle Scripts"),
 

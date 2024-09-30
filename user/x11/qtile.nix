@@ -1,8 +1,6 @@
 { systemSettings, pkgs, config, ... }:
 
 {
-  # Todo List
-  # - script for deciding 1screen vs 3screens -> Bash execute on starup
   imports = [
     # Picom config
     ./picom.nix
@@ -54,15 +52,15 @@
       echo "Start emacs daemon..."
       emacs --daemon &
 
-      # Setting custom resolution
-      xrandr --newmode "1280x960_165.00"  310.25  1280 1392 1528 1776  960 963 967 1060 -hsync +vsync
-      xrandr --addmode DisplayPort-1 1280x960_165.00
-
       if [[ ${systemSettings.hostname} == "workstation" ]]
       then
         echo "Starting Signal & WhatsApp..."
         flatpak run org.signal.Signal --start-in-tray &
         flatpak run io.github.mimbrero.WhatsAppDesktop --start-hidden &
+
+        # Setting custom resolution
+        xrandr --newmode "1280x960_165.00"  310.25  1280 1392 1528 1776  960 963 967 1060 -hsync +vsync
+        xrandr --addmode DisplayPort-1 1280x960_165.00
 
       elif [[ ${systemSettings.hostname} == "thinkpad" ]]
       then

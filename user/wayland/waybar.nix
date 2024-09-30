@@ -50,6 +50,7 @@ in
               format = "{initialTitle} - {title}";
               max-length = 50;
               rewrite = {
+                  # TODO add looking-glass as Windows...
                   "(.*) GNU Emacs (.*)"= "  $1";
                   "(.*) Mozilla Firefox"= "  $1";
                   "(.*) LibreWolf"= "  $1";
@@ -86,10 +87,13 @@ in
                 "deactivated" = "󰒲";
               };
           };
-          #"custom/virtual" = {
-          #    exec= "~/.config/waybar/scripts/get_virtual";
-          #    restart-interval = 1;
-          #};
+          "custom/virtual" = {
+              restart-interval = 5;
+              exec = pkgs.writeShellScript "get_virt" ''
+                # TODO Add virt-run.py --info after implementation
+                echo "#==> TODO <==#"
+              '';
+          };
           #"custom/vpn" = {
           #    exec = "~/.config/waybar/scripts/get_vpn";
           #    on-click = "toggle_vpn";

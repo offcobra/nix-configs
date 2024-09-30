@@ -22,8 +22,20 @@
       ];
       os = {
         disabled = false;
-        format = "[#------------>   <------------#]($style)";
+        format = "[#------------> $symbol <------------#]($style)";
         style = "bright-black";
+        symbols = {
+          "Alpine" = " Alpine";
+          "Arch" = " Arch";
+          "Artix" = " Artix";
+          "Debian" = " Debian";
+          "Ubuntu" = "󰕈 Ubuntu";
+          "Kali" = " Kali";
+          "Fedora" = " Fedora";
+          "NixOS" = " NixOS";
+          "RockyLinux" = " RockyLinux";
+          "Unknown" = " Unknown";
+        };
       };
       directory = {
         style = "blue";

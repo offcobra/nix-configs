@@ -55,19 +55,7 @@
   };
 
   # List packages installed in system profile. To search, run:
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    hwloc
-    curl
-    gnugrep
-    lm_sensors
-    pciutils
-    os-prober
-    exfat
-    exfatprogs
-    efibootmgr
-  ];
+  environment.systemPackages = import ./helper/system_packages.nix pkgs;
 
   services.dbus.enable = true;
 

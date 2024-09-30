@@ -45,6 +45,18 @@ in
   home.packages = with pkgs; [
     # SNMP
     net-snmp
+
+   (pkgs.writeShellScriptBin "start-docker" /*bash*/ ''
+      echo "#=> Starting docker..."
+      sudo systemctl start docker
+
+      echo "#=> Fixing mount Points..."
+      sudo mount --make-shared /tmp/
+      sudo mount --make-shared /
+
+      echo "#=> Reloading SystemD..."
+      sudo systemctl daemon-reload
+   '')
   ];
 
   # Shell Aliases for work

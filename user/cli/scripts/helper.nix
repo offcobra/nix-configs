@@ -11,14 +11,17 @@
     ./screen_chill.nix
     ./screen_work.nix
 
-    # Hyprland kill Script
-    ./kill_hyprland.nix
+    # Window Manager (hyprland / qtile) kill Script
+    ./kill_wm.nix
 
     # Show Time / Battery Info
     ./show_info.nix
 
-    # test...
-    #./container_run-test.nix
+    # Toggle process
+    ./toggle_proc.nix
+
+    # Virt-Run (vms / pods) script ...
+    ./virt_run.nix
   ];
 
   home.packages = with pkgs; [
@@ -33,28 +36,6 @@
       then
 	      # Qtile start -b x11
 	      startx
-      fi
-    '')
-
-    # ShellScript where-am-i
-    (writeShellScriptBin "where-am-i" ''
-      if [ -z "$container" ]
-      then
-        macchina
-      else
-        case $CONTAINER_ID in
-          arch) DISTRO="" ;;
-          ubuntu) DISTRO="" ;;
-          parrot) DISTRO="" ;;
-          debian) DISTRO="" ;;
-          fedora) DISTRO="" ;;
-          kali) DISTRO="" ;;
-          alpine) DISTRO="" ;;
-          apps) DISTRO="" ;;
-          *) DISTRO="" ;;
-        esac
-        export MOZ_ENABLE_WAYLAND=1
-        PS1="\n \[\033[1;34m\]$DISTRO \[\e[31m\]$CONTAINER_ID\n \[\033[1;36m\]\W >\[\033[1;34m\]>\[\033[0m\] "
       fi
     '')
 

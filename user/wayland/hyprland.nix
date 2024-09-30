@@ -228,12 +228,12 @@ in
         # Window Actions
         "CTRL, Space, fullscreenstate, 0, 1"
         "$mainMod, Q, killactive"
-        "$mainMod_SHIFT, Q, exec, kill-hyprland.sh"
+        "$mainMod_SHIFT, Q, exec, kill-wm.sh"
         #"$mainMod_SHIFT, R, hyprctl reload"
         "$mainMod_SHIFT, F, togglefloating"
         "$mainMod_CTRL, F, fullscreen"
         "$mainMod_CTRL , L, exec, hyprlock"
-        "$mainMod_SHIFT, B, exec, toggle_proc waybar"
+        "$mainMod_SHIFT, B, exec, toggle-proc.sh waybar"
 
         # Quick Shortcuts
         "$mainMod, P, exec, fuzzel"

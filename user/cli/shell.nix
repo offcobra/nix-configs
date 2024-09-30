@@ -115,10 +115,13 @@ fi
 # Start WindowManager
 start-wm
 
-# Prompt Aliases Custom for local & docker
-macchina
-# TODO fix me...
-# where-am-i
+# Pretty Shell
+if [ -z $CONTAINER_ID ]
+then
+  macchina
+else
+  echo -e '\n========> Pod $CONTAINER_ID starting... <=========='
+fi
       ";
     };
 

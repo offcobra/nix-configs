@@ -97,6 +97,8 @@ let
 
         distros = {}
         for vm in vms:
+            if name in vm:
+                name = vm
             short = "".join([x for x in DISTROS.keys() if vm.startswith(x)])
             if vm in running:
                 distros[vm] = DISTROS[short] + " "*10 + "=> # Running..."

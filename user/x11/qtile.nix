@@ -56,7 +56,7 @@
       then
         echo "Starting Signal & WhatsApp..."
         flatpak run org.signal.Signal --start-in-tray &
-        flatpak run io.github.mimbrero.WhatsAppDesktop --start-hidden &
+        flatpak run com.rtosta.zapzap --start-hidden &
 
         # Setting custom resolution
         xrandr --newmode "1280x960_165.00"  310.25  1280 1392 1528 1776  960 963 967 1060 -hsync +vsync

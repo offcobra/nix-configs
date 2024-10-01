@@ -30,7 +30,7 @@ let
 
       echo "Starting Signal & WhatsApp..."
       flatpak run org.signal.Signal --start-in-tray &
-      flatpak run io.github.mimbrero.WhatsAppDesktop --start-hidden &
+      flatpak run com.rtosta.zapzap --start-hidden &
 
       echo "Starting sound Equilizer..."
       flatpak run me.timschneeberger.jdsp4linux --tray
@@ -455,7 +455,7 @@ in
       submap = chat
       bind = ,D, exec, webcord
       bind = ,D, submap, reset
-      bind = ,W, exec, flatpak run io.github.mimbrero.WhatsAppDesktop
+      bind = ,W, exec, flatpak run com.rtosta.zapzap
       bind = ,W, submap, reset
       bind = ,S, exec, flatpak run org.signal.Signal
       bind = ,S, submap, reset
@@ -483,7 +483,7 @@ in
       windowrulev2 = float,class:(signal)
       windowrulev2 = float,class:(ollama)
       windowrulev2 = float,title:(SysMon)
-      windowrulev2 = float,class:(whatsapp-desktop-linux)
+      windowrulev2 = float,class:(com.rtosta.zapzap)
       windowrulev2 = float,class:(steamwebhelper)
       windowrulev2 = float,class:(xdg-desktop-portal-gtk)
       windowrulev2 = float,class:(blueberry.py)
@@ -497,8 +497,8 @@ in
       windowrulev2 = center,class:(ollama)
       windowrulev2 = size 950 600,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
       windowrulev2 = center,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
-      windowrulev2 = size 950 600,class:(whatsapp-desktop-linux)
-      windowrulev2 = center,class:(whatsapp-desktop-linux)
+      windowrulev2 = size 950 600,class:(com.rtosta.zapzap)
+      windowrulev2 = center,class:(com.rtosta.zapzap)
       windowrulev2 = size 950 600,class:(com.github.hluk.copyq)
       windowrulev2 = center,class:(com.github.hluk.copyq)
     '';

@@ -9,10 +9,10 @@
 
       if [[ $XDG_SESSION_TYPE == "wayland" ]]
       then
-        apps=(waybar dunst hyprpaper emacs nm-applet copyq hypridle whatsapp signal watch_battery)
+        apps=(waybar dunst hyprpaper emacs nm-applet copyq hypridle zapzap signal watch_battery)
         session=Hyprland
       else
-        apps=(dunst emacs nm-applet copyq whatsapp signal watch_battery blueberry flameshot)
+        apps=(dunst emacs nm-applet copyq zapzap signal watch_battery blueberry flameshot)
         session=qtile
       fi
 

@@ -40,7 +40,7 @@ hyprpaper &
 
 echo "Starting Tray applets..."
 flatpak run org.signal.Signal --start-in-tray &
-flatpak run io.github.mimbrero.WhatsAppDesktop --start-hidden
+flatpak run com.rtosta.zapzap --start-hidden
 
 #nm-applet &
 ##pamac-tray &

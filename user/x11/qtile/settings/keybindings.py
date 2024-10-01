@@ -317,7 +317,7 @@ keybindings = [
             desc='Discord'
             ),
         Key([], "w",
-            lazy.spawn("flatpak run io.github.mimbrero.WhatsAppDesktop"),
+            lazy.spawn("flatpak run com.rtosta.zapzap"),
             desc='Whatsapp'
             ),
     ], name="Chating"),

@@ -72,7 +72,7 @@ in
                   "Spotify Premium - (.*)"= "  $1";
                   "NeoVim - NeoVim"= " -> Doing stuff right...";
                   "Signal - (.*)"= "󱋑  $1";
-                  "Whatsapp - (.*)"= "  $1";
+                  "ZapZap - (.*)"= "  $1";
                   "Bitwarden - (.*)"= "󰞀  $1";
                   "(.*) - Looking Glass(.*)"= "󰖳 Windows Gaming...";
                   "(.*) - Steam"= "  $1";

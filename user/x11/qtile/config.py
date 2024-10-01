@@ -119,7 +119,7 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='archlinux-logout.py'),
     Match(wm_class='conky'),
     Match(wm_class='Blueberry.py'),
-    Match(wm_class='whatsapp-desktop-linux'),
+    Match(wm_class='com.rtosta.zapzap'),
     Match(wm_class='Signal'),
     Match(wm_class='ollama'),
     Match(wm_class='pavucontrol'),

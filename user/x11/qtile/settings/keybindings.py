@@ -43,7 +43,7 @@ keybindings = [
 
     Key([mod], "p", lazy.spawn("rofi -show run"), desc="Programm Launcher"),
     Key([mod, "shift"], "p", lazy.spawn("websearch.py"), desc="Websearch Script"),
-    Key([mod], "o", lazy.spawn("kitty --class ollama --title Ollama -e ollama run llama3.1"), desc="Ollama AI"),
+    Key([mod], "o", lazy.spawn("kitty --class ollama --title Ollama -e ollama run llama3.2"), desc="Ollama AI"),
 
     Key(["control"], "p", lazy.spawn("copyq show"), desc="Toggle Qtile Bar"),
 

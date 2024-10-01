@@ -65,11 +65,13 @@ wl_input_rules = None
 def start_once():
     ''' Start once '''
     if qtile.core.name == "x11":
-        #subprocess.call(['bash', home + '/.config/qtile/autostart.sh'])
+        # TODO fix qtile-startup (x11 & wayland) & rm austostar.sh
+        # subprocess.call(['bash', home + '/.config/qtile/autostart.sh'])
         subprocess.call(['qtile-startup'])
     else:
+        # TODO remove unneeded script
+        # print('Start Wayland stuff...')
         subprocess.call([home + '/.config/qtile/qautostart.sh'])
-        #print('Start Wayland stuff...')
 
 
 @hook.subscribe.startup

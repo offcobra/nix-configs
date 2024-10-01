@@ -59,7 +59,7 @@ let
     nix_clean="nh clean user --keep ${keep}";
 
     # Ollama AI Chat
-    ai="ollama run llama3.1";
+    ai="ollama run llama3.2";
 
     # Update whole System
     update = "${update_cmd}";

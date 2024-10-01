@@ -26,7 +26,6 @@
   # environment.
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
-    podman
   ];
 
   # Linking Home Files

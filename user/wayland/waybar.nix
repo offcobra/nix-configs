@@ -58,7 +58,6 @@ in
               format = "{initialTitle} - {title}";
               max-length = 50;
               rewrite = {
-                  # TODO add looking-glass as Windows...
                   "(.*) GNU Emacs (.*)"= "  $1";
                   "(.*) Mozilla Firefox"= "  $1";
                   "(.*) LibreWolf"= "  $1";
@@ -211,7 +210,7 @@ in
 
       }
 
-      #custom-cpu, #custom-temp, #custom-vpn, #custom-virtual,  #window, #idle_inhibitor {
+      #custom-temp, #custom-vpn, #custom-virtual,  #window, #idle_inhibitor {
         border-radius: 10px;
         background-color: @background;
         color: @foreground;
@@ -268,7 +267,6 @@ in
       #custom-cpu{
         color: @color2;
       }
-
     '';
   };
 }

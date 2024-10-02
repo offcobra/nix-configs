@@ -12,12 +12,14 @@ in
       if [[ $(pgrep Hyprland) ]]
       then
           # Kill HyprPaper
+          echo "Killing Wallpapers"
           kill -9 $(pgrep hyprpaper) &
 
           # Setting Hyprland screens
-          wlr-randr --output DP-1 --on --pos 0,0 --mode 1920x1080@144.001007Hz \
-            --output DP-2 --off \
-            --output DP-3 --off
+          echo "Setting Work mode..."
+          hyprctl keyword monitor DP-1,1920x1080@144.00,0x0,1
+          hyprctl keyword monitor DP-2,disabled
+          hyprctl keyword monitor DP-3,disabled
 
           # Set Wallpaper
           echo "Setting Wallpapers"

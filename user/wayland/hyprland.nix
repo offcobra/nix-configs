@@ -488,7 +488,7 @@ in
       windowrulev2 = float,class:(xdg-desktop-portal-gtk)
       windowrulev2 = float,class:(blueberry.py)
       windowrulev2 = float,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
-      windowrulev2 = float,class:(com.github.hluk.copyq)
+      windowrulev2 = float,class:(copyq)
 
       # Resize Windows
       windowrulev2 = size 950 600,class:(signal)
@@ -499,8 +499,8 @@ in
       windowrulev2 = center,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
       windowrulev2 = size 950 600,class:(com.rtosta.zapzap)
       windowrulev2 = center,class:(com.rtosta.zapzap)
-      windowrulev2 = size 950 600,class:(com.github.hluk.copyq)
-      windowrulev2 = center,class:(com.github.hluk.copyq)
+      windowrulev2 = size 950 600,class:(copyq)
+      windowrulev2 = center,class:(copyq)
     '';
   };
 }

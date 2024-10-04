@@ -28,6 +28,7 @@ let
         "artix": "   Artix",
         "blackarch": "   BlackArch",
         "debian": "   Debian",
+        "deepin": "   Deepin",
         "fedora": "   Fedora",
         "kali": "   Kali Linux",
         "mint": "󰣭   Mint",
@@ -63,6 +64,9 @@ let
         parser.add_argument("--vms", type=str, help="VM options...")
         parser.add_argument("--pods", type=str, help="Pods options...")
         parser.add_argument("--info", action="store_true", help="Pods options...")
+        parser.add_argument("--stop",
+                            action="store_true",
+                            help="Stop all Virtualization...")
         return parser.parse_args()
 
 
@@ -165,6 +169,12 @@ let
         if args.pods:
             run_pods(args.pods)
 
+        if args.stop:
+            send_notify("Stopping all Vms / Pods...")
+            for vm in run_cmd("virsh list --state-running --name", list=True):
+                run_cmd(f"virsh shutdown {vm}")
+            run_cmd("podman stop --all -t=3")
+
         if args.info:
             vms = run_cmd("virsh list --state-running --name", list=True)
             pods = run_cmd("podman ps --format \"{{.Image}}\"", list=True)
@@ -173,7 +183,7 @@ let
             pod_icons = ""
 
             for vm in vms:
-                vm = vm.split("-<")[0]
+                vm = vm.split("=")[0]
                 vm_icons += f" {DISTROS[vm].split(" ")[0]}"
 
             for key, value in DISTROS.items():
@@ -184,13 +194,15 @@ let
             if not vms and not pods:
                 print("")
             else:
-                print(f"Vms:{vm_icons}  / Pods:{pod_icons}")
+                vm_icons = " 󰜺" if not vm_icons else vm_icons
+                pod_icons = " 󰜺" if not pod_icons else pod_icons
+                print(f"Vms:{vm_icons} / Pods:{pod_icons}")
 
 
     if __name__ == "__main__":
         """ Entrypoint... """
         main()
-    '';
+'';
 in
 {
   home.packages = [virt-run];

@@ -1,7 +1,6 @@
 { inputs, pkgs, systemSettings, userSettings, config, ... }:
 
-let
-  startup = pkgs.pkgs.writeShellScriptBin "hypr-startup" /*bash*/ ''
+let startup = pkgs.pkgs.writeShellScriptBin "hypr-startup" /*bash*/ ''
     if [[ ${systemSettings.hostname} == "mediatv" ]]
     then
       # Setting Screens MediaTV
@@ -19,6 +18,9 @@ let
 
     echo "Starting HyprIdle..."
     hypridle &
+
+    echo "Clipboard Manager..."
+    wl-paste -t text --watch clipman store --no-persist &
 
     echo "Starting Pyprland for plugins..."
     pypr &
@@ -49,7 +51,7 @@ in
       # HyprPaper
       ./hyprpaper.nix
       # Waybar
-      ./waybar.nix
+      ./waybar
       # Terminals
       ./foot.nix
       # Launcher
@@ -212,7 +214,7 @@ in
         "CTRL, return, exec, foot"
 
         # Clipboard manager
-        "CTRL, P, exec, copyq show"
+        "CTRL, P, exec, clipman pick -t rofi"
 
         # Ollama AI Chat
         "$mainMod, o, exec, alacritty --class ollama --title Ollama -e ollama run llama3.2"
@@ -432,7 +434,7 @@ in
       bind = ,M, submap, reset
       bind = ,B, exec, flatpak run com.usebottles.bottles
       bind = ,B, submap, reset
-      bind = ,S, exec, stop_docker
+      bind = ,S, exec, virt-run.py --stop
       bind = ,S, submap, reset
       bind = ,D, exec, virt-run.py --pods debian
       bind = ,D, submap, reset
@@ -440,6 +442,8 @@ in
       bind = ,K, submap, reset
       bind = ,W, exec, virt-run.py --vms win11
       bind = ,W, submap, reset
+      bind = ,G, exec, looking-glass-client input:autocapture=yes -F
+      bind = ,G, submap, reset
       bind = ,U, exec, virt-run.py --pods ubuntu
       bind = ,U, submap, reset
       bind = ,F, exec, virt-run.py --pods fedora
@@ -488,7 +492,6 @@ in
       windowrulev2 = float,class:(xdg-desktop-portal-gtk)
       windowrulev2 = float,class:(blueberry.py)
       windowrulev2 = float,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
-      windowrulev2 = float,class:(copyq)
 
       # Resize Windows
       windowrulev2 = size 950 600,class:(signal)
@@ -499,8 +502,6 @@ in
       windowrulev2 = center,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
       windowrulev2 = size 950 600,class:(com.rtosta.zapzap)
       windowrulev2 = center,class:(com.rtosta.zapzap)
-      windowrulev2 = size 950 600,class:(copyq)
-      windowrulev2 = center,class:(copyq)
     '';
   };
 }

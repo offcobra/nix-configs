@@ -35,11 +35,12 @@
     killall
     ventoy
     pciutils
-    copyq
     bottom
     macchina
+    clipman
 
     # cli tools
+    jq
     cloc
     unzip
     git-filter-repo

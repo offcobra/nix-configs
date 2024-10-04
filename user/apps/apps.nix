@@ -28,9 +28,6 @@
       allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowed-unfree-packages;
     };
 
-  # Services
-  services.copyq.enable = true;
-
   # List of secondary Applications
   home.packages = with pkgs; [
     obsidian  # Note taking

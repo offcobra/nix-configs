@@ -23,6 +23,8 @@
       ./helper/polkit.nix
       # Set Locales
       ./helper/locales.nix
+      # Set TUIGreet
+      ./helper/tuigreet.nix
     ];
 
   # Pick networking options.

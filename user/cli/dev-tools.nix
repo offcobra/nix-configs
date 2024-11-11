@@ -14,6 +14,11 @@ let
     sk = "kubectl --kubeconfig ~/projects/devops/kubectl_config/staging.yaml";
     pk = "kubectl --kubeconfig ~/projects/devops/kubectl_config/production.yaml";
 
+    # Debugging
+    t_debug_pod = "tk run -i --tty --rm debug --image=ubuntu:latest --restart=Never -n default -- /bin/bash";
+    s_debug_pod = "sk run -i --tty --rm debug --image=ubuntu:latest --restart=Never -n default -- /bin/bash";
+    p_debug_pod = "pk run -i --tty --rm debug --image=ubuntu:latest --restart=Never -n default -- /bin/bash";
+
     # Cleanup failed pods...
     k_clean_p_test = "tk delete pods --field-selector status.phase=Failed --all-namespaces";
     k_clean_p_staging = "sk delete pods --field-selector status.phase=Failed --all-namespaces";
@@ -25,9 +30,9 @@ let
     k_clean_j_production = "pk delete jobs --field-selector status.successful=0 --all-namespaces";
 
     # CleanUp pods & jobs
-    k_clean_test = "tk delete pods --field-selector status.phase=Failed --all-namespaces";
-    k_clean_staging = "sk delete pods --field-selector status.phase=Failed --all-namespaces";
-    k_clean_production = "pk delete pods --field-selector status.phase=Failed --all-namespaces";
+    k_clean_test = "k_clean_p_test && k_clean_j_test";
+    k_clean_staging = "k_clean_p_staging && k_clean_j_staging";
+    k_clean_production = "k_clean_p_production && k_clean_j_production";
 
     # k9s kube top tool
     tk9 = "k9s --kubeconfig ~/projects/devops/kubectl_config/test.yaml -A";
@@ -46,18 +51,28 @@ in
     # SNMP
     net-snmp
 
-   (pkgs.writeShellScriptBin "start-docker" /*bash*/ ''
-      echo "#=> Starting docker..."
-      sudo systemctl start docker
+    # Vault
+    #vault-bin
 
-      echo "#=> Fixing mount Points..."
-      sudo mount --make-shared /tmp/
-      sudo mount --make-shared /
+    # Start Docker
+    (pkgs.writeShellScriptBin "start-docker" /*bash*/ ''
+       echo "#=> Starting docker..."
+       sudo systemctl start docker
 
-      echo "#=> Reloading SystemD..."
-      sudo systemctl daemon-reload
-   '')
+       echo "#=> Fixing mount Points..."
+       sudo mount --make-shared /tmp/
+       sudo mount --make-shared /
+
+       echo "#=> Reloading SystemD..."
+       sudo systemctl daemon-reload
+    '')
   ];
+
+  # Dev Variables
+  home.sessionVariables = {
+     VAULT_ADDR = "http://10.222.48.30:8200";
+     NIXPKGS_ALLOW_UNFREE = "1";
+  };
 
   # Shell Aliases for work
   programs.bash.shellAliases = dev-aliases;

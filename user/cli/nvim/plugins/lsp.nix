@@ -7,7 +7,7 @@
   	  enable = true;
   	  servers = {
   	    bashls.enable = true;
-        rust-analyzer = {
+        rust_analyzer = {
           enable = true;
           installCargo = true;
           installRustc = true;
@@ -16,9 +16,9 @@
         #ruff.enable = true;
         jsonls.enable = true;
   	    yamlls.enable = true;
-  	    lua-ls.enable = true;
+  	    lua_ls.enable = true;
   	    nixd.enable = true;
-  	    helm-ls.enable = true;
+  	    helm_ls.enable = true;
         marksman.enable = true;
   	  };
       keymaps.lspBuf = {

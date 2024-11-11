@@ -15,7 +15,9 @@ let
     "....." = "cd ../../../..";
 
     # Utilities
+    n = "nvim";
     df = "dysk";
+
     #find = "fd --hidden";
     find = "fzf --preview='bat --color=always {}' | xargs nvim";
     grep = "rg --files-with-matches -i";

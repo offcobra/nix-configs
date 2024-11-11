@@ -13,7 +13,7 @@ in
       then
           # Kill HyprPaper
           echo "Kill Wallpapers"
-          kill -9 $(pgrep hyprpaper) &
+          kill -9 $(pgrep hyprpaper)
 
           # Setting Hyprland screens
           echo "Setting Chill Monitor Mode..."

@@ -57,7 +57,7 @@ let
 
     # Nixos Rebuild
     os_rebuild="nh os switch --ask";
-    hm_rebuild="nh home switch";
+    hm_rebuild="nh home switch --update";
     nix_clean="nh clean user --keep ${keep}";
 
     # Ollama AI Chat

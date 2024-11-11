@@ -72,7 +72,7 @@ in
     slurp
     hyprpicker
     wl-clipboard
-    pyprland
+    #pyprland
   ];
 
   # Window Manager
@@ -332,9 +332,9 @@ in
       bind = ,B, submap, reset
       bind = ,I, exec, brave --incognito
       bind = ,I, submap, reset
-      bind = ,T, exec, docker_exec thorium-browser
+      bind = ,T, exec, distrobox-enter -n arch  --  /usr/bin/thorium-browser %U
       bind = ,T, submap, reset
-      bind = ,H, exec, docker_exec thorium-browser --incognito
+      bind = ,H, exec, distrobox-enter -n arch  --  /usr/bin/thorium-browser --incognito %U
       bind = ,H, submap, reset
       bind = ,O, exec, qutebrowser
       bind = ,O, submap, reset
@@ -455,7 +455,7 @@ in
       submap = reset
 
       # CHAT ing...
-      bind = SUPER, I, submap, chat
+      bind = SUPER, I, ubmap, chat
       submap = chat
       bind = ,D, exec, webcord
       bind = ,D, submap, reset

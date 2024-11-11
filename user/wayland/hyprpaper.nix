@@ -9,10 +9,10 @@
       text = if (systemSettings.hostname == "workstation")
         then
 "preload = ~/.config/nixos/user/wallpapers/fantasy-landscape.png
-preload = ~/.config/nixos/user/wallpapers/natures-mountain-waters.jpg
+preload = ~/.config/nixos/user/wallpapers/city-bridge.jpg
 preload = ~/.config/nixos/user/wallpapers/midnight-sea.jpg
 wallpaper = DP-1,~/.config/nixos/user/wallpapers/fantasy-landscape.png
-wallpaper = DP-2,~/.config/nixos/user/wallpapers/natures-mountain-waters.jpg
+wallpaper = DP-2,~/.config/nixos/user/wallpapers/city-bridge.jpg
 wallpaper = DP-3,~/.config/nixos/user/wallpapers/midnight-sea.jpg"
         else if (systemSettings.hostname == "thinkpad")
         then

@@ -7,11 +7,8 @@ let startup = pkgs.pkgs.writeShellScriptBin "hypr-startup" /*bash*/ ''
       wlr-randr --output eDP-1 --off --output HDMI-A-1 --mode 1920x1080@60.00
     fi
 
-    echo "Starting HyperPaper..."
-    hyprpaper &
-
-    echo "Starting Emacs..."
-    emacs --daemon &
+    #echo "Starting Emacs..."
+    #emacs --daemon &
 
     echo "Starting NM-Applet..."
     nm-applet &
@@ -169,13 +166,15 @@ in
         rounding = 10;
 
         blur = {
-    	    enabled = blur;
+    	  enabled = blur;
         };
 
-        drop_shadow = true;
-        shadow_range = 4;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(${config.colorScheme.palette.base00}ee)";
+        shadow = {
+          enabled = true;
+          range = 4;
+          render_power = 3;
+          color = "rgba(${config.colorScheme.palette.base00}ee)";
+        };
       };
 
       # Animations
@@ -455,7 +454,7 @@ in
       submap = reset
 
       # CHAT ing...
-      bind = SUPER, I, ubmap, chat
+      bind = SUPER, I, submap, chat
       submap = chat
       bind = ,D, exec, webcord
       bind = ,D, submap, reset

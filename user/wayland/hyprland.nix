@@ -19,8 +19,8 @@ let startup = pkgs.pkgs.writeShellScriptBin "hypr-startup" /*bash*/ ''
     echo "Clipboard Manager..."
     wl-paste -t text --watch clipman store --no-persist &
 
-    echo "Starting Pyprland for plugins..."
-    pypr &
+    #echo "Starting Pyprland for plugins..."
+    #pypr &
 
     if [[ ${systemSettings.hostname} == "workstation" ]]
     then

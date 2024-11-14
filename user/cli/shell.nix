@@ -56,8 +56,8 @@ let
     git_clean = "git remote update origin --prune";
 
     # Nixos Rebuild
-    os_rebuild="nh os switch --ask";
-    hm_rebuild="nh home switch --update";
+    os_rebuild="nh os switch --ask --update";
+    hm_rebuild="nh home switch";
     nix_clean="nh clean user --keep ${keep}";
 
     # Ollama AI Chat

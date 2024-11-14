@@ -397,7 +397,7 @@ in
       bind = ,C, submap, reset
       bind = ,P, exec, qutebrowser https://mail.proton.me/
       bind = ,P, submap, reset
-      bind = ,E, exec, exodus
+      bind = ,E, exec, flatpak run io.exodus.Exodus
       bind = ,E, submap, reset
       bind = , escape, submap, reset
       submap = reset

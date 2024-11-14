@@ -10,14 +10,14 @@ in
     settings= {
       general = {
         disable_loading_bar = true;
-        grace = 300;
+        grace = 60;
         hide_cursor = true;
         no_fade_in = false;
       };
       background = [{
         monitor = "";
         blur_passes = 3;
-        blur_size = 8;
+        blur_size = 2;
         color = "rgb(${config.colorScheme.palette.base00})";
         path = "/home/${userSettings.username}/.config/nixos/user/wallpapers/nix.png"; # path to PNG background
       }];
@@ -25,7 +25,7 @@ in
         monitor = "";
         text = "cmd[update:30000] echo $(date +'%R')";
         color = "rgb(${config.colorScheme.palette.base0D})";
-        font_size = 90;
+        font_size = 70;
         font_family = font;
         position = "-30, 0";
         halign = "right";
@@ -34,16 +34,16 @@ in
         monitor = "";
         text = "cmd[update:43200000] echo $(date +'%A,%e %B %Y')";
         color = "rgb(${config.colorScheme.palette.base05})";
-        font_size = 25;
+        font_size = 20;
         font_family = font;
-        position = "-30, -150";
+        position = "-30, -100";
         halign = "right";
         valign = "top";
       } {
         monitor = "";
         text = "Logging in as $USER";
         color = "rgb(${config.colorScheme.palette.base0C})";
-        font_size = 30;
+        font_size = 20;
         font_family = font;
         position = "0, -280";
         halign = "center";

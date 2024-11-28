@@ -77,6 +77,8 @@ in
     ./tools.nix
     # fzf
     ./fzf.nix
+    # df - file manager
+    ./lf.nix
     # tmux
     ./tmux.nix
     # NixVim

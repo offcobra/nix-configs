@@ -1,5 +1,50 @@
-{ pkgs, lib, allowed-unfree-packages, ... }:
+{ pkgs, lib, allowed-unfree-packages, systemSettings, ... }:
 
+let
+  # Virtio Machines
+  virtualisation = with pkgs; [
+    looking-glass-client
+    quickemu
+    virt-manager
+    virt-viewer
+    freerdp3
+  ];
+
+  # Office Apps
+  office = with pkgs; [
+    libreoffice-bin
+    thunderbird-bin
+  ];
+
+  # Utils
+  utils = with pkgs; [
+    # Bars
+    eww
+
+    obsidian  # Note taking
+    webcord   # Wayland Discord
+
+    # Crypto Wallet
+    # Todo -> Wont build....
+    #exodus
+  ];
+
+  # Pass
+  pass-manager = with pkgs; [
+    # Bitwarden Password Manager
+    bitwarden-desktop
+    bitwarden-cli
+  ];
+
+  # Choose packages for specific system
+  packages = if ( systemSettings.hostname == "workstation")
+              then
+                virtualisation ++ office ++ utils ++ pass-manager
+              else if ( systemSettings.hostname == "thinkpad")
+              then
+                pass-manager
+              else [];
+in
 {
   imports =
     [ # Include other modules
@@ -30,13 +75,6 @@
 
   # List of secondary Applications
   home.packages = with pkgs; [
-    obsidian  # Note taking
-    webcord   # Wayland Discord
-
-    # Office Apps
-    libreoffice-fresh
-    thunderbird-bin
-
     # Network Manager
     networkmanagerapplet
 
@@ -50,7 +88,6 @@
     mpv
     vlc
     spotify
-    spicetify-cli
     pavucontrol
 
     # Disk Manager
@@ -59,23 +96,5 @@
     # Bluetooth
     bluez
     blueberry
-
-    # Virtio Machines
-    looking-glass-client
-    quickemu
-    virt-manager
-    virt-viewer
-    freerdp3
-
-    # Bars
-    eww
-
-    # Bitwarden Password Manager
-    bitwarden-desktop
-    bitwarden-cli
-
-    # Crypto Wallet
-    # Todo -> Wont build....
-    #exodus
-  ];
+  ] ++ packages;      # Added packges for specific System
 }

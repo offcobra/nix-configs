@@ -33,7 +33,7 @@
     modesetting.enable = true;
     nvidiaSettings = true;
     powerManagement.enable = true;
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_390;
     prime = {
       sync.enable = true;
       intelBusId = "PCI:0:2:0";

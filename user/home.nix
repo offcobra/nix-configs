@@ -27,7 +27,7 @@
   # environment packages.
   home.packages = with pkgs; [
     dconf
-    (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+    #(nerd-fonts.override { fonts = [ "SourceCodePro" ]; })
   ];
 
   # XDG Files to be linked
@@ -42,7 +42,7 @@
     ".icons/BeautyLine".source = "${pkgs.beauty-line-icon-theme}/share/icons/BeautyLine";
     ".themes/Catppuccin-Frappe-Standard-Blue-Dark".source = "${pkgs.catppuccin-gtk}/share/themes/Catppuccin-Frappe-Standard-Blue-Dark";
     ".themes/Dracula".source = "${pkgs.dracula-theme}/share/themes/Dracula";
-    ".local/share/fonts".source = "${pkgs.fira-code-nerdfont}/share/fonts/truetype/NerdFonts";
+    ".local/share/fonts".source = "${pkgs.nerd-fonts.fira-code}/share/fonts/truetype/NerdFonts";
 
   };
 

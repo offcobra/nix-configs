@@ -25,12 +25,12 @@
 
   # environment.
   home.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+    (nerd-fonts.override { fonts = [ "SourceCodePro" ]; })
   ];
 
   # Linking Home Files
   home.file = {
-    ".local/share/fonts".source = "${pkgs.fira-code-nerdfont}/share/fonts/truetype/NerdFonts";
+    ".local/share/fonts".source = "${pkgs.nerd-fonts.fira-code}/share/fonts/truetype/NerdFonts";
   };
 
   # Sessionvariables

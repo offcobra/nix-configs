@@ -10,6 +10,9 @@
 
     # Rofi Config
     ./rofi.nix
+
+    # URXVT Config
+    ./urxvt.nix
   ];
 
   # Linking Qtile Files

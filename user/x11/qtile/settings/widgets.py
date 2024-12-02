@@ -9,7 +9,7 @@ from settings.helper import check_cpu # check_vpn, vpn_toggle,
 
 myTerm = "alacritty"      # My terminal of choice
 #myFont = "Source Code Pro"
-myFont = "Firacodenerdfont"
+myFont = "FiraCodeCerdFont"
 
 
 customTerm = "alacritty --config-file /home/wally/.config/alacritty/alacritty_scratchpad.yml"

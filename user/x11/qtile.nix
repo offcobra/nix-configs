@@ -39,18 +39,18 @@
       echo "Setting Wallpapers"
       nitrogen --restore &
 
-      echo "Start Picom..."
-      systemctl --user start picom
+      #echo "Start Picom..."
+      #systemctl --user start picom
 
-      echo "Starting Flameshot Screenshot tool"
-      flameshot &
+      #echo "Starting Flameshot Screenshot tool"
+      #flameshot &
 
       echo "Starting Tray applets..."
       nm-applet &
       blueberry-tray &
 
-      echo "Start emacs daemon..."
-      emacs --daemon &
+      #echo "Start emacs daemon..."
+      #emacs --daemon &
 
       if [[ ${systemSettings.hostname} == "workstation" ]]
       then

@@ -17,8 +17,8 @@
 # Starting utility applications at boot time
 # For X11
 
-echo "Setting Screen resolution...."
-bash /home/wally/.local/bin/screen_full &
+#echo "Setting Screen resolution...."
+#bash /home/wally/.local/bin/screen_full &
 
 echo "Fix for GTK Apps starting slow..."
 /usr/lib/xdg-desktop-portal-gnome &
@@ -37,15 +37,15 @@ blueberry-tray &
 echo "Start emacs daemon..."
 emacs --daemon &
 
-echo "Starting Apps Conatiner..."
-xhost +local:*
-
-echo "Start signal in tray"
-flatpak run org.signal.Signal --start-in-tray &
-flatpak run com.rtosta.zapzap --start-hidden &
+#echo "Starting Apps Conatiner..."
+#xhost +local:*
+#
+#echo "Start signal in tray"
+#flatpak run org.signal.Signal --start-in-tray &
+#flatpak run com.rtosta.zapzap --start-hidden &
 
 # Setting custom resolution
-xrandr --newmode "1280x960_165.00"  310.25  1280 1392 1528 1776  960 963 967 1060 -hsync +vsync
-xrandr --addmode DisplayPort-1 1280x960_165.00
+#xrandr --newmode "1280x960_165.00"  310.25  1280 1392 1528 1776  960 963 967 1060 -hsync +vsync
+#xrandr --addmode DisplayPort-1 1280x960_165.00
 
 notify-send -t 3000 "Qtile AutoStart" "All Autostart Apps Loaded..."

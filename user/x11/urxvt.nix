@@ -4,7 +4,7 @@
   programs.urxvt = {
     enable = true;
     fonts = [
-      "xft:Fira Code Nerd Font:size:8"
+      "xft:Fira Code:size:7"
     ];
     extraConfig = {
       background = "#${config.colorScheme.palette.base00}";

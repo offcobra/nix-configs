@@ -31,16 +31,18 @@
       if [[ ${systemSettings.hostname} == "mediatv" ]]
       then
         # Setting Screens MediaTV
-        xrandr --output eDP-1 --off --output HDMI-A-1 --mode 1920x1080@60.00
+        xrdb ~/.Xresources
+        xrandr --output eDP-1 --off --output HDMI-1 --mode 1920x1080 --rate 60.00
         #screen_work
       fi
 
       echo "Fix for GTK Apps starting slow..."
-      /usr/lib/xdg-desktop-portal-gnome &
+      #/usr/lib/xdg-desktop-portal-gnome &
       dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY &
 
       echo "Setting Wallpapers"
-      nitrogen --restore &
+      #nitrogen --restore &
+      feh --bg-scale ~/.config/nixos/user/wallpapers/fantasy-landscape.png
 
       #echo "Start Picom..."
       #systemctl --user start picom

@@ -41,6 +41,8 @@ let startup = pkgs.pkgs.writeShellScriptBin "hypr-startup" /*bash*/ ''
     fi
   '';
   blur = if (systemSettings.hostname == "workstation") then true else false;
+  install = if (systemSettings.hostname == "mediatv") then false else true;
+
 in
 {
   imports =
@@ -74,7 +76,7 @@ in
 
   # Window Manager
   wayland.windowManager.hyprland = {
-    enable = true;
+    enable = install;
     xwayland = { enable = true; };
     systemd.enable = true;
     systemd.variables = [ "--all" ];
@@ -121,13 +123,6 @@ in
                   { no_hardware_cursors = true; }
                 else
                   { no_hardware_cursors = false; };
-
-      # Testing GPU
-      env = if (systemSettings.hostname == "mediatv")
-            then
-              "AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card2"
-            else
-              "TEST,testing";
 
       # Input Settings
       input = {

@@ -38,8 +38,8 @@ keybindings = [
 # BASIC KEYBINDINGS
 # Def my own Keybinding
 
-    Key([mod], "Return", lazy.spawn("kitty -e fish"), desc="Kitty with bash shell"),
-    Key(["control"], "Return", lazy.spawn("alacritty"), desc="Kitty Term with bash"),
+    Key([mod], "Return", lazy.spawn("urxvt"), desc="URXVT Term with bash shell"),
+    #Key(["control"], "Return", lazy.spawn("alacritty"), desc="Kitty Term with bash"),
 
     Key([mod], "p", lazy.spawn("rofi -show run"), desc="Programm Launcher"),
     Key([mod, "shift"], "p", lazy.spawn("websearch.py"), desc="Websearch Script"),

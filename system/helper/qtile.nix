@@ -41,6 +41,7 @@ in
 
   # Additional needed Hyprland packages
   environment.systemPackages = with pkgs; [
+    feh
     picom
     rofi
     nitrogen

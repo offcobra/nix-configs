@@ -49,18 +49,18 @@
     then
       {
         EDITOR = "nvim";
-        NIXOS_OZONE_WL = "1";
+        NIXOS_OZONE_WL = "0";
         XKB_DEFAULT_LAYOUT = "de";
         VISUAL = "vim";
         PAGER = "bat --pager 'less'";
         FLAKE = "/home/${userSettings.username}/.config/nixos";
         SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS = "0";
-        ELECTRON_OZONE_PLATFORM_HINT = "auto";
+        ELECTRON_OZONE_PLATFORM_HINT = "x11";
         LIBVA_DRIVER_NAME = "nvidia";
-        XDG_SESSION_TYPE = "wayland";
+        XDG_SESSION_TYPE = "x11";
         GBM_BACKEND = "nvidia-drm";
         __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-        #AQ_DRM_DEVICES = "/dev/dri/card1:/dev/dri/card2";
+        AQ_DRM_DEVICES = "/dev/dri/card0:/dev/dri/card1";
       }
     else
       {

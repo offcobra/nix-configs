@@ -19,4 +19,5 @@
 
   # Allow unfree Packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.nvidia.acceptLicense = true;
 }

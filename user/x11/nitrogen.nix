@@ -24,7 +24,7 @@
  bgcolor=#000000"
         else
  "[xin_0]
- file=/home/${userSettings.username}/.config/nixos/user/wallpapers/rainforest.jpg
+ file=/home/${userSettings.username}/.config/nixos/user/wallpapers/fantasy-landscape.png
  mode=0
  bgcolor=#000000";
     };

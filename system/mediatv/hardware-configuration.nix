@@ -11,10 +11,10 @@
     extraModulePackages = [ ];
     supportedFilesystems = [ "ntfs" ];
     initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "sr_mod" "rtsx_pci_sdmmc" "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
-    kernelPackages = pkgs.${systemSettings.kernel};
+    kernelPackages = pkgs.linuxPackages_5_15;
     kernelModules = [ "kvm-intel" ];
     loader.systemd-boot.enable = true;
-    loader.systemd-boot.configurationLimit = 3;
+    loader.systemd-boot.configurationLimit = 6;
     loader.efi.canTouchEfiVariables = true;
   };
 
@@ -22,7 +22,7 @@
   hardware.graphics = {
     enable = true;
     extraPackages = [
-      config.boot.kernelPackages.nvidiaPackages.production
+      config.boot.kernelPackages.nvidiaPackages.legacy_390
     ];
   };
 
@@ -30,9 +30,10 @@
   services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
+    #open = true;
     modesetting.enable = true;
     nvidiaSettings = true;
-    powerManagement.enable = true;
+    #powerManagement.enable = true;
     package = config.boot.kernelPackages.nvidiaPackages.legacy_390;
     prime = {
       sync.enable = true;

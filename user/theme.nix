@@ -1,5 +1,8 @@
-{ pkgs, userSettings, ... }:
+{ pkgs, userSettings, systemSettings, ... }:
 
+let
+  pointer_size = if ( systemSettings.hostname == "mediatv" ) then 20 else 10;
+in
 {
   # List of Themes
 
@@ -36,6 +39,6 @@
     gtk.enable = true;
     name = userSettings.cursorTheme;
     package = pkgs.dracula-theme;
-    size = 10;
+    size = pointer_size;
   };
 }

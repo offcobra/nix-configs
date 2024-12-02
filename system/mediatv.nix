@@ -8,7 +8,7 @@
       # Virtualization Stuff...
       ./helper/virtualization.nix
       # Hyprland Stuff...
-      ./helper/hyprland.nix
+      #./helper/hyprland.nix
       # Qtile Stuff...
       ./helper/qtile.nix
       # Fonts config
@@ -31,6 +31,8 @@
 
   # Services
   services.flatpak.enable = true;
+  #services.emacs.enable = true;
+  services.openssh.enable = true;
 
   # Enable sound.
   services.pipewire = {
@@ -69,25 +71,9 @@
   };
 
   # Power Management
-  services.tlp = {
+  powerManagement = {
       enable = true;
-      settings = {
-        CPU_SCALING_GOVERNOR_ON_AC = "performance";
-        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-
-        CPU_ENERGY_PERF_POLICY_ON_BAT = "powersave";
-        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-
-        CPU_MIN_PERF_ON_AC = 0;
-        CPU_MAX_PERF_ON_AC = 100;
-        CPU_MIN_PERF_ON_BAT = 0;
-        CPU_MAX_PERF_ON_BAT = 100;
-
-       #Optional helps save long term battery health
-       START_CHARGE_THRESH_BAT0 = 30; # 40 and bellow it starts to charge
-       STOP_CHARGE_THRESH_BAT0 = 98; # 80 and above it stops charging
-
-      };
+      cpuFreqGovernor = "performance";
   };
 
   # Dont Delete

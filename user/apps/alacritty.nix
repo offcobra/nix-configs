@@ -20,7 +20,7 @@
       font = {
         size = 8;
         normal = {
-          family = "Firacodenerdfont";
+          family = "FiraCodeNerdFont";
           style = "Semibold";
         };
         bold = {

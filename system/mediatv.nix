@@ -11,6 +11,8 @@
       ./helper/hyprland.nix
       # Qtile Stuff...
       ./helper/qtile.nix
+      # Fonts config
+      ./helper/fonts.nix
       # Nix Settings
       ./helper/nix-settings.nix
       # Gnome polkit

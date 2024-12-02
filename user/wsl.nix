@@ -23,11 +23,6 @@
   home.homeDirectory = "/home/${userSettings.username}/";
   home.stateVersion = "24.05"; # Please dont change
 
-  # environment.
-  home.packages = with pkgs; [
-    (nerd-fonts.override { fonts = [ "SourceCodePro" ]; })
-  ];
-
   # Linking Home Files
   home.file = {
     ".local/share/fonts".source = "${pkgs.nerd-fonts.fira-code}/share/fonts/truetype/NerdFonts";

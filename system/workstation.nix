@@ -9,6 +9,8 @@
       ./helper/nix-settings.nix
       # Boot Stuff
       ./workstation/boot.nix
+      # Fonts config
+      ./helper/fonts.nix
       # Steam Stuff ?- here for now...
       ./helper/steam.nix
       # Virtualization Stuff...

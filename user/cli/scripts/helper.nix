@@ -28,14 +28,19 @@
 
     # ShellScript start-vm (graphical environment)
     (writeShellScriptBin "start-wm" ''
-      if [[ $(tty) == "/dev/tty1" ]]
+      if [[ $(cat /etc/hostname) == "mediatv" ]]
       then
-	      # Start Hyprland
-	      Hyprland
-      elif [[ $(tty) == "/dev/tty2" ]]
-      then
-	      # Qtile start -b x11
-	      startx
+          # Only for MediaTV
+          startx
+      else
+          if [[ $(tty) == "/dev/tty1" ]] then
+              # Start Hyprland
+              Hyprland
+          elif [[ $(tty) == "/dev/tty2" ]]
+          then
+              # Qtile start -b x11
+              startx
+          fi
       fi
     '')
 

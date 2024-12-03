@@ -29,6 +29,9 @@
     networkmanager.enable = true;
   };
 
+  # Autologin
+  services.getty.autologinUser = "wally";
+
   # Services
   services.flatpak.enable = true;
   #services.emacs.enable = true;

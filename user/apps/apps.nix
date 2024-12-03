@@ -12,7 +12,7 @@ let
 
   # Office Apps
   office = with pkgs; [
-    libreoffice-bin
+    libreoffice-fresh
     thunderbird-bin
   ];
 

@@ -386,7 +386,8 @@ in
       # CRYPTO STUFF
       bind = SUPER, C, submap, crypto
       submap = crypto
-      bind = ,B, exec, qutebrowser https://binance.com
+      #bind = ,B, exec, qutebrowser https://binance.com
+      bind = ,B, exec, distrobox-enter -n arch -- /usr/sbin/binance
       bind = ,B, submap, reset
       bind = ,C, exec, qutebrowser https://coinmarketcap.com/
       bind = ,C, submap, reset
@@ -469,19 +470,22 @@ in
       windowrulev2 = opacity 0.99 0.98,class:(brave-browser)
       windowrulev2 = opacity 1 1,class:(cs2)
       windowrulev2 = opacity 1 1,class:(FreeTube)
-      windowrulev2 = opacity 1 1,class:(Thorium-browser)
-      windowrulev2 = tile ,class:(FreeTube)
+      windowrulev2 = opacity 1 1,class:(thorium-browser)
       windowrulev2 = opacity 1 1,class:(discord)
       windowrulev2 = opacity 1 1,class:(looking-glass-client)
       windowrulev2 = opacity 1 1,class:(fuzzel)
       windowrulev2 = opacity 1 1,title:(Picture in picture)
+
+      # Tile Programs
+      windowrulev2 = tile ,class:(thorium-browser)
+      windowrulev2 = tile ,class:(FreeTube)
 
       # Floating windows
       windowrulev2 = float,class:(cs2)
       windowrulev2 = float,class:(signal)
       windowrulev2 = float,class:(ollama)
       windowrulev2 = float,title:(SysMon)
-      windowrulev2 = float,class:(com.rtosta.zapzap)
+      windowrulev2 = float,class:(ZapZap)
       windowrulev2 = float,class:(steamwebhelper)
       windowrulev2 = float,class:(xdg-desktop-portal-gtk)
       windowrulev2 = float,class:(blueberry.py)
@@ -494,8 +498,8 @@ in
       windowrulev2 = center,class:(ollama)
       windowrulev2 = size 950 600,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
       windowrulev2 = center,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
-      windowrulev2 = size 950 600,class:(com.rtosta.zapzap)
-      windowrulev2 = center,class:(com.rtosta.zapzap)
+      windowrulev2 = size 950 600,class:(ZapZap)
+      windowrulev2 = center,class:(ZapZap)
     '';
   };
 }

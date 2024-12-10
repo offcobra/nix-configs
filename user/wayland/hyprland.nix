@@ -215,6 +215,7 @@ in
         "$mainMod_SHIFT, return, exec, virt-run.py --pods arch"
 
         # Screenshot
+        # TODO user hyprshot...
         "$mainMod, x, exec, grim -g \"$(slurp -d)\""
         "$mainMod_SHIFT, X, exec, hyprpicker | wl-copy"
 

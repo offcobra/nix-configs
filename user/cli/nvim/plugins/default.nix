@@ -73,7 +73,7 @@
     nvim-autopairs.enable = true;
 
     # Colorizer
-    nvim-colorizer.enable = true;
+    colorizer.enable = true;
 
     # Obsidian
     obsidian = {

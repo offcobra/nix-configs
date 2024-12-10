@@ -18,7 +18,7 @@
         frame_width = 3;
         sort = "no";
         idle_threshold = 40;
-        font = "Source Code Pro 9"; # todo
+        font = "Source Code Pro 9";
         line_height = 4;
         markup = "full";
         format = "<b>%s</b>\n%b";

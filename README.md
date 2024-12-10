@@ -76,13 +76,13 @@ This Repository should serve as a starting / inspiration point for people intres
 
 - [virt-run](user/cli/scripts/virt_run.nix) => Rofi / Fuzzel script to quick attach to VM's or distrobox Containers
 
----
 
-## Todo's for a better System:
+## TODO's:
 
-- Documentation
-- Fix Flatpak Themeing
-- Check Flatpak installed apps...
+    - Fix Font Configs
+    - Build StudioPC
+    - Learn about Profiles
+
 
 ---
 
@@ -107,8 +107,4 @@ This Repository should serve as a starting / inspiration point for people intres
 
 
 
-## Table
-
-|   first   |   second  |   third   |
-| :---      | :---:     |     ---:  |
-| 123       | 456       |      789  |
+----

@@ -96,5 +96,17 @@
         batwatch
       ];
     };
+
+    # Newsfeed
+    # TODO add theme + feeds...
+    newsboat = {
+      enable = true;
+      urls = [
+        {
+          tags = [ "Linux" ];
+          url = "https://archlinux.org/feeds/news/";
+        }
+      ];
+    };
   };
 }

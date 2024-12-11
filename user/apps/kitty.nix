@@ -1,14 +1,13 @@
-{ config, ... }:
+{ config, userSettings, ... }:
 
 {
   # Kitty Terminal
   programs.kitty = {
     enable = true;
     #font = {
-    #  name = "Firacodenerdfont:Semibold";
+    #  name = "${userSettings.font}:Semibold";
     #  size = 9;
     #};
-    #theme = "Catppuccin-Macchiato";
     shellIntegration = {
       enableBashIntegration = true;
       enableFishIntegration = true;
@@ -28,10 +27,10 @@
     extraConfig = "
 # Font Config
 font_size 8.5
-font_family      Firacodenerdfont Semibold
-bold_font        Firacodenerdfont Bold
-italic_font      Firacodenerdfont Italic
-bold_italic_font Firacodenerdfont Bold Italic
+font_family      ${userSettings.font} Semibold
+bold_font        ${userSettings.font} Bold
+italic_font      ${userSettings.font} Italic
+bold_italic_font ${userSettings.font} Bold Italic
 
 # Color Config
 # The basic colors

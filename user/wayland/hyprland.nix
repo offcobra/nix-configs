@@ -67,8 +67,7 @@ in
 
   home.packages = with pkgs; [
     # Screenshot tools
-    grim
-    slurp
+    hyprshot
     hyprpicker
     wl-clipboard
     #pyprland
@@ -213,11 +212,6 @@ in
         # Ollama AI Chat
         "$mainMod, o, exec, alacritty --class ollama --title Ollama -e ollama run llama3.2"
         "$mainMod_SHIFT, return, exec, virt-run.py --pods arch"
-
-        # Screenshot
-        # TODO user hyprshot...
-        "$mainMod, x, exec, grim -g \"$(slurp -d)\""
-        "$mainMod_SHIFT, X, exec, hyprpicker | wl-copy"
 
         # WLogout
         "$mainMod, z, exec, wlogout --protocol layer-shell -b 5"
@@ -461,6 +455,21 @@ in
       bind = ,S, submap, reset
       bind = , escape, submap, reset
       submap = reset
+
+      # Screenshot
+      bind = SUPER, PRINT, submap, screenshot
+      submap = screenshot
+      bind = ,P, exec, hyprpicker | wl-copy
+      bind = ,P, submap, reset
+      bind = ,W, exec, hyprshot -m window
+      bind = ,W, submap, reset
+      bind = ,M, exec, hyprshot -m output
+      bind = ,M, submap, reset
+      bind = ,R, exec, hyprshot -m region
+      bind = ,R, submap, reset
+      bind = , escape, submap, reset
+      submap = reset
+
 
       # Setting Programm opacity
       windowrulev2 = opacity 0.98 0.88,class:(.*)

@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, userSettings, ... }:
 
 {
   # Alacritty Terminal
@@ -20,19 +20,19 @@
       font = {
         size = 8;
         normal = {
-          family = "FiraCodeNerdFont";
+          family = "${userSettings.font}";
           style = "Semibold";
         };
         bold = {
-          family = "FiraCodeNerdFont";
+          family = "${userSettings.font}";
           style = "Bold";
         };
         italic = {
-          family = "FiraCodeNerdFont";
+          family = "${userSettings.font}";
           style = "Italic";
         };
         bold_italic = {
-          family = "FiraCodeNerdFont";
+          family = "${userSettings.font}";
           style = "Bold Italic";
         };
       };

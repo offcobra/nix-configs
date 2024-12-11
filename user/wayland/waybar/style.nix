@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, userSettings, ... }:
 
 {
   #programs.waybar.style = ''
@@ -13,7 +13,7 @@
     @define-color color4 #${config.colorScheme.palette.base0D};
     * {
       border: none;
-      font-family: 'Firacodenerdfont';
+      font-family: '${userSettings.font}';
       font-size: 9px;
       font-weight: bold;
       font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';

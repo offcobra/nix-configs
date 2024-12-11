@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, userSettings, ... }:
 
 {
   # Foot Terminal
@@ -7,7 +7,7 @@
     settings = {
       main = {
         pad = "2x2";
-        font = "Firacodenerdfont:Semibold:size=8";
+        font = "${userSettings.font}:Semibold:size=8";
       };
       scrollback.lines = 5000;
       colors = {

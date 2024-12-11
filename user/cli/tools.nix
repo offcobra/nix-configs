@@ -27,6 +27,7 @@
     nmap
     curl
     wget
+    whois
     rustscan
     traceroute
 

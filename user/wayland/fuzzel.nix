@@ -1,4 +1,4 @@
-{ config, pkgs, systemSettings, ... }:
+{ config, pkgs, systemSettings, userSettings, ... }:
 
 let
   font_size = if (systemSettings.hostname == "workstation") then "12" else "8";
@@ -10,7 +10,7 @@ in
     package = pkgs.fuzzel;
     settings = {
       main = {
-        font = "Firacodenerdfont:Semibold:size=${font_size}";
+        font = "${userSettings.font}:Semibold:size=${font_size}";
         line-height = if (systemSettings.hostname == "workstation") then 16 else 12;
         width = 40;
         lines = 10;

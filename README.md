@@ -1,6 +1,6 @@
 # Wally's Nix-Configs
 
-TODO Add picture here...
+ ![Hyprland](screenshots/hyprland.png)
 
 ## Table of Content:
 
@@ -79,7 +79,7 @@ This Repository should serve as a starting / inspiration point for people intres
 
 ## TODO's:
 
-    - Fix Font Configs
+    - Finish Documentation
     - Build StudioPC
     - Learn about Profiles
 
@@ -104,7 +104,6 @@ This Repository should serve as a starting / inspiration point for people intres
 
 
  ![World is OpenSource](user/wallpapers/opensource.jpg)
-
 
 
 ----

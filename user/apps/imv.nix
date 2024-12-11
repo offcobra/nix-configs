@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, userSettings, ... }:
 
 {
   # Imv Image viewer
@@ -7,7 +7,7 @@
     settings = {
       options = {
         suppress_default_binds = true;
-        overlay_font = "Firacodenerdfont:12";
+        overlay_font = "${userSettings.font}:12";
         background = "${config.colorScheme.palette.base00}";
       };
 

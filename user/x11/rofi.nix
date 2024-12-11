@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, userSettings, ... }:
 
 {
   # Rofi Config
@@ -9,7 +9,7 @@
       text = ''
         configuration {
           modi: "window,drun,ssh,combi";
-          font: "Fira Code 10";
+          font: "${userSettings.font} 10";
           combi-modi: "window,drun,ssh";
         }
         @theme "./theme.rasi"
@@ -23,7 +23,7 @@
             background-color:            #${config.colorScheme.palette.base00};
             border-color:                #${config.colorScheme.palette.base00};
             text-color:                  #${config.colorScheme.palette.base05};
-            font:                        "Fira Code 9";
+            font:                        "${userSettings.font} 9";
             prompt-font:                 @font;
             prompt-background:           #${config.colorScheme.palette.base08};
             prompt-foreground:           #${config.colorScheme.palette.base00};

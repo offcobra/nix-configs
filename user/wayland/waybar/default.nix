@@ -1,9 +1,9 @@
-{ config, pkgs, systemSettings, ... }:
+{ config, pkgs, systemSettings, userSettings, ... }:
 
 let
   # Importing the stuff...
   bar = import ./mainBar.nix { inherit pkgs systemSettings; };
-  style = import ./style.nix { inherit config; };
+  style = import ./style.nix { inherit config userSettings; };
   settings = if (systemSettings.hostname == "workstation")
     then
       [bar.mainBar bar.secondBar]

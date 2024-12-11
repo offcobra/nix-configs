@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, userSettings, ... }:
 
 {
   # Qutebrowser Configurations
@@ -24,7 +24,7 @@
         webpage.darkmode.enabled = true;
       };
       fonts = {
-        default_family = "Fira Code";
+        default_family = "${userSettings.font}";
         default_size = "11px";
       };
       downloads.location.directory = "~/Downloads/";

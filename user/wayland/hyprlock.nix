@@ -1,7 +1,7 @@
 { config, userSettings, ... }:
 
 let
-  font = "Firacodenerdfont:Semibold";
+  font = "${userSettings.font}:Semibold";
 in
 {
   # Hyprlock Configs

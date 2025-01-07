@@ -71,7 +71,7 @@ let
       "(.*) - Thorium - (.*)"= "  $2";
       "apps"= " Apps Container";
       "blackarch - (.*)"= "  Blackarch";
-      "ubuntu - (.*)"= "  Ubuntu";
+      "ubuntu - (.*)"= "󰕈  Ubuntu";
       "arch - (.*)"= "  ArchLinux";
       "debian - (.*)"= "  Debian";
       "opensuse - (.*)"= "  OpenSUSE";

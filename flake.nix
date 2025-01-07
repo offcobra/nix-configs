@@ -13,9 +13,10 @@
       inputs.hyprland.follows = "hyprland";
     };
     nixvim.url = "github:nix-community/nixvim";
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 
-  outputs = { nixpkgs, home-manager, nix-colors, nixvim, ... }@inputs:
+  outputs = { nixpkgs, home-manager, nix-colors, nixvim, nix-flatpak, ... }@inputs:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
@@ -56,6 +57,9 @@
       workstation = lib.nixosSystem {
         inherit system;
         modules = [
+          # Flatpaks
+          nix-flatpak.nixosModules.nix-flatpak
+
           ./system/workstation.nix
         ];
         specialArgs = {

@@ -388,7 +388,7 @@ in
       bind = ,C, submap, reset
       bind = ,P, exec, qutebrowser https://mail.proton.me/
       bind = ,P, submap, reset
-      bind = ,E, exec, flatpak run io.exodus.Exodus
+      bind = ,E, exec, distrobox-enter -n arch -- exodus
       bind = ,E, submap, reset
       bind = , escape, submap, reset
       submap = reset
@@ -492,7 +492,7 @@ in
 
       # Floating windows
       windowrulev2 = float,class:(cs2)
-      windowrulev2 = float,class:(signal)
+      windowrulev2 = float,class:(org.signal.Signal)
       windowrulev2 = float,class:(ollama)
       windowrulev2 = float,title:(SysMon)
       windowrulev2 = float,class:(ZapZap)
@@ -502,8 +502,8 @@ in
       windowrulev2 = float,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
 
       # Resize Windows
-      windowrulev2 = size 950 600,class:(signal)
-      windowrulev2 = center,class:(signal)
+      windowrulev2 = size 950 600,class:(org.signal.Signal)
+      windowrulev2 = center,class:(org.signal.Signal)
       windowrulev2 = size 950 600,class:(ollama)
       windowrulev2 = center,class:(ollama)
       windowrulev2 = size 950 600,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)

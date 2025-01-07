@@ -24,7 +24,6 @@ This Repository should serve as a starting / inspiration point for people intres
     - VM's Configs
     - Container Configs
     - Browser extensions Keybindings & Configs
-    - flatpak installs
 
 
 ### Repository Structure

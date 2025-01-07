@@ -46,21 +46,22 @@
   };
 
   # Services
-  services.flatpak.enable = true;
   services.gvfs.enable = true;
 
-  # Emacs service
-  #services.emacs.enable = true;
-
-  # Enable sound.
-  services.pipewire = {
+  # Flatpaks declarative
+  services.flatpak = {
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    #jack.enable = true;
-    socketActivation = true;
-    wireplumber.enable = true;
+    remotes = [{
+      name = "flathub";
+      location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+    }];
+    packages = [
+      "com.github.tchx84.Flatseal"
+      "com.rtosta.zapzap"
+      "org.signal.Signal"
+    ];
+    uninstallUnmanaged = true;
+    update.onActivation = true;
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

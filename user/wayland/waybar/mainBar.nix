@@ -81,7 +81,7 @@ let
     };
   };
   clock = {
-    format = "  {:%a %d %b  %H:%M}";
+    format = "  {:%H:%M  %a %d %b }";
     on-click = "alacritty --hold -e dcal";
   };
 in
@@ -91,7 +91,7 @@ in
     output = output;
     modules-left = ["hyprland/workspaces" "hyprland/window"];
     modules-center = moduleCenter;
-    modules-right = ["pulseaudio" "idle_inhibitor" "clock" "tray"];
+    modules-right = ["idle_inhibitor" "pulseaudio" "tray" "clock"];
     height= 8;
     "custom/arch" = {
       format = "";

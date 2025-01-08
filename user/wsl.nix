@@ -1,4 +1,4 @@
-{ pkgs, nixvim, nix-colors, userSettings, ... }:
+{ pkgs, nixvim, lib, allowed-unfree-packages, nix-colors, userSettings, ... }:
 
 {
   imports =
@@ -26,6 +26,10 @@
   # Linking Home Files
   home.file = {
     ".local/share/fonts".source = "${pkgs.nerd-fonts.fira-code}/share/fonts/truetype/NerdFonts";
+  };
+
+  nixpkgs.config = {
+    allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowed-unfree-packages;
   };
 
   # Sessionvariables

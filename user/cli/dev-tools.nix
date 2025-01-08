@@ -49,10 +49,10 @@ in
   # List of secondary Applications
   home.packages = with pkgs; [
     # SNMP
-    net-snmp
+    #net-snmp
 
     # Vault
-    #vault-bin
+    vault-bin
 
     # Start Docker
     (pkgs.writeShellScriptBin "start-docker" /*bash*/ ''

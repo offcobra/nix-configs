@@ -27,6 +27,8 @@
       ./helper/locales.nix
       # Set TUIGreet
       ./helper/tuigreet.nix
+      # Flatpaks
+      ./helper/flatpak.nix
     ];
 
   # Pick networking options.
@@ -47,22 +49,6 @@
 
   # Services
   services.gvfs.enable = true;
-
-  # Flatpaks declarative
-  services.flatpak = {
-    enable = true;
-    remotes = [{
-      name = "flathub";
-      location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
-    }];
-    packages = [
-      "com.github.tchx84.Flatseal"
-      "com.rtosta.zapzap"
-      "org.signal.Signal"
-    ];
-    uninstallUnmanaged = true;
-    update.onActivation = true;
-  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${userSettings.username} = {

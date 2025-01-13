@@ -21,6 +21,8 @@
       ./helper/locales.nix
       # Virtualization Stuff...
       ./helper/virtualization.nix
+      # Flatpaks
+      ./helper/flatpak.nix
     ];
 
   # Env Variablen
@@ -35,9 +37,6 @@
   # Laptop Services
   programs.light.enable = true;
   services.upower.enable = true;
-
-  # Services
-  services.flatpak.enable = true;
 
   # Enable sound.
   services.pipewire = {

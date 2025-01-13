@@ -70,7 +70,12 @@
       };
       thinkpad = lib.nixosSystem {
         inherit system;
-        modules = [ ./system/thinkpad.nix ];
+        modules = [
+          # Flatpaks
+          nix-flatpak.nixosModules.nix-flatpak
+
+          ./system/thinkpad.nix
+        ];
         specialArgs = {
           inherit inputs;
           inherit userSettings;

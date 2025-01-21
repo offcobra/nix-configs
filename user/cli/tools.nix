@@ -60,22 +60,6 @@
   ];
 
   programs = {
-    # Vim Settings
-    vim = {
-      enable = true;
-      settings = {
-        expandtab = true;
-        shiftwidth = 4;
-        tabstop = 4;
-      };
-      extraConfig = ''
-        syntax enable
-        set incsearch
-        set hlsearch
-        set autoindent
-        set number relativenumber
-      '';
-    };
 
     # Git Version Control
     git = {

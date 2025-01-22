@@ -14,7 +14,7 @@ let
     env_type = os.environ.get("XDG_SESSION_TYPE")
     if env_type == "wayland":
         DMENU = "fuzzel --dmenu"
-        TERM = "foot"
+        TERM = "footclient"
     else:
         DMENU = "rofi --dmenu"
         TERM = "kitty"

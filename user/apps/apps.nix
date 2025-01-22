@@ -26,7 +26,15 @@ let
 
     # Crypto Wallet
     # Todo -> Wont build....
-    #exodus
+    #(exodus.overrideAttrs {
+    #  version = "24.51.4";
+
+    #  src = requireFile {
+    #    name = "exodus-linux-x64-24.51.4.zip";
+    #    url = "https://downloads.exodus.com/releases/exodus-linux-x64-24.51.4.zip";
+    #    hash = "sha256-lUL9n3EZVe2J7uCHUSJgI2g75Sp1Y/nfBTde7VId6sA=";
+    #  };
+    #})
   ];
 
   # Pass

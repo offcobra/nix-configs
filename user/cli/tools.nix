@@ -16,6 +16,12 @@
     ripgrep
     tealdeer
 
+    # pdf
+    pdftk
+
+    # crypto
+    cointop
+
     # Virt / Container tools
     k3d
     kubectl

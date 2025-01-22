@@ -1,4 +1,4 @@
-{ inputs, pkgs, systemSettings, userSettings, config, ... }:
+{ inputs, pkgs, systemSettings, config, ... }:
 
 let startup = pkgs.pkgs.writeShellScriptBin "hypr-startup" /*bash*/ ''
     if [[ ${systemSettings.hostname} == "mediatv" ]]
@@ -18,6 +18,9 @@ let startup = pkgs.pkgs.writeShellScriptBin "hypr-startup" /*bash*/ ''
 
     echo "Clipboard Manager..."
     wl-paste -t text --watch clipman store --no-persist &
+
+    echo "Starting Foot Server..."
+    foot --server &
 
     #echo "Starting Pyprland for plugins..."
     #pypr &
@@ -76,7 +79,9 @@ in
   # Window Manager
   wayland.windowManager.hyprland = {
     enable = install;
-    xwayland = { enable = true; };
+    xwayland = {
+      enable = true;
+    };
     systemd.enable = true;
     systemd.variables = [ "--all" ];
     #plugins = [
@@ -150,6 +155,7 @@ in
       # Misc settings
       misc = {
         enable_swallow = "true";
+        swallow_regex = "^(Alacritty|kitty|footclient)$";
       };
 
       # Startup Programms
@@ -204,7 +210,7 @@ in
       bind = [
         # Terminals
         "$mainMod, return, exec, alacritty -e fish"
-        "CTRL, return, exec, foot"
+        "CTRL, return, exec, footclient"
 
         # Clipboard manager
         "CTRL, P, exec, clipman pick -t rofi"
@@ -297,6 +303,11 @@ in
       ];
     };
     extraConfig = ''
+      # XWayland scaling
+      xwayland {
+        force_zero_scaling = true
+      }
+
       # Move/resize windows with mainMod + LMB/RMB and dragging
       bindm = SUPER, mouse:272, movewindow
       bindm = SUPER, mouse:273, resizewindow
@@ -334,7 +345,7 @@ in
       # EMACS
       bind = SUPER, E, submap, emacs
       submap = emacs
-      bind = ,N, exec, foot -T NeoVim -e nvim
+      bind = ,N, exec, footclient -T NeoVim -e nvim
       bind = ,N, submap, reset
       bind = ,O, exec, obsidian
       bind = ,O, submap, reset
@@ -380,15 +391,18 @@ in
       # CRYPTO STUFF
       bind = SUPER, C, submap, crypto
       submap = crypto
-      #bind = ,B, exec, qutebrowser https://binance.com
       bind = ,B, exec, distrobox-enter -n arch -- /usr/sbin/binance
       bind = ,B, submap, reset
-      bind = ,C, exec, qutebrowser https://coinmarketcap.com/
+      bind = ,C, exec, qutebrowser --target window https://coinmarketcap.com/
       bind = ,C, submap, reset
+      bind = ,V, exec, qutebrowser --target window https://de.tradingview.com/chart/2eropQd2/?symbol=BINANCE%3ABTCUSDT
+      bind = ,V, submap, reset
       bind = ,P, exec, qutebrowser https://mail.proton.me/
       bind = ,P, submap, reset
       bind = ,E, exec, distrobox-enter -n arch -- exodus
       bind = ,E, submap, reset
+      bind = ,T, exec, footclient -e cointop
+      bind = ,T, submap, reset
       bind = , escape, submap, reset
       submap = reset
 
@@ -494,7 +508,7 @@ in
       windowrulev2 = float,class:(org.signal.Signal)
       windowrulev2 = float,class:(ollama)
       windowrulev2 = float,title:(SysMon)
-      windowrulev2 = float,class:(ZapZap)
+      windowrulev2 = float,class:(com.rtosta.zapzap)
       windowrulev2 = float,class:(steamwebhelper)
       windowrulev2 = float,class:(xdg-desktop-portal-gtk)
       windowrulev2 = float,class:(blueberry.py)
@@ -507,8 +521,8 @@ in
       windowrulev2 = center,class:(ollama)
       windowrulev2 = size 950 600,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
       windowrulev2 = center,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
-      windowrulev2 = size 950 600,class:(ZapZap)
-      windowrulev2 = center,class:(ZapZap)
+      windowrulev2 = size 950 600,class:(com.rtosta.zapzap)
+      windowrulev2 = center,class:(com.rtosta.zapzap)
     '';
   };
 }

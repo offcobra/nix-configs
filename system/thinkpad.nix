@@ -17,6 +17,8 @@
       ./helper/ollama.nix
       # Gnome polkit
       ./helper/polkit.nix
+      # Sudo Security
+      ./helper/security.nix
       # Set Locales
       ./helper/locales.nix
       # Virtualization Stuff...
@@ -66,6 +68,7 @@
         lm_sensors
         alsa-utils
         powertop
+        linuxKernel.packages.linux_zen.cpupower
     ];
   };
 
@@ -99,7 +102,7 @@
         CPU_MAX_PERF_ON_BAT = 100;
 
        #Optional helps save long term battery health
-       START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
+       START_CHARGE_THRESH_BAT0 = 50; # 40 and bellow it starts to charge
        STOP_CHARGE_THRESH_BAT0 = 98; # 80 and above it stops charging
 
       };

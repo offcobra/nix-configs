@@ -409,9 +409,7 @@ in
       # TOGGLE STUFF
       bind = SUPER, T, submap, toggle
       submap = toggle
-      bind = ,T, exec, theme_choose
-      bind = ,T, submap, reset
-      bind = ,B, exec, toggle_cpu
+      bind = ,B, exec, toggle-cpu.sh
       bind = ,B, submap, reset
       bind = ,V, exec, toggle_vpn
       bind = ,V, submap, reset

@@ -20,6 +20,9 @@
     # Toggle process
     ./toggle_proc.nix
 
+    # Toggle CPU Guvernor
+    ./toggle_cpu.nix
+
     # Virt-Run (vms / pods) script ...
     ./virt_run.nix
   ];

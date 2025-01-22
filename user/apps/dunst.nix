@@ -1,5 +1,8 @@
-{ config, userSettings, ... }:
+{ config, userSettings, systemSettings, ... }:
 
+let
+  font_size = if (systemSettings.hostname == "thinkpad") then "10" else "9";
+in
 {
   # Configure dunst notify
   services.dunst = {
@@ -18,7 +21,7 @@
         frame_width = 3;
         sort = "no";
         idle_threshold = 40;
-        font = "${userSettings.font} 9";
+        font = "${userSettings.font} ${font_size}";
         line_height = 4;
         markup = "full";
         format = "<b>%s</b>\n%b";

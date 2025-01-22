@@ -137,5 +137,8 @@ fi
         macchina                              # Minimal fastfetch
       '';
     };
+    lf = {
+      enable = true;
+    };
   };
 }

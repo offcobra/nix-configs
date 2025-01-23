@@ -16,7 +16,7 @@ let
     then
       ["custom/temp" "cpu" "custom/cpu" "memory" "battery" "custom/virtual"]
     else
-      ["custom/temp" "cpu" "memory" "custom/virtual"];
+      ["custom/temp" "cpu"  "custom/cpu" "memory" "custom/virtual"];
   output = if (systemSettings.hostname == "workstation")
     then
       "DP-1"

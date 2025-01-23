@@ -23,6 +23,8 @@
       ./helper/ollama.nix
       # Gnome polkit
       ./helper/polkit.nix
+      # Sudo Security
+      ./helper/security.nix
       # Set Locales
       ./helper/locales.nix
       # Set TUIGreet

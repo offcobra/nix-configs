@@ -6,7 +6,7 @@
     ];
 
   # Set CPU Guvernor
-  powerManagement.cpuFreqGovernor = "performance";
+  powerManagement.cpuFreqGovernor = "powersave";
 
   # For games
   hardware.pulseaudio.support32Bit = true;

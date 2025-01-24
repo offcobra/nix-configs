@@ -9,6 +9,7 @@ let
 
 
     PROGRAMMS = "git exa neofetch"
+    CPUPOWER = "${pkgs.linuxKernel.packages.linux_zen.cpupower}"
 
     # Define ENV Variables
     env_type = os.environ.get("XDG_SESSION_TYPE")
@@ -121,6 +122,11 @@ let
             raise Exception(f"#=> No VM with name: {vm_name}...")
 
         if vm_name not in running:
+            if vm_name == "win11":
+                subprocess.run(
+                    f"sudo {CPUPOWER}/bin/cpupower frequency-set -g performance",
+                    shell=True
+                )
             subprocess.run(f"virsh start '{vm_name}'", shell=True)
 
         # time.sleep(3)

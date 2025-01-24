@@ -2,7 +2,7 @@
 
 let
   update_cmd = if (userSettings.username == "wally")
-      then "os_rebuild && hm_rebuild && nix_clean"
+      then "os-rebuild && hm-rebuild && nix-clean"
       else "sudo pacman -Syyu && nh home switch --update && nix_clean";
   keep = if (userSettings.username == "wally") then "3" else "2";
 
@@ -53,12 +53,12 @@ let
     gs = "git status";
     gc = "git checkout";
     dog = "git log --oneline --graph --decorate --all";
-    git_clean = "git remote update origin --prune";
+    git-clean = "git remote update origin --prune";
 
     # Nixos Rebuild
-    os_rebuild="nh os switch --ask --update";
-    hm_rebuild="nh home switch";
-    nix_clean="nh clean user --keep ${keep}";
+    os-rebuild="nh os switch --ask --update";
+    hm-rebuild="nh home switch";
+    nix-clean="nh clean user --keep ${keep}";
 
     # Ollama AI Chat
     ai="ollama run llama3.2";

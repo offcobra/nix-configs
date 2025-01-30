@@ -56,16 +56,12 @@ in
 {
   imports =
     [ # Include other modules
+      # Terminals
+      ./terminals
       # Dunst Config
       ./dunst.nix
       # Emacs Config
       ./emacs.nix
-      # Alacritty Config
-      ./alacritty.nix
-      # Kitty Config
-      ./kitty.nix
-      # Wezterm Config
-      #./wezterm.nix
       # Brave Config
       ./brave.nix
       ./qutebrowser.nix

@@ -10,11 +10,11 @@
       # Check what actuall Guvernor ist
       if [[ $STATUS == "performance" ]]; then
           # Set Guvernor to powersave
-          notify-send -t 5000 "Toggle CPU" "Setting CPU Guvernor to powersave..."
+          notify-send -t 5000 "Toggle CPU Guvernor" "Setting CPU to PowerSave..."
           sudo ${pkgs.linuxKernel.packages.linux_zen.cpupower}/bin/cpupower frequency-set -g powersave
       else
           # Set Guvernor to performance
-          notify-send -t 5000 "Toggle CPU" "Setting CPU Guvernor to performance..."
+          notify-send -t 5000 "Toggle CPU Guvernor" "Setting CPU to Performance..."
           sudo ${pkgs.linuxKernel.packages.linux_zen.cpupower}/bin/cpupower frequency-set -g performance
       fi
     '')

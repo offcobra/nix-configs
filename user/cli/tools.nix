@@ -22,6 +22,10 @@
     # crypto
     cointop
 
+    # viu or chafa
+    # for terminal image rendering
+    chafa
+
     # Virt / Container tools
     k3d
     kubectl

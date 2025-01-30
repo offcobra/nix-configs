@@ -33,7 +33,8 @@ let
 
     # Media Stuff
     pdf = "zathura";
-    img = "loupe";
+    img = "chafa";
+    images = "loupe";
 
     # Shell reload
     brc = "source ~/.bashrc";

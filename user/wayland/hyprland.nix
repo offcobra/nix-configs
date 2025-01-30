@@ -155,7 +155,7 @@ in
       # Misc settings
       misc = {
         enable_swallow = "true";
-        swallow_regex = "^(Alacritty|kitty|footclient)$";
+        swallow_regex = "^(Alacritty|kitty|footclient|foot)$";
       };
 
       # Startup Programms
@@ -209,14 +209,15 @@ in
       "$mainMod" = "SUPER";
       bind = [
         # Terminals
-        "$mainMod, return, exec, alacritty -e fish"
-        "CTRL, return, exec, footclient"
+        "$mainMod, return, exec, footclient -e fish"
+        "CTRL, return, exec, alacritty"
+        "ALT, return, exec, ghostty"
 
         # Clipboard manager
         "CTRL, P, exec, clipman pick -t rofi"
 
         # Ollama AI Chat
-        "$mainMod, o, exec, alacritty --class ollama --title Ollama -e ollama run llama3.2"
+        "$mainMod, o, exec, footclient --class ollama --title Ollama -e ollama run llama3.2"
         "$mainMod_SHIFT, return, exec, virt-run.py --pods arch"
 
         # WLogout
@@ -345,7 +346,7 @@ in
       # EMACS
       bind = SUPER, E, submap, emacs
       submap = emacs
-      bind = ,N, exec, footclient -T NeoVim -e nvim
+      bind = ,N, exec, footclient --override=main.pad=2x2 -T NeoVim -e nvim
       bind = ,N, submap, reset
       bind = ,O, exec, obsidian
       bind = ,O, submap, reset

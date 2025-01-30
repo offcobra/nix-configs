@@ -6,7 +6,7 @@
     enable = true;
     settings = {
       main = {
-        pad = "2x2";
+        pad = "10x5";
         font = "${userSettings.font}:Semibold:size=8";
       };
       scrollback.lines = 5000;

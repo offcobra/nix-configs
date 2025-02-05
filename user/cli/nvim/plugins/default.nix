@@ -66,7 +66,7 @@
     # notify daemon
     notify = {
       enable = true;
-      topDown = true;
+      settings.top_down = true;
     };
 
     # autopair for coding

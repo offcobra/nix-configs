@@ -3,7 +3,7 @@
 let
   update_cmd = if (userSettings.username == "wally")
       then "os-rebuild && hm-rebuild && nix-clean"
-      else "sudo pacman -Syyu && nh home switch --update && nix_clean";
+      else "sudo pacman -Syyu && nh home switch --update && nix-clean";
   keep = if (userSettings.username == "wally") then "3" else "2";
 
   # Shell aliases

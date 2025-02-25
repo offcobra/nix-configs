@@ -20,6 +20,7 @@
   	    nixd.enable = true;
   	    helm_ls.enable = true;
         marksman.enable = true;
+        terraformls.enable = true;
   	  };
       keymaps.lspBuf = {
         "gd" = {

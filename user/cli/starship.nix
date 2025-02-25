@@ -9,6 +9,8 @@
     settings = {
       add_newline = true;
       format = lib.concatStrings [
+        "$kubernetes"
+        "$line_break"
         "$git_branch"
         "$git_state"
         "$git_status"
@@ -37,6 +39,24 @@
           "Unknown" = " Unknown";
         };
       };
+      kubernetes = {
+        disabled = false;
+        symbol = "⎈";
+        format = "[$symbol](blue) [Cluster:](bright-black) [$context]($style) [Namespace:](bright-black) [\($namespace\)]($style)";
+        contexts = [{
+          context_pattern = "^production$";
+          context_alias = "production";
+          style = "red";
+        }{
+          context_pattern = "^staging$";
+          context_alias = "staging";
+          style = "blue";
+        }{
+          context_pattern = "^test$";
+          context_alias = "test";
+          style = "green";
+        }];
+      };
       directory = {
         style = "blue";
         substitutions = {
@@ -47,6 +67,7 @@
           ".config" = " ";
           "nixos" = " ";
           "emacs" = " ";
+          "projects" = " ";
         };
       };
       character = {

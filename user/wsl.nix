@@ -43,6 +43,7 @@
     LC_ALL="C.UTF-8";
     LANG="C.UTF-8";
     LANGUAGE="en_US.UTF-8";
+    _ZO_DOCTOR="0";
   };
 
   # SessionPath

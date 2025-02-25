@@ -56,6 +56,9 @@ let
     dog = "git log --oneline --graph --decorate --all";
     git-clean = "git remote update origin --prune";
 
+    # python json parser
+    boom = "python -m json.tool";
+
     # Nixos Rebuild
     os-rebuild="nh os switch --ask --update";
     hm-rebuild="nh home switch";
@@ -88,7 +91,10 @@ in
     ./zoxide.nix
     # Scripts
     ./scripts/helper.nix
+    # Kubectl
+    ./kubectl
   ];
+
   # Session Shells
   programs = {
     bash = {
@@ -110,6 +116,10 @@ cd $HOME
 
 # Set vi mode
 set -o vi
+
+# Kubecolor
+source <(kubectl completion bash)
+complete -o default -F __start_kubectl k
 
 # Added by Nix installer
 if [ -e /home/${userSettings.username}/.nix-profile/etc/profile.d/nix.sh ]

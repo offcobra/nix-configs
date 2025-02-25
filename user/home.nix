@@ -74,6 +74,7 @@
         SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS = "0";
         ELECTRON_OZONE_PLATFORM_HINT = "auto";
         HYPRSHOT_DIR = "/home/${userSettings.username}/Pictures/Screenshots";
+        _ZO_DOCTOR="0";
       };
 
   # SessionPath

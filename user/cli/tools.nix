@@ -27,10 +27,7 @@
     chafa
 
     # Virt / Container tools
-    k3d
-    kubectl
     distrobox
-    kubernetes-helm
 
     # Network
     dig

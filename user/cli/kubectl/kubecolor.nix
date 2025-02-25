@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 {
   # Kubecolor
@@ -9,64 +9,64 @@
       preset = "dark";
       theme = {
         base = {
-          info = "fg=#cdd6f4";
-          primary = "fg=#cba6f7";
-          secondary = "fg=#89dceb";
-          success = "fg=#a6e3a1:bold";
-          warning = "fg=#f9e2af:bold";
-          danger = "fg=#f38ba8:bold";
-          muted = "fg=#7f849c";
-          key = "fg=#b4befe:bold";
+          info = "fg=#${config.colorScheme.palette.base05}";
+          primary = "fg=#${config.colorScheme.palette.base0E}";
+          secondary = "fg=#${config.colorScheme.palette.base0D}";
+          success = "fg=#${config.colorScheme.palette.base0B}:bold";
+          warning = "fg=#${config.colorScheme.palette.base0A}:bold";
+          danger = "fg=#${config.colorScheme.palette.base08}:bold";
+          muted = "fg=#${config.colorScheme.palette.base06}";
+          key = "fg=#${config.colorScheme.palette.base07}:bold";
         };
-        default = "fg=#cdd6f4";
+        default = "fg=#${config.colorScheme.palette.base05}";
         data = {
-          key = "fg=#b4befe:bold";
-          string = "fg=#cdd6f4";
-          "true" = "fg=#a6e3a1:bold";
-          "false" = "fg=#f38ba8:bold";
-          number = "fg=#cba6f7";
-          "null" = "fg=#7f849c";
-          quantity = "fg=#cba6f7";
-          duration = "fg=#fab387";
-          durationfresh = "fg=#a6e3a1";
+          key = "fg=#${config.colorScheme.palette.base07}:bold";
+          string = "fg=#${config.colorScheme.palette.base05}";
+          "true" = "fg=#${config.colorScheme.palette.base0B}:bold";
+          "false" = "fg=#${config.colorScheme.palette.base08}:bold";
+          number = "fg=#${config.colorScheme.palette.base0E}";
+          "null" = "fg=#${config.colorScheme.palette.base06}";
+          quantity = "fg=#${config.colorScheme.palette.base0E}";
+          duration = "fg=#${config.colorScheme.palette.base09}";
+          durationfresh = "fg=#${config.colorScheme.palette.base0B}";
           ratio = {
-            zero = "fg=#7f849c";
-            equal = "fg=#a6e3a1";
-            unequal = "fg=#f9e2af";
+            zero = "fg=#${config.colorScheme.palette.base06}";
+            equal = "fg=#${config.colorScheme.palette.base0B}";
+            unequal = "fg=#${config.colorScheme.palette.base0A}";
           };
         };
         status = {
-          success = "fg=#a6e3a1:bold";
-          warning = "fg=#f9e2af:bold";
-          error = "fg=#f38ba8:bold";
+          success = "fg=#${config.colorScheme.palette.base0B}:bold";
+          warning = "fg=#${config.colorScheme.palette.base0A}:bold";
+          error = "fg=#${config.colorScheme.palette.base08}:bold";
         };
         table = {
-          header = "fg=#cdd6f4:bold";
-          columns = "fg=#cdd6f4";
+          header = "fg=#${config.colorScheme.palette.base0E}:bold";
+          columns = "fg=#${config.colorScheme.palette.base05}";
         };
         stderr = {
-          default = "fg=#cdd6f4";
-          error = "fg=#f38ba8:bold";
+          default = "fg=#${config.colorScheme.palette.base05}";
+          error = "fg=#${config.colorScheme.palette.base08}:bold";
         };
         describe = {
-          key = "fg=#b4befe:bold";
+          key = "fg=#${config.colorScheme.palette.base07}:bold";
         };
         apply = {
-          created = "fg=#a6e3a1";
-          configured = "fg=#f9e2af";
-          unchanged = "fg=#cdd6f4";
-          dryrun = "fg=#89dceb";
-          fallback = "fg=#cdd6f4";
+          created = "fg=#${config.colorScheme.palette.base0B}";
+          configured = "fg=#${config.colorScheme.palette.base0A}";
+          unchanged = "fg=#${config.colorScheme.palette.base05}";
+          dryrun = "fg=#${config.colorScheme.palette.base0D}";
+          fallback = "fg=#${config.colorScheme.palette.base05}";
         };
         explain = {
-          key = "fg=#b4befe:bold";
-          required = "fg=#1e1e2e:bold";
+          key = "fg=#${config.colorScheme.palette.base07}:bold";
+          required = "fg=#${config.colorScheme.palette.base00}:bold";
         };
         options = {
-          flag = "fg=#b4befe:bold";
+          flag = "fg=#${config.colorScheme.palette.base07}:bold";
         };
         version = {
-          key = "fg=#b4befe:bold";
+          key = "fg=#${config.colorScheme.palette.base07}:bold";
         };
       };
     };

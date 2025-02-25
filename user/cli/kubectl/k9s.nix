@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 {
   # K9s Config
@@ -43,34 +43,53 @@
       default = {
         k9s = {
           body = {
-            bgColor = "default";
+            bgColor = "#${config.colorScheme.palette.base00}";
+            fgColor = "#${config.colorScheme.palette.base05}";
+            logoColor = "#${config.colorScheme.palette.base0E}";
+          };
+          help = {
+            bgColor = "#${config.colorScheme.palette.base00}";
+            fgColor = "#${config.colorScheme.palette.base05}";
+            sectionColor = "#${config.colorScheme.palette.base0B}";
+            keyColor = "#${config.colorScheme.palette.base0D}";
+            numKeyColor = "#${config.colorScheme.palette.base0A}";
           };
           frame = {
             crumbs = {
-              bgColor = "default";
+              bgColor = "#${config.colorScheme.palette.base00}";
+              fgColor = "#${config.colorScheme.palette.base05}";
             };
             title = {
-              bgColor = "default";
+              bgColor = "#${config.colorScheme.palette.base00}";
+              fgColor = "#${config.colorScheme.palette.base05}";
+            };
+            border = {
+              focusColor = "#${config.colorScheme.palette.base07}";
+              fgColor = "#${config.colorScheme.palette.base05}";
             };
           };
           views = {
             table = {
-              bgColor = "default";
+              bgColor = "#${config.colorScheme.palette.base00}";
+              fgColor = "#${config.colorScheme.palette.base05}";
               header = {
-                bgColor = "default";
+                bgColor = "#${config.colorScheme.palette.base00}";
+                fgColor = "#${config.colorScheme.palette.base05}";
               };
             };
             xray = {
-              bgColor = "default";
+              bgColor = "#${config.colorScheme.palette.base00}";
+              fgColor = "#${config.colorScheme.palette.base05}";
             };
             logs = {
-              bgColor = "default";
+              bgColor = "#${config.colorScheme.palette.base00}";
+              fgColor = "#${config.colorScheme.palette.base05}";
               indicator = {
-                bgColor = "default";
+                bgColor = "#${config.colorScheme.palette.base00}";
               };
             };
             charts = {
-              bgColor = "default";
+              bgColor = "#${config.colorScheme.palette.base00}";
             };
           };
         };

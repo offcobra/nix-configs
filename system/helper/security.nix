@@ -13,6 +13,10 @@
           command = "${pkgs.linuxKernel.packages.linux_zen.cpupower}/bin/cpupower frequency-set -g performance";
           options = [ "NOPASSWD" ];
         }
+        {
+          command = "${pkgs.gparted}/bin/gparted";
+          options = [ "NOPASSWD" ];
+        }
       ];
       groups = [ "wheel" ];
     }];

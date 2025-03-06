@@ -23,6 +23,8 @@
       ./helper/locales.nix
       # Virtualization Stuff...
       ./helper/virtualization.nix
+      # Set TUIGreet
+      ./helper/tuigreet.nix
       # Flatpaks
       ./helper/flatpak.nix
     ];

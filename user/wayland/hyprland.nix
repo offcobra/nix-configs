@@ -214,7 +214,7 @@ in
         "ALT, return, exec, ghostty"
 
         # Clipboard manager
-        "CTRL, P, exec, clipman pick -t rofi"
+        "CTRL, P, exec, clipman pick -t STDOUT | fuzzel --dmenu | wl-copy"
 
         # Ollama AI Chat
         "$mainMod, o, exec, footclient --class ollama --title Ollama -e ollama run llama3.2"
@@ -236,7 +236,8 @@ in
         # Quick Shortcuts
         "$mainMod, P, exec, fuzzel"
         "$mainMod_SHIFT, P, exec, websearch.py"
-        "$mainMod, F, exec, pcmanfm"
+        "$mainMod, F, exec, footclient -e lf"
+        "ALT, F, exec, pcmanfm"
         "$mainMod, S, exec, alacritty -e btm"
 
         # Move focus with mainMod + arrow keys
@@ -378,7 +379,7 @@ in
       bind = ,E, submap, reset
       bind = ,H, exec, bitwarden
       bind = ,H, submap, reset
-      bind = ,P, exec, sudo -E gparted
+      bind = ,P, exec, sudo -E ${pkgs.gparted}/bin/gparted
       bind = ,P, submap, reset
       bind = ,B, exec, blueberry
       bind = ,B, submap, reset

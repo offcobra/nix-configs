@@ -41,7 +41,7 @@ let
   pass-manager = with pkgs; [
     # Bitwarden Password Manager
     bitwarden-desktop
-    bitwarden-cli
+    #bitwarden-cli
   ];
 
   # Choose packages for specific system

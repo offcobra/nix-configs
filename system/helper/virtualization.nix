@@ -28,6 +28,7 @@
       libvirtd.enable = false;
 
       # Enable Container
-      podman.enable = true;
+      #podman.enable = true;
+      docker.enable = true;
     };
 }

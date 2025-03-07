@@ -44,6 +44,10 @@
     LANG="C.UTF-8";
     LANGUAGE="en_US.UTF-8";
     _ZO_DOCTOR="0";
+    #http_proxy="http://10.111.47.10:8080/";
+    #https_proxy="http://10.111.47.10:8080/";
+    #HTTP_PROXY="http://10.111.47.10:8080/";
+    #HTPPS_PROXY="http://10.111.47.10:8080/";
   };
 
   # SessionPath

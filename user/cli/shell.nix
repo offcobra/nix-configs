@@ -18,9 +18,14 @@ let
     n = "nvim";
     df = "dysk";
 
-    #find = "fd --hidden";
-    find = "fzf --preview='bat --color=always {}' | xargs nvim";
-    grep = "rg --files-with-matches -i";
+    f = "fd --hidden";
+    gr = "rg -i";
+    pf = "fzf --preview='bat --color=always {}' | xargs nvim";
+    pg = "rg --files-with-matches -i";
+    find = "fd --hidden";
+    pfind = "fzf --preview='bat --color=always {}' | xargs nvim";
+    pgrep = "rg --files-with-matches -i";
+    grep = "rg -i";
     du = "dust";
     ps = "procs";
     cat = "bat";
@@ -69,6 +74,9 @@ let
 
     # Update whole System
     update = "${update_cmd}";
+
+    # Update Arch mirror
+    umirror="sudo reflector --country Germany --sort score -f 10 -l 100 --save /etc/pacman.d/mirrorlist";
   };
 in
 {
@@ -117,15 +125,15 @@ cd $HOME
 # Set vi mode
 set -o vi
 
-# Kubecolor
-source <(kubectl completion bash)
-complete -o default -F __start_kubectl k
-
 # Added by Nix installer
 if [ -e /home/${userSettings.username}/.nix-profile/etc/profile.d/nix.sh ]
 then
     . /home/${userSettings.username}/.nix-profile/etc/profile.d/nix.sh
 fi
+
+# Kubecolor
+source <(kubectl completion bash)
+complete -o default -F __start_kubectl k
 
 # Start WindowManager
 start-wm

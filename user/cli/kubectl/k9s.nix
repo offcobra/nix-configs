@@ -20,8 +20,8 @@
         noExitOnCtrlC = true;
         skipLatestRevCheck = false;
         logger = {
-          tail = 100;
-          buffer = 5000;
+          tail = 102;
+          buffer = 5020;
           sinceSeconds = 60;
           fullScreenLogs = false;
           textWrap = false;
@@ -43,53 +43,59 @@
       default = {
         k9s = {
           body = {
-            bgColor = "#${config.colorScheme.palette.base00}";
             fgColor = "#${config.colorScheme.palette.base05}";
+            bgColor = "#${config.colorScheme.palette.base02}";
             logoColor = "#${config.colorScheme.palette.base0E}";
           };
-          help = {
-            bgColor = "#${config.colorScheme.palette.base00}";
+          prompt = {
             fgColor = "#${config.colorScheme.palette.base05}";
+            bgColor = "#${config.colorScheme.palette.base01}";
+            suggestColor = "#${config.colorScheme.palette.base0D}";
+          };
+          help = {
+            fgColor = "#${config.colorScheme.palette.base05}";
+            bgColor = "#${config.colorScheme.palette.base02}";
             sectionColor = "#${config.colorScheme.palette.base0B}";
             keyColor = "#${config.colorScheme.palette.base0D}";
             numKeyColor = "#${config.colorScheme.palette.base0A}";
           };
           frame = {
-            crumbs = {
-              bgColor = "#${config.colorScheme.palette.base00}";
-              fgColor = "#${config.colorScheme.palette.base05}";
-            };
             title = {
-              bgColor = "#${config.colorScheme.palette.base00}";
+              bgColor = "#${config.colorScheme.palette.base02}";
               fgColor = "#${config.colorScheme.palette.base05}";
             };
             border = {
               focusColor = "#${config.colorScheme.palette.base07}";
               fgColor = "#${config.colorScheme.palette.base05}";
             };
+            crumbs = {
+              bgColor = "#${config.colorScheme.palette.base02}";
+              fgColor = "#${config.colorScheme.palette.base05}";
+              activeColor = "#${config.colorScheme.palette.base05}";
+            };
           };
           views = {
             table = {
-              bgColor = "#${config.colorScheme.palette.base00}";
+              bgColor = "#${config.colorScheme.palette.base02}";
               fgColor = "#${config.colorScheme.palette.base05}";
               header = {
-                bgColor = "#${config.colorScheme.palette.base00}";
+                bgColor = "#${config.colorScheme.palette.base02}";
                 fgColor = "#${config.colorScheme.palette.base05}";
               };
             };
             xray = {
-              bgColor = "#${config.colorScheme.palette.base00}";
+              bgColor = "#${config.colorScheme.palette.base02}";
               fgColor = "#${config.colorScheme.palette.base05}";
             };
             logs = {
-              bgColor = "#${config.colorScheme.palette.base00}";
+              bgColor = "#${config.colorScheme.palette.base02}";
               fgColor = "#${config.colorScheme.palette.base05}";
               indicator = {
-                bgColor = "#${config.colorScheme.palette.base00}";
+                bgColor = "#${config.colorScheme.palette.base02}";
               };
             };
             charts = {
-              bgColor = "#${config.colorScheme.palette.base00}";
+              bgColor = "#${config.colorScheme.palette.base02}";
             };
           };
         };

@@ -8,9 +8,6 @@
   # Set CPU Guvernor
   powerManagement.cpuFreqGovernor = "powersave";
 
-  # For games
-  hardware.pulseaudio.support32Bit = true;
-
   # Enable OpenGL / Vulkan support
   hardware.graphics = {
     enable = true;

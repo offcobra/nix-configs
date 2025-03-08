@@ -31,6 +31,8 @@
       ./helper/tuigreet.nix
       # Flatpaks
       ./helper/flatpak.nix
+      # Sound
+      ./helper/pipewire.nix
     ];
 
   # Pick networking options.

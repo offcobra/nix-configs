@@ -180,10 +180,15 @@ let
             for vm in run_cmd("virsh list --state-running --name", list=True):
                 run_cmd(f"virsh shutdown {vm}")
             run_cmd("podman stop --all -t=3")
+            subprocess.run(
+                f"sudo {CPUPOWER}/bin/cpupower frequency-set -g powersave",
+                shell=True
+            )
 
         if args.info:
             vms = run_cmd("virsh list --state-running --name", list=True)
-            pods = run_cmd("podman ps --format \"{{.Image}}\"", list=True)
+            #pods = run_cmd("podman ps --format \"{{.Image}}\"", list=True)
+            pods = run_cmd("docker ps --format \"{{.Image}}\"", list=True)
 
             vm_icons = ""
             pod_icons = ""
@@ -191,8 +196,7 @@ let
             for vm in vms:
                 vm = vm.split("=")[0]
                 vm_icons += f" {DISTROS[vm].split(" ")[0]}"
-
-            for key, value in DISTROS.items():
+            for key in DISTRO_IMAGES.keys():
                 for pod in pods:
                     if key in pod:
                         pod_icons += f" {DISTROS[key].split(" ")[0]}"

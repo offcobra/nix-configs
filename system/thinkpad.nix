@@ -27,6 +27,8 @@
       ./helper/tuigreet.nix
       # Flatpaks
       ./helper/flatpak.nix
+      # Sound
+      ./helper/pipewire.nix
     ];
 
   # Env Variablen
@@ -41,14 +43,6 @@
   # Laptop Services
   programs.light.enable = true;
   services.upower.enable = true;
-
-  # Enable sound.
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    pulse.enable = true;
-    wireplumber.enable = true;
-  };
 
   # Fingerprint reader
   services.fprintd = {

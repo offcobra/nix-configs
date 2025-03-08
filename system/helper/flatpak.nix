@@ -12,6 +12,7 @@
       "com.github.tchx84.Flatseal"
       "com.rtosta.zapzap"
       "org.signal.Signal"
+      "app.zen_browser.zen"
     ];
     uninstallUnmanaged = true;
     update.onActivation = true;

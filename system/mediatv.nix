@@ -21,6 +21,8 @@
       ./helper/locales.nix
       # Virtualization Stuff...
       ./helper/virtualization.nix
+      # Sound
+      ./helper/pipewire.nix
     ];
 
   # Enable networking
@@ -36,17 +38,6 @@
   services.flatpak.enable = true;
   #services.emacs.enable = true;
   services.openssh.enable = true;
-
-  # Enable sound.
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-    socketActivation = true;
-    wireplumber.enable = true;
-  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.wally = {

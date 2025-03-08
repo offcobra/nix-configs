@@ -30,7 +30,6 @@ let
     ps = "procs";
     cat = "bat";
     cat1 = "/run/current-system/sw/bin/cat";
-    gping ="ping www.google.com";
     dcal = "date && cal -3";
     my_pub_ip = "curl icanhazip.com";
     diff = "batdiff";
@@ -71,12 +70,17 @@ let
 
     # Ollama AI Chat
     ai="ollama run llama3.2";
+    ai-big="ollama run llama3.3";
 
     # Update whole System
     update = "${update_cmd}";
 
     # Update Arch mirror
     umirror="sudo reflector --country Germany --sort score -f 10 -l 100 --save /etc/pacman.d/mirrorlist";
+
+    # Testing commands...
+    gping = "ping www.google.com";
+    mic = "arecord -vvv -f dat /dev/null";
   };
 in
 {

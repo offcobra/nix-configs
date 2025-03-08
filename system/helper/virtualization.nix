@@ -20,7 +20,9 @@
       spiceUSBRedirection.enable = true;
 
       # Enable Container
-      podman.enable = true;
+      #podman.enable = true;
+      # Install pipewire-pulse for sound in arch!
+      docker.enable = true;
     }
 
     # No libvirtd everywhere else..

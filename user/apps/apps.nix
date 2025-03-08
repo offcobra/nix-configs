@@ -61,7 +61,7 @@ in
       # Dunst Config
       ./dunst.nix
       # Emacs Config
-      ./emacs.nix
+      #./emacs.nix
       # Brave Config
       ./brave.nix
       ./qutebrowser.nix
@@ -92,7 +92,8 @@ in
     mpv
     vlc
     spotify
-    pavucontrol
+    #pavucontrol
+    pwvucontrol
 
     # Disk Manager
     gparted

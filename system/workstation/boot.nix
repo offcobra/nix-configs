@@ -24,7 +24,7 @@ in
     # Test: dmesg | grep -i vfio
 
     # 1. Version
-    kernelParams = [ "rd.driver.pre=vfio-pci" "amd_iommu=on" "iommu=pt" "video=efifb:off" "vfio-pci.ids=${rtx2080}" "hugepagesz=2M" "hugepages=8192" ];
+    kernelParams = [ "rd.driver.pre=vfio-pci" "amd_iommu=on" "iommu=pt" "video=efifb:off" "vfio-pci.ids=${rtx2080}" "hugepagesz=2M" "hugepages=6144" ];
     extraModprobeConfig = "options vfio-pci ids=${rtx2080}";
 
     # 2. Version

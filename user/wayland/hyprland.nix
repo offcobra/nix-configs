@@ -339,7 +339,7 @@ in
       bind = ,H, submap, reset
       bind = ,O, exec, qutebrowser
       bind = ,O, submap, reset
-      bind = ,Z, exec, flatpak run io.github.zen_browser.zen
+      bind = ,Z, exec, flatpak run app.zen_browser.zen
       bind = ,Z, submap, reset
       bind = , escape, submap, reset
       submap = reset
@@ -369,7 +369,7 @@ in
       submap = programms
       bind = ,G, exec, steam
       bind = ,G, submap, reset
-      bind = ,V, exec, pavucontrol
+      bind = ,V, exec, pwvucontrol
       bind = ,V, submap, reset
       bind = ,F, exec, flatpak run com.github.tchx84.Flatseal
       bind = ,F, submap, reset
@@ -494,6 +494,7 @@ in
       windowrulev2 = opacity 1 1,class:(cs2)
       windowrulev2 = opacity 1 1,class:(FreeTube)
       windowrulev2 = opacity 1 1,class:(thorium-browser)
+      windowrulev2 = opacity 1 1,class:(zen)
       windowrulev2 = opacity 1 1,class:(discord)
       windowrulev2 = opacity 1 1,class:(looking-glass-client)
       windowrulev2 = opacity 1 1,class:(fuzzel)

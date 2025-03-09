@@ -187,7 +187,6 @@ let
 
         if args.info:
             vms = run_cmd("virsh list --state-running --name", list=True)
-            #pods = run_cmd("podman ps --format \"{{.Image}}\"", list=True)
             pods = run_cmd("docker ps --format \"{{.Image}}\"", list=True)
 
             vm_icons = ""

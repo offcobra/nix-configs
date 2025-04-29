@@ -26,6 +26,9 @@ let
 
     # K Logs
     kl = "kubetail";
+
+    # K exec shell
+    kshell = "k exec -ti";
   };
 in
 {

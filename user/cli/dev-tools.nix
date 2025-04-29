@@ -24,7 +24,7 @@ in
     # HashiCorp
     vault-bin
     boundary
-    terraform
+    #terraform
 
     # Start Docker
     (pkgs.writeShellScriptBin "start-docker" /*bash*/ ''

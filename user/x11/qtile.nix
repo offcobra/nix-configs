@@ -17,8 +17,16 @@
 
   # Linking Qtile Files
   home.file = {
-    ".config/qtile".source = ./qtile;
+    ".config/qtile".source = pkgs.fetchgit {
+      url = "https://github.com/offcobra/qtile-configs.git";
+      rev = "HEAD";
+      hash = "sha256-dGQ+dYpszNnTCiVzJYzQzbtMi+V09SpEQw1CMErgF/Q=";
+    };
   };
+  #home.file = {
+  #  ".config/qtile".source = ./qtile;
+  #};
+
 
   # Packages for Qtile
   home.packages = with pkgs; [

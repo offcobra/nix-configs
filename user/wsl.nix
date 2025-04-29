@@ -38,16 +38,18 @@
     XKB_DEFAULT_LAYOUT = "de";
     VISUAL="vim";
     PAGER="bat --pager 'less'";
-    FLAKE="/home/${userSettings.username}/.config/nixos";
+    NH_FLAKE="/home/${userSettings.username}/.config/nixos";
     SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS="0";
     LC_ALL="C.UTF-8";
     LANG="C.UTF-8";
     LANGUAGE="en_US.UTF-8";
     _ZO_DOCTOR="0";
+    TMPDIR="/tmp";
     #http_proxy="http://10.111.47.10:8080/";
     #https_proxy="http://10.111.47.10:8080/";
     #HTTP_PROXY="http://10.111.47.10:8080/";
     #HTPPS_PROXY="http://10.111.47.10:8080/";
+    #GIT_SSL_NO_VERIFY=1;
   };
 
   # SessionPath

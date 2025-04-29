@@ -53,7 +53,7 @@
         XKB_DEFAULT_LAYOUT = "de";
         VISUAL = "vim";
         PAGER = "bat --pager 'less'";
-        FLAKE = "/home/${userSettings.username}/.config/nixos";
+        NH_FLAKE = "/home/${userSettings.username}/.config/nixos";
         SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS = "0";
         ELECTRON_OZONE_PLATFORM_HINT = "x11";
         LIBVA_DRIVER_NAME = "nvidia";
@@ -70,7 +70,7 @@
         VISUAL = "vim";
         PAGER = "bat --pager 'less'";
         LIBVIRT_DEFAULT_URI = "qemu:///system";
-        FLAKE = "/home/${userSettings.username}/.config/nixos";
+        NH_FLAKE = "/home/${userSettings.username}/.config/nixos";
         SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS = "0";
         ELECTRON_OZONE_PLATFORM_HINT = "auto";
         HYPRSHOT_DIR = "/home/${userSettings.username}/Pictures/Screenshots";

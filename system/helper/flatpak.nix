@@ -13,6 +13,11 @@
       "com.rtosta.zapzap"
       "org.signal.Signal"
       "app.zen_browser.zen"
+      "com.discordapp.Discord"
+      "me.proton.Mail"
+      "com.protonvpn.www"
+      "me.proton.Pass"
+      "org.qutebrowser.qutebrowser"
     ];
     uninstallUnmanaged = true;
     update.onActivation = true;

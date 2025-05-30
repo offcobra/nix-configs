@@ -25,6 +25,8 @@
 
     # Virt-Run (vms / pods) script ...
     ./virt_run.nix
+
+    ./poker_equity.nix
   ];
 
   home.packages = with pkgs; [

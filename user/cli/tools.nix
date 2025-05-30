@@ -41,7 +41,8 @@
     # More tools
     htop
     killall
-    ventoy
+    # unfree license...
+    #ventoy
     pciutils
     bottom
     macchina

@@ -16,6 +16,12 @@
   ];
 
   # Linking Qtile Files
+  #home.file = {
+  #  ".config/test".source = pkgs.fetchgit {
+  #    url = "git@github.com:offcobra/dotfiles.git";
+  #    rev = "master";
+  #  };
+  #};
   home.file = {
     ".config/qtile".source = pkgs.fetchgit {
       url = "https://github.com/offcobra/qtile-configs.git";

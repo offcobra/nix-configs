@@ -73,6 +73,7 @@ in
     hyprshot
     hyprpicker
     wl-clipboard
+    hyprswitch
     #pyprland
   ];
 
@@ -236,8 +237,8 @@ in
         # Quick Shortcuts
         "$mainMod, P, exec, fuzzel"
         "$mainMod_SHIFT, P, exec, websearch.py"
-        "$mainMod, F, exec, footclient -e lf"
-        "ALT, F, exec, pcmanfm"
+        "$mainMod, F, exec, pcmanfm"
+        "ALT, F, exec, footclient -e lf"
         "$mainMod, S, exec, alacritty -e btm"
 
         # Move focus with mainMod + arrow keys
@@ -337,7 +338,7 @@ in
       bind = ,T, submap, reset
       bind = ,H, exec, distrobox-enter -n arch  --  /usr/bin/thorium-browser --incognito %U
       bind = ,H, submap, reset
-      bind = ,O, exec, qutebrowser
+      bind = ,O, exec, flatpak run org.qutebrowser.qutebrowser
       bind = ,O, submap, reset
       bind = ,Z, exec, flatpak run app.zen_browser.zen
       bind = ,Z, submap, reset
@@ -377,9 +378,9 @@ in
       bind = ,S, submap, reset
       bind = ,E, exec, thunderbird
       bind = ,E, submap, reset
-      bind = ,H, exec, bitwarden
+      bind = ,H, exec, flatpak run me.proton.Pass
       bind = ,H, submap, reset
-      bind = ,P, exec, sudo -E ${pkgs.gparted}/bin/gparted
+      bind = ,P, exec, flatpak run me.proton.Mail
       bind = ,P, submap, reset
       bind = ,B, exec, blueberry
       bind = ,B, submap, reset
@@ -387,6 +388,8 @@ in
       bind = ,O, submap, reset
       bind = ,Y, exec, freetube
       bind = ,Y, submap, reset
+      bind = ,W, exec, waypaper
+      bind = ,W, submap, reset
       bind = , escape, submap, reset
       submap = reset
 
@@ -395,12 +398,10 @@ in
       submap = crypto
       bind = ,B, exec, distrobox-enter -n arch -- /usr/sbin/binance
       bind = ,B, submap, reset
-      bind = ,C, exec, qutebrowser --target window https://coinmarketcap.com/
+      bind = ,C, exec, flatpak run org.qutebrowser.qutebrowser --target window https://coinmarketcap.com/
       bind = ,C, submap, reset
-      bind = ,V, exec, qutebrowser --target window https://de.tradingview.com/chart/2eropQd2/?symbol=BINANCE%3ABTCUSDT
+      bind = ,V, exec, flatpak run org.qutebrowser.qutebrowser --target window https://de.tradingview.com/chart/2eropQd2/?symbol=BINANCE%3ABTCUSDT
       bind = ,V, submap, reset
-      bind = ,P, exec, qutebrowser https://mail.proton.me/
-      bind = ,P, submap, reset
       bind = ,E, exec, distrobox-enter -n arch -- exodus
       bind = ,E, submap, reset
       bind = ,T, exec, footclient -e cointop
@@ -413,7 +414,7 @@ in
       submap = toggle
       bind = ,B, exec, toggle-cpu.sh
       bind = ,B, submap, reset
-      bind = ,V, exec, toggle_vpn
+      bind = ,V, exec, flatpak run com.protonvpn.www
       bind = ,V, submap, reset
       bind = ,S, exec, toggle_service
       bind = ,S, submap, reset
@@ -460,7 +461,7 @@ in
       # CHAT ing...
       bind = SUPER, I, submap, chat
       submap = chat
-      bind = ,D, exec, webcord
+      bind = ,D, exec, flatpak run com.discordapp.Discord
       bind = ,D, submap, reset
       bind = ,W, exec, flatpak run com.rtosta.zapzap
       bind = ,W, submap, reset
@@ -487,6 +488,7 @@ in
       # Setting Programm opacity
       windowrulev2 = opacity 0.98 0.88,class:(.*)
       windowrulev2 = opacity 0.96 0.8,class:(Alacritty)
+      windowrulev2 = opacity 0.96 0.8,class:(footclient)
       windowrulev2 = opacity 0.96 0.8,class:(Kitty)
       #windowrulev2 = opacity 1 0.85,class:(Emacs)
       windowrulev2 = opacity 0.94 0.82,class:(steam)
@@ -508,22 +510,34 @@ in
       windowrulev2 = float,class:(cs2)
       windowrulev2 = float,class:(org.signal.Signal)
       windowrulev2 = float,class:(ollama)
+      windowrulev2 = float,class:(waypaper)
       windowrulev2 = float,title:(SysMon)
       windowrulev2 = float,class:(com.rtosta.zapzap)
       windowrulev2 = float,class:(steamwebhelper)
       windowrulev2 = float,class:(xdg-desktop-portal-gtk)
       windowrulev2 = float,class:(blueberry.py)
       windowrulev2 = float,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
+      windowrulev2 = float,title:(Picture-in-Picture)
+      windowrulev2 = float,class:(Proton Pass)
+      windowrulev2 = float,class:(com.discordapp.Discord)
 
       # Resize Windows
+      windowrulev2 = size 950 600,class:(Proton Pass)
+      windowrulev2 = center,class:(Proton Pass)
+      windowrulev2 = size 950 600,class:(com.discordapp.Discord)
+      windowrulev2 = center,class:(com.discordapp.Discord)
       windowrulev2 = size 950 600,class:(org.signal.Signal)
       windowrulev2 = center,class:(org.signal.Signal)
       windowrulev2 = size 950 600,class:(ollama)
       windowrulev2 = center,class:(ollama)
+      windowrulev2 = size 950 600,class:(waypaper)
+      windowrulev2 = center,class:(waypaper)
       windowrulev2 = size 950 600,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
       windowrulev2 = center,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
       windowrulev2 = size 950 600,class:(com.rtosta.zapzap)
       windowrulev2 = center,class:(com.rtosta.zapzap)
+      windowrulev2 = size 950 600,title:(Picture-in-Picture)
+      windowrulev2 = center,title:(Picture-in-Picture)
     '';
   };
 }

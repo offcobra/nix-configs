@@ -179,7 +179,7 @@ let
             send_notify("Stopping all Vms / Pods...")
             for vm in run_cmd("virsh list --state-running --name", list=True):
                 run_cmd(f"virsh shutdown {vm}")
-            run_cmd("podman stop --all -t=3")
+            run_cmd("docker stop $(docker ps -a -q)")
             subprocess.run(
                 f"sudo {CPUPOWER}/bin/cpupower frequency-set -g powersave",
                 shell=True

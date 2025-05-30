@@ -14,6 +14,7 @@ let
   office = with pkgs; [
     libreoffice-fresh
     thunderbird-bin
+    #birdtray
   ];
 
   # Utils
@@ -22,7 +23,7 @@ let
     eww
 
     obsidian  # Note taking
-    webcord   # Wayland Discord
+    #webcord   # Wayland Discord
 
     # Crypto Wallet
     # Todo -> Wont build....
@@ -39,9 +40,9 @@ let
 
   # Pass
   pass-manager = with pkgs; [
-    # Bitwarden Password Manager
+  #  # Bitwarden Password Manager
     bitwarden-desktop
-    #bitwarden-cli
+  #  #bitwarden-cli
   ];
 
   # Choose packages for specific system
@@ -92,8 +93,10 @@ in
     mpv
     vlc
     spotify
-    #pavucontrol
     pwvucontrol
+
+    # Wallpaper
+    waypaper
 
     # Disk Manager
     gparted

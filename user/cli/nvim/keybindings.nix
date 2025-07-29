@@ -198,31 +198,31 @@ in
 
      # Obsidian
      {
-       action = "<cmd>ObsidianNew<CR>";
+       action = "<cmd>Obsidian new<CR>";
        key = "<leader>on";
      }
      {
-       action = "<cmd>ObsidianSearch<CR>";
+       action = "<cmd>Obsidian search<CR>";
        key = "<leader>os";
      }
      {
-       action = "<cmd>ObsidianLink<CR>";
+       action = "<cmd>Obsidian link<CR>";
        key = "<leader>oL";
      }
      {
-       action = "<cmd>ObsidianLinks<CR>";
+       action = "<cmd>Obsidian links<CR>";
        key = "<leader>ol";
      }
      {
-       action = "<cmd>ObsidianBacklinks<CR>";
+       action = "<cmd>Obsidian backlinks<CR>";
        key = "<leader>ob";
      }
      {
-       action = "<cmd>ObsidianTags<CR>";
+       action = "<cmd>Obsidian tags<CR>";
        key = "<leader>ot";
      }
      {
-       action = "<cmd>ObsidianRename<CR>";
+       action = "<cmd>Obsidian rename<CR>";
        key = "<leader>or";
      }
 

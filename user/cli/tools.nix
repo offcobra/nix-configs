@@ -16,6 +16,10 @@
     ripgrep
     tealdeer
 
+    # GO cli tools
+    duf
+    gdu
+
     # pdf
     pdftk
 
@@ -41,7 +45,6 @@
     # More tools
     htop
     killall
-    # unfree license...
     #ventoy
     pciutils
     bottom

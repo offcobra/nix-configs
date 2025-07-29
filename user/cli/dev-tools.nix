@@ -20,11 +20,17 @@ in
   home.packages = with pkgs; [
     # SNMP
     #net-snmp
+    sslscan
 
     # HashiCorp
     vault-bin
     boundary
     #terraform
+
+    # DevSecOps
+    trivy
+    buildah
+    podman
 
     # Start Docker
     (pkgs.writeShellScriptBin "start-docker" /*bash*/ ''
@@ -42,7 +48,7 @@ in
 
   # Dev Variables
   home.sessionVariables = {
-     VAULT_ADDR = "http://10.222.48.30:8200";
+     VAULT_ADDR = "https://vault.fcbayern.cloud";
      NIXPKGS_ALLOW_UNFREE = "1";
   };
 

@@ -3,7 +3,7 @@
 let
   update_cmd = if (userSettings.username == "wally")
       then "os-rebuild && hm-rebuild && nix-clean"
-      else "sudo pacman -Syyu && nh home switch --update && nix-clean";
+      else "paru -Syyu --noconfirm && nh home switch --update && nix-clean";
   keep = if (userSettings.username == "wally") then "3" else "2";
 
   # Shell aliases
@@ -69,7 +69,7 @@ let
     nix-clean="nh clean user --keep ${keep}";
 
     # Ollama AI Chat
-    ai="ollama run llama3.2";
+    ai="ollama run gemma3:latest";
     ai-big="ollama run llama3.3";
 
     # Update whole System

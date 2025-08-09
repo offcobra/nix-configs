@@ -55,6 +55,7 @@ let
       #New------------------------------
       "(.*) - Brave - (.*) - Brave"= "  $2";
       "Alacritty - (.*)"= "   $1";
+      "foot - (.*)"= "   $1";
       "Ollama - (.*)"= "󰧑  $1 AI Chat";
       "(.*) - Freetube"= "  $1";
       "(.*) - Spotify Premium"= "  $1";

@@ -6,13 +6,13 @@
     enable = true;
     package = pkgs.brave;
     extensions = [
-      "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock origin
-      "nngceckbapebfimnlniiiahkandclblb" # bitwarden-desktop
-      "dbepggeogbaibhgnhhndojpepiihcmeb" # vimium
-      "eimadpbcbfnmbkopoojfekhnkhdbieeh" # dark-reader
-      "fjoaledfpmneenckfbpdfhkmimnjocfa" # nordvpn
-      "jplgfhpmjnbigmhklmmbgecoobifkmpa" # proton-vpn
-      "ghmbeldphafepmbegfdlkpapadhbakde" # proton-pass
+      "cjpalhdlnbpafiamejdnhcphjbkeiagm"    # ublock origin
+      # "nngceckbapebfimnlniiiahkandclblb"  # bitwarden-desktop
+      "dbepggeogbaibhgnhhndojpepiihcmeb"    # vimium
+      "eimadpbcbfnmbkopoojfekhnkhdbieeh"    # dark-reader
+      "fjoaledfpmneenckfbpdfhkmimnjocfa"    # nordvpn
+      "jplgfhpmjnbigmhklmmbgecoobifkmpa"    # proton-vpn
+      "ghmbeldphafepmbegfdlkpapadhbakde"    # proton-pass
     ];
     #commandLineArgs = [
     #  "--enable-features=UseOzonePlatform"

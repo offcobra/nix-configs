@@ -16,7 +16,7 @@
         switch = {
           modifier = "alt";
           filter_by = [];
-          show_workspaces = false;
+          show_workspaces = true;
         };
 
         overview = {

@@ -95,12 +95,6 @@ in
     spotify
     pwvucontrol
 
-    # Wallpaper
-    waypaper
-
-    # Disk Manager
-    gparted
-
     # Bluetooth
     bluez
     blueberry

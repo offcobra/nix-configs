@@ -45,6 +45,7 @@ let startup = pkgs.pkgs.writeShellScriptBin "hypr-startup" /*bash*/ ''
   '';
   blur = if (systemSettings.hostname == "workstation") then true else false;
   install = if (systemSettings.hostname == "mediatv") then false else true;
+  sens = if (systemSettings.hostname == "thinkpad") then 0.5 else 1;
 
 in
 {
@@ -62,6 +63,8 @@ in
       ./hyprlock.nix
       # Hypridle
       ./hypridle.nix
+      # Hyprshell
+      ./hyprshell.nix
       # Wlogout
       ./wlogout
       # Pyprland
@@ -73,7 +76,7 @@ in
     hyprshot
     hyprpicker
     wl-clipboard
-    hyprswitch
+    #hyprswitch
     #pyprland
   ];
 
@@ -139,7 +142,7 @@ in
             natural_scroll = "no";
         };
 
-        sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
+        sensitivity = sens; # -1.0 - 1.0, 0 means no modification.
         accel_profile = "flat";
       };
 

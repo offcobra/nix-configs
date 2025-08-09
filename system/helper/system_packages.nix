@@ -5,6 +5,7 @@ pkgs: with pkgs;
     hwloc
     curl
     gnugrep
+    gparted
     lm_sensors
     pciutils
     os-prober

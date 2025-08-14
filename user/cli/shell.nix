@@ -139,6 +139,9 @@ fi
 source <(kubectl completion bash)
 complete -o default -F __start_kubectl k
 
+# Add fubectl
+[ -f .local/bin/fubectl.source ] && source .local/bin/fubectl.source
+
 # Start WindowManager
 start-wm
 

@@ -55,7 +55,8 @@
     lualine.enable = true;
 
     # markdown viewer
-    markview.enable = true;
+    #markview.enable = true;
+    render-markdown.enable = true;
 
     # nix Support
     nix.enable = true;

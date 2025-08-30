@@ -205,9 +205,9 @@ in
         new_status = "master";
       };
 
-      gestures = {
-        workspace_swipe = "off";
-      };
+      #gestures = {
+      #  workspace_swipe = "off";
+      #};
 
       # Bind Keyboard Settings
       "$mainMod" = "SUPER";

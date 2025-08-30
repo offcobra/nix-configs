@@ -2,17 +2,17 @@
 
 {
   # Brave Browser Config
-  programs.chromium = {
+  programs.brave = {
     enable = true;
     package = pkgs.brave;
     extensions = [
-      "cjpalhdlnbpafiamejdnhcphjbkeiagm"    # ublock origin
+      { id = "epcnnfbjfcgphgdmggkamkmgojdagdnn"; }    # ublock origin
+      { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; }    # vimium
+      { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; }    # dark-reader
+      { id = "jplgfhpmjnbigmhklmmbgecoobifkmpa"; }    # proton-vpn
+      { id = "ghmbeldphafepmbegfdlkpapadhbakde"; }    # proton-pass
+      #"fjoaledfpmneenckfbpdfhkmimnjocfa"    # nordvpn
       # "nngceckbapebfimnlniiiahkandclblb"  # bitwarden-desktop
-      "dbepggeogbaibhgnhhndojpepiihcmeb"    # vimium
-      "eimadpbcbfnmbkopoojfekhnkhdbieeh"    # dark-reader
-      "fjoaledfpmneenckfbpdfhkmimnjocfa"    # nordvpn
-      "jplgfhpmjnbigmhklmmbgecoobifkmpa"    # proton-vpn
-      "ghmbeldphafepmbegfdlkpapadhbakde"    # proton-pass
     ];
     #commandLineArgs = [
     #  "--enable-features=UseOzonePlatform"

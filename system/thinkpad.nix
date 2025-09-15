@@ -44,6 +44,8 @@
   programs.light.enable = true;
   services.upower.enable = true;
 
+  services.tumbler.enable = true;
+
   # Fingerprint reader
   services.fprintd = {
     enable = true;

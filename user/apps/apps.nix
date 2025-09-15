@@ -87,7 +87,8 @@ in
     loupe
 
     # File Manager
-    pcmanfm
+    #pcmanfm
+    xfce.thunar
 
     # Media Player
     mpv

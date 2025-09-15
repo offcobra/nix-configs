@@ -54,6 +54,8 @@
   # Services
   services.gvfs.enable = true;
 
+  services.tumbler.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${userSettings.username} = {
     isNormalUser = true;

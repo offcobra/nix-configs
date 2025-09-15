@@ -240,7 +240,7 @@ in
         # Quick Shortcuts
         "$mainMod, P, exec, fuzzel"
         "$mainMod_SHIFT, P, exec, websearch.py"
-        "$mainMod, F, exec, pcmanfm"
+        "$mainMod, F, exec, thunar"
         "ALT, F, exec, footclient -e lf"
         "$mainMod, S, exec, alacritty -e btm"
 

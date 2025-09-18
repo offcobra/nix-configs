@@ -83,6 +83,8 @@ in
   # Window Manager
   wayland.windowManager.hyprland = {
     enable = install;
+    package = null;
+    portalPackage = null;
     xwayland = {
       enable = true;
     };

@@ -14,9 +14,12 @@
     };
     nixvim.url = "github:nix-community/nixvim";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
+
+    # Enable chaotic for bleeding-edge
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
   };
 
-  outputs = { nixpkgs, home-manager, nix-colors, nixvim, nix-flatpak, ... }@inputs:
+  outputs = { nixpkgs, home-manager, nix-colors, nixvim, nix-flatpak, chaotic, ... }@inputs:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
@@ -59,6 +62,9 @@
         modules = [
           # Flatpaks
           nix-flatpak.nixosModules.nix-flatpak
+
+          # chaotic bleeding-edge
+          chaotic.nixosModules.default # IMPORTANT
 
           ./system/workstation.nix
         ];

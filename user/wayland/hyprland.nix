@@ -76,7 +76,7 @@ in
     hyprshot
     hyprpicker
     wl-clipboard
-    #hyprswitch
+    hyprshell
     #pyprland
   ];
 
@@ -202,6 +202,11 @@ in
         preserve_split = "yes";
       };
 
+      # Debug
+      debug = {
+        disable_logs = false;
+      };
+
       master = {
         new_on_top = "true";
         new_status = "master";
@@ -223,7 +228,7 @@ in
         "CTRL, P, exec, clipman pick -t STDOUT | fuzzel --dmenu | wl-copy"
 
         # Ollama AI Chat
-        "$mainMod, o, exec, footclient --class ollama --title Ollama -e ollama run llama3.2"
+        "$mainMod, o, exec, footclient -a ollama --title Ollama -e ollama run gemma3:latest"
         "$mainMod_SHIFT, return, exec, virt-run.py --pods arch"
 
         # WLogout
@@ -343,7 +348,7 @@ in
       bind = ,T, submap, reset
       bind = ,H, exec, distrobox-enter -n arch  --  /usr/bin/thorium-browser --incognito %U
       bind = ,H, submap, reset
-      bind = ,O, exec, flatpak run org.qutebrowser.qutebrowser
+      bind = ,O, exec, qutebrowser
       bind = ,O, submap, reset
       bind = ,Z, exec, flatpak run app.zen_browser.zen
       bind = ,Z, submap, reset
@@ -403,9 +408,9 @@ in
       submap = crypto
       bind = ,B, exec, distrobox-enter -n arch -- /usr/sbin/binance
       bind = ,B, submap, reset
-      bind = ,C, exec, flatpak run org.qutebrowser.qutebrowser --target window https://coinmarketcap.com/
+      bind = ,C, exec, qutebrowser --target window https://coinmarketcap.com/
       bind = ,C, submap, reset
-      bind = ,V, exec, flatpak run org.qutebrowser.qutebrowser --target window https://de.tradingview.com/chart/2eropQd2/?symbol=BINANCE%3ABTCUSDT
+      bind = ,V, exec, qutebrowser --target window https://de.tradingview.com/chart/2eropQd2/?symbol=BINANCE%3ABTCUSDT
       bind = ,V, submap, reset
       bind = ,E, exec, distrobox-enter -n arch -- exodus
       bind = ,E, submap, reset
@@ -419,6 +424,8 @@ in
       submap = toggle
       bind = ,B, exec, toggle-cpu.sh
       bind = ,B, submap, reset
+      bind = ,h, exec, toggle-bluetooth.sh
+      bind = ,h, submap, reset
       bind = ,V, exec, flatpak run com.protonvpn.www
       bind = ,V, submap, reset
       bind = ,S, exec, toggle_service
@@ -476,7 +483,7 @@ in
       submap = reset
 
       # Screenshot
-      bind = SUPER, PRINT, submap, screenshot
+      bind = , PRINT, submap, screenshot
       submap = screenshot
       bind = ,P, exec, hyprpicker | wl-copy
       bind = ,P, submap, reset
@@ -501,7 +508,7 @@ in
       windowrulev2 = opacity 1 1,class:(cs2)
       windowrulev2 = opacity 1 1,class:(FreeTube)
       windowrulev2 = opacity 1 1,class:(thorium-browser)
-      windowrulev2 = opacity 1 1,class:(zen)
+      windowrulev2 = opacity 1 1,class:(app.zen_browser.zen)
       windowrulev2 = opacity 1 1,class:(discord)
       windowrulev2 = opacity 1 1,class:(looking-glass-client)
       windowrulev2 = opacity 1 1,class:(fuzzel)

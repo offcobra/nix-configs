@@ -76,7 +76,6 @@ in
     hyprshot
     hyprpicker
     wl-clipboard
-    hyprshell
     #pyprland
   ];
 

@@ -87,10 +87,10 @@
         dir = "/home/${userSettings.username}/obsidian";
         notes_subdir = "notes";
         new_notes_location = "notes_subdir";
-	workspaces = [{
+        workspaces = [{
           name = "work";
           path = "~/obsidian/notes";
-	}];
+        }];
       };
     };
 

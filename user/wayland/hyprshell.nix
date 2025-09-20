@@ -2,7 +2,7 @@
 
 {
   services.hyprshell = {
-    enable = true;
+    enable = false;
     systemd.enable = true;
     settings = {
       version = 1;

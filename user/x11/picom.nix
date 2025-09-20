@@ -3,7 +3,8 @@
 {
   # Picom Configuration for X11
   services.picom = {
-    enable = true;
+    #enable = true;
+    enable = false;
     vSync = false;
     backend = "glx";
 

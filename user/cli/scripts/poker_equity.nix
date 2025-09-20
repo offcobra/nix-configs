@@ -2,8 +2,29 @@
 
 let
   # Python Script to Calc Poker Equity
-  ev-calc = pkgs.writers.writePython3Bin "ev-calc.py" { } /*python*/''
+  ev-calc = pkgs.writers.writePython3Bin "poker.py" {
+
+    # Python libraries
+    libraries = [
+      pkgs.python3Packages.ollama
+    ];
+
+  } /*python*/''
     import argparse
+    import base64
+    import ollama
+
+
+    IMAGE = "/home/wally/Pictures/Screenshots/2025-06-12-194853_hyprshot.png"
+    POKER_PROMPT = """
+        You are a professional Texas Holdem Poker player.
+        Poker GTO strategies are your second nature.
+        Analyse the following poker situation from the picture.
+        How many players are there?
+        What hand does OffTheWall211 have?
+        What ist the flop?
+    """
+    PROMPT = "I am OffTheWall211 what are my cards?"
 
 
     def get_args():
@@ -43,7 +64,22 @@ let
 
     if __name__ == "__main__":
         """ Entrypoint... """
-        main()
+        # main()
+        print("# => Starting the ai...")
+        with open(IMAGE, "rb") as img:
+            img_data = img.read()
+        img_base64 = base64.b64encode(img_data).decode('utf-8')
+
+        response = ollama.generate(
+            model="gemma3:latest",
+            prompt=POKER_PROMPT,
+            images=[img_base64],
+            options={"temperature": 0.1}
+        )
+        print("# => Print ai response...")
+
+        caption = response['response'].strip()
+        print(caption)
 '';
 in
 {

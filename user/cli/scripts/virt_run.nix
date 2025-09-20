@@ -6,6 +6,7 @@ let
     import argparse
     import os
     import subprocess
+    import time
 
 
     PROGRAMMS = "git exa neofetch"
@@ -128,9 +129,15 @@ let
                     shell=True
                 )
             subprocess.run(f"virsh start '{vm_name}'", shell=True)
+            time.sleep(2)
 
         # time.sleep(3)
-        if vm_name == "win11":
+        if vm_name == "debian=8c16r":
+            subprocess.run(
+              "footclient -e 'ssh wally@192.168.122.58'",
+              shell=True
+            )
+        elif vm_name == "win11":
             subprocess.run("looking-glass-client", shell=True)
         else:
             subprocess.run(f"virt-viewer -a '{vm_name}' -f", shell=True)

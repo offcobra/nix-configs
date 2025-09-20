@@ -41,6 +41,7 @@
     whois
     rustscan
     traceroute
+    iproute2
 
     # More tools
     htop

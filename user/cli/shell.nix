@@ -66,7 +66,7 @@ let
     # Nixos Rebuild
     os-rebuild="nh os switch --ask --update";
     hm-rebuild="nh home switch";
-    nix-clean="nh clean user --keep ${keep}";
+    nix-clean="nh clean all --keep ${keep}";
 
     # Ollama AI Chat
     ai="ollama run gemma3:latest";
@@ -81,6 +81,9 @@ let
     # Testing commands...
     gping = "ping www.google.com";
     mic = "arecord -vvv -f dat /dev/null";
+
+    # Homelab
+    homelab = "ssh wally@192.168.122.2";
   };
 in
 {

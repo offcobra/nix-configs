@@ -20,6 +20,9 @@
     # Toggle process
     ./toggle_proc.nix
 
+    # Toggle A1 Soundcore connection
+    ./toggle_bluetooth.nix
+
     # Toggle CPU Guvernor
     ./toggle_cpu.nix
 

@@ -17,7 +17,8 @@
       "me.proton.Mail"
       "com.protonvpn.www"
       "me.proton.Pass"
-      "org.qutebrowser.qutebrowser"
+      # Localsend
+      #"org.localsend.localsend_app"
     ];
     uninstallUnmanaged = true;
     update.onActivation = true;

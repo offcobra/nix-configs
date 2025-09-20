@@ -24,7 +24,7 @@ in
     # Test: dmesg | grep -i vfio
 
     # 1. Version
-    kernelParams = [ "rd.driver.pre=vfio-pci" "amd_iommu=on" "iommu=pt" "video=efifb:off" "vfio-pci.ids=${rtx2080}" "hugepagesz=2M" "hugepages=6144" ];
+    kernelParams = [ "rd.driver.pre=vfio-pci" "amd_iommu=on" "iommu=pt" "video=efifb:off" "vfio-pci.ids=${rtx2080}" "hugepagesz=2M" "hugepages=8200" ];
     extraModprobeConfig = "options vfio-pci ids=${rtx2080}";
 
     # 2. Version
@@ -39,7 +39,8 @@ in
 
     initrd = {
       availableKernelModules = [ "nvme" "ahci" "xhci_pci" "usb_storage" "usbhid" "sd_mod" ];
-      kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" "kvm-amd" "amdgpu" ];
+      #kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" "kvm-amd" "amdgpu" ];
+      kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" ];
     };
     loader = {
       efi.canTouchEfiVariables = true;
@@ -48,7 +49,7 @@ in
         device = "nodev";
         efiSupport = true;
         useOSProber = true;
-        configurationLimit = 3;
+        configurationLimit = 10;
       };
     };
   };

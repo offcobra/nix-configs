@@ -35,6 +35,12 @@
       ./helper/pipewire.nix
     ];
 
+  # Localsend
+  programs.localsend = {
+    enable = true;
+    openFirewall = true;
+  };
+
   # Pick networking options.
   networking = {
     #bridges.br-lan.interfaces = [ "enp14s0" ];
@@ -43,12 +49,26 @@
       enable = true;
     };
     enableIPv6 = false;
+
+
+    # DNS Servers
     #nameservers = [
     #  "208.67.222.222"
     #  "208.67.220.220"
     #  "8.8.8.8"
     #  "8.8.4.4"
     #];
+
+    # Local DNS
+    hosts = {
+      "192.168.122.2" = [ "homelab.local" "test.homelab.local" ];
+    };
+
+    # Firewall
+    firewall = {
+      enable = true;
+      allowedUDPPorts = [ 53 67 ];
+    };
   };
 
   # Services

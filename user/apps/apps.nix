@@ -65,7 +65,7 @@ in
       #./emacs.nix
       # Brave Config
       ./brave.nix
-      ./qutebrowser.nix
+      #./qutebrowser.nix
       # Freetube Config
       ./freetube.nix
       # Zathura PDF Config

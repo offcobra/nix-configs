@@ -3,7 +3,7 @@
 {
   # Ghosty Terminal
   config.programs.ghostty = {
-    enable = true;
+    enable = false;
     enableBashIntegration = true;
     enableFishIntegration = true;
     themes = {

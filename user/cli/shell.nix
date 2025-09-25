@@ -17,7 +17,7 @@ let
     # Utilities
     n = "nvim";
     df = "dysk";
-
+    d = "nvim -c Oil";
     f = "fd --hidden";
     gr = "rg -i";
     pf = "fzf --preview='bat --color=always {}' | xargs nvim";
@@ -29,7 +29,7 @@ let
     du = "dust";
     ps = "procs";
     cat = "bat";
-    cat1 = "/run/current-system/sw/bin/cat";
+    cat1 = "bat --decorations never";
     dcal = "date && cal -3";
     my_pub_ip = "curl icanhazip.com";
     diff = "batdiff";

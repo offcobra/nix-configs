@@ -7,6 +7,7 @@
   	  enable = true;
   	  servers = {
   	    bashls.enable = true;
+        dockerls.enable = true;
         rust_analyzer = {
           enable = true;
           installCargo = true;

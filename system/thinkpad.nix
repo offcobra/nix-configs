@@ -8,13 +8,13 @@
       # Hyprland Stuff
       ./helper/hyprland.nix
       # Qtile Stuff...
-      ./helper/qtile.nix
+      #./helper/qtile.nix
       # Nix Settings
       ./helper/nix-settings.nix
       # Fonts config
       ./helper/fonts.nix
       # Ollama AI Service
-      ./helper/ollama.nix
+      #./helper/ollama.nix
       # Gnome polkit
       ./helper/polkit.nix
       # Sudo Security

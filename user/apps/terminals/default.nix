@@ -14,7 +14,7 @@
     #./wezterm.nix
 
     # Ghostty Config
-    ./ghostty.nix
+    #./ghostty.nix
 
   ];
 }

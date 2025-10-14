@@ -97,7 +97,9 @@
     # Ollama Ai
     ollama = {
       enable = true;
-      url = "http://127.0.0.1:11434";
+      settings = {
+        url = "http://127.0.0.1:11434";
+      };
     };
 
     # find project from .git files

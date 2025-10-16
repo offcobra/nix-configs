@@ -27,15 +27,6 @@ in
      }
     {
       mode = "n";
-      key = "<leader>gB";
-      action = ":Gitsigns blame_line<CR>";
-      options = {
-        silent = true;
-        desc = "Blame line";
-      };
-    }
-    {
-      mode = "n";
       key = "<leader>gr";
       action = ":Gitsigns reset_buffer<CR>";
       options = {
@@ -50,6 +41,15 @@ in
       options = {
         silent = true;
         desc = "Stage Buffer";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>gp";
+      action = ":Git pull<CR>";
+      options = {
+        silent = true;
+        desc = "Git Pull";
       };
     }
 

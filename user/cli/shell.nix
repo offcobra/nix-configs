@@ -130,7 +130,7 @@ in
 cd $HOME
 
 # Set vi mode
-set -o vi
+#set -o vi
 
 # Added by Nix installer
 if [ -e /home/${userSettings.username}/.nix-profile/etc/profile.d/nix.sh ]

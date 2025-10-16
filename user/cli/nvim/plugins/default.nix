@@ -124,7 +124,7 @@
       settings = {
         hide_numbers = true;
         autochdir = true;
-        shell = "fish";
+        shell = "bash";
       };
     };
 

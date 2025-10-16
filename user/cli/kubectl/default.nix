@@ -8,6 +8,10 @@ let
     kc = "kubectx";
     kn = "kubens";
     ks = "kc && kn";
+    kw = "kc && k9";
+
+    # K exec sh into pod
+    ke = "kex sh";
 
     # Debugging
     debug_pod = "k run -i --tty --rm debug --image=ubuntu:latest --restart=Never -n default -- /bin/bash";

@@ -95,12 +95,12 @@
     };
 
     # Ollama Ai
-    ollama = {
-      enable = true;
-      settings = {
-        url = "http://127.0.0.1:11434";
-      };
-    };
+    #ollama = {
+    #  enable = true;
+    #  settings = {
+    #    url = "http://127.0.0.1:11434";
+    #  };
+    #};
 
     # find project from .git files
     project-nvim = {
@@ -111,6 +111,9 @@
 
     # Surround
     vim-surround.enable = true;
+
+    # Tmux-Navigator
+    tmux-navigator.enable = true;
 
     # Todo-Comments
     todo-comments.enable = true;

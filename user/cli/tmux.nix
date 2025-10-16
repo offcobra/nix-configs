@@ -33,6 +33,7 @@
         '';
 	  }
       tmuxPlugins.better-mouse-mode
+      tmuxPlugins.vim-tmux-navigator
     ];
       #set -g default-terminal 'xterm-256color'
     extraConfig = "

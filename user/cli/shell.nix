@@ -5,6 +5,7 @@ let
       then "os-rebuild && hm-rebuild && nix-clean"
       else "paru -Syyu --noconfirm && nh home switch --update && nix-clean";
   keep = if (userSettings.username == "wally") then "3" else "2";
+  mod = if (userSettings.username == "ppuscasu") then "user" else "all";
 
   # Shell aliases
   aliases = {
@@ -67,7 +68,7 @@ let
     # Nixos Rebuild
     os-rebuild="nh os switch --ask --update";
     hm-rebuild="nh home switch";
-    nix-clean="nh clean all --keep ${keep}";
+    nix-clean="nh clean ${mod} --keep ${keep}";
 
     # Ollama AI Chat
     ai="ollama run gemma3:latest";

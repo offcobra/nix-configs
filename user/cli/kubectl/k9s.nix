@@ -44,24 +44,24 @@
         k9s = {
           body = {
             fgColor = "#${config.colorScheme.palette.base05}";
-            bgColor = "#${config.colorScheme.palette.base02}";
+            bgColor = "#${config.colorScheme.palette.base00}";
             logoColor = "#${config.colorScheme.palette.base0E}";
           };
           prompt = {
             fgColor = "#${config.colorScheme.palette.base05}";
-            bgColor = "#${config.colorScheme.palette.base02}";
+            bgColor = "#${config.colorScheme.palette.base00}";
             suggestColor = "#${config.colorScheme.palette.base0D}";
           };
           help = {
             fgColor = "#${config.colorScheme.palette.base05}";
-            bgColor = "#${config.colorScheme.palette.base02}";
+            bgColor = "#${config.colorScheme.palette.base00}";
             sectionColor = "#${config.colorScheme.palette.base0B}";
             keyColor = "#${config.colorScheme.palette.base0D}";
             numKeyColor = "#${config.colorScheme.palette.base0A}";
           };
           frame = {
             title = {
-              bgColor = "#${config.colorScheme.palette.base02}";
+              bgColor = "#${config.colorScheme.palette.base00}";
               fgColor = "#${config.colorScheme.palette.base05}";
               highlightColor = "#${config.colorScheme.palette.base06}";
               counterColor = "#${config.colorScheme.palette.base0A}";
@@ -77,7 +77,7 @@
               numKeyColor = "#${config.colorScheme.palette.base08}";
             };
             crumbs = {
-              bgColor = "#${config.colorScheme.palette.base02}";
+              bgColor = "#${config.colorScheme.palette.base00}";
               fgColor = "#${config.colorScheme.palette.base05}";
               activeColor = "#${config.colorScheme.palette.base05}";
             };
@@ -98,19 +98,19 @@
           };
           views = {
             table = {
-              bgColor = "#${config.colorScheme.palette.base02}";
+              bgColor = "#${config.colorScheme.palette.base00}";
               fgColor = "#${config.colorScheme.palette.base05}";
               cursorFgColor = "#${config.colorScheme.palette.base02}";
               cursorBgColor = "#${config.colorScheme.palette.base03}";
               markColor = "#${config.colorScheme.palette.base06}";
               header = {
-                bgColor = "#${config.colorScheme.palette.base02}";
+                bgColor = "#${config.colorScheme.palette.base00}";
                 fgColor = "#${config.colorScheme.palette.base05}";
                 sorterColor = "#${config.colorScheme.palette.base0C}";
               };
             };
             xray = {
-              bgColor = "#${config.colorScheme.palette.base02}";
+              bgColor = "#${config.colorScheme.palette.base00}";
               fgColor = "#${config.colorScheme.palette.base05}";
               cursorColor = "#${config.colorScheme.palette.base03}";
               cursorTextColor = "#${config.colorScheme.palette.base00}";
@@ -122,7 +122,7 @@
               colonColor = "#${config.colorScheme.palette.base04}";
             };
             logs = {
-              bgColor = "#${config.colorScheme.palette.base02}";
+              bgColor = "#${config.colorScheme.palette.base00}";
               fgColor = "#${config.colorScheme.palette.base05}";
               indicator = {
                 bgColor = "#${config.colorScheme.palette.base02}";
@@ -132,12 +132,12 @@
               };
             };
             charts = {
-              bgColor = "#${config.colorScheme.palette.base02}";
+              bgColor = "#${config.colorScheme.palette.base00}";
             };
           };
           dialog = {
             fgColor = "#${config.colorScheme.palette.base0A}";
-            bgColor = "#${config.colorScheme.palette.base03}";
+            bgColor = "#${config.colorScheme.palette.base00}";
             buttonFgColor = "#${config.colorScheme.palette.base00}";
             buttonBgColor = "#${config.colorScheme.palette.base02}";
             buttonFocusFgColor = "#${config.colorScheme.palette.base00}";

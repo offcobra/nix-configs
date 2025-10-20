@@ -8,15 +8,15 @@
   	  servers = {
   	    bashls.enable = true;
         dockerls.enable = true;
-        rust_analyzer = {
-          enable = true;
-          installCargo = true;
-          installRustc = true;
-        };
+        #rust_analyzer = {
+        #  enable = true;
+        #  installCargo = true;
+        #  installRustc = true;
+        #};
         pyright.enable = true;
         #ruff.enable = true;
         jsonls.enable = true;
-  	    yamlls.enable = true;
+        #yamlls.enable = true;
   	    lua_ls.enable = true;
   	    nixd.enable = true;
   	    helm_ls.enable = true;

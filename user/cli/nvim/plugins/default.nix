@@ -107,7 +107,10 @@
     project-nvim = {
       enable = true;
       enableTelescope = true;
-      settings.scope_chdir = "win";
+      settings = {
+        scope_chdir = "global";
+        patterns = [ ".git" ];
+      };
     };
 
     # Surround

@@ -59,7 +59,6 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${userSettings.username} = {
     isNormalUser = true;
-    shell = pkgs.fish;
     extraGroups = [ "wheel" "networkmanager" "storage" "video" "docker" "input" "disk" ];
     packages = with pkgs; [
         acpi

@@ -45,7 +45,7 @@ let startup = pkgs.pkgs.writeShellScriptBin "hypr-startup" /*bash*/ ''
   '';
   blur = if (systemSettings.hostname == "workstation") then true else false;
   install = if (systemSettings.hostname == "mediatv") then false else true;
-  sens = if (systemSettings.hostname == "thinkpad") then 0.5 else 1;
+  sens = if (systemSettings.hostname == "thinkpad") then 0.5 else 0;
 
 in
 {

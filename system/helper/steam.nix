@@ -13,7 +13,7 @@
   };
 
   # Bleeding-Edge MESA
-  chaotic.mesa-git.enable = true;
+  chaotic.mesa-git.enable = false;
 
   # Required Packages
   environment.systemPackages = with pkgs; [

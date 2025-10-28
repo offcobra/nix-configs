@@ -148,7 +148,7 @@ complete -o default -F __start_kubectl k
 [ -f .local/bin/fubectl.source ] && source .local/bin/fubectl.source
 
 # Start WindowManager
-start-wm
+#start-wm
 
 # Pretty Shell
 if [ -z $CONTAINER_ID ]

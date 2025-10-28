@@ -24,7 +24,8 @@
       # Virtualization Stuff...
       ./helper/virtualization.nix
       # Set TUIGreet
-      ./helper/tuigreet.nix
+      #./helper/tuigreet.nix
+      ./helper/sddm.nix
       # Flatpaks
       ./helper/flatpak.nix
       # Sound

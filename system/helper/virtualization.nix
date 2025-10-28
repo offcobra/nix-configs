@@ -17,18 +17,20 @@
       };
       spiceUSBRedirection.enable = true;
 
-      # Enable Container
-      #podman.enable = true;
-      # Install pipewire-pulse for sound in arch!
-      docker.enable = true;
     }
 
     # No libvirtd everywhere else..
     else {
       libvirtd.enable = false;
 
-      # Enable Container
-      #podman.enable = true;
-      docker.enable = true;
     };
+
+    # Enable Container
+    # Install pipewire-pulse for sound in arch!
+    podman = {
+      enable = true;
+      dockerSocket.enable = true;
+      autoPrune.enable = true;
+    };
+    docker.enable = false;
 }

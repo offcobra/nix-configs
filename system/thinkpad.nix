@@ -60,7 +60,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${userSettings.username} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "storage" "video" "docker" "input" "disk" ];
+    extraGroups = [ "wheel" "networkmanager" "storage" "video" "podman" "docker" "input" "disk" ];
     packages = with pkgs; [
         acpi
         libnotify

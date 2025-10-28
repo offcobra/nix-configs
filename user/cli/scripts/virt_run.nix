@@ -145,7 +145,7 @@ let
 
     def run_pods(name=""):
         """ Function to run pods """
-        pods = run_cmd("docker ps", list=True)
+        pods = run_cmd("podman ps", list=True)
 
         available_distros = {}
         for k, v in DISTROS.items():

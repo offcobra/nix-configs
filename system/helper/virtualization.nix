@@ -1,4 +1,4 @@
-{ pkgs, systemSettings, ... }:
+{ systemSettings, ... }:
 
 {
   # Virtualization
@@ -17,20 +17,27 @@
       };
       spiceUSBRedirection.enable = true;
 
+      # Enable Container
+      # Install pipewire-pulse for sound in arch!
+      podman = {
+        enable = true;
+        dockerSocket.enable = true;
+        autoPrune.enable = true;
+      };
+      docker.enable = false;
     }
 
     # No libvirtd everywhere else..
     else {
       libvirtd.enable = false;
 
+      # Enable Container
+      # Install pipewire-pulse for sound in arch!
+      podman = {
+        enable = true;
+        dockerSocket.enable = true;
+        autoPrune.enable = true;
+      };
+      docker.enable = false;
     };
-
-    # Enable Container
-    # Install pipewire-pulse for sound in arch!
-    podman = {
-      enable = true;
-      dockerSocket.enable = true;
-      autoPrune.enable = true;
-    };
-    docker.enable = false;
 }

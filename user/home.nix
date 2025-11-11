@@ -5,7 +5,7 @@
     [ # Include other modules
       nix-colors.homeManagerModules.default
       # Import Nixvim
-      nixvim.homeManagerModules.nixvim
+      nixvim.homeModules.nixvim
       # Window Manager
       ./wayland/hyprland.nix
       #./x11/qtile.nix

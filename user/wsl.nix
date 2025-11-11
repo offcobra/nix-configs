@@ -6,7 +6,7 @@
       nix-colors.homeManagerModules.default
 
       # Import Nixvim
-      nixvim.homeManagerModules.nixvim
+      nixvim.homeModules.nixvim
 
       # Bash Config
       ./cli/shell.nix

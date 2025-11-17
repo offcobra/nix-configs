@@ -421,6 +421,8 @@ in
       # TOGGLE STUFF
       bind = SUPER, T, submap, toggle
       submap = toggle
+      bind = ,U, exec,footclient -a update --title Update... -e update
+      bind = ,U, submap, reset
       bind = ,B, exec, toggle-cpu.sh
       bind = ,B, submap, reset
       bind = ,h, exec, toggle-bluetooth.sh
@@ -497,58 +499,50 @@ in
 
 
       # Setting Programm opacity
-      windowrulev2 = opacity 0.98 0.88,class:(.*)
-      windowrulev2 = opacity 0.96 0.8,class:(Alacritty)
-      windowrulev2 = opacity 0.96 0.8,class:(footclient)
-      windowrulev2 = opacity 0.96 0.8,class:(Kitty)
-      #windowrulev2 = opacity 1 0.85,class:(Emacs)
-      windowrulev2 = opacity 0.94 0.82,class:(steam)
-      windowrulev2 = opacity 0.99 0.98,class:(brave-browser)
-      windowrulev2 = opacity 1 1,class:(cs2)
-      windowrulev2 = opacity 1 1,class:(FreeTube)
-      windowrulev2 = opacity 1 1,class:(thorium-browser)
-      windowrulev2 = opacity 1 1,class:(app.zen_browser.zen)
-      windowrulev2 = opacity 1 1,class:(discord)
-      windowrulev2 = opacity 1 1,class:(looking-glass-client)
-      windowrulev2 = opacity 1 1,class:(fuzzel)
-      windowrulev2 = opacity 1 1,title:(Picture in picture)
+      windowrule = opacity 0.98 0.88, match:class .*
+      windowrule = opacity 0.96 0.8, match:class Alacritty
+      windowrule = opacity 0.96 0.8, match:class footclient
+      windowrule = opacity 0.96 0.8, match:class Kitty
+      windowrule = opacity 0.94 0.82, match:class steam
+      windowrule = opacity 0.99 0.98, match:class brave-browser
+      windowrule = opacity 1 1, match:class cs2
+      windowrule = opacity 1 1, match:class FreeTube
+      windowrule = opacity 1 1, match:class thorium-browser
+      windowrule = opacity 1 1, match:class app.zen_browser.zen
+      windowrule = opacity 1 1, match:class discord
+      windowrule = opacity 1 1, match:class looking-glass-client
+      windowrule = opacity 1 1, match:class fuzzel
+      windowrule = opacity 1 1, match:title Picture in picture
 
       # Tile Programs
-      windowrulev2 = tile ,class:(thorium-browser)
-      windowrulev2 = tile ,class:(FreeTube)
+      windowrule = tile on, match:class thorium-browser
+      windowrule = tile on, match:class FreeTube
 
       # Floating windows
-      windowrulev2 = float,class:(cs2)
-      windowrulev2 = float,class:(org.signal.Signal)
-      windowrulev2 = float,class:(ollama)
-      windowrulev2 = float,class:(waypaper)
-      windowrulev2 = float,title:(SysMon)
-      windowrulev2 = float,class:(com.rtosta.zapzap)
-      windowrulev2 = float,class:(steamwebhelper)
-      windowrulev2 = float,class:(xdg-desktop-portal-gtk)
-      windowrulev2 = float,class:(blueberry.py)
-      windowrulev2 = float,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
-      windowrulev2 = float,title:(Picture-in-Picture)
-      windowrulev2 = float,class:(Proton Pass)
-      windowrulev2 = float,class:(com.discordapp.Discord)
+      windowrule = size 600 600, float on, match:class cs2
+      windowrule = size 600 600, float on, match:class cs2
+      windowrule = size 600 600, float on, match:class org.signal.Signal
+      windowrule = size 600 600, float on, match:class ollama
+      windowrule = size 600 600, float on, match:class waypaper
+      windowrule = size 600 600, float on, match:title SysMon
+      windowrule = size 600 600, float on, match:class com.rtosta.zapzap
+      windowrule = size 600 600, float on, match:class steamwebhelper
+      windowrule = size 600 600, float on, match:class xdg-desktop-portal-gtk
+      windowrule = size 600 600, float on, match:class blueberry.py
+      windowrule = size 600 600, float on, match:class brave-nngceckbapebfimnlniiiahkandclblb-Default
+      windowrule = size 600 600, float on, match:title Picture-in-Picture
+      windowrule = size 600 600, float on, match:class Proton Pass
+      windowrule = size 600 600, float on, match:class com.discordapp.Discord
 
       # Resize Windows
-      windowrulev2 = size 950 600,class:(Proton Pass)
-      windowrulev2 = center,class:(Proton Pass)
-      windowrulev2 = size 950 600,class:(com.discordapp.Discord)
-      windowrulev2 = center,class:(com.discordapp.Discord)
-      windowrulev2 = size 950 600,class:(org.signal.Signal)
-      windowrulev2 = center,class:(org.signal.Signal)
-      windowrulev2 = size 950 600,class:(ollama)
-      windowrulev2 = center,class:(ollama)
-      windowrulev2 = size 950 600,class:(waypaper)
-      windowrulev2 = center,class:(waypaper)
-      windowrulev2 = size 950 600,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
-      windowrulev2 = center,class:(brave-nngceckbapebfimnlniiiahkandclblb-Default)
-      windowrulev2 = size 950 600,class:(com.rtosta.zapzap)
-      windowrulev2 = center,class:(com.rtosta.zapzap)
-      windowrulev2 = size 950 600,title:(Picture-in-Picture)
-      windowrulev2 = center,title:(Picture-in-Picture)
+      windowrule = center on, size 950 600, match:class Proton Pass
+      windowrule = center on, size 950 600, match:class com.discordapp.Discord
+      windowrule = center on, size 950 600, match:class org.signal.Signal
+      windowrule = center on, size 950 600, match:class ollama
+      windowrule = center on, size 950 600, match:class waypaper
+      windowrule = center on, size 950 600, match:class brave-nngceckbapebfimnlniiiahkandclblb-Default
+      windowrule = center on, size 950 600, match:class com.rtosta.zapzap
+      windowrule = center on, size 950 600, match:title Picture-in-Picture
     '';
   };
 }

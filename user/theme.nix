@@ -12,13 +12,16 @@ in
     theme = {
       name = userSettings.theme;
       package = pkgs.dracula-theme;
+      #package = pkgs.nordic;
     };
     iconTheme = {
       name = userSettings.iconTheme;
-      package = pkgs.beauty-line-icon-theme;
+      #package = pkgs.candy-icons;
+      package = pkgs.kora-icon-theme;
     };
     font = {
       name = userSettings.font;
+      size = 9;
       package = pkgs.nerd-fonts.fira-code;
     };
   };

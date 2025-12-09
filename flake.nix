@@ -31,7 +31,8 @@
         hostname = "workstation"; # hostname
         timezone = "Europe/Berlin"; # select timezone
         locale = "en_US.UTF-8"; # select locale
-        kernel = "linuxPackages_zen"; # desired Kernel
+        #kernel = "linuxPackages_zen"; # desired Kernel
+        kernel = "linuxPackages_latest"; # desired Kernel
       };
       # ----- USER SETTINGS ----- #
       userSettings = rec {
@@ -41,7 +42,7 @@
         dotfilesDir = "~/.dotfiles"; # absolute path of the local repo
         theme = "Dracula"; # selcted gtk theme
         colorTheme = "catppuccin-mocha"; # selcted theme from nix-colors
-        iconTheme = "BeautyLine"; # selcted icontheme
+        iconTheme = "kora"; # selcted icontheme
         cursorTheme = "Dracula-cursors"; # selcted cursor-theme
         font = "FiraCodeNerdFont"; # selcted font
         wm = "hyprland"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/

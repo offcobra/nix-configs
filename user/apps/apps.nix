@@ -7,7 +7,7 @@ let
     quickemu
     virt-manager
     virt-viewer
-    freerdp3
+    freerdp
   ];
 
   # Office Apps
@@ -88,7 +88,7 @@ in
 
     # File Manager
     #pcmanfm
-    xfce.thunar
+    #xfce.thunar
 
     # Media Player
     mpv

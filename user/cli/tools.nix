@@ -12,7 +12,7 @@
     dysk
     procs
     lolcat
-    du-dust
+    dust
     ripgrep
     tealdeer
 

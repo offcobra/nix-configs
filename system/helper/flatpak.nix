@@ -19,6 +19,7 @@
       "me.proton.Pass"
       # Localsend
       #"org.localsend.localsend_app"
+      "org.gimp.GIMP"
     ];
     uninstallUnmanaged = true;
     update.onActivation = true;

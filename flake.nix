@@ -57,78 +57,24 @@
 
 
     in {
-    nixosConfigurations = {
-      workstation = lib.nixosSystem {
-        inherit system;
-        modules = [
-          # Flatpaks
-          nix-flatpak.nixosModules.nix-flatpak
-
-          # chaotic bleeding-edge
-          chaotic.nixosModules.default # IMPORTANT
-
-          ./system/workstation.nix
-        ];
-        specialArgs = {
-          inherit inputs;
-          inherit userSettings;
-          inherit systemSettings;
-        };
+      nixosConfigurations = import ./system/systems.nix {
+        lib = lib;
+        system = system;
+        nix-flatpak = nix-flatpak;
+        chaotic = chaotic;
+        inputs = inputs;
+        userSettings = userSettings;
+        systemSettings = systemSettings;
       };
-      thinkpad = lib.nixosSystem {
-        inherit system;
-        modules = [
-          # Flatpaks
-          nix-flatpak.nixosModules.nix-flatpak
-
-          ./system/thinkpad.nix
-        ];
-        specialArgs = {
-          inherit inputs;
-          inherit userSettings;
-          inherit systemSettings;
-        };
-      };
-      mediatv = lib.nixosSystem {
-        inherit system;
-        modules = [ ./system/mediatv.nix ];
-        specialArgs = {
-          inherit inputs;
-          inherit userSettings;
-          inherit systemSettings;
-        };
-      };
-    };
-    homeConfigurations = {
-      wally = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          # Hyprland flake
-          inputs.hyprland.homeManagerModules.default
-
-          # Wally Home configurations
-          ./user/home.nix
-        ];
-        extraSpecialArgs = {
-          inherit inputs;
-          inherit nixvim;
-          inherit nix-colors;
-          inherit userSettings;
-          inherit systemSettings;
-          inherit allowed-unfree-packages;
-        };
-      };
-      ppuscasu = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ ./user/wsl.nix ];
-        extraSpecialArgs = {
-          inherit inputs;
-          inherit nixvim;
-          inherit nix-colors;
-          inherit userSettings;
-          inherit systemSettings;
-        };
-      };
+      homeConfigurations = import ./user/users.nix {
+        pkgs = pkgs;
+        inputs = inputs;
+        nixvim = nixvim;
+        home-manager = home-manager;
+        nix-colors = nix-colors;
+        userSettings = userSettings;
+        systemSettings = systemSettings;
+        allowed-unfree-packages = allowed-unfree-packages;
     };
   };
 }

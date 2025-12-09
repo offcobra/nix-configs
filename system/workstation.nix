@@ -100,7 +100,6 @@
   };
 
   # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = import ./helper/system_packages.nix pkgs;
 
   services.dbus.enable = true;

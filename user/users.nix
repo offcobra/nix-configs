@@ -19,6 +19,17 @@
       inherit allowed-unfree-packages;
     };
   };
+
+  lisa = home-manager.lib.homeManagerConfiguration {
+    inherit pkgs;
+    modules = [ ./lisa.nix ];
+    extraSpecialArgs = {
+      inherit inputs;
+      inherit userSettings;
+      inherit systemSettings;
+    };
+  };
+
   ppuscasu = home-manager.lib.homeManagerConfiguration {
     inherit pkgs;
     modules = [ ./wsl.nix ];

@@ -18,6 +18,7 @@
       inherit systemSettings;
     };
   };
+
   thinkpad = lib.nixosSystem {
     inherit system;
     modules = [
@@ -32,9 +33,20 @@
       inherit systemSettings;
     };
   };
+
   mediatv = lib.nixosSystem {
     inherit system;
     modules = [ ./mediatv.nix ];
+    specialArgs = {
+      inherit inputs;
+      inherit userSettings;
+      inherit systemSettings;
+    };
+  };
+
+  studiopc = lib.nixosSystem {
+    inherit system;
+    modules = [ ./studiopc.nix ];
     specialArgs = {
       inherit inputs;
       inherit userSettings;

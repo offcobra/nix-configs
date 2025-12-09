@@ -20,6 +20,7 @@
       # Localsend
       #"org.localsend.localsend_app"
       "org.gimp.GIMP"
+      "com.bitwig.BitwigStudio"
     ];
     uninstallUnmanaged = true;
     update.onActivation = true;

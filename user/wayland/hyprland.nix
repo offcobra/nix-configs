@@ -497,6 +497,9 @@ in
       bind = , escape, submap, reset
       submap = reset
 
+      # Alt + Tab behavior
+      bind = ALT, Tab, workspace, previous
+      bind = $mainMod, Tab, cyclenext, bringactivetotop
 
       # Setting Programm opacity
       windowrule = opacity 0.98 0.88, match:class .*
@@ -514,35 +517,26 @@ in
       windowrule = opacity 1 1, match:class fuzzel
       windowrule = opacity 1 1, match:title Picture in picture
 
+      # New WindowRules
+      windowrule = center on, size 950 600, float on, match:class ollama
+      windowrule = center on, size 950 600, float on, match:class Proton Pass
+      windowrule = center on, size 800 450, float on, match:class blueberry.py
+      windowrule = center on, size 950 600, float on, match:title Picture-in-Picture
+      windowrule = center on, size 800 600, float on, match:class brave-nngceckbapebfimnlniiiahkandclblb-Default
+      windowrule = move (monitor_w*0.4) (monitor_h*0.3), size 950 600, float on, match:class com.rtosta.zapzap
+      windowrule = move (monitor_w*0.05) (monitor_h*0.1), size 950 600, float on, match:class org.signal.Signal
+      windowrule = move (monitor_w*0.2) (monitor_h*0.2), size 950 600, float on, match:class com.discordapp.Discord
+
       # Tile Programs
       windowrule = tile on, match:class thorium-browser
       windowrule = tile on, match:class FreeTube
 
       # Floating windows
+      #windowrule = size 600 600, float on, match:class .*
       windowrule = size 600 600, float on, match:class cs2
-      windowrule = size 600 600, float on, match:class cs2
-      windowrule = size 600 600, float on, match:class org.signal.Signal
-      windowrule = size 600 600, float on, match:class ollama
-      windowrule = size 600 600, float on, match:class waypaper
       windowrule = size 600 600, float on, match:title SysMon
-      windowrule = size 600 600, float on, match:class com.rtosta.zapzap
       windowrule = size 600 600, float on, match:class steamwebhelper
       windowrule = size 600 600, float on, match:class xdg-desktop-portal-gtk
-      windowrule = size 600 600, float on, match:class blueberry.py
-      windowrule = size 600 600, float on, match:class brave-nngceckbapebfimnlniiiahkandclblb-Default
-      windowrule = size 600 600, float on, match:title Picture-in-Picture
-      windowrule = size 600 600, float on, match:class Proton Pass
-      windowrule = size 600 600, float on, match:class com.discordapp.Discord
-
-      # Resize Windows
-      windowrule = center on, size 950 600, match:class Proton Pass
-      windowrule = center on, size 950 600, match:class com.discordapp.Discord
-      windowrule = center on, size 950 600, match:class org.signal.Signal
-      windowrule = center on, size 950 600, match:class ollama
-      windowrule = center on, size 950 600, match:class waypaper
-      windowrule = center on, size 950 600, match:class brave-nngceckbapebfimnlniiiahkandclblb-Default
-      windowrule = center on, size 950 600, match:class com.rtosta.zapzap
-      windowrule = center on, size 950 600, match:title Picture-in-Picture
     '';
   };
 }

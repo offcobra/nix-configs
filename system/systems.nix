@@ -44,9 +44,14 @@
     };
   };
 
-  studiopc = lib.nixosSystem {
+  home-studio = lib.nixosSystem {
     inherit system;
-    modules = [ ./studiopc.nix ];
+    modules = [
+      # Flatpaks
+      nix-flatpak.nixosModules.nix-flatpak
+
+      ./studiopc.nix
+    ];
     specialArgs = {
       inherit inputs;
       inherit userSettings;

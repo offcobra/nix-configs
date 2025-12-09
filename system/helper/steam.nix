@@ -17,7 +17,8 @@
 
   # Required Packages
   environment.systemPackages = with pkgs; [
-    protonup
+    pkgs.python313Packages.ds4drv
+    protonup-ng
   ];
 
   # Env Variable for Protonup

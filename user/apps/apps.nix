@@ -86,10 +86,6 @@ in
     # Image viewer
     loupe
 
-    # File Manager
-    #pcmanfm
-    #xfce.thunar
-
     # Media Player
     mpv
     vlc

@@ -11,6 +11,8 @@
       ./workstation/boot.nix
       # Fonts config
       ./helper/fonts.nix
+      # File Manager
+      ./helper/thunar.nix
       # Steam Stuff ?- here for now...
       ./helper/steam.nix
       # Virtualization Stuff...
@@ -75,8 +77,6 @@
 
   # Services
   services.gvfs.enable = true;
-
-  services.tumbler.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${userSettings.username} = {

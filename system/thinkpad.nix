@@ -17,6 +17,8 @@
       #./helper/ollama.nix
       # Gnome polkit
       ./helper/polkit.nix
+      # File Manager
+      ./helper/thunar.nix
       # Sudo Security
       ./helper/security.nix
       # Set Locales

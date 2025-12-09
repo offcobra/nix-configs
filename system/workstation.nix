@@ -53,16 +53,17 @@
 
 
     # DNS Servers
-    #nameservers = [
-    #  "208.67.222.222"
-    #  "208.67.220.220"
-    #  "8.8.8.8"
-    #  "8.8.4.4"
-    #];
+    nameservers = [
+      "208.67.222.222"
+      "208.67.220.220"
+      "8.8.8.8"
+      "8.8.4.4"
+    ];
 
     # Local DNS
+    #resolvconf.useLocalResolver = true;
     hosts = {
-      "192.168.122.2" = [ "homelab.local" "test.homelab.local" ];
+      "192.168.122.2" = [ "homelab.local" ];
     };
 
     # Firewall

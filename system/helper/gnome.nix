@@ -6,8 +6,19 @@
   services.desktopManager.gnome.enable = true;
 
   environment.gnome.excludePackages = with pkgs; [
-    nautilus
     gnome-maps
     geary
+  ];
+
+  environment.systemPackages = with pkgs; [
+    gnome-tweaks
+    whitesur-gtk-theme
+    whitesur-cursors
+    whitesur-icon-theme
+    video-downloader
+    tenacity
+    audacity
+    brave
+    pavucontrol
   ];
 }

@@ -18,26 +18,9 @@
     libreoffice-fresh
     thunderbird-bin
     dconf
+    video-downloader
+    tenacity
   ];
-
-  # Gtk Config
-  gtk = {
-    enable = true;
-    theme = {
-      name = "WhiteSur-Dark-solid";
-      package = pkgs.whitesur-gtk-theme;
-      #package = pkgs.nordic;
-    };
-    iconTheme = {
-      name = "WhiteSur-Dark";
-      package = pkgs.whitesur-icon-theme;
-    };
-    font = {
-      name = userSettings.font;
-      size = 9;
-      package = pkgs.nerd-fonts.fira-code;
-    };
-  };
 
   # Qt Configs
   qt = {
@@ -47,15 +30,6 @@
       name = "adwaita-dark";
       package = pkgs.adwaita-qt;
     };
-  };
-
-  # Mouse Pointer Configs
-  home.pointerCursor = {
-    x11.enable = true;
-    gtk.enable = true;
-    name = "WhiteSur";
-    package = pkgs.whitesur-cursors;
-    size = 10;
   };
 
   # Sessionvariables

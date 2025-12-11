@@ -11,11 +11,9 @@
       ./helper/gnome.nix
       # Nix Settings
       ./helper/nix-settings.nix
-      # File Manager
-      ./helper/thunar.nix
       # Sound
       ./helper/pipewire.nix
-      # Flatpaks
+      # Flatpak's
       ./helper/flatpak.nix
     ];
 
@@ -24,7 +22,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Use latest kernel.
-  boot.kernelPackages = systemSettings.kernel;
+  boot.kernelPackages = pkgs.${systemSettings.kernel};
 
   networking.hostName = "studiopc"; # Define your hostname.
 
@@ -48,7 +46,8 @@
 
   users.users.lisa = {
     isNormalUser = true;
-    extraGroups = [ "audio" "networkmanager" "storage" ];
+    createHome = true;
+    extraGroups = [ "wheel" "audio" "networkmanager" "storage" ];
     packages = with pkgs; [
       tree
     ];
@@ -56,6 +55,12 @@
 
   # List packages installed in system profile.
   environment.systemPackages = import ./helper/system_packages.nix pkgs;
+
+  environment.variables = rec {
+    XDG_CACHE_HOME = "$HOME/.cache";
+    XDG_MUSIC_HOME = "$HOME/Music";
+    XDG_CONFIG_HOME = "$HOME/.config";
+  };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;

@@ -44,7 +44,7 @@
     };
   };
 
-  home-studio = lib.nixosSystem {
+  studiopc = lib.nixosSystem {
     inherit system;
     modules = [
       # Flatpaks

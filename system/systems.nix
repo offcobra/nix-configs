@@ -1,4 +1,4 @@
-{ lib, system, nix-flatpak, chaotic, inputs, userSettings, systemSettings, ... }:
+{ lib, system, nix-flatpak, inputs, userSettings, systemSettings, ... }:
 
 {
   workstation = lib.nixosSystem {
@@ -6,9 +6,6 @@
     modules = [
       # Flatpaks
       nix-flatpak.nixosModules.nix-flatpak
-
-      # chaotic bleeding-edge
-      chaotic.nixosModules.default # IMPORTANT
 
       ./workstation.nix
     ];
@@ -26,6 +23,21 @@
       nix-flatpak.nixosModules.nix-flatpak
 
       ./thinkpad.nix
+    ];
+    specialArgs = {
+      inherit inputs;
+      inherit userSettings;
+      inherit systemSettings;
+    };
+  };
+
+  minipc = lib.nixosSystem {
+    inherit system;
+    modules = [
+      # Flatpaks
+      nix-flatpak.nixosModules.nix-flatpak
+
+      ./minipc.nix
     ];
     specialArgs = {
       inherit inputs;

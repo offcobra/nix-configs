@@ -12,9 +12,6 @@
     gamemode.enable = true;
   };
 
-  # Bleeding-Edge MESA
-  chaotic.mesa-git.enable = false;
-
   # Required Packages
   environment.systemPackages = with pkgs; [
     pkgs.python313Packages.ds4drv

@@ -1,7 +1,7 @@
 { pkgs, userSettings, systemSettings, ... }:
 
 let
-  pointer_size = if ( systemSettings.hostname == "mediatv" ) then 20 else 10;
+  pointer_size = if ( systemSettings.hostname == "minipc" ) then 32 else 10;
 in
 {
   # List of Themes
@@ -40,6 +40,9 @@ in
   home.pointerCursor = {
     x11.enable = true;
     gtk.enable = true;
+    hyprcursor = {
+      enable = true;
+    };
     name = userSettings.cursorTheme;
     package = pkgs.dracula-theme;
     size = pointer_size;

@@ -7,19 +7,16 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-colors.url = "github:misterio77/nix-colors";
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland";
+    hyprland.url = "github:hyprwm/Hyprland";
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
     nixvim.url = "github:nix-community/nixvim";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
-
-    # Enable chaotic for bleeding-edge
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
   };
 
-  outputs = { nixpkgs, home-manager, nix-colors, nixvim, nix-flatpak, chaotic, ... }@inputs:
+  outputs = { nixpkgs, home-manager, nix-colors, nixvim, nix-flatpak, ... }@inputs:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
@@ -61,7 +58,6 @@
         lib = lib;
         system = system;
         nix-flatpak = nix-flatpak;
-        chaotic = chaotic;
         inputs = inputs;
         userSettings = userSettings;
         systemSettings = systemSettings;

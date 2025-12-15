@@ -121,10 +121,9 @@ in
                     "DP-2,1920x1080@165.00,1920x0,1"
                     "DP-3,1920x1080,3840x0,1" ]
                 else if (systemSettings.hostname == "thinkpad")
-                then
-                  [ "eDP-1,1920x1080,0x0,1" ]
+                then [ "eDP-1,1920x1080,0x0,1" ]
                 else
-                  [ "HDMI-A-1,1920x1080@60.00,0x0,1" ];
+                  [ "HDMI-A-1,3840x2160@60.00,0x0,2" ];
 
       # Recomended Hypr Cursor settings for nvidia
       cursor = if (systemSettings.hostname == "mediatv")

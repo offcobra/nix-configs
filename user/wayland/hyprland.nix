@@ -118,8 +118,10 @@ in
       monitor = if (systemSettings.hostname == "workstation")
                 then
                   [ "DP-1,1920x1080@144.00,0x0,1"
-                    "DP-2,1920x1080@165.00,1920x0,1"
-                    "DP-3,1920x1080,3840x0,1" ]
+                    #"DP-2,1920x1080@165.00,1920x0,1"
+                    #"DP-2,2560x1440@239.97,1920x0,1"
+                    "HDMI-A-1,2560x1440@143.91,1920x0,1"
+                    "DP-3,1920x1080,4480x0,1" ]
                 else if (systemSettings.hostname == "thinkpad")
                 then [ "eDP-1,1920x1080,0x0,1" ]
                 else

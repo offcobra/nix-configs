@@ -32,6 +32,15 @@
     };
   };
 
+  # Mouse Pointer Configs
+  home.pointerCursor = {
+    x11.enable = true;
+    gtk.enable = true;
+    name = "WhiteSur-cursors";
+    package = pkgs.whitesur-cursors;
+    size = 10;
+  };
+
   # Sessionvariables
   home.sessionVariables = {
       EDITOR = "nvim";

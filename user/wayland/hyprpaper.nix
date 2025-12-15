@@ -5,7 +5,8 @@ let
     then
     [
       "DP-1,~/.config/nixos/user/wallpapers/fantasy-landscape.png"
-      "DP-2,~/.config/nixos/user/wallpapers/city-bridge.jpg"
+      #"DP-2,~/.config/nixos/user/wallpapers/city-bridge.jpg"
+      "HDMI-A-1,~/.config/nixos/user/wallpapers/city-bridge.jpg"
       "DP-3,~/.config/nixos/user/wallpapers/midnight-sea.jpg"
     ]
     else if (systemSettings.hostname == "thinkpad")

@@ -15,6 +15,11 @@ let
     libreoffice-fresh
     thunderbird-bin
     #birdtray
+
+    # Sound Studio
+    tenacity
+    ardour
+    decibels
   ];
 
   # Utils

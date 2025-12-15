@@ -171,7 +171,8 @@ in
   };
   secondBar = {
     layer= "top";
-    output = [ "DP-2" "DP-3" ];
+    #output = [ "DP-2" "DP-3" ];
+    output = [ "HDMI-A-1" "DP-3" ];
     modules-left = ["hyprland/workspaces" "hyprland/window"];
     modules-right = [ "clock" ];
     height= 6;

@@ -45,6 +45,9 @@ in
 
   # Kube Packages
   home.packages = with pkgs; [
+    # k plugin manager
+    krew
+
     k3d
     kubetail
     kubectl
@@ -54,6 +57,7 @@ in
     kubectl-tree
     kubernetes-helm
     kubectl-explore
+    kubectl-node-shell
     # kubectl-graph
 
   ];

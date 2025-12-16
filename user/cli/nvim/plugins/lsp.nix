@@ -13,7 +13,8 @@
         #  installCargo = true;
         #  installRustc = true;
         #};
-        pyright.enable = true;
+        #pyright.enable = true;
+        pyrefly.enable = true;
         #ruff.enable = true;
         jsonls.enable = true;
         #yamlls.enable = true;

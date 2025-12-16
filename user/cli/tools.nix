@@ -5,6 +5,7 @@
   home.packages = with pkgs; [
     # Nix helper
     nh
+    cowsay
 
     # Rust cli tools
     fd

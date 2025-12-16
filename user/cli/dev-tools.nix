@@ -27,6 +27,9 @@ in
     boundary
     #terraform
 
+    # stackit
+    stackit-cli
+
     # DevSecOps
     trivy
     buildah

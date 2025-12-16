@@ -147,6 +147,9 @@ complete -o default -F __start_kubectl k
 # Add fubectl
 [ -f .local/bin/fubectl.source ] && source .local/bin/fubectl.source
 
+# Adding krew install to Path
+export PATH=\"\${KREW_ROOT:-\$HOME/.krew}/bin:\$PATH\"
+
 # Start WindowManager
 #start-wm
 
@@ -166,6 +169,9 @@ fi
         set fish_greeting                     # Disable greeting
         fish_vi_key_bindings                  # Set vi mode
         macchina                              # Minimal fastfetch
+
+        # Kubectl krew plugin installer
+        set -q KREW_ROOT; and set -gx PATH $PATH $KREW_ROOT/.krew/bin; or set -gx PATH $PATH $HOME/.krew/bin
       '';
     };
     lf = {

@@ -57,6 +57,10 @@
     # markdown viewer
     #markview.enable = true;
     render-markdown.enable = true;
+    #markdown-preview.enable = true;
+
+    # Build diagramms
+    #diagram.enable = true;
 
     # nix Support
     nix.enable = true;

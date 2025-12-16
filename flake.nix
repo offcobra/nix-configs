@@ -47,6 +47,9 @@
         wmType = if (wm == "hyprland") then "wayland" else "x11";
       };
       allowed-unfree-packages = [
+        "boundary"
+        "vault-bin"
+        "terraform"
         "spotify"
         "obsidian"
         "exodus"

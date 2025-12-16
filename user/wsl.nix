@@ -36,7 +36,7 @@
   home.sessionVariables = {
     EDITOR="nvim";
     XKB_DEFAULT_LAYOUT = "de";
-    VISUAL="vim";
+    VISUAL="nvim";
     PAGER="bat --pager 'less'";
     NH_FLAKE="/home/${userSettings.username}/.config/nixos";
     SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS="0";

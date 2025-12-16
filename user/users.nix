@@ -39,6 +39,7 @@
       inherit nix-colors;
       inherit userSettings;
       inherit systemSettings;
+      inherit allowed-unfree-packages;
     };
   };
 }

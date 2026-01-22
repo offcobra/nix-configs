@@ -4,7 +4,7 @@
   # Ollama AI service
   #nixpkgs.config.rocmSupport = true;
   services.ollama = {
-    enable = false;
+    enable = true;
     # 127.0.0.1:11434 -> Listening Address
     # for rocm info
     # nix-shell -p "rocmPackages.rocminfo" --run "rocminfo" | grep "gfx"

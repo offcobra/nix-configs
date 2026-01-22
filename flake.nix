@@ -43,8 +43,6 @@
         cursorTheme = "Dracula-cursors"; # selcted cursor-theme
         font = "FiraCodeNerdFont"; # selcted font
         wm = "hyprland"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
-        # window manager type (hyprland or x11) translator
-        wmType = if (wm == "hyprland") then "wayland" else "x11";
       };
       allowed-unfree-packages = [
         "boundary"

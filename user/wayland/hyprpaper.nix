@@ -1,36 +1,28 @@
 { systemSettings, ... }:
 
-let
-  wallpaper = if (systemSettings.hostname == "workstation")
-    then
-    [
-      "DP-1,~/.config/nixos/user/wallpapers/fantasy-landscape.png"
-      #"DP-2,~/.config/nixos/user/wallpapers/city-bridge.jpg"
-      "HDMI-A-1,~/.config/nixos/user/wallpapers/city-bridge.jpg"
-      "DP-3,~/.config/nixos/user/wallpapers/midnight-sea.jpg"
-    ]
-    else if (systemSettings.hostname == "thinkpad")
-    then
-      ["eDP-1,~/.config/nixos/user/wallpapers/city-bridge.jpg"]
-    else
-      ["HDMI-A-1,~/.config/nixos/user/wallpapers/city-bridge.jpg"];
-in
 {
   # Configuring Hyprpaper Wallpapers
-  services.hyprpaper = {
-    enable = true;
-    settings = {
-      ipc = "on";
-      splash = false;
-      splash_offset = 2.0;
+  services.hyprpaper.enable = true;
 
-      preload = [
-        "~/.config/nixos/user/wallpapers/fantasy-landscape.png"
-        "~/.config/nixos/user/wallpapers/city-bridge.jpg"
-        "~/.config/nixos/user/wallpapers/midnight-sea.jpg"
-      ];
+  # Temporary fix for hyprpaper...
+  # TODO: Fix me
+  home.file.".config/hypr/hyprpaper.conf".text = ''
+wallpaper {
+    monitor = DP-1
+    path = ~/.config/nixos/user/wallpapers/opensource.jpg
+    fit_mode = cover
+}
 
-      wallpaper = wallpaper;
-    };
-  };
+wallpaper {
+    monitor = HDMI-A-1
+    path = ~/.config/nixos/user/wallpapers/railjard.jpg
+    fit_mode = cover
+}
+
+wallpaper {
+    monitor =
+    path = DP-3
+    fit_mode = cover
+}
+  '';
 }

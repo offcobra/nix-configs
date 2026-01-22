@@ -6,9 +6,10 @@ let
   style = import ./style.nix { inherit config userSettings; };
   settings = if (systemSettings.hostname == "workstation")
     then
-      [bar.mainBar bar.secondBar]
+      #[bar.mainBar bar.secondBar]
+      [ bar.mainBar ]
     else
-      [bar.mainBar];
+      [ bar.mainBar ];
 in
 {
   # Waybar Config

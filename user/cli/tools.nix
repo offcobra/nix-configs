@@ -6,6 +6,7 @@
     # Nix helper
     nh
     cowsay
+    cava
 
     # Rust cli tools
     fd

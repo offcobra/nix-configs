@@ -138,7 +138,7 @@ in
       input = {
         kb_layout = "de";
         follow_mouse = 1;
-        scroll_factor = 1.3;
+        scroll_factor = 3;
 
         touchpad = {
             natural_scroll = "no";

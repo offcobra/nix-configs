@@ -17,7 +17,7 @@ let
     #birdtray
 
     # Sound Studio
-    tenacity
+    #tenacity
     ardour
     decibels
   ];

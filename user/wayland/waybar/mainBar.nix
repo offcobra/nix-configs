@@ -89,10 +89,14 @@ in
 {
   mainBar = {
     layer= "top";
+    position = "top";
     output = output;
     modules-left = ["hyprland/workspaces" "hyprland/window"];
     modules-center = moduleCenter;
     modules-right = ["idle_inhibitor" "pulseaudio" "tray" "clock"];
+    margin-left = 5;
+    margin-right = 5;
+    margin-top = 5;
     height= 8;
     "custom/arch" = {
       format = "";

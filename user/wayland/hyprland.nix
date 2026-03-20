@@ -54,7 +54,8 @@ in
       # HyprPaper
       ./hyprpaper.nix
       # Waybar
-      ./waybar
+      #./waybar
+      ./ashell
       # Terminals
       ./foot.nix
       # Launcher
@@ -138,7 +139,7 @@ in
       input = {
         kb_layout = "de";
         follow_mouse = 1;
-        scroll_factor = 3;
+        scroll_factor = 1.5;
 
         touchpad = {
             natural_scroll = "no";
@@ -481,6 +482,8 @@ in
       bind = ,W, submap, reset
       bind = ,S, exec, flatpak run org.signal.Signal
       bind = ,S, submap, reset
+      bind = ,T, exec, distrobox-enter -n arch  --  /usr/bin/stoat-desktop %U
+      bind = ,T, submap, reset
       bind = , escape, submap, reset
       submap = reset
 

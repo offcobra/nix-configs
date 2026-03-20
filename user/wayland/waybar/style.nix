@@ -21,7 +21,8 @@
     }
 
     window#waybar {
-      background: transparent;
+      background: @background;
+      border-radius: 10px;
     }
 
     #custom-arch {

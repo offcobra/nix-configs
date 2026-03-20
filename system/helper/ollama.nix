@@ -8,8 +8,10 @@
     # 127.0.0.1:11434 -> Listening Address
     # for rocm info
     # nix-shell -p "rocmPackages.rocminfo" --run "rocminfo" | grep "gfx"
-    #acceleration = "rocm";
-    #rocmOverrideGfx = "10.3.0";
+    #port = 11434;
+    #openFirewall = true;
+    #package = pkgs.ollama-rocm;
+    #package = pkgs.ollama-rocm;
   };
 
 }

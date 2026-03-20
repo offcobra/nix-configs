@@ -21,7 +21,7 @@ wallpaper {
 
 wallpaper {
     monitor =
-    path = DP-3
+    path = ~/.config/nixos/user/wallpapers/neversettle.jpg
     fit_mode = cover
 }
   '';

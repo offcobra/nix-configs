@@ -7,10 +7,10 @@
     settings = {
       main = {
         pad = "10x5";
-        font = "${userSettings.font}:Semibold:size=8";
+       font = "${userSettings.font}:Semibold:size=8";
       };
       scrollback.lines = 5000;
-      colors = {
+      colors-dark = {
         foreground = "${config.colorScheme.palette.base05}"; # Text
         background = "${config.colorScheme.palette.base00}"; # Base
         regular0 = "${config.colorScheme.palette.base02}";   # Surface 1

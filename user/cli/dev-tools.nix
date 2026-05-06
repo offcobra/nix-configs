@@ -22,10 +22,15 @@ in
     #net-snmp
     sslscan
 
+    # AI Agent
+    claude-code
+    #openclaw
+
     # HashiCorp
     vault-bin
     boundary
-    #terraform
+    terraform
+    terragrunt
 
     # stackit
     stackit-cli

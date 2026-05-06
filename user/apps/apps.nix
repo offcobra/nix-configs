@@ -65,7 +65,7 @@ in
       # Terminals
       ./terminals
       # Dunst Config
-      ./dunst.nix
+      #./dunst.nix
       # Emacs Config
       #./emacs.nix
       # Brave Config
@@ -99,6 +99,5 @@ in
 
     # Bluetooth
     bluez
-    blueberry
   ] ++ packages;      # Added packges for specific System
 }

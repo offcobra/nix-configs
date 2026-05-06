@@ -11,6 +11,7 @@
       #./x11/qtile.nix
       # Bash Config
       ./cli/shell.nix
+      ./cli/dev-tools.nix
       # Gtk Themes
       ./theme.nix
       # Applications

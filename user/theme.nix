@@ -1,4 +1,4 @@
-{ pkgs, userSettings, systemSettings, ... }:
+{ config, pkgs, userSettings, systemSettings, ... }:
 
 let
   pointer_size = if ( systemSettings.hostname == "minipc" ) then 32 else 10;
@@ -14,6 +14,7 @@ in
       package = pkgs.dracula-theme;
       #package = pkgs.nordic;
     };
+    gtk4.theme = config.gtk.theme;
     iconTheme = {
       name = userSettings.iconTheme;
       #package = pkgs.candy-icons;

@@ -28,7 +28,8 @@ let startup = pkgs.pkgs.writeShellScriptBin "hypr-startup" /*bash*/ ''
     if [[ ${systemSettings.hostname} == "workstation" ]]
     then
       echo "Starting Waybar..."
-      waybar &
+      #waybar &
+      noctalia-shell &
 
       echo "Starting Signal & WhatsApp..."
       flatpak run org.signal.Signal --start-in-tray &
@@ -52,24 +53,24 @@ in
   imports =
     [ # Include other modules
       # HyprPaper
-      ./hyprpaper.nix
+      #./hyprpaper.nix
       # Waybar
       #./waybar
-      ./ashell
+      #./ashell.nix
       # Terminals
       ./foot.nix
       # Launcher
       ./fuzzel.nix
       # Hyprlock
-      ./hyprlock.nix
+      #./hyprlock.nix
       # Hypridle
-      ./hypridle.nix
+      #./hypridle.nix
       # Hyprshell
-      ./hyprshell.nix
+      #./hyprshell.nix
       # Wlogout
-      ./wlogout
+      #./wlogout
       # Pyprland
-      ./pyprland.nix
+      #./pyprland.nix
     ];
 
   home.packages = with pkgs; [
@@ -77,6 +78,7 @@ in
     hyprshot
     hyprpicker
     wl-clipboard
+    noctalia-shell
     #pyprland
   ];
 
@@ -199,7 +201,6 @@ in
       };
 
       dwindle = {
-        pseudotile = "yes";
         preserve_split = "yes";
       };
 
@@ -233,7 +234,8 @@ in
         "$mainMod_SHIFT, return, exec, virt-run.py --pods arch"
 
         # WLogout
-        "$mainMod, z, exec, wlogout --protocol layer-shell -b 5"
+        #"$mainMod, z, exec, wlogout --protocol layer-shell -b 5"
+        "$mainMod, z, exec, noctalia-shell ipc call sessionMenu toggle"
 
         # Window Actions
         "CTRL, Space, fullscreenstate, 0, 1"
@@ -246,7 +248,7 @@ in
         "$mainMod_SHIFT, B, exec, toggle-proc.sh waybar"
 
         # Quick Shortcuts
-        "$mainMod, P, exec, fuzzel"
+        "$mainMod, P, exec, noctalia-shell ipc call launcher toggle"
         "$mainMod_SHIFT, P, exec, websearch.py"
         "$mainMod, F, exec, thunar"
         "ALT, F, exec, footclient -e lf"
@@ -381,7 +383,8 @@ in
       submap = programms
       bind = ,G, exec, steam
       bind = ,G, submap, reset
-      bind = ,V, exec, pwvucontrol
+      #bind = ,V, exec, pwvucontrol
+      bind = ,V, exec, noctalia-shell ipc call volume openPanel
       bind = ,V, submap, reset
       bind = ,F, exec, flatpak run com.github.tchx84.Flatseal
       bind = ,F, submap, reset
@@ -393,7 +396,8 @@ in
       bind = ,H, submap, reset
       bind = ,P, exec, flatpak run me.proton.Mail
       bind = ,P, submap, reset
-      bind = ,B, exec, blueberry
+      #bind = ,B, exec, blueberry
+      bind = ,B, exec, noctalia-shell ipc call bluetooth togglePanel
       bind = ,B, submap, reset
       bind = ,O, exec, libreoffice
       bind = ,O, submap, reset
@@ -441,6 +445,12 @@ in
       bind = ,F, submap, reset
       bind = ,W, exec, screen-work.sh
       bind = ,W, submap, reset
+      bind = ,Z, exec, noctalia-shell ipc call settings toggle
+      bind = ,Z, submap, reset
+      bind = ,D, exec, noctalia-shell ipc call notifications toggleDND
+      bind = ,D, submap, reset
+      bind = ,I, exec, noctalia-shell ipc call idleInhibitor toggle
+      bind = ,I, submap, reset
       bind = , escape, submap, reset
       submap = reset
 
@@ -504,6 +514,11 @@ in
       # Alt + Tab behavior
       bind = ALT, Tab, workspace, previous
       bind = $mainMod, Tab, cyclenext, bringactivetotop
+
+      # Workspace rules
+      workspace = 1, monitor:DP-1
+      workspace = 2, monitor:HDMI-A-1
+      workspace = 3, monitor:DP-3
 
       # Setting Programm opacity
       windowrule = opacity 0.98 0.88, match:class .*

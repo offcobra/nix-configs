@@ -45,6 +45,8 @@
         wm = "hyprland"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
       };
       allowed-unfree-packages = [
+        "claude-code"
+        "openclaw"
         "boundary"
         "vault-bin"
         "terraform"

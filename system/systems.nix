@@ -49,7 +49,10 @@
 
   mediatv = lib.nixosSystem {
     inherit system;
-    modules = [ ./mediatv.nix ];
+    modules = [
+      nix-flatpak.nixosModules.nix-flatpak
+      ./mediatv.nix
+    ];
     specialArgs = {
       inherit inputs;
       inherit userSettings;

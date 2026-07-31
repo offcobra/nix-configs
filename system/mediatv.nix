@@ -8,6 +8,7 @@
       # Virtualization Stuff...
       ./helper/virtualization.nix
       # Hyprland Stuff...
+      ./helper/flatpak.nix
       #./helper/hyprland.nix
       # Fonts config
       ./helper/fonts.nix

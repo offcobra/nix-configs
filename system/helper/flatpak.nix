@@ -1,6 +1,13 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
+  # XDG-Partal for flatpaks
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = "*";
+  };
+
   # Flatpaks declarative
   services.flatpak = {
     enable = true;
@@ -25,5 +32,4 @@
     uninstallUnmanaged = true;
     update.onActivation = true;
   };
-
 }

@@ -9,8 +9,6 @@
       ./helper/virtualization.nix
       # Hyprland Stuff...
       #./helper/hyprland.nix
-      # Qtile Stuff...
-      ./helper/qtile.nix
       # Fonts config
       ./helper/fonts.nix
       # Nix Settings

@@ -19,10 +19,10 @@
       ./helper/virtualization.nix
       # Hyprland Stuff...
       ./helper/hyprland.nix
-      # Qtile Stuff...
-      #./helper/qtile.nix
       # Ollama AI Service
       ./helper/ollama.nix
+      # Monitoring stack (Grafana + VictoriaMetrics + VictoriaLogs)
+      #./helper/monitoring.nix
       # Gnome polkit
       ./helper/polkit.nix
       # Sudo Security

@@ -1,0 +1,79 @@
+{
+  "uid": "logs-overview",
+  "title": "Logs",
+  "tags": ["monitoring", "logs"],
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "30s",
+  "time": { "from": "now-3h", "to": "now" },
+  "templating": {
+    "list": [
+      {
+        "name": "filter",
+        "label": "LogsQL filter",
+        "type": "textbox",
+        "query": "*",
+        "current": { "text": "*", "value": "*" }
+      }
+    ]
+  },
+  "annotations": { "list": [] },
+  "panels": [
+    {
+      "id": 1,
+      "type": "timeseries",
+      "title": "Log Volume / min",
+      "gridPos": { "h": 6, "w": 16, "x": 0, "y": 0 },
+      "datasource": { "type": "victoriametrics-logs-datasource", "uid": "victorialogs" },
+      "fieldConfig": { "defaults": { "unit": "short", "custom": { "drawStyle": "bars", "fillOpacity": 60 } } },
+      "targets": [
+        { "refId": "A", "datasource": { "type": "victoriametrics-logs-datasource", "uid": "victorialogs" },
+          "expr": "$filter | stats count() as logs", "queryType": "statsRange", "step": "1m", "legendFormat": "logs" }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "table",
+      "title": "Top Units",
+      "gridPos": { "h": 6, "w": 8, "x": 16, "y": 0 },
+      "datasource": { "type": "victoriametrics-logs-datasource", "uid": "victorialogs" },
+      "targets": [
+        { "refId": "A", "datasource": { "type": "victoriametrics-logs-datasource", "uid": "victorialogs" },
+          "expr": "$filter | stats by (_SYSTEMD_UNIT) count() as count | sort by (count) desc | limit 10",
+          "queryType": "stats" }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "timeseries",
+      "title": "Errors & Warnings / min (PRIORITY <= 4)",
+      "gridPos": { "h": 6, "w": 24, "x": 0, "y": 6 },
+      "datasource": { "type": "victoriametrics-logs-datasource", "uid": "victorialogs" },
+      "fieldConfig": { "defaults": { "unit": "short", "custom": { "drawStyle": "bars", "fillOpacity": 60 }, "color": { "mode": "fixed", "fixedColor": "red" } } },
+      "targets": [
+        { "refId": "A", "datasource": { "type": "victoriametrics-logs-datasource", "uid": "victorialogs" },
+          "expr": "$filter PRIORITY:<=4 | stats count() as errors", "queryType": "statsRange", "step": "1m", "legendFormat": "errors+warnings" }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "logs",
+      "title": "Journal",
+      "gridPos": { "h": 14, "w": 24, "x": 0, "y": 12 },
+      "datasource": { "type": "victoriametrics-logs-datasource", "uid": "victorialogs" },
+      "options": {
+        "showTime": true,
+        "showLabels": false,
+        "wrapLogMessage": true,
+        "enableLogDetails": true,
+        "sortOrder": "Descending",
+        "dedupStrategy": "none"
+      },
+      "targets": [
+        { "refId": "A", "datasource": { "type": "victoriametrics-logs-datasource", "uid": "victorialogs" },
+          "expr": "$filter", "queryType": "range" }
+      ]
+    }
+  ]
+}

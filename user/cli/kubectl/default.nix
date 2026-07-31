@@ -62,12 +62,6 @@ in
 
   ];
 
-  # Download fubectl
-  home.file.".local/bin/fubectl.source".source = builtins.fetchurl {
-    url = "https://rawgit.com/kubermatic/fubectl/main/fubectl.source";
-    sha256 = "sha256:1zbmj6rh2mf92c4vqgrln4h10iyqbynipdnkbys98pp8k7zsqpq0";
-  };
-
   # Shell Aliases for kubectl
   programs.bash.shellAliases = kube-aliases;
   programs.fish.shellAliases = kube-aliases;

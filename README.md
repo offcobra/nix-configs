@@ -42,15 +42,15 @@ This Repository should serve as a starting / inspiration point for people intres
 │  ├── workstation              # Various Workstation hardware-configurations
 │  └── workstation.nix          # Workstation configurations
 └── user                    # User Sapce
-   ├── apps                     # Gui Apps (X11 & Wayland) installs / configs
+   ├── apps                     # Gui Apps installs / configs
    ├── cli                      # All about the cli (tools & configs)
    ├── home.nix                 # Home-manager configs
    ├── theme.nix                # GTK / QT Themeing...
    ├── user.md                  # User Space Documentation
    ├── wallpapers               # Used wallpapers
-   ├── wayland                  # Hyprland Ecosystem
+   ├── hyprland                  # Hyprland Ecosystem
    ├── wsl.nix                  # Wsl home-manager Module
-   └── x11                      # Qtile (X11) Ecosystem
+   └── qtile                      # Qtile Ecosystem
 ```
 
 ---
@@ -63,7 +63,7 @@ This Repository should serve as a starting / inspiration point for people intres
 
 - Hyprland & Ecosystem declarativly in `Nix`
 
-- Qtile (x11) as backup WindowManager
+- Qtile as backup WindowManager
 
 - Virtualization tools
     - VM's: libvirtd, virt-manager, virt-viewer ...

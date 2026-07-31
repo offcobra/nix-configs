@@ -7,14 +7,8 @@
 
       echo "### === --->>> Killing all Window Manager Apps..."
 
-      if [[ $XDG_SESSION_TYPE == "wayland" ]]
-      then
-        apps=(waybar dunst hyprpaper emacs nm-applet hypridle zapzap signal watch_battery)
-        session=Hyprland
-      else
-        apps=(dunst emacs nm-applet zapzap signal watch_battery blueberry flameshot)
-        session=qtile
-      fi
+      apps=(waybar dunst hyprpaper emacs nm-applet hypridle zapzap signal watch_battery)
+      session=Hyprland
 
       notify-send -t 2000 "Session-Manager" "Killing $session & Apps..."
 

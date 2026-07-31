@@ -43,20 +43,10 @@ let
     #})
   ];
 
-  # Pass
-  pass-manager = with pkgs; [
-  #  # Bitwarden Password Manager
-    bitwarden-desktop
-  #  #bitwarden-cli
-  ];
-
   # Choose packages for specific system
   packages = if ( systemSettings.hostname == "workstation")
               then
-                virtualisation ++ office ++ utils ++ pass-manager
-              else if ( systemSettings.hostname == "thinkpad")
-              then
-                pass-manager
+                virtualisation ++ office ++ utils
               else [];
 in
 {

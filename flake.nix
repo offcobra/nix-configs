@@ -5,6 +5,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/master";
+    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    #home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-colors.url = "github:misterio77/nix-colors";
     hyprland.url = "github:hyprwm/Hyprland";
@@ -14,9 +16,10 @@
     };
     nixvim.url = "github:nix-community/nixvim";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
+    hermes-agent.url = "github:NousResearch/hermes-agent";
   };
 
-  outputs = { nixpkgs, home-manager, nix-colors, nixvim, nix-flatpak, ... }@inputs:
+  outputs = { nixpkgs, home-manager, nix-colors, nixvim, nix-flatpak, hermes-agent, ... }@inputs:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
@@ -61,6 +64,7 @@
         lib = lib;
         system = system;
         nix-flatpak = nix-flatpak;
+        hermes-agent = hermes-agent;
         inputs = inputs;
         userSettings = userSettings;
         systemSettings = systemSettings;

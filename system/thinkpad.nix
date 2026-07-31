@@ -7,8 +7,6 @@
       ./thinkpad/thinkpad-hardware.nix
       # Hyprland Stuff
       ./helper/hyprland.nix
-      # Qtile Stuff...
-      #./helper/qtile.nix
       # Nix Settings
       ./helper/nix-settings.nix
       # Fonts config
@@ -44,7 +42,6 @@
   };
 
   # Laptop Services
-  programs.light.enable = true;
   services.upower.enable = true;
 
   services.tumbler.enable = true;

@@ -1,4 +1,4 @@
-{ lib, system, nix-flatpak, inputs, userSettings, systemSettings, ... }:
+{ lib, system, hermes-agent, nix-flatpak, inputs, userSettings, systemSettings, ... }:
 
 {
   workstation = lib.nixosSystem {
@@ -6,6 +6,7 @@
     modules = [
       # Flatpaks
       nix-flatpak.nixosModules.nix-flatpak
+      hermes-agent.nixosModules.default
 
       ./workstation.nix
     ];

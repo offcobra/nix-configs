@@ -1,4 +1,4 @@
-{ inputs, pkgs, systemSettings, config, ... }:
+{ inputs, lib, pkgs, systemSettings, config, ... }:
 
 let startup = pkgs.pkgs.writeShellScriptBin "hypr-startup" /*bash*/ ''
     if [[ ${systemSettings.hostname} == "mediatv" ]]
@@ -48,6 +48,18 @@ let startup = pkgs.pkgs.writeShellScriptBin "hypr-startup" /*bash*/ ''
   install = if (systemSettings.hostname == "mediatv") then false else true;
   sens = if (systemSettings.hostname == "thinkpad") then 0.5 else 0;
 
+  # Monitor layout per host. In Lua mode each entry becomes an `hl.monitor({...})`
+  # call, so we describe the monitor as a table instead of a hyprlang string.
+  monitors = if (systemSettings.hostname == "workstation")
+             then
+               [ { output = "DP-1";     mode = "1920x1080@144.00"; position = "0x0";    scale = 1; }
+                 { output = "HDMI-A-1"; mode = "2560x1440@143.91"; position = "1920x0"; scale = 1; }
+                 { output = "DP-3";     mode = "1920x1080";        position = "4480x0"; scale = 1; } ]
+             else if (systemSettings.hostname == "thinkpad")
+             then [ { output = "eDP-1"; mode = "1920x1080"; position = "0x0"; scale = 1; } ]
+             else
+               [ { output = "HDMI-A-1"; mode = "3840x2160@60.00"; position = "0x0"; scale = 2; } ];
+
 in
 {
   imports =
@@ -84,478 +96,310 @@ in
 
   # Window Manager
   wayland.windowManager.hyprland = {
-    enable = install;
+    enable = true;
     package = null;
     portalPackage = null;
+    configType = "lua";
     xwayland = {
       enable = true;
     };
     systemd.enable = true;
     systemd.variables = [ "--all" ];
-    #plugins = [
-    #  inputs.hyprland-plugins.packages.${systemSettings.system}.hyprtrails
-    #  inputs.hyprland-plugins.packages.${systemSettings.system}.csgo-vulkan-fix
-    #];
+
+    # Structured settings. In Lua mode the Home Manager module renders every
+    # top-level key `name` as `hl.name(...)`, and the `config` attrset becomes
+    # a single `hl.config({...})` holding the classic config categories.
     settings = {
-      # Plugins
-      #plugin = {
-      #  # Todo fix rgba color...
-      #  hyprtrails = {
-      #    #color = "rgba(${config.colorScheme.palette.base00})";
-      #    color = "rgba(226, 0, 0, 0.67)";
-      #  };
-      #  csgo-vulkan-fix = {
-      #    res_w = 1280;
-      #    res_h = 960;
+      # One `hl.monitor({...})` per entry.
+      monitor = monitors;
 
-      #    # NOT a regex! This is a string and has to exactly match initial_class
-      #    #class = "cs2";
-      #    class = "SDL Application";
-
-      #    # Whether to fix the mouse position. A select few apps might be wonky with this.
-      #    fix_mouse = true;
-      #  };
-      #};
-
-      # Monitor settings
-      monitor = if (systemSettings.hostname == "workstation")
-                then
-                  [ "DP-1,1920x1080@144.00,0x0,1"
-                    #"DP-2,1920x1080@165.00,1920x0,1"
-                    #"DP-2,2560x1440@239.97,1920x0,1"
-                    "HDMI-A-1,2560x1440@143.91,1920x0,1"
-                    "DP-3,1920x1080,4480x0,1" ]
-                else if (systemSettings.hostname == "thinkpad")
-                then [ "eDP-1,1920x1080,0x0,1" ]
-                else
-                  [ "HDMI-A-1,3840x2160@60.00,0x0,2" ];
-
-      # Recomended Hypr Cursor settings for nvidia
-      cursor = if (systemSettings.hostname == "mediatv")
-                then
-                  { no_hardware_cursors = true; }
-                else
-                  { no_hardware_cursors = false; };
-
-      # Input Settings
-      input = {
-        kb_layout = "de";
-        follow_mouse = 1;
-        scroll_factor = 1.5;
-
-        touchpad = {
-            natural_scroll = "no";
+      config = {
+        general = {
+          gaps_in = 5;
+          gaps_out = 5;
+          layout = "master";
+          border_size = 1;
+          col = {
+            active_border = "rgba(${config.colorScheme.palette.base0E}ee)";
+            inactive_border = "rgba(${config.colorScheme.palette.base00}aa)";
+          };
         };
 
-        sensitivity = sens; # -1.0 - 1.0, 0 means no modification.
-        accel_profile = "flat";
-      };
-
-      # General Settings
-      general = {
-        gaps_in = 5;
-        gaps_out = 5;
-        layout = "master";
-        border_size = 1;
-        "col.active_border" = "rgba(${config.colorScheme.palette.base0E}ee)";
-        "col.inactive_border" = "rgba(${config.colorScheme.palette.base00}aa)";
-      };
-
-      # Misc settings
-      misc = {
-        enable_swallow = "true";
-        swallow_regex = "^(Alacritty|kitty|footclient|foot)$";
-      };
-
-      # Startup Programms
-      exec-once = ''${startup}/bin/hypr-startup'';
-
-      # Decorations
-      decoration = {
-        rounding = 10;
-
-        blur = {
-    	  enabled = blur;
+        # Recomended Hypr Cursor settings for nvidia
+        cursor = {
+          no_hardware_cursors = (systemSettings.hostname == "mediatv");
         };
 
-        shadow = {
-          enabled = true;
-          range = 4;
-          render_power = 3;
-          color = "rgba(${config.colorScheme.palette.base00}ee)";
+        input = {
+          kb_layout = "de";
+          follow_mouse = 1;
+          scroll_factor = 1.5;
+          sensitivity = sens; # -1.0 - 1.0, 0 means no modification.
+          accel_profile = "flat";
+          touchpad = {
+            natural_scroll = false;
+          };
+        };
+
+        misc = {
+          enable_swallow = true;
+          swallow_regex = "^(Alacritty|kitty|footclient|foot)$";
+        };
+
+        decoration = {
+          rounding = 10;
+          blur = {
+            enabled = blur;
+          };
+          shadow = {
+            enabled = true;
+            range = 4;
+            render_power = 3;
+            color = "rgba(${config.colorScheme.palette.base00}ee)";
+          };
+        };
+
+        dwindle = {
+          preserve_split = true;
+        };
+
+        master = {
+          new_on_top = true;
+          new_status = "master";
+        };
+
+        debug = {
+          disable_logs = false;
+        };
+
+        # XWayland scaling
+        xwayland = {
+          force_zero_scaling = true;
         };
       };
-
-      # Animations
-      animations = {
-        enabled = "yes";
-        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-        animation = [
-          "windows, 1, 7, myBezier"
-          "windowsOut, 1, 7, default, popin 80%"
-          "border, 1, 10, default"
-          "borderangle, 1, 8, default"
-          "fade, 1, 7, default"
-          "workspaces, 1, 6, default"
-        ];
-      };
-
-      dwindle = {
-        preserve_split = "yes";
-      };
-
-      # Debug
-      debug = {
-        disable_logs = false;
-      };
-
-      master = {
-        new_on_top = "true";
-        new_status = "master";
-      };
-
-      #gestures = {
-      #  workspace_swipe = "off";
-      #};
-
-      # Bind Keyboard Settings
-      "$mainMod" = "SUPER";
-      bind = [
-        # Terminals
-        "$mainMod, return, exec, footclient -e fish"
-        "CTRL, return, exec, alacritty"
-        "ALT, return, exec, ghostty"
-
-        # Clipboard manager
-        "CTRL, P, exec, clipman pick -t STDOUT | fuzzel --dmenu | wl-copy"
-
-        # Ollama AI Chat
-        "$mainMod, o, exec, footclient -a ollama --title Ollama -e ollama run gemma3:latest"
-        "$mainMod_SHIFT, return, exec, virt-run.py --pods arch"
-
-        # WLogout
-        #"$mainMod, z, exec, wlogout --protocol layer-shell -b 5"
-        "$mainMod, z, exec, noctalia-shell ipc call sessionMenu toggle"
-
-        # Window Actions
-        "CTRL, Space, fullscreenstate, 0, 1"
-        "$mainMod, Q, killactive"
-        "$mainMod_SHIFT, Q, exec, kill-wm.sh"
-        #"$mainMod_SHIFT, R, hyprctl reload"
-        "$mainMod_SHIFT, F, togglefloating"
-        "$mainMod_CTRL, F, fullscreen"
-        "$mainMod_CTRL , L, exec, hyprlock"
-        "$mainMod_SHIFT, B, exec, toggle-proc.sh waybar"
-
-        # Quick Shortcuts
-        "$mainMod, P, exec, noctalia-shell ipc call launcher toggle"
-        "$mainMod_SHIFT, P, exec, websearch.py"
-        "$mainMod, F, exec, thunar"
-        "ALT, F, exec, footclient -e lf"
-        "$mainMod, S, exec, alacritty -e btm"
-
-        # Move focus with mainMod + arrow keys
-        "$mainMod, H, movefocus, l"
-        "$mainMod, L, movefocus, r"
-        "$mainMod, K, movefocus, u"
-        "$mainMod, J, movefocus, d"
-
-        # Move focus with mainMod + arrow keys
-        "$mainMod_SHIFT, H, movewindow, l"
-        "$mainMod SHIFT, L, movewindow, r"
-        "$mainMod SHIFT, K, movewindow, u"
-        "$mainMod SHIFT, J, movewindow, d"
-
-        # Resize
-        "SUPERALT, H, resizeactive, -30 0"
-        "SUPERALT, L, resizeactive, 30 0"
-        "SUPERALT, K, resizeactive, 0 -30"
-        "SUPERALT, J, resizeactive, 0 30"
-
-        # Switch workspaces with mainMod + [0-9]
-        "$mainMod, 1, workspace, 1"
-        "$mainMod, 2, workspace, 2"
-        "$mainMod, 3, workspace, 3"
-        "$mainMod, 4, workspace, 4"
-        "$mainMod, 5, workspace, 5"
-        "$mainMod, 6, workspace, 6"
-        "$mainMod, 7, workspace, 7"
-        "$mainMod, 8, workspace, 8"
-        "$mainMod, 9, workspace, 9"
-        "$mainMod, 0, workspace, 10"
-
-        # Move active window to a workspace with mainMod + SHIFT + [0-9]
-        "$mainMod SHIFT, 1, movetoworkspace, 1"
-        "$mainMod SHIFT, 2, movetoworkspace, 2"
-        "$mainMod SHIFT, 3, movetoworkspace, 3"
-        "$mainMod SHIFT, 4, movetoworkspace, 4"
-        "$mainMod SHIFT, 5, movetoworkspace, 5"
-        "$mainMod SHIFT, 6, movetoworkspace, 6"
-        "$mainMod SHIFT, 7, movetoworkspace, 7"
-        "$mainMod SHIFT, 8, movetoworkspace, 8"
-        "$mainMod SHIFT, 9, movetoworkspace, 9"
-        "$mainMod SHIFT, 0, movetoworkspace, 10"
-
-        # Scroll through existing workspaces with mainMod + scroll
-        "$mainMod, mouse_down, workspace, e+1"
-        "$mainMod, mouse_up, workspace, e-1"
-
-        # Sound controls
-        ", xf86audioraisevolume, exec, amixer sset Master 5%+"
-        ", xf86audiolowervolume, exec, amixer sset Master 5%-"
-        ", xf86audiomute, exec, amixer sset Master 0"
-
-        # Misc...
-        ", XF86NotificationCenter, exec, show-info.sh"
-
-        # Brightness controls
-        ", xf86MonBrightnessDown, exec, light -U 5"
-        ", xf86MonBrightnessUp, exec, light -A 5"
-
-        # Pyprland Plugins
-        # Scratchpads
-        ", F12, exec, pypr toggle system_monitor"
-
-      ];
     };
+
+    # Keybinds, submaps and autostart are expressed as raw Lua. The latest
+    # Hyprland uses a Lua config, so binds are `hl.bind(<keys>, <dispatcher>)`
+    # and dispatchers live under `hl.dsp.*`. Submaps (keychords) are defined
+    # with `hl.define_submap`; passing "reset" makes the submap exit after any
+    # dispatch, which is exactly the "press a chord, run one thing" behaviour.
     extraConfig = ''
-      # XWayland scaling
-      xwayland {
-        force_zero_scaling = true
-      }
+      -- Autostart
+      hl.on("hyprland.start", function()
+        hl.exec_cmd("${startup}/bin/hypr-startup")
+      end)
 
-      # Move/resize windows with mainMod + LMB/RMB and dragging
-      bindm = SUPER, mouse:272, movewindow
-      bindm = SUPER, mouse:273, resizewindow
+      -- Move/resize windows with SUPER + LMB/RMB and dragging
+      hl.bind("SUPER + mouse:272", hl.dsp.window.drag(),   { mouse = true })
+      hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
-      # Defining SUBMAPS / Keychords
+      -- Terminals
+      hl.bind("SUPER + return", hl.dsp.exec_cmd("footclient -e fish"))
+      hl.bind("CTRL + return",  hl.dsp.exec_cmd("alacritty"))
+      hl.bind("ALT + return",   hl.dsp.exec_cmd("ghostty"))
 
-      # Resize Window
-      bind = ALT, R, submap, resize
-      submap = resize
-      binde = , L, resizeactive, 10 0
-      binde = , H, resizeactive, -10 0
-      binde = , K, resizeactive, 0 -10
-      binde = , J, resizeactive, 0 10
-      bind = , escape, submap, reset
-      submap = reset
+      -- Clipboard manager
+      hl.bind("CTRL + P", hl.dsp.exec_cmd("clipman pick -t STDOUT | fuzzel --dmenu | wl-copy"))
 
-      # BROWSERS
-      bind = SUPER, B, submap, browsers
-      submap = browsers
-      bind = ,B, exec, brave
-      bind = ,B, submap, reset
-      bind = ,I, exec, brave --incognito
-      bind = ,I, submap, reset
-      bind = ,T, exec, distrobox-enter -n arch  --  /usr/bin/thorium-browser %U
-      bind = ,T, submap, reset
-      bind = ,H, exec, distrobox-enter -n arch  --  /usr/bin/thorium-browser --incognito %U
-      bind = ,H, submap, reset
-      bind = ,O, exec, qutebrowser
-      bind = ,O, submap, reset
-      bind = ,Z, exec, flatpak run app.zen_browser.zen
-      bind = ,Z, submap, reset
-      bind = , escape, submap, reset
-      submap = reset
+      -- Ollama AI Chat
+      hl.bind("SUPER + O", hl.dsp.exec_cmd("footclient -a ollama --title Ollama -e ollama run gemma3:latest"))
+      -- NOTE: this used to also be bound to SUPER + return, which collided with
+      -- the terminal above. Kept here on its own; rebind if you want it back.
+      -- hl.bind("SUPER + return", hl.dsp.exec_cmd("virt-run.py --pods arch"))
 
-      # EMACS
-      bind = SUPER, E, submap, emacs
-      submap = emacs
-      bind = ,N, exec, footclient --override=main.pad=2x2 -T NeoVim -e nvim
-      bind = ,N, submap, reset
-      bind = ,O, exec, obsidian
-      bind = ,O, submap, reset
-      bind = ,E, exec, emacsclient -c -a 'emacs'
-      bind = ,E, submap, reset
-      bind = ,B, exec, emacsclient -c -a 'emacs' --eval '(ibuffer)'
-      bind = ,B, submap, reset
-      bind = ,R, exec, emacsclient -c -a 'emacs' --eval '((lambda () (interactive) (load-file "~/.config/emacs/init.el") (ignore (elpaca-process-queues))) :wk "Reload emacs config")'
-      bind = ,R, submap, reset
-      bind = ,D, exec, emacsclient -c -a 'emacs' --eval '(dired nil)'
-      bind = ,D, submap, reset
-      bind = ,T, exec, emacsclient -c -a 'emacs' --eval '(+vterm/here nil)'
-      bind = ,T, submap, reset
-      bind = , escape, submap, reset
-      submap = reset
+      -- Session menu
+      hl.bind("SUPER + Z", hl.dsp.exec_cmd("noctalia-shell ipc call sessionMenu toggle"))
 
-      # PROGRAMMS
-      bind = SUPER, G, submap, programms
-      submap = programms
-      bind = ,G, exec, steam
-      bind = ,G, submap, reset
-      #bind = ,V, exec, pwvucontrol
-      bind = ,V, exec, noctalia-shell ipc call volume openPanel
-      bind = ,V, submap, reset
-      bind = ,F, exec, flatpak run com.github.tchx84.Flatseal
-      bind = ,F, submap, reset
-      bind = ,S, exec, spotify --enable-features=UseOzonePlatform --ozone-platform=wayland
-      bind = ,S, submap, reset
-      bind = ,E, exec, thunderbird
-      bind = ,E, submap, reset
-      bind = ,H, exec, flatpak run me.proton.Pass
-      bind = ,H, submap, reset
-      bind = ,P, exec, flatpak run me.proton.Mail
-      bind = ,P, submap, reset
-      #bind = ,B, exec, blueberry
-      bind = ,B, exec, noctalia-shell ipc call bluetooth togglePanel
-      bind = ,B, submap, reset
-      bind = ,O, exec, libreoffice
-      bind = ,O, submap, reset
-      bind = ,Y, exec, freetube
-      bind = ,Y, submap, reset
-      bind = ,W, exec, waypaper
-      bind = ,W, submap, reset
-      bind = , escape, submap, reset
-      submap = reset
+      -- Window actions
+      hl.bind("CTRL + space",       hl.dsp.window.fullscreen_state({ internal = 0, client = 1 }))
+      hl.bind("SUPER + Q",          hl.dsp.window.close())
+      hl.bind("SUPER + SHIFT + Q",  hl.dsp.exec_cmd("kill-wm.sh"))
+      hl.bind("SUPER + SHIFT + F",  hl.dsp.window.float({ action = "toggle" }))
+      hl.bind("SUPER + CTRL + F",   hl.dsp.window.fullscreen())
+      hl.bind("SUPER + CTRL + L",   hl.dsp.exec_cmd("hyprlock"))
+      hl.bind("SUPER + SHIFT + B",  hl.dsp.exec_cmd("toggle-proc.sh waybar"))
 
-      # CRYPTO STUFF
-      bind = SUPER, C, submap, crypto
-      submap = crypto
-      bind = ,B, exec, distrobox-enter -n arch -- /usr/sbin/binance
-      bind = ,B, submap, reset
-      bind = ,C, exec, qutebrowser --target window https://coinmarketcap.com/
-      bind = ,C, submap, reset
-      bind = ,V, exec, qutebrowser --target window https://de.tradingview.com/chart/2eropQd2/?symbol=BINANCE%3ABTCUSDT
-      bind = ,V, submap, reset
-      bind = ,E, exec, distrobox-enter -n arch -- exodus
-      bind = ,E, submap, reset
-      bind = ,T, exec, footclient -e cointop
-      bind = ,T, submap, reset
-      bind = , escape, submap, reset
-      submap = reset
+      -- Quick shortcuts
+      hl.bind("SUPER + P",          hl.dsp.exec_cmd("noctalia-shell ipc call launcher toggle"))
+      hl.bind("SUPER + SHIFT + P",  hl.dsp.exec_cmd("websearch.py"))
+      hl.bind("SUPER + F",          hl.dsp.exec_cmd("thunar"))
+      hl.bind("ALT + F",            hl.dsp.exec_cmd("footclient -e lf"))
+      hl.bind("SUPER + S",          hl.dsp.exec_cmd("alacritty -e btm"))
 
-      # TOGGLE STUFF
-      bind = SUPER, T, submap, toggle
-      submap = toggle
-      bind = ,U, exec,footclient -a update --title Update... -e update
-      bind = ,U, submap, reset
-      bind = ,B, exec, toggle-cpu.sh
-      bind = ,B, submap, reset
-      bind = ,h, exec, toggle-bluetooth.sh
-      bind = ,h, submap, reset
-      bind = ,V, exec, flatpak run com.protonvpn.www
-      bind = ,V, submap, reset
-      bind = ,S, exec, toggle_service
-      bind = ,S, submap, reset
-      bind = ,Q, exec, toggle_service stop
-      bind = ,Q, submap, reset
-      bind = ,C, exec, screen-chill.sh
-      bind = ,C, submap, reset
-      bind = ,F, exec, screen-full.sh
-      bind = ,F, submap, reset
-      bind = ,W, exec, screen-work.sh
-      bind = ,W, submap, reset
-      bind = ,Z, exec, noctalia-shell ipc call settings toggle
-      bind = ,Z, submap, reset
-      bind = ,D, exec, noctalia-shell ipc call notifications toggleDND
-      bind = ,D, submap, reset
-      bind = ,I, exec, noctalia-shell ipc call idleInhibitor toggle
-      bind = ,I, submap, reset
-      bind = , escape, submap, reset
-      submap = reset
+      -- Move focus
+      hl.bind("SUPER + H", hl.dsp.focus({ direction = "left" }))
+      hl.bind("SUPER + L", hl.dsp.focus({ direction = "right" }))
+      hl.bind("SUPER + K", hl.dsp.focus({ direction = "up" }))
+      hl.bind("SUPER + J", hl.dsp.focus({ direction = "down" }))
 
-      # VIRTUALIZATION
-      bind = SUPER, V, submap, virtual
-      submap = virtual
-      bind = ,V, exec, virt-run.py --vms choice
-      bind = ,V, submap, reset
-      bind = ,M, exec, GTK_THEME=Dracula virt-manager
-      bind = ,M, submap, reset
-      bind = ,B, exec, flatpak run com.usebottles.bottles
-      bind = ,B, submap, reset
-      bind = ,S, exec, virt-run.py --stop
-      bind = ,S, submap, reset
-      bind = ,D, exec, virt-run.py --pods debian
-      bind = ,D, submap, reset
-      bind = ,K, exec, virt-run.py --pods choice
-      bind = ,K, submap, reset
-      bind = ,W, exec, virt-run.py --vms win11
-      bind = ,W, submap, reset
-      bind = ,G, exec, looking-glass-client input:autocapture=yes -F
-      bind = ,G, submap, reset
-      bind = ,U, exec, virt-run.py --pods ubuntu
-      bind = ,U, submap, reset
-      bind = ,F, exec, virt-run.py --pods fedora
-      bind = ,F, submap, reset
-      #bind = ,R, exec, remmina -c .local/share/remmina/group_rdp_win11_192-168-122-167.remmina #GTK_THEME=Dracula remmina
-      bind = ,R, exec, xfreerdp -grab-keyboard /v:192.168.122.167 /u:Quickemu /p:scrima /size:100% /dynamic-resolution /gfx:avc444 /gfx:progressive=true
-      bind = ,R, submap, reset
-      bind = , escape, submap, reset
-      submap = reset
+      -- Move window
+      hl.bind("SUPER + SHIFT + H", hl.dsp.window.move({ direction = "left" }))
+      hl.bind("SUPER + SHIFT + L", hl.dsp.window.move({ direction = "right" }))
+      hl.bind("SUPER + SHIFT + K", hl.dsp.window.move({ direction = "up" }))
+      hl.bind("SUPER + SHIFT + J", hl.dsp.window.move({ direction = "down" }))
 
-      # CHAT ing...
-      bind = SUPER, I, submap, chat
-      submap = chat
-      bind = ,D, exec, flatpak run com.discordapp.Discord
-      bind = ,D, submap, reset
-      bind = ,W, exec, flatpak run com.rtosta.zapzap
-      bind = ,W, submap, reset
-      bind = ,S, exec, flatpak run org.signal.Signal
-      bind = ,S, submap, reset
-      bind = ,T, exec, distrobox-enter -n arch  --  /usr/bin/stoat-desktop %U
-      bind = ,T, submap, reset
-      bind = , escape, submap, reset
-      submap = reset
+      -- Resize the active window
+      hl.bind("SUPER + ALT + H", hl.dsp.window.resize({ x = -30, y = 0,   relative = true }))
+      hl.bind("SUPER + ALT + L", hl.dsp.window.resize({ x = 30,  y = 0,   relative = true }))
+      hl.bind("SUPER + ALT + K", hl.dsp.window.resize({ x = 0,   y = -30, relative = true }))
+      hl.bind("SUPER + ALT + J", hl.dsp.window.resize({ x = 0,   y = 30,  relative = true }))
 
-      # Screenshot
-      bind = , PRINT, submap, screenshot
-      submap = screenshot
-      bind = ,P, exec, hyprpicker | wl-copy
-      bind = ,P, submap, reset
-      bind = ,W, exec, hyprshot -m window
-      bind = ,W, submap, reset
-      bind = ,M, exec, hyprshot -m output
-      bind = ,M, submap, reset
-      bind = ,R, exec, hyprshot -m region
-      bind = ,R, submap, reset
-      bind = , escape, submap, reset
-      submap = reset
+      -- Workspaces: SUPER + [1-9,0] to switch, SUPER + SHIFT + [1-9,0] to move
+      for i = 1, 10 do
+        local key = i % 10 -- 10 maps to key "0"
+        hl.bind("SUPER + " .. key,         hl.dsp.focus({ workspace = i }))
+        hl.bind("SUPER + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
+      end
 
-      # Alt + Tab behavior
-      bind = ALT, Tab, workspace, previous
-      bind = $mainMod, Tab, cyclenext, bringactivetotop
+      -- Scroll through workspaces with SUPER + scroll
+      hl.bind("SUPER + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+      hl.bind("SUPER + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 
-      # Workspace rules
-      workspace = 1, monitor:DP-1
-      workspace = 2, monitor:HDMI-A-1
-      workspace = 3, monitor:DP-3
+      -- Sound controls
+      hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("amixer sset Master 5%+"))
+      hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("amixer sset Master 5%-"))
+      hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("amixer sset Master 0"))
 
-      # Setting Programm opacity
-      windowrule = opacity 0.98 0.88, match:class .*
-      windowrule = opacity 0.96 0.8, match:class Alacritty
-      windowrule = opacity 0.96 0.8, match:class footclient
-      windowrule = opacity 0.96 0.8, match:class Kitty
-      windowrule = opacity 0.94 0.82, match:class steam
-      windowrule = opacity 0.99 0.98, match:class brave-browser
-      windowrule = opacity 1 1, match:class cs2
-      windowrule = opacity 1 1, match:class FreeTube
-      windowrule = opacity 1 1, match:class thorium-browser
-      windowrule = opacity 1 1, match:class app.zen_browser.zen
-      windowrule = opacity 1 1, match:class discord
-      windowrule = opacity 1 1, match:class looking-glass-client
-      windowrule = opacity 1 1, match:class fuzzel
-      windowrule = opacity 1 1, match:title Picture in picture
+      -- Misc
+      hl.bind("XF86NotificationCenter", hl.dsp.exec_cmd("show-info.sh"))
 
-      # New WindowRules
-      windowrule = center on, size 950 600, float on, match:class ollama
-      windowrule = center on, size 950 600, float on, match:class Proton Pass
-      windowrule = center on, size 800 450, float on, match:class blueberry.py
-      windowrule = center on, size 950 600, float on, match:title Picture-in-Picture
-      windowrule = center on, size 800 600, float on, match:class brave-nngceckbapebfimnlniiiahkandclblb-Default
-      windowrule = move (monitor_w*0.4) (monitor_h*0.3), size 950 600, float on, match:class com.rtosta.zapzap
-      windowrule = move (monitor_w*0.05) (monitor_h*0.1), size 950 600, float on, match:class org.signal.Signal
-      windowrule = move (monitor_w*0.2) (monitor_h*0.2), size 950 600, float on, match:class com.discordapp.Discord
+      -- Brightness controls
+      hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("light -U 5"))
+      hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("light -A 5"))
 
-      # Tile Programs
-      windowrule = tile on, match:class thorium-browser
-      windowrule = tile on, match:class FreeTube
+      -- Pyprland scratchpad
+      hl.bind("F12", hl.dsp.exec_cmd("pypr toggle system_monitor"))
 
-      # Floating windows
-      #windowrule = size 600 600, float on, match:class .*
-      windowrule = size 600 600, float on, match:class cs2
-      windowrule = size 600 600, float on, match:title SysMon
-      windowrule = size 600 600, float on, match:class steamwebhelper
-      windowrule = size 600 600, float on, match:class xdg-desktop-portal-gtk
+      ------------------------------------------------------------------
+      -- SUBMAPS / Keychords
+      ------------------------------------------------------------------
+
+      -- Resize mode: stays active (repeat) until Escape.
+      hl.define_submap("resize", function()
+        hl.bind("L", hl.dsp.window.resize({ x = 10,  y = 0,   relative = true }), { repeating = true })
+        hl.bind("H", hl.dsp.window.resize({ x = -10, y = 0,   relative = true }), { repeating = true })
+        hl.bind("K", hl.dsp.window.resize({ x = 0,   y = -10, relative = true }), { repeating = true })
+        hl.bind("J", hl.dsp.window.resize({ x = 0,   y = 10,  relative = true }), { repeating = true })
+        hl.bind("escape", hl.dsp.submap("reset"))
+      end)
+      hl.bind("ALT + R", hl.dsp.submap("resize"))
+
+      -- Browsers
+      hl.define_submap("browsers", "reset", function()
+        hl.bind("B", hl.dsp.exec_cmd("brave"))
+        hl.bind("I", hl.dsp.exec_cmd("brave --incognito"))
+        hl.bind("T", hl.dsp.exec_cmd("distrobox-enter -n arch  --  /usr/bin/thorium-browser %U"))
+        hl.bind("H", hl.dsp.exec_cmd("distrobox-enter -n arch  --  /usr/bin/thorium-browser --incognito %U"))
+        hl.bind("O", hl.dsp.exec_cmd("qutebrowser"))
+        hl.bind("Z", hl.dsp.exec_cmd("flatpak run app.zen_browser.zen"))
+        hl.bind("escape", hl.dsp.submap("reset"))
+      end)
+      hl.bind("SUPER + B", hl.dsp.submap("browsers"))
+
+      -- Programs
+      hl.define_submap("programms", "reset", function()
+        hl.bind("G", hl.dsp.exec_cmd("steam"))
+        hl.bind("V", hl.dsp.exec_cmd("noctalia-shell ipc call volume openPanel"))
+        hl.bind("F", hl.dsp.exec_cmd("flatpak run com.github.tchx84.Flatseal"))
+        hl.bind("S", hl.dsp.exec_cmd("spotify --enable-features=UseOzonePlatform --ozone-platform=wayland"))
+        hl.bind("E", hl.dsp.exec_cmd("thunderbird"))
+        hl.bind("H", hl.dsp.exec_cmd("flatpak run me.proton.Pass"))
+        hl.bind("P", hl.dsp.exec_cmd("flatpak run me.proton.Mail"))
+        hl.bind("B", hl.dsp.exec_cmd("noctalia-shell ipc call bluetooth togglePanel"))
+        hl.bind("O", hl.dsp.exec_cmd("libreoffice"))
+        hl.bind("Y", hl.dsp.exec_cmd("freetube"))
+        hl.bind("W", hl.dsp.exec_cmd("waypaper"))
+        hl.bind("escape", hl.dsp.submap("reset"))
+      end)
+      hl.bind("SUPER + G", hl.dsp.submap("programms"))
+
+      -- Crypto
+      hl.define_submap("crypto", "reset", function()
+        hl.bind("B", hl.dsp.exec_cmd("distrobox-enter -n arch -- /usr/sbin/binance"))
+        hl.bind("C", hl.dsp.exec_cmd("qutebrowser --target window https://coinmarketcap.com/"))
+        hl.bind("V", hl.dsp.exec_cmd("qutebrowser --target window https://de.tradingview.com/chart/2eropQd2/?symbol=BINANCE%3ABTCUSDT"))
+        hl.bind("E", hl.dsp.exec_cmd("distrobox-enter -n arch -- exodus"))
+        hl.bind("T", hl.dsp.exec_cmd("footclient -e cointop"))
+        hl.bind("escape", hl.dsp.submap("reset"))
+      end)
+      hl.bind("SUPER + C", hl.dsp.submap("crypto"))
+
+      -- Editor
+      hl.define_submap("editor", "reset", function()
+        hl.bind("N", hl.dsp.exec_cmd("footclient -e nvim"))
+        hl.bind("escape", hl.dsp.submap("reset"))
+      end)
+      hl.bind("SUPER + E", hl.dsp.submap("editor"))
+
+      -- Toggles
+      hl.define_submap("toggle", "reset", function()
+        hl.bind("U", hl.dsp.exec_cmd("footclient -a update --title Update... -e update"))
+        hl.bind("B", hl.dsp.exec_cmd("toggle-cpu.sh"))
+        hl.bind("H", hl.dsp.exec_cmd("toggle-bluetooth.sh"))
+        hl.bind("V", hl.dsp.exec_cmd("flatpak run com.protonvpn.www"))
+        hl.bind("S", hl.dsp.exec_cmd("toggle_service"))
+        hl.bind("Q", hl.dsp.exec_cmd("toggle_service stop"))
+        hl.bind("C", hl.dsp.exec_cmd("screen-chill.sh"))
+        hl.bind("F", hl.dsp.exec_cmd("screen-full.sh"))
+        hl.bind("W", hl.dsp.exec_cmd("screen-work.sh"))
+        hl.bind("Z", hl.dsp.exec_cmd("noctalia-shell ipc call settings toggle"))
+        hl.bind("D", hl.dsp.exec_cmd("noctalia-shell ipc call notifications toggleDND"))
+        hl.bind("I", hl.dsp.exec_cmd("noctalia-shell ipc call idleInhibitor toggle"))
+        hl.bind("escape", hl.dsp.submap("reset"))
+      end)
+      hl.bind("SUPER + T", hl.dsp.submap("toggle"))
+
+      -- Virtualization
+      hl.define_submap("virtio", "reset", function()
+        hl.bind("V", hl.dsp.exec_cmd("virt-run.py --vms choice"))
+        hl.bind("M", hl.dsp.exec_cmd("GTK_THEME=Dracula virt-manager"))
+        hl.bind("B", hl.dsp.exec_cmd("flatpak run com.usebottles.bottles"))
+        hl.bind("S", hl.dsp.exec_cmd("virt-run.py --stop"))
+        hl.bind("D", hl.dsp.exec_cmd("virt-run.py --pods debian"))
+        hl.bind("K", hl.dsp.exec_cmd("virt-run.py --pods choice"))
+        hl.bind("W", hl.dsp.exec_cmd("virt-run.py --vms win11"))
+        hl.bind("G", hl.dsp.exec_cmd("looking-glass-client input:autocapture=yes -F"))
+        hl.bind("U", hl.dsp.exec_cmd("virt-run.py --pods ubuntu"))
+        hl.bind("F", hl.dsp.exec_cmd("virt-run.py --pods fedora"))
+        hl.bind("R", hl.dsp.exec_cmd("xfreerdp -grab-keyboard /v:192.168.122.167 /u:Quickemu /p:scrima /size:100% /dynamic-resolution /gfx:avc444 /gfx:progressive=true"))
+        hl.bind("escape", hl.dsp.submap("reset"))
+      end)
+      hl.bind("SUPER + V", hl.dsp.submap("virtio"))
+
+      -- Chat
+      hl.define_submap("chat", "reset", function()
+        hl.bind("D", hl.dsp.exec_cmd("flatpak run com.discordapp.Discord"))
+        hl.bind("W", hl.dsp.exec_cmd("flatpak run com.rtosta.zapzap"))
+        hl.bind("S", hl.dsp.exec_cmd("flatpak run org.signal.Signal"))
+        hl.bind("T", hl.dsp.exec_cmd("distrobox-enter -n arch  --  /usr/bin/stoat-desktop %U"))
+        hl.bind("escape", hl.dsp.submap("reset"))
+      end)
+      hl.bind("SUPER + I", hl.dsp.submap("chat"))
+
+      -- Screenshots
+      hl.define_submap("screenshot", "reset", function()
+        hl.bind("P", hl.dsp.exec_cmd("hyprpicker | wl-copy"))
+        hl.bind("W", hl.dsp.exec_cmd("hyprshot -m window"))
+        hl.bind("M", hl.dsp.exec_cmd("hyprshot -m output"))
+        hl.bind("R", hl.dsp.exec_cmd("hyprshot -m region"))
+        hl.bind("escape", hl.dsp.submap("reset"))
+      end)
+      hl.bind("PRINT", hl.dsp.submap("screenshot"))
+
+      ------------------------------------------------------------------
+      -- Window rules (ported from the old hyprlang config).
+      -- Field names for opacity/size/center/move follow the Lua API; verify
+      -- against https://wiki.hypr.land/Configuring/Basics/Window-Rules/ and
+      -- uncomment the ones you want.
+      ------------------------------------------------------------------
+      -- hl.window_rule({ match = { class = "ollama" },        float = true, size = "950 600", center = true })
+      -- hl.window_rule({ match = { title = "Picture-in-Picture" }, float = true, size = "950 600", center = true })
+      -- hl.window_rule({ match = { class = "thorium-browser" }, tile = true })
+      -- hl.window_rule({ match = { class = "FreeTube" },        tile = true })
+
+      -- Workspace rules
+      hl.workspace_rule({ workspace = "2", monitor = "HDMI-A-1", default = true })
     '';
   };
-}
+  }

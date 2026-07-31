@@ -70,6 +70,8 @@ in
   flake.nixosConfigurations.workstation = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       { nixpkgs.hostPlatform = system; }
+      # Hermes agent runs only on this machine.
+      inputs.hermes-agent.nixosModules.default
     ]
     ++ (with config.flake.modules.nixos; [
       base
@@ -113,6 +115,7 @@ in
         apps
         wayland
         hyprland
+        hyprlandWorkstation
       ];
     };
 }

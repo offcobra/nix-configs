@@ -25,7 +25,7 @@
   # Qt Configs
   qt = {
     enable = true;
-    platformTheme.name = "gtk";
+    platformTheme.name = "gtk3";
     style = {
       name = "adwaita-dark";
       package = pkgs.adwaita-qt;
@@ -34,6 +34,7 @@
 
   # Mouse Pointer Configs
   home.pointerCursor = {
+    enable = true;
     x11.enable = true;
     gtk.enable = true;
     name = "WhiteSur-cursors";

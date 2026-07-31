@@ -4,24 +4,14 @@
 # file. In the old tree these were system/helper/hyprland.nix and
 # user/wayland/hyprland.nix with no link between them.
 #
-# Host-varying values (monitor layout, blur, sensitivity, autostart) are
-# currently inlined for workstation. When a second host is added, lift these
-# into per-host home aspects instead of reintroducing `if hostname ==`.
-{ inputs, config, ... }:
+# This aspect holds only what is IDENTICAL on every Hyprland machine: session
+# wiring, binds, submaps, shared look-and-feel. Host-varying values (monitor
+# layout, blur, sensitivity, hardware cursors, autostart) live in the
+# hyprland<Host> aspects in hyprland-hosts.nix — a host composes BOTH. That
+# replaces the old `if hostname ==` branching.
+{ inputs, ... }:
 let
   system = "x86_64-linux";
-
-  # Per-host autostart. Reads as a plain shell script; no hostname branching.
-  startup = inputs.nixpkgs.legacyPackages.${system}.writeShellScriptBin "hypr-startup" ''
-    nm-applet &
-    hypridle &
-    wl-paste -t text --watch clipman store --no-persist &
-    foot --server &
-    noctalia-shell &
-    flatpak run org.signal.Signal --start-in-tray &
-    flatpak run com.rtosta.zapzap --start-hidden &
-    flatpak run me.timschneeberger.jdsp4linux --tray
-  '';
 in
 {
   flake.modules.nixos.hyprland =
@@ -74,11 +64,7 @@ in
         systemd.variables = [ "--all" ];
 
         settings = {
-          monitor = [
-            { output = "DP-1"; mode = "1920x1080@144.00"; position = "0x0"; scale = 1; }
-            { output = "HDMI-A-1"; mode = "2560x1440@143.91"; position = "1920x0"; scale = 1; }
-            { output = "DP-3"; mode = "1920x1080"; position = "4480x0"; scale = 1; }
-          ];
+          # `monitor` is defined by the per-host hyprland<Host> aspect.
 
           config = {
             general = {
@@ -91,12 +77,11 @@ in
                 inactive_border = "rgba(${config.colorScheme.palette.base00}aa)";
               };
             };
-            cursor.no_hardware_cursors = false;
+            # cursor.no_hardware_cursors + input.sensitivity are per-host.
             input = {
               kb_layout = "de";
               follow_mouse = 1;
               scroll_factor = 1.5;
-              sensitivity = 0;
               accel_profile = "flat";
               touchpad.natural_scroll = false;
             };
@@ -106,7 +91,7 @@ in
             };
             decoration = {
               rounding = 10;
-              blur.enabled = true;
+              # blur.enabled is per-host.
               shadow = {
                 enabled = true;
                 range = 4;
@@ -125,10 +110,7 @@ in
         };
 
         extraConfig = ''
-          -- Autostart
-          hl.on("hyprland.start", function()
-            hl.exec_cmd("${startup}/bin/hypr-startup")
-          end)
+          -- Autostart lives in the per-host hyprland<Host> aspect.
 
           -- Move/resize windows with SUPER + LMB/RMB and dragging
           hl.bind("SUPER + mouse:272", hl.dsp.window.drag(),   { mouse = true })

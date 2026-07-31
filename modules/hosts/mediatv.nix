@@ -65,6 +65,13 @@ in
         colors
         homeCore
         cli
+        # This box autologins on tty and starts Hyprland from there (start-wm),
+        # so it needs the full WM stack — with the mediatv monitor/cursor values.
+        theme
+        apps
+        wayland
+        hyprland
+        hyprlandMediatv
       ];
     };
 }

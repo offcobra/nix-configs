@@ -74,6 +74,7 @@ in
         apps
         wayland
         hyprland
+        hyprlandMinipc
       ];
     };
 }

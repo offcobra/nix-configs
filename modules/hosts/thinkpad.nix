@@ -104,6 +104,7 @@ in
         apps
         wayland
         hyprland
+        hyprlandThinkpad
       ];
     };
 }

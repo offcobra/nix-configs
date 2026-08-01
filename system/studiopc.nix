@@ -38,7 +38,6 @@
         lm_sensors
         alsa-utils
         # android fs
-        jmtpfs
         usbutils
         glib
     ];

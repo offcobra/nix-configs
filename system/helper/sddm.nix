@@ -9,7 +9,7 @@
       font  = userSettings.font;
       fontSize = "9";
       clockEnabled = true;
-      background = "../../user/wallpapers/midnight-sea.jpg";
+      background = ../../user/wallpapers/midnight-sea.jpg;
       loginBackground = true;
     })
     pkgs.sddm-sugar-dark

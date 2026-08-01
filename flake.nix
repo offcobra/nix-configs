@@ -40,10 +40,10 @@
         name = "Wally Workstation"; # name/identifier
         email = "offthewall211@proton.me"; # email (used for certain configurations ex: git)
         dotfilesDir = "~/.dotfiles"; # absolute path of the local repo
-        theme = "Dracula"; # selcted gtk theme
+        theme = "catppuccin-mocha-blue-standard"; # selcted gtk theme
+        cursorTheme = "catppuccin-mocha-dark-cursors"; # selcted cursor-theme
         colorTheme = "catppuccin-mocha"; # selcted theme from nix-colors
         iconTheme = "kora"; # selcted icontheme
-        cursorTheme = "Dracula-cursors"; # selcted cursor-theme
         font = "FiraCodeNerdFont"; # selcted font
         wm = "hyprland"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
       };

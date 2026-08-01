@@ -57,7 +57,6 @@
         lm_sensors
         alsa-utils
         # android fs
-        jmtpfs
         usbutils
         glib
     ];
@@ -73,4 +72,3 @@
   # Dont delete..
   system.stateVersion = "25.11"; # Did you read the comment?
 }
-

@@ -1,7 +1,7 @@
 { config, pkgs, userSettings, systemSettings, ... }:
 
 let
-  pointer_size = if ( systemSettings.hostname == "minipc" ) then 32 else 10;
+  pointer_size = if ( systemSettings.hostname == "minipc" ) then 42 else 18;
 in
 {
   # List of Themes
@@ -11,13 +11,14 @@ in
     enable = true;
     theme = {
       name = userSettings.theme;
-      package = pkgs.dracula-theme;
-      #package = pkgs.nordic;
+      package = pkgs.catppuccin-gtk.override {
+        variant = "mocha";
+        accents = [ "blue" ];
+      };
     };
     gtk4.theme = config.gtk.theme;
     iconTheme = {
       name = userSettings.iconTheme;
-      #package = pkgs.candy-icons;
       package = pkgs.kora-icon-theme;
     };
     font = {
@@ -30,7 +31,7 @@ in
   # Qt Configs
   qt = {
     enable = true;
-    platformTheme.name = "gtk";
+    platformTheme.name = "gtk3";
     style = {
       name = "adwaita-dark";
       package = pkgs.adwaita-qt;
@@ -39,13 +40,14 @@ in
 
   # Mouse Pointer Configs
   home.pointerCursor = {
+    enable = true;
     x11.enable = true;
     gtk.enable = true;
     hyprcursor = {
       enable = true;
     };
     name = userSettings.cursorTheme;
-    package = pkgs.dracula-theme;
+    package = pkgs.catppuccin-cursors.mochaDark;
     size = pointer_size;
   };
 }

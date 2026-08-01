@@ -13,6 +13,9 @@ let startup = pkgs.pkgs.writeShellScriptBin "hypr-startup" /*bash*/ ''
     echo "Starting NM-Applet..."
     nm-applet &
 
+    echo "Starting Shell..."
+    noctalia-shell &
+
     echo "Starting HyprIdle..."
     hypridle &
 
@@ -29,7 +32,6 @@ let startup = pkgs.pkgs.writeShellScriptBin "hypr-startup" /*bash*/ ''
     then
       echo "Starting Waybar..."
       #waybar &
-      noctalia-shell &
 
       echo "Starting Signal & WhatsApp..."
       flatpak run org.signal.Signal --start-in-tray &

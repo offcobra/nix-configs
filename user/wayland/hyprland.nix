@@ -14,7 +14,7 @@ let startup = pkgs.pkgs.writeShellScriptBin "hypr-startup" /*bash*/ ''
     nm-applet &
 
     echo "Starting Shell..."
-    noctalia-shell &
+    noctalia &
 
     echo "Starting HyprIdle..."
     hypridle &
@@ -92,7 +92,7 @@ in
     hyprshot
     hyprpicker
     wl-clipboard
-    noctalia-shell
+    noctalia
     #pyprland
     udis86
   ];
@@ -212,7 +212,7 @@ in
       -- hl.bind("SUPER + return", hl.dsp.exec_cmd("virt-run.py --pods arch"))
 
       -- Session menu
-      hl.bind("SUPER + Z", hl.dsp.exec_cmd("noctalia-shell ipc call sessionMenu toggle"))
+      hl.bind("SUPER + Z", hl.dsp.exec_cmd("noctalia msg panel-toggle session"))
 
       -- Window actions
       hl.bind("CTRL + space",       hl.dsp.window.fullscreen_state({ internal = 0, client = 1 }))
@@ -224,7 +224,7 @@ in
       hl.bind("SUPER + SHIFT + B",  hl.dsp.exec_cmd("toggle-proc.sh waybar"))
 
       -- Quick shortcuts
-      hl.bind("SUPER + P",          hl.dsp.exec_cmd("noctalia-shell ipc call launcher toggle"))
+      hl.bind("SUPER + P",          hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"))
       hl.bind("SUPER + SHIFT + P",  hl.dsp.exec_cmd("websearch.py"))
       hl.bind("SUPER + F",          hl.dsp.exec_cmd("thunar"))
       hl.bind("ALT + F",            hl.dsp.exec_cmd("footclient -e lf"))
@@ -303,13 +303,13 @@ in
       -- Programs
       hl.define_submap("programms", "reset", function()
         hl.bind("G", hl.dsp.exec_cmd("steam"))
-        hl.bind("V", hl.dsp.exec_cmd("noctalia-shell ipc call volume openPanel"))
+        hl.bind("V", hl.dsp.exec_cmd("noctalia msg panel-open control-center audio"))
         hl.bind("F", hl.dsp.exec_cmd("flatpak run com.github.tchx84.Flatseal"))
         hl.bind("S", hl.dsp.exec_cmd("spotify --enable-features=UseOzonePlatform --ozone-platform=wayland"))
         hl.bind("E", hl.dsp.exec_cmd("thunderbird"))
         hl.bind("H", hl.dsp.exec_cmd("flatpak run me.proton.Pass"))
         hl.bind("P", hl.dsp.exec_cmd("flatpak run me.proton.Mail"))
-        hl.bind("B", hl.dsp.exec_cmd("noctalia-shell ipc call bluetooth togglePanel"))
+        hl.bind("B", hl.dsp.exec_cmd("noctalia msg panel-toggle control-center bluetooth"))
         hl.bind("O", hl.dsp.exec_cmd("libreoffice"))
         hl.bind("Y", hl.dsp.exec_cmd("freetube"))
         hl.bind("W", hl.dsp.exec_cmd("waypaper"))
@@ -346,9 +346,9 @@ in
         hl.bind("C", hl.dsp.exec_cmd("screen-chill.sh"))
         hl.bind("F", hl.dsp.exec_cmd("screen-full.sh"))
         hl.bind("W", hl.dsp.exec_cmd("screen-work.sh"))
-        hl.bind("Z", hl.dsp.exec_cmd("noctalia-shell ipc call settings toggle"))
-        hl.bind("D", hl.dsp.exec_cmd("noctalia-shell ipc call notifications toggleDND"))
-        hl.bind("I", hl.dsp.exec_cmd("noctalia-shell ipc call idleInhibitor toggle"))
+        hl.bind("Z", hl.dsp.exec_cmd("noctalia msg settings-toggle"))
+        hl.bind("D", hl.dsp.exec_cmd("noctalia msg notification-dnd-toggle"))
+        hl.bind("I", hl.dsp.exec_cmd("noctalia msg caffeine-toggle"))
         hl.bind("escape", hl.dsp.submap("reset"))
       end)
       hl.bind("SUPER + T", hl.dsp.submap("toggle"))

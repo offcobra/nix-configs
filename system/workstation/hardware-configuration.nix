@@ -13,6 +13,7 @@
     enable = true;
     enable32Bit = true;
   };
+  hardware.amdgpu.initrd.enable = true; # load amdgpu early -> clean modeset, no flicker at login
 
   # Bluetooth
   hardware.bluetooth = {

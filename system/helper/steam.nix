@@ -5,6 +5,8 @@
   programs = {
     steam = {
       enable = true;
+      extraCompatPackages = [ pkgs.proton-ge-bin ]; # declarative GE-Proton, pick it per game
+      protontricks.enable = true;
       remotePlay.openFirewall = false; # Open ports in the firewall for Steam Remote Play
       dedicatedServer.openFirewall = false; # Open ports in the firewall for Source Dedicated Server
       gamescopeSession.enable = true;

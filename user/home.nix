@@ -23,11 +23,6 @@
   home.homeDirectory = "/home/"+userSettings.username;
   home.stateVersion = "23.11"; # Please dont change
 
-  # environment packages.
-  home.packages = with pkgs; [
-    dconf
-  ];
-
   # Sessionvariables
   home.sessionVariables = {
         EDITOR = "nvim";

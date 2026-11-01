@@ -1,10 +1,14 @@
 { config, pkgs, userSettings, systemSettings, ... }:
 
 let
-  pointer_size = if ( systemSettings.hostname == "minipc" ) then 42 else 18;
+  pointer_size = if ( systemSettings.hostname == "minipc" ) then 42 else 25;
 in
 {
-  # List of Themes
+  # Dconf for gnome apps...
+  dconf = {
+    enable = true;
+    settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+  };
 
   # Gtk Config
   gtk = {
@@ -17,6 +21,9 @@ in
       };
     };
     gtk4.theme = config.gtk.theme;
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
     iconTheme = {
       name = userSettings.iconTheme;
       package = pkgs.kora-icon-theme;

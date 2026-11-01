@@ -94,6 +94,7 @@ in
     wl-clipboard
     noctalia-shell
     #pyprland
+    udis86
   ];
 
   # Window Manager
@@ -135,7 +136,7 @@ in
         input = {
           kb_layout = "de";
           follow_mouse = 1;
-          scroll_factor = 1.5;
+          scroll_factor = 2;
           sensitivity = sens; # -1.0 - 1.0, 0 means no modification.
           accel_profile = "flat";
           touchpad = {
@@ -355,7 +356,7 @@ in
       -- Virtualization
       hl.define_submap("virtio", "reset", function()
         hl.bind("V", hl.dsp.exec_cmd("virt-run.py --vms choice"))
-        hl.bind("M", hl.dsp.exec_cmd("GTK_THEME=Dracula virt-manager"))
+        hl.bind("M", hl.dsp.exec_cmd("virt-manager"))
         hl.bind("B", hl.dsp.exec_cmd("flatpak run com.usebottles.bottles"))
         hl.bind("S", hl.dsp.exec_cmd("virt-run.py --stop"))
         hl.bind("D", hl.dsp.exec_cmd("virt-run.py --pods debian"))
@@ -399,6 +400,11 @@ in
       -- hl.window_rule({ match = { title = "Picture-in-Picture" }, float = true, size = "950 600", center = true })
       -- hl.window_rule({ match = { class = "thorium-browser" }, tile = true })
       -- hl.window_rule({ match = { class = "FreeTube" },        tile = true })
+      hl.window_rule({ name = "steam-dialogs", match = { class = "^steam$", title = "^(Friends List|Steam Settings|Screenshot Manager|Special Offers)$" }, float = true, })
+      hl.window_rule({ name = "steam-chats", match = { class = "^steam$", title = "^*$" }, float = true, })
+      hl.window_rule({ name = "steam-toasts", match = { class = "^steam$", title = "^notificationtoasts_.*$" }, float = true, no_initial_focus = true, })
+      hl.window_rule({ name = "proton-games", match = { class = "^steam_app_\\d+$" }, immediate = true, idle_inhibit = "fullscreen", content = "game", })
+      hl.window_rule({ name = "cs2", match = { class = "^cs2$" }, immediate = true, idle_inhibit = "fullscreen" })
 
       -- Workspace rules
       hl.workspace_rule({ workspace = "2", monitor = "HDMI-A-1", default = true })

@@ -162,6 +162,11 @@ in
           };
         };
 
+        # Don't flip the monitor into HDR when a fullscreen app requests it
+        render = {
+          cm_auto_hdr = 0;
+        };
+
         dwindle = {
           preserve_split = true;
         };
@@ -215,13 +220,15 @@ in
       hl.bind("SUPER + Z", hl.dsp.exec_cmd("noctalia msg panel-toggle session"))
 
       -- Window actions
-      hl.bind("CTRL + space",       hl.dsp.window.fullscreen_state({ internal = 0, client = 1 }))
+      -- Fake fullscreen toggle: app renders fullscreen, window stays tiled
+      hl.bind("CTRL + SHIFT + space",       hl.dsp.window.fullscreen_state({ internal = 0, client = 2 }))
       hl.bind("SUPER + Q",          hl.dsp.window.close())
       hl.bind("SUPER + SHIFT + Q",  hl.dsp.exec_cmd("kill-wm.sh"))
       hl.bind("SUPER + SHIFT + F",  hl.dsp.window.float({ action = "toggle" }))
       hl.bind("SUPER + CTRL + F",   hl.dsp.window.fullscreen())
       hl.bind("SUPER + CTRL + L",   hl.dsp.exec_cmd("hyprlock"))
-      hl.bind("SUPER + SHIFT + B",  hl.dsp.exec_cmd("toggle-proc.sh waybar"))
+      hl.bind("SUPER + SHIFT + B",  hl.dsp.exec_cmd("noctalia msg bar-toggle"))
+      hl.bind("ALT + TAB",          hl.dsp.exec_cmd("noctalia msg window-switcher hold all"))
 
       -- Quick shortcuts
       hl.bind("SUPER + P",          hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"))
@@ -405,6 +412,8 @@ in
       hl.window_rule({ name = "steam-toasts", match = { class = "^steam$", title = "^notificationtoasts_.*$" }, float = true, no_initial_focus = true, })
       hl.window_rule({ name = "proton-games", match = { class = "^steam_app_\\d+$" }, immediate = true, idle_inhibit = "fullscreen", content = "game", })
       hl.window_rule({ name = "cs2", match = { class = "^cs2$" }, immediate = true, idle_inhibit = "fullscreen" })
+      -- Fake fullscreen: Thorium thinks it's fullscreen, window stays tiled
+      hl.window_rule({ name = "thorium-fakefs", match = { class = "^thorium-browser$" }, fullscreen_state = "0 2" })
 
       -- Workspace rules
       hl.workspace_rule({ workspace = "2", monitor = "HDMI-A-1", default = true })

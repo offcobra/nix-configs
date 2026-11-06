@@ -18,6 +18,9 @@
       # Container tools like docker / podman
       # need to be installed on the host distro...
       ./cli/dev-tools.nix
+
+      # rj (remote jump): fzf host -> credential from vault -> ssh
+      ./cli/scripts/rj.nix
     ];
   colorScheme = nix-colors.colorSchemes.${userSettings.colorTheme};
 
@@ -37,6 +40,7 @@
 
   # Sessionvariables
   home.sessionVariables = {
+    FCBAYERN_IT_AI_KEY="sk-l1b83cgmdug8FjcCAVkvog";
     EDITOR="nvim";
     XKB_DEFAULT_LAYOUT = "de";
     VISUAL="nvim";

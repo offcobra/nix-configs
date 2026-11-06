@@ -11,9 +11,6 @@
       # Bash Config
       ./cli/shell.nix
 
-      # Opencode
-      ./cli/opencode/opencode.nix
-
       # Dev Tools
       # Container tools like docker / podman
       # need to be installed on the host distro...

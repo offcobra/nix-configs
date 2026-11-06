@@ -53,16 +53,6 @@ in
       };
     }
 
-     # Opencode
-     {
-       mode = "n";
-       action = ":OpencodePromt<CR>";
-       key = "<leader>h";
-       options = {
-         silent = true;
-       };
-     }
-
      # Dashboard
      {
        mode = "n";

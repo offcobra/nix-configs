@@ -67,13 +67,15 @@
           ".config" = " ";
           "nixos" = " ";
           "emacs" = " ";
-          "projects" = " ";
+          "npm" = " ";
+          "mvn" = " ";
+          "devops" = " ";
         };
       };
       character = {
-        success_symbol = "[❯](purple)";
-        error_symbol = "[❯](red)";
-        vimcmd_symbol = "[❮](green)";
+        success_symbol = "❯(purple)";
+        error_symbol = "❯(red)";
+        vimcmd_symbol = "❮(green)";
       };
       git_branch = {
         format = "[ $branch]($style)";

@@ -3,7 +3,7 @@
 let
   update_cmd = if (userSettings.username == "wally")
       then "os-rebuild && hm-rebuild && nix-clean"
-      else "paru -Syyu --noconfirm && nh home switch --update && nix-clean";
+      else "sudo nala update && sudo apt upgrade -y && nh home switch --update && nix-clean";
   keep = if (userSettings.username == "wally") then "3" else "2";
   mod = if (userSettings.username == "ppuscasu") then "user" else "all";
 

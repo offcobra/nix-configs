@@ -20,9 +20,9 @@
         noExitOnCtrlC = true;
         skipLatestRevCheck = false;
         logger = {
-          tail = 102;
+          tail = 1000;
           buffer = 5020;
-          sinceSeconds = 60;
+          sinceSeconds = -1; # -1 = show last `tail` lines instead of a time window
           fullScreenLogs = false;
           textWrap = false;
           showTime = false;

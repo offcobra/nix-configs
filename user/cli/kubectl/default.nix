@@ -10,6 +10,8 @@ let
     ks = "kc && kn";
     kw = "kc && k9";
 
+   # kubectl = "/usr/bin/kubectl";
+
     # K exec sh into pod
     ke = "kex sh";
 
@@ -49,8 +51,9 @@ in
     krew
 
     k3d
+    rancher
     kubetail
-    kubectl
+    #kubectl
     kubectx
     kubecolor
     kubectl-neat

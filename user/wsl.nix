@@ -11,6 +11,9 @@
       # Bash Config
       ./cli/shell.nix
 
+      # Opencode
+      ./cli/opencode/opencode.nix
+
       # Dev Tools
       # Container tools like docker / podman
       # need to be installed on the host distro...
@@ -21,7 +24,7 @@
   # Home Manager
   home.username = "${userSettings.username}";
   home.homeDirectory = "/home/${userSettings.username}/";
-  home.stateVersion = "24.05"; # Please dont change
+  home.stateVersion = "25.05"; # Please dont change
 
   # Linking Home Files
   home.file = {
@@ -45,11 +48,6 @@
     LANGUAGE="en_US.UTF-8";
     _ZO_DOCTOR="0";
     TMPDIR="/tmp";
-    #http_proxy="http://10.111.47.10:8080/";
-    #https_proxy="http://10.111.47.10:8080/";
-    #HTTP_PROXY="http://10.111.47.10:8080/";
-    #HTPPS_PROXY="http://10.111.47.10:8080/";
-    #GIT_SSL_NO_VERIFY=1;
   };
 
   # SessionPath

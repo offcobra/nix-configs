@@ -91,6 +91,7 @@
           }
           {
             type = "button";
+            on-press = "<cmd>quit<CR>";
             val = " Quit NeoVim ...";
             opts = {
               shortcut = "SPACE q  ->  ";

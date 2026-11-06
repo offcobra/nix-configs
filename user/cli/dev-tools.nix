@@ -7,8 +7,8 @@ let
     glaze="vim /mnt/c/Users/${userSettings.username}/AppData/Roaming/Alacritty/glazewm.yaml";
 
     # Python env for testing
-    pa = ". ~/projects/devops/nexgen/venv/bin/activate";
-    pi = "source ~/projects/devops/nexgen_env.sh && pip install ~/projects/devops/nexgen/";
+    pa = ". ~/projects/devops/cli-nexgen/venv/bin/activate";
+    pi = "source ~/projects/devops/nexgen_env.sh && pip install ~/projects/devops/cli-nexgen/";
     pai = "pa && pi";
 
     # Start AI service
@@ -24,7 +24,6 @@ in
 
     # AI Agent
     claude-code
-    #openclaw
 
     # HashiCorp
     vault-bin
@@ -32,13 +31,16 @@ in
     terraform
     terragrunt
 
+    # vsphere cli
+    govc
+
     # stackit
     stackit-cli
+    awscli
 
     # DevSecOps
     trivy
     buildah
-    podman
 
     # Start Docker
     (pkgs.writeShellScriptBin "start-docker" /*bash*/ ''
@@ -53,6 +55,10 @@ in
        sudo systemctl daemon-reload
     '')
   ];
+
+  services.podman = {
+    enable = true;
+  };
 
   # Dev Variables
   home.sessionVariables = {

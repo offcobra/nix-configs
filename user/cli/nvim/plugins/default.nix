@@ -107,6 +107,8 @@
     #  };
     #};
 
+    opencode.enable = true;
+
     # find project from .git files
     project-nvim = {
       enable = true;

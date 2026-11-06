@@ -4,7 +4,7 @@
   # tmux Configs
   programs.tmux = {
     enable = true;
-    shell = "${pkgs.fish}/bin/fish";
+    shell = "${pkgs.bash}/bin/bash";
     historyLimit = 10000;
     plugins = with pkgs; [
       {

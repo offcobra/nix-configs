@@ -1,7 +1,7 @@
 { userSettings, systemSettings, ... }:
 
 let
-  term_size = if (systemSettings.hostname == "thinkpad") then "120" else "150";
+  term_size = if (systemSettings.hostname == "thinkpad") then "120" else "160";
 in
 {
   # nvim Keybindings
@@ -52,6 +52,16 @@ in
         desc = "Git Pull";
       };
     }
+
+     # Opencode
+     {
+       mode = "n";
+       action = ":OpencodePromt<CR>";
+       key = "<leader>h";
+       options = {
+         silent = true;
+       };
+     }
 
      # Dashboard
      {
@@ -127,7 +137,7 @@ in
      # ToggleTerm Keys
      {
        mode = "n";
-       action = "<cmd>ToggleTerm size=15 direction=horizontal name=term-vertical<CR>";
+       action = "<cmd>ToggleTerm size=28 direction=horizontal name=term-vertical<CR>";
        key = "<leader>tv";
        options = {
          silent = true;

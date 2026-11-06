@@ -1,6 +1,9 @@
 { pkgs, userSettings, ... }:
 
 {
+  # Enable distrobox
+  programs.distrobox.enable = true;
+
   # List of secondary Applications
   home.packages = with pkgs; [
     # Nix helper
@@ -33,7 +36,7 @@
     chafa
 
     # Virt / Container tools
-    distrobox
+    #distrobox
 
     # Network
     dig
@@ -44,6 +47,7 @@
     rustscan
     traceroute
     iproute2
+    openssh
 
     # More tools
     htop
@@ -62,15 +66,7 @@
 
     # Programming languages
     # Python
-    (python3.withPackages (ps: [
-      ps.pip
-      ps.pylint
-    ]))
-
-    # Haskell / C++ / Rust
-    #ghc
-    #rustup
-    #gcc
+    python3
   ];
 
   programs = {
